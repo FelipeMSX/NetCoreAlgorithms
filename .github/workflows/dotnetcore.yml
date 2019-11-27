@@ -15,3 +15,5 @@ jobs:
         dotnet-version: 3.0.100
     - name: Build with dotnet
       run: dotnet build Algorithms/Algorithms.csproj --configuration 'Debug'
+    - name: Tests
+      run: dotnet test AlgorithmsTests/AlgorithmsTests.csproj --configuration 'Debug'
