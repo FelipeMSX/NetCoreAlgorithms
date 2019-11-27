@@ -14,4 +14,4 @@ jobs:
       with:
         dotnet-version: 3.0.100
     - name: Build with dotnet
-      run: dotnet build NetCoreAlgorithms/Algorithms/Algorithms.csproj --configuration
+      run: dotnet build NetCoreAlgorithms/Algorithms/Algorithms.csproj --configuration 'Debug'
