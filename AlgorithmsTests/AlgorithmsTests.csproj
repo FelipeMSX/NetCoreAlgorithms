@@ -13,4 +13,17 @@
     <PackageReference Include="coverlet.collector" Version="1.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Abstracts\" />
+    <Folder Include="Collections\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Study\" />
+    <Folder Include="Sorts\" />
+    <Folder Include="Searchs\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Algorithms\Algorithms.csproj" />
+  </ItemGroup>
+
 </Project>
