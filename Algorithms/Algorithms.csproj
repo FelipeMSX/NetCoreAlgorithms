@@ -4,4 +4,16 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Abstracts\" />
+    <Folder Include="Collections\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Exceptions\" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="Sorts\" />
+    <Folder Include="Nodes\" />
+    <Folder Include="Study\" />
+    <Folder Include="Searchs\" />
+  </ItemGroup>
+
 </Project>
