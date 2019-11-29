@@ -1,45 +1,45 @@
 ﻿using System;
 using Algorithms.Interfaces;
 using Algorithms.Exceptions;
+using System.Collections.Generic;
+using System.Collections;
+using Algorithms.Helpers;
+using System.Linq;
 
 namespace Algorithms.Abstracts
 {
-    /// <summary>
-    /// Define uma classe abstrata para qualquer estrutura que precise de um vetor.
-    /// Vetor pode ter sua capacidade aumentada caso necessário.
-    /// </summary>
-    /// <author>Felipe Morais</author>
-    /// <email>felipemsx18@gmail.com</email>
-    /// <typeparam name="E">Tipo do objeto armazenado na coleção.</typeparam>
-    public abstract class ArrayBase<T> : ICommon<T>, IDefaultComparator<T>
+    public abstract class ArrayBase<T> : IEnumerable<T>, IDefaultComparator<T>
     {
-        #region Properties
-        /// <summary>
-        /// Constante que define um valor inicial padrão para a coleção.
-        /// </summary>
+        private readonly IEnumerableHelper<T> _collectionHelper;
         public const int DefaultSize = 100;
 
-        /// <summary>
-        /// Fornece um método de comparação para os objetos da coleção.
-        /// </summary>
+        protected T[] Vector;
+
+        public T this[int index]
+        {
+            get => Vector[index];
+            set => Vector[index] = value;
+        }
+
+
+        protected ArrayBase(int maxSize, Comparison<T> comparator, bool resizable = true, bool allowEqualsElements = true)
+        {
+            MaxSize             = maxSize;
+            Vector              = new T[maxSize];
+            Resizable           = resizable;
+            Comparator          = comparator;
+            AllowEqualsElements = allowEqualsElements;
+            _collectionHelper   = new EnumerableHelper<T>(this, Comparator);
+        }
+
+        protected ArrayBase(Comparison<T> comparator) : this(100, comparator, true, true)
+        {
+        }
+
+        #region Properties
         public Comparison<T> Comparator { get; set; }
 
-        /// <summary>
-        /// Vetor que armazena os objetos genéricos da coleção.
-        /// </summary>
-        public T[] Vector { get; protected set; }
-
-        /// <summary>
-        /// Tamanho atual da coleção.
-        /// </summary>
-        public int Length { get; protected set; }
-
         private int maxSize;
-
-        /// <summary>
-        /// Controla o crescimento da coleção, definindo um limite a ela.
-        /// </summary>
-        /// <exception cref="ValueNotValidException">Valor não pode ser menor que o atual.</exception>
         public int MaxSize
         {
             get { return maxSize; }
@@ -52,89 +52,39 @@ namespace Algorithms.Abstracts
         }
 
         public bool AllowEqualsElements { get; protected set; }
-
-        /// <summary>
-        /// Define se a coleção deve se expandir ao atingir a capacidade máxima.
-        /// </summary>
         public bool Resizable { get; set; }
+        public int Count { get; protected set; }
+        public bool IsReadOnly => false;
 
         #endregion
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="maxSize">Quantidade de itens que a coleção pode armazenar.</param>
-        /// <param name="resizable">Define se a coleção deve se expandir ao atingir a capacidade máxima.</param>
-        /// <param name="comparator">Fornece um método de comparação para os objetos da coleção.</param>
-        protected ArrayBase(int maxSize, bool resizable = true, bool allowEqualsElements = true, Comparison<T> comparator = null)
-        {
-            MaxSize = maxSize;
-            Vector = new T[maxSize];
-            Resizable = resizable;
-            Comparator = comparator;
-        }
+        public abstract IEnumerator<T> GetEnumerator();
 
-        protected ArrayBase() : this(100, true,true, null)
-        {
-        }
-
-        #region Interfaces
-
-        /// <summary>
-        /// Remove todos os objetos da coleção.
-        /// </summary>
         public void Clear()
         {
             Vector = new T[MaxSize];
-            Length = 0;
+            Count = 0;
         }
 
-        /// <summary>
-        /// Informa se a coleção está vazia.
-        /// </summary>
-        public bool Empty() => Length == 0;
+        public bool Empty() => Count == 0;
+        public bool Full() => Count == MaxSize;
+        public T First() => Empty() ? default : Vector[0];
+        public T Last() => Empty() ? default : Vector[Count - 1];
 
-        /// <summary>
-        /// Informa se a coleção está cheia.
-        /// </summary>
-        public bool Full() => Length == MaxSize;
-
-        /// <summary>
-        /// Retorna o primeiro elmento da coleção. Se estiver vazia retorna o valor default do tipo do objeto.
-        /// </summary>
-        public T First() => Empty() ? default(T) : Vector[0];
-
-        /// <summary>
-        /// Retorna o último elmento da coleção. Se estiver vazia retorna o valor default do tipo do objeto.
-        /// </summary>
-        public T Last() => Empty() ? default(T) : Vector[Length - 1];
-
-        /// <summary>
-        /// Percorre a coleção até encontrar o objeto. Somente retorna o objeto não o remove. É necessário definir um Comparator a coleção.
-        /// </summary>
-        /// <exception cref="ComparerNotSetException">Caso a coleção não tenha um comparator definido.</exception>
-        /// <param name="obj">Objeto com as keys necessárias para encontrar um objeto na coleção.</param>
-        /// <returns></returns>
-        /// 
-        public T Retrive(T obj)
+        public virtual T Retrieve(T item)
         {
             if (Comparator == null)
                 throw new ComparerNotSetException();
 
-            for (int i = 0; i < Length; i++)
+            for (int i = 0; i < Count; i++)
             {
-                if (Comparator(Vector[i], obj) == 0)
-                    return obj;
+                if (Comparator.Check(Vector[i], item) == ComparisonResult.Equal)
+                    return item;
             }
 
-            return default(T);
+            return default;
         }
-        #endregion
 
-        /// <summary>
-        /// Aumenta a capacidade da coleção de acordo com o ResizeValue.
-        /// </summary>
-        /// <exception cref="FullCollectionException">A coleção não foi configurada para aumentar dinamicamente seu tamanho a medida do necessário.</exception>
         public void IncreaseCapacity(int increment)
         {
             if (!Resizable)
@@ -143,11 +93,27 @@ namespace Algorithms.Abstracts
             MaxSize += increment;
             T[] temp = new T[MaxSize];
 
-            for (int i = 0; i < Length; i++)
+            for (int i = 0; i < Count; i++)
             {
                 temp[i] = Vector[i];
             }
             Vector = temp;
+        }
+
+
+        public bool Contains(T item)
+        {
+            return _collectionHelper.Contains(item);
+        }
+
+        public void CopyTo(T[] array, int arrayIndex)
+        {
+            _collectionHelper.CopyTo(array, arrayIndex);
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 }

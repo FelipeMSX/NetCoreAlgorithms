@@ -34,7 +34,7 @@ namespace Algorithms_Test.Abstracts
             _staticQueue = new StaticQueue<int?>(5,true,true,null);
             _staticQueue.Push(1);
             //Act
-            _staticQueue.Retrive(1);
+            _staticQueue.Retrieve(1);
             //Assert
             Assert.Inconclusive("The exception is expected because the queue doesn't has a comparator!");
         }
@@ -51,7 +51,7 @@ namespace Algorithms_Test.Abstracts
             //Arrange
             _staticQueue = CreateQueue(5,true);
             //Act
-            int? result = _staticQueue.Retrive(1);
+            int? result = _staticQueue.Retrieve(1);
             //Assert
             Assert.IsTrue(result == null);
         }
@@ -69,7 +69,7 @@ namespace Algorithms_Test.Abstracts
             _staticQueue = CreateQueue(5,true);
             _staticQueue.Push(1);
             //Act
-            int? result = _staticQueue.Retrive(1);
+            int? result = _staticQueue.Retrieve(1);
             //Assert
             Assert.IsTrue(result == 1);
         }
@@ -91,7 +91,7 @@ namespace Algorithms_Test.Abstracts
             _staticQueue.Push(4);
             _staticQueue.Push(5);
             //Act
-            int? result = _staticQueue.Retrive(5);
+            int? result = _staticQueue.Retrieve(5);
             //Assert
             Assert.IsTrue(result == 5);
         }

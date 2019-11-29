@@ -1,43 +1,24 @@
 ﻿using System;
+using System.Collections.Generic;
 using Algorithms.Abstracts;
 using Algorithms.Exceptions;
 
 namespace Algorithms.Collections
 {
-    /// <summary>
-    ///  Estrutura de dados que representa uma pilha.
-    ///  <para>Características</para>
-    ///  <para>1* Os objetos são colocados no final do vetor.</para>
-    ///  <para>2*Ao retirada do objeto é feita no final do vetor.</para>
-    /// </summary>
-    /// <author>Felipe Morais</author>
-    /// <email>felipemsx18@gmail.com</email>
-    /// <typeparam name="E">Tipo de Objeto da pilha.</typeparam>
+
     public class StaticStack<T> : QueueStackBase<T> 
 	{
-        /// <summary>
-        /// Inicializa a coleção com o tamanho padrão de 100, e por padrão seu tamanho é reajustável.
-        /// </summary>
-		public StaticStack() : base()
+  
+		public StaticStack(Comparison<T> comparator) : base(comparator)
 		{
 		}
 
-        /// <param name="maxsize">Valor máximo de itens que a coleção pode armazenar.</param>
-        /// <param name="resizable">Define se a coleção deve se expandir ao atingir a capacidade máxima.</param>
-        /// <param name="comparator">Fornece um método de comparação para os objetos da coleção.</param>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed")]
-        public StaticStack(int maxsize, bool resizable = true, bool allowEqualsElements = true, Comparison<T> comparator = null) 
-            : base (maxsize, resizable, allowEqualsElements, comparator)
+        public StaticStack(int maxsize, Comparison<T> comparator, bool resizable = true, bool allowEqualsElements = true) 
+            : base (maxsize, comparator, resizable, allowEqualsElements)
 		{
-
 		}
 
-		/// <summary>
-		///  Coloca um objeto
-		/// </summary>
-		/// <exception cref="NullObjectException">Objeto não pode ser nulo.</exception>
-		/// <exception cref="FullCollectionException">A pilha está cheia e não aceita está configurada para ser redimensionada.</exception>
-		/// <param name="obj">Objeto a ser inserido na coleção.</param>
+
 		public override void Push(T obj)
 		{
             //Validações
@@ -46,39 +27,32 @@ namespace Algorithms.Collections
 			if (Full())
 				IncreaseCapacity(DefaultSize);
 
-			Vector[Length++] = obj;
+			Vector[Count++] = obj;
 		}
 
-		/// <summary>
-		///  Remove o primeiro objeto da coleção.
-		/// </summary>
-		/// <exception cref="EmptyCollectionException">Não existe elemento para remover na pilha.</exception>
-		/// <returns></returns>
 		public override T Pop()
 		{
 			if (Empty())
 				throw new EmptyCollectionException();
 
-			T temp = Vector[--Length];
-			Vector[Length] = default;
+			T temp = Vector[--Count];
+			Vector[Count] = default;
 
 			return temp;
 		}
 
-
-        /// <summary>
-        /// Retorna o primero elemento a sair da pilha sem removê-lo.
-        /// </summary>
-        /// <exception cref="EmptyCollectionException">Se a pilha estiver vazia causa um erro.</exception>
-        /// <returns></returns>
         public override T Peek()
         {
             if (Empty())
                 throw new EmptyCollectionException();
 
-            T obj = Vector[Length - 1];
+            return Vector[Count - 1];
+        }
 
-            return obj;
+        public override IEnumerator<T> GetEnumerator()
+        {
+            for (int i = 0; i < Count; i++)
+                yield return this[i];
         }
     }
 }
