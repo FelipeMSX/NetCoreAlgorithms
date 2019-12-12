@@ -2,52 +2,63 @@
 using Algorithms.Interfaces;
 using System.Collections.Generic;
 using System.Collections;
+using Algorithms.Exceptions;
+using System.Linq;
+using Algorithms.Helpers;
 
 namespace Algorithms.Abstracts
 {
-	/// <summary>
-	/// Classe abstrata utilizada em todas as coleções que se assemelham a uma lista dinâmica e suas variações.
-	/// </summary>
-	/// <author>Felipe Morais</author>
-	/// <email>felipemsx18@gmail.com</email>
-	/// <typeparam name="E">Objeto armazenado pela coleção.</typeparam>
-	/// <typeparam name="T">Tipo do node utilizado na coleção.</typeparam>
-	public abstract class LinkedListBase<E, T> : ICommon<E>, IEnumerable<E>, IDefaultComparator<E>
-		where T : NodeBase<E>
-	{
 
-		/// <summary>
-		/// Aponta para o primeiro item da coleção da coleção. Não armazena dados.
-		/// </summary>
-		protected T Head { get; set; }
+    public abstract class LinkedListBase<T, E> : IEnumerable<T>, IDefaultComparator<T>
+        where E : NodeBase<T>, new()
+    {
 
-		/// <summary>
-		/// Atual tamanho da coleção.
-		/// </summary>
-		public int Length { get; protected set; }
+        private readonly IEnumerableHelper<T> _enumerableHelper;
+
+        /// <summary>
+        /// Aponta para o primeiro item da coleção da coleção. Não armazena dados.
+        /// </summary>
+        protected E Head { get; set; }
 
         /// <summary>
         /// Informa se a coleção está vazia.
         /// </summary>
-        public bool Empty() => Length == 0;
+        public bool IsEmpty() => Count == 0;
 
         /// <summary>
         /// Fornece um método de comparação para os objetos da coleção.
         /// </summary>
-        public Comparison<E> Comparator { get; set; }
+        public Comparison<T> Comparator { get; }
+        public int Count { get; protected set; }
+        public bool IsReadOnly => false;
 
-		public abstract void Insert(E obj);
-		public abstract E Remove(E obj);
-		public abstract E First();
-		public abstract E Last();
-		public abstract E Retrive(E obj);
-        public abstract void Clear();
+        protected LinkedListBase(Comparison<T> comparator)
+        {
+            Comparator = comparator;
+            _enumerableHelper = new EnumerableHelper<T>(this,comparator);
+        }
+        public abstract IEnumerator<T> GetEnumerator();
+        public abstract void Add(T item);
+        public abstract bool Remove(T item);
+        public abstract T Retrieve(T item);
+        public abstract T First();
+        public abstract T Last();
+        public void Clear()
+        {
+            Head = new E();
+            Count = 0;
+        }
 
-        public abstract IEnumerator<E> GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
-		IEnumerator IEnumerable.GetEnumerator()
-		{
-			throw new NotImplementedException();
-		}
+        public bool Contains(T item)
+        {
+            return _enumerableHelper.Contains(item);
+        }
+
+        public void CopyTo(T[] array, int arrayIndex)
+        {
+            _enumerableHelper.CopyTo(array, arrayIndex);
+        }
     }
 }

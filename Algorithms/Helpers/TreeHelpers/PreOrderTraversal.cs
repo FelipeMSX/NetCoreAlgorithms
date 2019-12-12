@@ -20,10 +20,10 @@ namespace Algorithms.Helpers.TreeHelpers
                 yield break;
             }
 
-            QueueStackBase<TreeSearchNode<T>> staticStack = new StaticStack<TreeSearchNode<T>>(1000);
+            QueueStackBase<TreeSearchNode<T>> staticStack = new StaticStack<TreeSearchNode<T>>(1000, ComparatorHelper.EmptyComparison);
             staticStack.Push(node);
 
-            while (staticStack.Length > 0)
+            while (staticStack.Count > 0)
             {
                 node = staticStack.Pop();
 

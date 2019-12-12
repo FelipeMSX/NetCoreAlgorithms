@@ -2,12 +2,7 @@
 
 namespace Algorithms.Abstracts
 {
-	/// <summary>
-	/// Classe abstrata utilizada na criação de qualquer coleção que utilize uma pilha ou fila.
-	/// </summary>
-	/// <author>Felipe Morais</author>
-	/// <email>felipemsx18@gmail.com</email>
-	/// <typeparam name="E">Tipo do objeto armazenado na coleção.</typeparam>
+
 	public abstract class QueueStackBase<T> : ArrayBase<T>
 	{
 
@@ -15,13 +10,13 @@ namespace Algorithms.Abstracts
 		public abstract T Pop();
         public abstract T Peek();
 
-		protected QueueStackBase() : base()
-		{
-		}
+        protected QueueStackBase(Comparison<T> comparator) : base(comparator)
+        {
+        }
 
-        protected QueueStackBase(int maxsize, bool resizable = true, bool allowEqualsElements = true, Comparison<T> comparator = null) 
-            : base (maxsize, resizable, allowEqualsElements, comparator)
-		{
-		}
-	}
+        protected QueueStackBase(int maxsize, Comparison<T> comparator, bool resizable = true, bool allowEqualsElements = true)
+            : base(maxsize, comparator, resizable, allowEqualsElements)
+        {
+        }
+    }
 }

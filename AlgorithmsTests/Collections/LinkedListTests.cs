@@ -475,7 +475,7 @@ namespace Algorithms_Test.Collections
             //Act
             _linkedList.Clear();
             //Assert
-            Assert.IsTrue(_linkedList.Empty());
+            Assert.IsTrue(_linkedList.IsEmpty());
         }
     }
 }

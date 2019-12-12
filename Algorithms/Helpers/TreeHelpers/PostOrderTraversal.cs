@@ -15,11 +15,11 @@ namespace Algorithms.Helpers.TreeHelpers
     {
         public IEnumerator<T> Traversal(TreeSearchNode<T> node)
         {
-            QueueStackBase<TreeSearchNode<T>> staticStack = new StaticStack<TreeSearchNode<T>>(1000);
+            QueueStackBase<TreeSearchNode<T>> staticStack = new StaticStack<TreeSearchNode<T>>(1000, ComparatorHelper.EmptyComparison);
 
             TreeSearchNode<T> lastNodeVisited = null;
 
-            while (staticStack.Length > 0 || node != null)
+            while (staticStack.Count > 0 || node != null)
             {
                 if (node != null)
                 {
