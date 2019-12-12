@@ -32,7 +32,7 @@ namespace Algorithms.Abstracts
         public int Count { get; protected set; }
         public bool IsReadOnly => false;
 
-        public LinkedListBase(Comparison<T> comparator)
+        protected LinkedListBase(Comparison<T> comparator)
         {
             Comparator = comparator;
             _enumerableHelper = new EnumerableHelper<T>(this,comparator);
@@ -53,25 +53,12 @@ namespace Algorithms.Abstracts
 
         public bool Contains(T item)
         {
-            if (Comparator == null)
-                throw new NullObjectException("The comparator must be declared.");
-            if (item == null)
-                throw new ArgumentNullException("The argument cannot be null.");
-
-            return this.Any(x => Comparator.Check(item, x) == ComparisonResult.Equal);
+            return _enumerableHelper.Contains(item);
         }
 
         public void CopyTo(T[] array, int arrayIndex)
         {
-            if (array == null)
-                throw new ArgumentNullException("The array cannot be null.");
-
-            int initialPosition = arrayIndex;
-
-            foreach (T item in this)
-            {
-                array[initialPosition++] = item;
-            }
+            _enumerableHelper.CopyTo(array, arrayIndex);
         }
     }
 }

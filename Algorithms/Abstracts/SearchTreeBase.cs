@@ -10,7 +10,10 @@ namespace Algorithms.Abstracts
 	public abstract class SearchTreeBase<TValue, TNode> : IEnumerable<TValue>, IDefaultComparator<TValue>
 		where TNode : TreeSearchNode<TValue>, new()
     {
-		public int Count { get; protected set; }
+
+        private readonly IEnumerableHelper<TValue> _collectionHelper;
+
+        public int Count { get; protected set; }
 		public bool IsEmpty() => Count == 0;
 		public bool IsReadOnly => false;
 		public Comparison<TValue> Comparator { get; }

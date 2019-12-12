@@ -10,16 +10,10 @@ namespace Algorithms.Collections
 
 	public class LinkedList<T> : LinkedListBase<T, LinkedNode<T>>
 	{
-
-        public LinkedList(Comparison<T> comparator) : base()
+        public LinkedList(Comparison<T> comparator) : base(comparator)
         {
             Head = new LinkedNode<T>();
-            Comparator = comparator;
         }
-
-        public LinkedList() : this(null)
-		{
-		}
 
 		public override void Add(T item)
 		{
