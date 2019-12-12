@@ -21,11 +21,11 @@ namespace Algorithms_Test.Collections
         /// Técnica: Caminho de Decisão.
         /// </summary>
         [TestMethod, TestCategory("LinkedList"), ExpectedException(typeof(NullObjectException))]
-        public void Insert_ObjectIsNull_Exception()
+        public void Add_ObjectIsNull_Exception()
         {
             //Arrange
             //Act
-            _linkedList.Insert(null);
+            _linkedList.Add(null);
             //Assert
             Assert.Inconclusive("An exception is expected!");
         }
@@ -34,13 +34,13 @@ namespace Algorithms_Test.Collections
         /// Técnica: Caminho de Decisão.
         /// </summary>
         [TestMethod, TestCategory("LinkedList")]
-        public void Insert_InsertFirstElement_SizeEqualsOne()
+        public void Add_AddFirstElement_SizeEqualsOne()
         {
             //Arrange
             //Act
-            _linkedList.Insert(1);
+            _linkedList.Add(1);
             //Assert
-            Assert.IsTrue(_linkedList.Length == 1, "The size of the collection is meant to be one!");
+            Assert.IsTrue(_linkedList.Count == 1, "The size of the collection is meant to be one!");
         }
 
         /// <summary>
@@ -49,14 +49,14 @@ namespace Algorithms_Test.Collections
         /// </summary>
         /// <!--while (searchNode.HasNext())-->
         [TestMethod, TestCategory("LinkedList")]
-        public void Insert_InsertTwoElements_SizeEqualsTwo()
+        public void Add_AddTwoElements_SizeEqualsTwo()
         {
             //Arrange
             //Act
-            _linkedList.Insert(1);
-            _linkedList.Insert(2);
+            _linkedList.Add(1);
+            _linkedList.Add(2);
             //Assert
-            Assert.IsTrue(_linkedList.Length == 2,"The size of the collection is meant to be two!");
+            Assert.IsTrue(_linkedList.Count == 2,"The size of the collection is meant to be two!");
         }
 
         /// <summary>
@@ -65,15 +65,15 @@ namespace Algorithms_Test.Collections
         /// </summary>
         /// <!--while (searchNode.HasNext())-->
         [TestMethod, TestCategory("LinkedList")]
-        public void Insert_InsertTwoElements2_SizeEqualsThree()
+        public void Add_AddTwoElements2_SizeEqualsThree()
         {
             //Arrange
             //Act
-            _linkedList.Insert(1);
-            _linkedList.Insert(2);
-            _linkedList.Insert(3);
+            _linkedList.Add(1);
+            _linkedList.Add(2);
+            _linkedList.Add(3);
             //Assert
-            Assert.IsTrue(_linkedList.Length == 3, "The size of the collection is meant to be three!");
+            Assert.IsTrue(_linkedList.Count == 3, "The size of the collection is meant to be three!");
         }
 
         /// <summary>
@@ -82,16 +82,16 @@ namespace Algorithms_Test.Collections
         /// </summary>
         /// <!--while (searchNode.HasNext())-->
         [TestMethod, TestCategory("LinkedList")]
-        public void Insert_InsertFourElements_SizeEqualsFour()
+        public void Add_AddFourElements_SizeEqualsFour()
         {
             //Arrange
             //Act
-            _linkedList.Insert(1);
-            _linkedList.Insert(2);
-            _linkedList.Insert(3);
-            _linkedList.Insert(4);
+            _linkedList.Add(1);
+            _linkedList.Add(2);
+            _linkedList.Add(3);
+            _linkedList.Add(4);
             //Assert
-            Assert.IsTrue(_linkedList.Length == 4, "The size of the collection is meant to be four!");
+            Assert.IsTrue(_linkedList.Count == 4, "The size of the collection is meant to be four!");
         }
 
         /// <summary>
@@ -125,22 +125,6 @@ namespace Algorithms_Test.Collections
             Assert.Inconclusive("An exception is expected!");
         }
 
-        /// <summary>
-        /// Técnica: Caminho.
-        /// Objetivo: Executar o caminho.
-        /// </summary>
-        /// <!--if (Comparator == null)-->
-        [TestMethod, TestCategory("LinkedList"), ExpectedException(typeof(ComparerNotSetException))]
-        public void Remove_NullComparator_Exception()
-        {
-            //Arrange
-            _linkedList = new LinkedList<int?>();
-            _linkedList.Insert(1);
-            //Act
-            _linkedList.Remove(1);
-            //Assert
-            Assert.Inconclusive("An exception is expected!");
-        }
 
         /// <summary>
         /// Técnica: Caminho.
@@ -151,12 +135,12 @@ namespace Algorithms_Test.Collections
         public void Remove_ListSizeEqualsOne_Object()
         {
             //Arrange
-            _linkedList.Insert(10);
+            _linkedList.Add(10);
             //Act
 
-            int? result =_linkedList.Remove(10);
+            bool result =_linkedList.Remove(10);
             //Assert
-            Assert.IsTrue(result == 10, "An Object with value ten is expected!");
+            Assert.IsTrue(result, "An Object with value ten is expected!");
         }
 
         /// <summary>
@@ -168,13 +152,13 @@ namespace Algorithms_Test.Collections
         public void Remove_ElementInMiddleOfList_Object()
         {
             //Arrange
-            _linkedList.Insert(1);
-            _linkedList.Insert(2);
-            _linkedList.Insert(3);
+            _linkedList.Add(1);
+            _linkedList.Add(2);
+            _linkedList.Add(3);
             //Act
-            int? result = _linkedList.Remove(2);
+            bool result = _linkedList.Remove(2);
             //Assert
-            Assert.IsTrue(result == 2, "An Object with value one is expected!");
+            Assert.IsTrue(result, "An Object with value one is expected!");
         }
 
         /// <summary>
@@ -186,11 +170,11 @@ namespace Algorithms_Test.Collections
         public void Remove_ThereAreNotElementsInTheList_Exception()
         {
             //Arrange
-            _linkedList.Insert(1);
-            _linkedList.Insert(2);
-            _linkedList.Insert(3);
+            _linkedList.Add(1);
+            _linkedList.Add(2);
+            _linkedList.Add(3);
             //Act
-            int? result = _linkedList.Remove(5);
+            bool result = _linkedList.Remove(5);
             //Assert
             Assert.Inconclusive("An exception is expected because the element doesn't exist in the collection!");
         }
@@ -205,7 +189,7 @@ namespace Algorithms_Test.Collections
         {
             //Arrange
             //Act
-            int? result = _linkedList.Retrive(5);
+            int? result = _linkedList.Retrieve(5);
             //Assert
             Assert.Inconclusive("An exception is expected because there is no elements in the list!");
         }
@@ -219,29 +203,13 @@ namespace Algorithms_Test.Collections
         public void Retrieve_SearchWithNullObject_Exception()
         {
             //Arrange
-            _linkedList.Insert(2);
+            _linkedList.Add(2);
             //Act
-            _linkedList.Retrive(null);
+            _linkedList.Retrieve(null);
             //Assert
             Assert.Inconclusive("An exception is expected because a null object isn't allowed!");
         }
 
-        /// <summary>
-        /// Técnica: Caminho.
-        /// Objetivo: Executar o caminho.
-        /// </summary>
-        /// <!--(Comparator == null)-->
-        [TestMethod, TestCategory("LinkedList"), ExpectedException(typeof(ComparerNotSetException))]
-        public void Retrieve_ComparatorisNotSet_Exception()
-        {
-            //Arrange
-            _linkedList.Comparator = null;
-            _linkedList.Insert(1);
-            //Act
-            _linkedList.Retrive(1);
-            //Assert
-            Assert.Inconclusive("An exception is expected because a null comparator isn't allowed!");
-        }
 
         /// <summary>
         /// Técnica: Ciclo.
@@ -252,10 +220,10 @@ namespace Algorithms_Test.Collections
         public void Retrieve_RetrieveFirstElement_Object()
         {
             //Arrange
-            _linkedList.Insert(1);
-            _linkedList.Insert(2);
+            _linkedList.Add(1);
+            _linkedList.Add(2);
             //Act
-            int? result = _linkedList.Retrive(1);
+            int? result = _linkedList.Retrieve(1);
             //Assert
             Assert.IsTrue(result == 1,"The element with value one is expected!");
         }
@@ -269,11 +237,11 @@ namespace Algorithms_Test.Collections
         public void Retrieve_ElementInTheEndOfList_Object()
         {
             //Arrange
-            _linkedList.Insert(1);
-            _linkedList.Insert(2);
-            _linkedList.Insert(3);
+            _linkedList.Add(1);
+            _linkedList.Add(2);
+            _linkedList.Add(3);
             //Act
-            int? result = _linkedList.Retrive(3);
+            int? result = _linkedList.Retrieve(3);
             //Assert
             Assert.IsTrue(result == 3, "The element with value three is expected!");
         }
@@ -286,11 +254,11 @@ namespace Algorithms_Test.Collections
         public void Retrieve_ElementDoesNotExistInList_Object()
         {
             //Arrange
-            _linkedList.Insert(1);
-            _linkedList.Insert(2);
-            _linkedList.Insert(3);
+            _linkedList.Add(1);
+            _linkedList.Add(2);
+            _linkedList.Add(3);
             //Act
-            int? result = _linkedList.Retrive(5);
+            int? result = _linkedList.Retrieve(5);
             //Assert
             Assert.IsTrue(result == null,"The element does not exist in the list!");
         }
@@ -319,9 +287,9 @@ namespace Algorithms_Test.Collections
         public void First_ThereAreElementsInTheList_FisrtObject()
         {
             //Arrange
-            _linkedList.Insert(1);
-            _linkedList.Insert(2);
-            _linkedList.Insert(3);
+            _linkedList.Add(1);
+            _linkedList.Add(2);
+            _linkedList.Add(3);
             //Act
             int? result = _linkedList.First();
             //Assert
@@ -353,7 +321,7 @@ namespace Algorithms_Test.Collections
         public void Last_ElementInTheHead_LastObject()
         {
             //Arrange
-            _linkedList.Insert(1);
+            _linkedList.Add(1);
 
             //Act
             int? result = _linkedList.Last();
@@ -370,8 +338,8 @@ namespace Algorithms_Test.Collections
         public void Last_ElementInTheEnd_LastObject()
         {
             //Arrange
-            _linkedList.Insert(1);
-            _linkedList.Insert(2);
+            _linkedList.Add(1);
+            _linkedList.Add(2);
             //Act
             int? result = _linkedList.Last();
             //Assert
@@ -410,7 +378,7 @@ namespace Algorithms_Test.Collections
             int?[] vectorInput = new int?[1] {1};
             foreach (int? item in vectorInput)
             {
-                _linkedList.Insert(item);
+                _linkedList.Add(item);
             }
 
             int? []vectorResult = new int?[1];
@@ -442,7 +410,7 @@ namespace Algorithms_Test.Collections
             int?[] vectorInput = new int?[3] { 1,2,3 };
             foreach (int? item in vectorInput)
             {
-                _linkedList.Insert(item);
+                _linkedList.Add(item);
             }
 
             int?[] vectorResult = new int?[3];
@@ -469,9 +437,9 @@ namespace Algorithms_Test.Collections
         public void Clear_FilledList_EmptyList()
         {
             //Arrange
-            _linkedList.Insert(1);
-            _linkedList.Insert(2);
-            _linkedList.Insert(3);
+            _linkedList.Add(1);
+            _linkedList.Add(2);
+            _linkedList.Add(3);
             //Act
             _linkedList.Clear();
             //Assert

@@ -51,14 +51,8 @@ namespace Algorithms.Abstracts
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
-        public bool Contains(T item)
-        {
-            return _enumerableHelper.Contains(item);
-        }
+        public bool Contains(T item) => _enumerableHelper.Contains(item);
 
-        public void CopyTo(T[] array, int arrayIndex)
-        {
-            _enumerableHelper.CopyTo(array, arrayIndex);
-        }
+        public void CopyTo(T[] array, int arrayIndex) => _enumerableHelper.CopyTo(array, arrayIndex);
     }
 }

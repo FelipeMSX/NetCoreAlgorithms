@@ -73,12 +73,10 @@ namespace Algorithms.Abstracts
 			Count = 0;
 		}
 
-		public bool Contains(TValue item) => FindNodeByValue(item) != null;
+        public bool Contains(TValue item) => _collectionHelper.Contains(item);
 
-		public void CopyTo(TValue[] array, int arrayIndex)
-		{
-			throw new NotImplementedException();
-		}
+		public void CopyTo(TValue[] array, int arrayIndex) => _collectionHelper.CopyTo(array, arrayIndex);
+
 
 		/// <summary>
 		/// Encontra a posição anterior ao valor informado. 

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using Algorithms.Exceptions;
+using Algorithms.Helpers;
 using Algorithms.Nodes;
 
 namespace Algorithms.Collections
@@ -8,20 +10,25 @@ namespace Algorithms.Collections
 	public class OrderedLinkedList<T> : LinkedList<T>
 	{
 		
+        /// <summary>
+        /// Allows the collection can accept equals elements.
+        /// </summary>
 		public bool AllowEquals { get; private set; }
 
 		public OrderedLinkedList(Comparison<T> comparator, bool allowEquals = true) : base(comparator)
 		{
-			Comparator = comparator;
 			AllowEquals = allowEquals;	
 		}
 
+        /// <summary>
+        /// Finds the correct position to insert the item.
+        /// </summary>
+        /// <param name="item">A new item for the collection.</param>
 		public override void Add(T item)
 		{
+            
 			if (item == null)
 				throw new NullObjectException();
-			if (Comparator == null)
-				throw new ComparerNotSetException();
 
 			LinkedNode<T> newNode = new LinkedNode<T>(item);
 			if (IsEmpty())
@@ -36,10 +43,10 @@ namespace Algorithms.Collections
 				while (search != null)
 				{
 					//Valida se é permitido objetos iguais na coleção.
-					if (Comparator(search.Value, item) == 0 && !AllowEquals)
+					if (Comparator.Check(search.Value, item) == ComparisonResult.Equal && !AllowEquals)
 						throw new EqualsElementException();
 
-					if (Comparator(search.Value, item) >= 0)
+					if (Comparator.Check(search.Value, item) >= ComparisonResult.Equal)
 					{
 						previous.Next = newNode;
 						newNode.Next = search;
@@ -52,7 +59,5 @@ namespace Algorithms.Collections
 			}
 			Count++;
 		}
-
-
     }
 }
