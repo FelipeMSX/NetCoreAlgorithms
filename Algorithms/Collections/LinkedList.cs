@@ -44,11 +44,9 @@ namespace Algorithms.Collections
 				throw new NullObjectException();
 			if (IsEmpty())
 				throw new EmptyCollectionException();
-			if (Comparator == null)
-				throw new ComparerNotSetException();
 
 			//Remoção na cabeça da coleção.
-			if (Comparator(Head.Next.Value, item) == 0)
+			if (Comparator.Check(Head.Next.Value, item) == ComparisonResult.Equal)
             {
                 RemoveNodeFromList(Head);
                 return true;
@@ -68,42 +66,15 @@ namespace Algorithms.Collections
             }
 		}
 
-        private T RemoveNodeFromList(LinkedNode<T> previousNode)
-        {
-            LinkedNode<T> current = previousNode.Next;
-            previousNode.Next     = current.Next; 
-            current.Next          = null;
-            Count--;
-            return current.Value;
-        }
-
-        private LinkedNode<T> SearchPreviousPosition(T objectKey)
-        {
-            LinkedNode<T> search = Head.Next;
-            LinkedNode<T> previous = Head.Next;
-
-            while (previous.HasNext())
-            {
-                if (Comparator(search.Value, objectKey) == 0)
-                    return previous;
-
-                previous = search;
-                search = search.Next;
-            }
-            return null;
-        }
-
 		public override T Retrieve(T item)
 		{
 			if (IsEmpty())
 				throw new EmptyCollectionException();
 			if (item == null)
 				throw new NullObjectException();
-			if (Comparator == null)
-				throw new ComparerNotSetException();
 
 			LinkedNode<T> current = Head.Next;
-			while (current.HasNext() && Comparator(current.Value, item) != 0)
+			while (current.HasNext() && Comparator.Check(current.Value, item) != ComparisonResult.Equal)
 			{
 				current = current.Next;
 			}
@@ -120,7 +91,6 @@ namespace Algorithms.Collections
 
 			return Head.Next.Value;
 		}
-
 
 		public override T Last()
 		{
@@ -146,5 +116,29 @@ namespace Algorithms.Collections
 			}
 		}
 
+        private T RemoveNodeFromList(LinkedNode<T> previousNode)
+        {
+            LinkedNode<T> current = previousNode.Next;
+            previousNode.Next = current.Next;
+            current.Next = null;
+            Count--;
+            return current.Value;
+        }
+
+        private LinkedNode<T> SearchPreviousPosition(T objectKey)
+        {
+            LinkedNode<T> search = Head.Next;
+            LinkedNode<T> previous = Head.Next;
+
+            while (previous.HasNext())
+            {
+                if (Comparator.Check(search.Value, objectKey) == ComparisonResult.Equal)
+                    return previous;
+
+                previous = search;
+                search = search.Next;
+            }
+            return null;
+        }
     }
 }

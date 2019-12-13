@@ -17,26 +17,7 @@ namespace Algorithms_Test.Abstracts
         private StaticQueue<int?> _staticQueue;
         private static StaticQueue<int?> CreateQueue(int capacity, bool resizable)
         {
-            return new StaticQueue<int?>(capacity, resizable, true,
-                            ((x, y) => x.Value.CompareTo(y.Value)));
-        }
-
-        /// <summary>
-        /// Técnica: Caminho.
-        /// Objetivo: Executar o caminho.
-        /// </summary>
-        /// <!--if (Comparator == null)-->
-        [TestMethod, TestCategory("ArrayBase"), ExpectedException(typeof(ComparerNotSetException))]
-
-        public void Retrieve_ComparatorNotSet_Exception()
-        {
-            //Arrange
-            _staticQueue = new StaticQueue<int?>(5,true,true,null);
-            _staticQueue.Push(1);
-            //Act
-            _staticQueue.Retrieve(1);
-            //Assert
-            Assert.Inconclusive("The exception is expected because the queue doesn't has a comparator!");
+            return new StaticQueue<int?>(capacity, Shared.DefaultIntComparison, resizable, true);
         }
 
         /// <summary>

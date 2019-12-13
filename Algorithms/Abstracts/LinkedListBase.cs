@@ -34,7 +34,7 @@ namespace Algorithms.Abstracts
 
         protected LinkedListBase(Comparison<T> comparator)
         {
-            Comparator = comparator;
+            Comparator = comparator ?? throw new NullObjectException("The comparison object cannot be null");
             _enumerableHelper = new EnumerableHelper<T>(this,comparator);
         }
         public abstract IEnumerator<T> GetEnumerator();
@@ -51,14 +51,8 @@ namespace Algorithms.Abstracts
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
-        public bool Contains(T item)
-        {
-            return _enumerableHelper.Contains(item);
-        }
+        public bool Contains(T item) => _enumerableHelper.Contains(item);
 
-        public void CopyTo(T[] array, int arrayIndex)
-        {
-            _enumerableHelper.CopyTo(array, arrayIndex);
-        }
+        public void CopyTo(T[] array, int arrayIndex) => _enumerableHelper.CopyTo(array, arrayIndex);
     }
 }

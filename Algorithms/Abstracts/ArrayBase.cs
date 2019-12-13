@@ -27,7 +27,7 @@ namespace Algorithms.Abstracts
             MaxSize             = maxSize;
             Vector              = new T[maxSize];
             Resizable           = resizable;
-            Comparator          = comparator;
+            Comparator          = comparator ?? throw new NullObjectException("The comparison object cannot be null");
             AllowEqualsElements = allowEqualsElements;
             _collectionHelper   = new EnumerableHelper<T>(this, Comparator);
         }
@@ -101,15 +101,9 @@ namespace Algorithms.Abstracts
         }
 
 
-        public bool Contains(T item)
-        {
-            return _collectionHelper.Contains(item);
-        }
+        public bool Contains(T item)  => _collectionHelper.Contains(item);
 
-        public void CopyTo(T[] array, int arrayIndex)
-        {
-            _collectionHelper.CopyTo(array, arrayIndex);
-        }
+        public void CopyTo(T[] array, int arrayIndex) => _collectionHelper.CopyTo(array, arrayIndex);
 
         IEnumerator IEnumerable.GetEnumerator()
         {
