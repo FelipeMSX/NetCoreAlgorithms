@@ -34,7 +34,7 @@ namespace Algorithms.Abstracts
 
         protected LinkedListBase(Comparison<T> comparator)
         {
-            Comparator = comparator;
+            Comparator = comparator ?? throw new NullObjectException("The comparison object cannot be null");
             _enumerableHelper = new EnumerableHelper<T>(this,comparator);
         }
         public abstract IEnumerator<T> GetEnumerator();

@@ -27,7 +27,7 @@ namespace Algorithms.Abstracts
             MaxSize             = maxSize;
             Vector              = new T[maxSize];
             Resizable           = resizable;
-            Comparator          = comparator;
+            Comparator          = comparator ?? throw new NullObjectException("The comparison object cannot be null");
             AllowEqualsElements = allowEqualsElements;
             _collectionHelper   = new EnumerableHelper<T>(this, Comparator);
         }

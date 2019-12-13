@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Algorithms.Exceptions;
+using Algorithms.Helpers;
 using Algorithms.Interfaces;
 using Algorithms.Nodes;
 
@@ -32,8 +33,9 @@ namespace Algorithms.Abstracts
 		protected SearchTreeBase(Comparison<TValue> comparator, ITraversalStrategy<TValue> traversalStrategy)
 		{
 			Comparator        = comparator ?? throw new NullObjectException("The comparison object cannot be null");
-			TraversalStrategy = traversalStrategy ?? throw new NullObjectException("The traversal strategy object cannot be null"); ;
-		}
+			TraversalStrategy = traversalStrategy ?? throw new NullObjectException("The traversal strategy object cannot be null");
+            _collectionHelper = new EnumerableHelper<TValue>(this, Comparator);
+        }
 
 
 		public abstract void Add(TValue value);

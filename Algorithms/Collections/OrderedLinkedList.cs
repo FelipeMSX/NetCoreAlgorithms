@@ -6,8 +6,12 @@ using Algorithms.Nodes;
 
 namespace Algorithms.Collections
 {
-	
-	public class OrderedLinkedList<T> : LinkedList<T>
+
+    /// <summary>
+    /// This collection represents a descending ordered list.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public class OrderedLinkedList<T> : LinkedList<T>
 	{
 		
         /// <summary>
@@ -40,22 +44,30 @@ namespace Algorithms.Collections
 				LinkedNode<T> search = Head.Next;
 				LinkedNode<T> previous = Head.Next;
 
-				while (search != null)
-				{
-					//Valida se é permitido objetos iguais na coleção.
-					if (Comparator.Check(search.Value, item) == ComparisonResult.Equal && !AllowEquals)
-						throw new EqualsElementException();
+                //Checks if the new node must be the first;
+                if (Comparator.Check(search.Value, item) >= ComparisonResult.Equal)
+                {
+                    newNode.Next = Head.Next;
+                    Head.Next   = newNode;
+                }
+                else
+                {
+                    while (search != null)
+                    {
+                        //Valida se é permitido objetos iguais na coleção.
+                        if (Comparator.Check(search.Value, item) == ComparisonResult.Equal && !AllowEquals)
+                            throw new EqualsElementException();
 
-					if (Comparator.Check(search.Value, item) >= ComparisonResult.Equal)
-					{
-						previous.Next = newNode;
-						newNode.Next = search;
-						break;
-					}
-					previous = search;
-					search = search.Next;
-				}
-				previous.Next = newNode;
+                        if (Comparator.Check(search.Value, item) >= ComparisonResult.Equal)
+                        {
+                            newNode.Next = search;
+                            break;
+                        }
+                        previous = search;
+                        search = search.Next;
+                    }
+                    previous.Next = newNode;
+                }
 			}
 			Count++;
 		}
