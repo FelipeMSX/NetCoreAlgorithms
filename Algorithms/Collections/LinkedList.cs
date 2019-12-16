@@ -79,7 +79,7 @@ namespace Algorithms.Collections
 				current = current.Next;
 			}
            
-			return Comparator.Check(current.Value, item) == ComparisonResult.Equal ? current.Value : default;
+			return Comparator.Check(current.Value, item) == ComparisonResult.Equal ? current.Value : default(T);
 		}
 
 		
