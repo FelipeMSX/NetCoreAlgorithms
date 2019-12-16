@@ -68,8 +68,8 @@ namespace Algorithms.Abstracts
 
         public bool Empty() => Count == 0;
         public bool Full() => Count == MaxSize;
-        public T First() => Empty() ? default : Vector[0];
-        public T Last() => Empty() ? default : Vector[Count - 1];
+        public T First() => Empty() ? default(T) : Vector[0];
+        public T Last() => Empty() ? default(T) : Vector[Count - 1];
 
         public virtual T Retrieve(T item)
         {
@@ -82,7 +82,7 @@ namespace Algorithms.Abstracts
                     return item;
             }
 
-            return default;
+            return default(T);
         }
 
         public void IncreaseCapacity(int increment)

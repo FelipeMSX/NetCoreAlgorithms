@@ -36,7 +36,7 @@ namespace Algorithms.Collections
 				throw new EmptyCollectionException();
 
 			T temp = Vector[--Count];
-			Vector[Count] = default;
+			Vector[Count] = default(T);
 
 			return temp;
 		}

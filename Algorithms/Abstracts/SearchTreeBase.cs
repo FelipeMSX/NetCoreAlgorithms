@@ -209,7 +209,7 @@ namespace Algorithms.Abstracts
 				TreeSearchNode<TValue> leftMostNode = GoDeepToLeft(node.Right);
 				EraseConnections(leftMostNode);
 				node.Value = leftMostNode.Value;
-				leftMostNode.Value = default;
+				leftMostNode.Value = default(TValue);
 			}
 		}
 	}

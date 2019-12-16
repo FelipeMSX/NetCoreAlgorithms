@@ -66,7 +66,7 @@ namespace Algorithms.Collections
                 return false;
 
             //A partir daqui é pra remover o objeto.
-            removeNode.Value = default;
+            removeNode.Value = default(TValue);
 
             //Remover na Raiz
             if (Count == 1)

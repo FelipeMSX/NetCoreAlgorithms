@@ -47,6 +47,10 @@ namespace Algorithms.Collections
                 //Checks if the new node must be the first;
                 if (Comparator.Check(search.Value, item) >= ComparisonResult.Equal)
                 {
+                    //Checks if the list can accept elements with equals values.
+                    if (Comparator.Check(search.Value, item) == ComparisonResult.Equal && !AllowEquals)
+                        throw new EqualsElementException();
+
                     newNode.Next = Head.Next;
                     Head.Next   = newNode;
                 }
@@ -54,7 +58,7 @@ namespace Algorithms.Collections
                 {
                     while (search != null)
                     {
-                        //Valida se é permitido objetos iguais na coleção.
+                        //Checks if the list can accept elements with equals values.
                         if (Comparator.Check(search.Value, item) == ComparisonResult.Equal && !AllowEquals)
                             throw new EqualsElementException();
 

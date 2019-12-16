@@ -84,13 +84,10 @@ namespace Algorithms_Test.Collections
         public void Add_TwoValuesInFirstPosition_Ordered()
         {
             //Arrange
-
             //Act
             _orderedLinkedList.Add(10);
             _orderedLinkedList.Add(5);
-
             var expectedList = _orderedLinkedList.OrderBy(x => x.Value);
-
             //Assert
             Assert.IsTrue(expectedList.SequenceEqual(_orderedLinkedList), "The collection is not ordered correctly.");
         }
@@ -103,7 +100,6 @@ namespace Algorithms_Test.Collections
         public void Add_DesorderedValues_Ordered()
         {
             //Arrange
-            
             //Act
             _orderedLinkedList.Add(10);
             _orderedLinkedList.Add(5);
@@ -112,9 +108,40 @@ namespace Algorithms_Test.Collections
             _orderedLinkedList.Add(100);
 
             var expectedList = _orderedLinkedList.OrderBy(x => x.Value);
-
             //Assert
             Assert.IsTrue(expectedList.SequenceEqual(_orderedLinkedList), "The collection is not ordered correctly.");
+        }
+
+        /// <summary>
+        /// Técnica: Caminho.
+        /// </summary>
+        [TestMethod, TestCategory("OrderedLinkedList"), ExpectedException(typeof(EqualsElementException))]
+        public void Add_EqualsElementsInsertionOnHead_Exception()
+        {
+            //Arrange
+            _orderedLinkedList = new OrderedLinkedList<int?>(Shared.DefaultIntComparison, false);
+            //Act
+            _orderedLinkedList.Add(10);
+            _orderedLinkedList.Add(10);
+            //Assert
+            Assert.Inconclusive("An exception was expected");
+        }
+
+        /// <summary>
+        /// Técnica: Caminho.
+        /// </summary>
+        [TestMethod, TestCategory("OrderedLinkedList"), ExpectedException(typeof(EqualsElementException))]
+        public void Add_EqualsElementsMiddle_Exception()
+        {
+            //Arrange
+            _orderedLinkedList = new OrderedLinkedList<int?>(Shared.DefaultIntComparison, false);
+            //Act
+            _orderedLinkedList.Add(10);
+            _orderedLinkedList.Add(100);
+            _orderedLinkedList.Add(1000);
+            _orderedLinkedList.Add(100);
+            //Assert
+            Assert.Inconclusive("An exception was expected");
         }
     }
 }

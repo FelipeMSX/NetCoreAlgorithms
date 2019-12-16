@@ -62,7 +62,7 @@ namespace Algorithms.Searchs
 				else
 					return orderedArray[mid];
 			}
-			return default;
+			return default(T);
 		}
 
         /// <summary>
