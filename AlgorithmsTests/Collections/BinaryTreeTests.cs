@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using Algorithms.Abstracts;
 using Algorithms.Collections;
 using Algorithms.Exceptions;
 using Algorithms.Nodes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Linq;
 
 namespace Algorithms_Test.Collections
 {
@@ -12,31 +14,14 @@ namespace Algorithms_Test.Collections
     {
         private BinaryTreeCollection<int?> _binaryTree;
 
-        private bool IsCrescentOrder()
-        {
-            bool hasOrdered = true;
-            int? previousItem = -100;
-            foreach (int? item in _binaryTree)
-            {
-                if (previousItem > item)
-                {
-                    hasOrdered = false;
-                    break;
-                }
-                previousItem = item;
-            }
-
-            return hasOrdered;
-        }
-
         [TestInitialize]
-        public void SetUp()
+        public void TearUp()
         {
             _binaryTree = new BinaryTreeCollection<int?>(Shared.DefaultIntComparison);
         }
 
         [TestCleanup]
-        public void Cleanning()
+        public void TearDown()
         {
             _binaryTree = null;
         }
@@ -214,9 +199,10 @@ namespace Algorithms_Test.Collections
             _binaryTree.Add(200);
             _binaryTree.Add(300);
             //Act
-            bool result = IsCrescentOrder();
+            IEnumerable<int?> expectedList = new List<int?>() { 10,100,200,300 };
+
             //Assert
-            Assert.IsTrue(result, "The binary tree should be in crescent order!");
+            Assert.IsTrue(_binaryTree.SequenceEqual(expectedList), "The binary tree should be in crescent order!");
         }
 
         /// <summary>
@@ -231,9 +217,9 @@ namespace Algorithms_Test.Collections
             _binaryTree.Add(1);
             _binaryTree.Add(300);
             //Act
-            bool result = IsCrescentOrder();
+            IEnumerable<int?> expectedList = new List<int?>() { 1, 5, 10, 300 };
             //Assert
-            Assert.IsTrue(result, "The binary tree should be in crescent order!");
+            Assert.IsTrue(_binaryTree.SequenceEqual(expectedList), "The binary tree should be in crescent order!");
         }
 
         /// <summary>

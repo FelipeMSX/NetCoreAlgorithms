@@ -11,7 +11,7 @@ namespace Algorithms_Test.Collections
         private LinkedList<int?> _linkedList;
 
         [TestInitialize]
-        public void SetUp()
+        public void TearUp()
         {
             _linkedList = new LinkedList<int?>(Shared.DefaultIntComparison);
         }

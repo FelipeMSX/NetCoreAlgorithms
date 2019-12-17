@@ -3,6 +3,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Algorithms.Collections;
 using AlgorithmsTests;
 using Algorithms.Exceptions;
+using Algorithms.Abstracts;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace Algorithms_Test.Collections
 {
@@ -170,6 +173,25 @@ namespace Algorithms_Test.Collections
             int? value =_staticQueue.Peek();
             //Assert
             Assert.IsTrue(value == 8,"The value eight was expected.");
+        }
+
+
+        /// <summary>
+        /// Técnica: Caminho
+        /// </summary>
+        [TestMethod, TestCategory("StaticQueue")]
+        public void GetEnumerator_RetriveValues_Success()
+        {
+            //Arrange
+            _staticQueue.Push(1);
+            _staticQueue.Push(2);
+            _staticQueue.Push(3);
+            _staticQueue.Push(4);
+            _staticQueue.Push(5);
+            //Act
+            IEnumerable<int?> expectedList = _staticQueue.OrderBy(x => x);
+            //Assert
+            Assert.IsTrue(expectedList.SequenceEqual(_staticQueue), "The collections should be the same.");
         }
     }
 }

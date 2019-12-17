@@ -30,7 +30,6 @@ namespace Algorithms.Abstracts
         /// </summary>
         public Comparison<T> Comparator { get; }
         public int Count { get; protected set; }
-        public bool IsReadOnly => false;
 
         protected LinkedListBase(Comparison<T> comparator)
         {
