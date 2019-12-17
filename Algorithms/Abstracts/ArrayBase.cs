@@ -11,7 +11,7 @@ namespace Algorithms.Abstracts
     public abstract class ArrayBase<T> : IEnumerable<T>, IDefaultComparator<T>
     {
         private readonly IEnumerableHelper<T> _collectionHelper;
-        public const int DefaultSize = 100;
+        public const int DefaultSize = 1000;
 
         protected T[] Vector;
 
@@ -32,7 +32,7 @@ namespace Algorithms.Abstracts
             _collectionHelper   = new EnumerableHelper<T>(this, Comparator);
         }
 
-        protected ArrayBase(Comparison<T> comparator) : this(100, comparator, true, true)
+        protected ArrayBase(Comparison<T> comparator) : this(1000, comparator, true, true)
         {
         }
 

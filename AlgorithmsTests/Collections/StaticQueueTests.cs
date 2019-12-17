@@ -10,101 +10,166 @@ namespace Algorithms_Test.Collections
     public class StaticQueueTests
     {
 
-        //private StaticQueue<ObjectTest> _staticQueue;
-
-        //private Comparison<ObjectTest> _comparisonObjectTest = ((x, y) =>
-        // {
-        //     if (x.Id > y.Id)
-        //         return 1;
-        //     else
-        //     if (x.Id < y.Id)
-        //         return -1;
-        //     else
-        //         return 0;
- 
-        // });
-
-        //[TestInitialize]
-        //public void Initialize()
-        //{
-        //    _staticQueue = new StaticQueue<ObjectTest>(100,true,_comparisonObjectTest);
-        //}
-
-        //[TestMethod, TestCategory("StaticQueue")]
-        //public void Push_ThreeObjects_LengthEqualsThree()
-        //{
-        //    //Arrange --Configurado no Initialize
-        //    //Act
-        //    _staticQueue.Push(new ObjectTest("AAAA", 2));
-        //    _staticQueue.Push(new ObjectTest("AAAA", 1));
-        //    _staticQueue.Push(new ObjectTest("BBBB", 4));
-        //    //Assert
-        //    Assert.IsTrue(_staticQueue.Length == 3);
-        //}
-
-        //[TestMethod, TestCategory("StaticQueue"), ExpectedException(typeof(NullObjectException))]
-        //public void Push_NullValue_NullObjectException()
-        //{
-        //    //Arrange --Configurado no Initialize
-        //    //Act
-        //    _staticQueue.Push(null);
-        //    //Assert
-        //    Assert.Inconclusive("Uma exceção do tipo NullObjectException deveria ter acontecido!");
-        //}
-
-        //[TestMethod, TestCategory("StaticQueue")]
-        //public void Push_ObjectInFullCollectionResizable_LengthEqualsThree()
-        //{
-        //    //Arrange
-        //    _staticQueue = new StaticQueue<ObjectTest>(2, true, _comparisonObjectTest);
-        //    //Act
-        //    _staticQueue.Push(new ObjectTest("AAAA", 1));
-        //    _staticQueue.Push(new ObjectTest("BBBB", 2));
-        //    _staticQueue.Push(new ObjectTest("CCCC", 3));
-        //    //Assert
-        //    //Por padrão, a capacidade da lista é aumentada em 100.
-        //    Assert.IsTrue(_staticQueue.Length == 3 && _staticQueue.MaxSize == 102);
-        //}
-
-        //[TestMethod, TestCategory("StaticQueue"), ExpectedException(typeof(FullCollectionException))]
-
-        //public void Push_ObjectInFullCollectionNotResizable_FullCollectionException()
-        //{
-        //    //Arrange
-        //    _staticQueue = new StaticQueue<ObjectTest>(2, false, _comparisonObjectTest);
-        //    //Act
-        //    _staticQueue.Push(new ObjectTest("AAAA", 1));
-        //    _staticQueue.Push(new ObjectTest("BBBB", 2));
-        //    _staticQueue.Push(new ObjectTest("CCCC", 3)); // Deve ocorrer a exceção aqui.
-        //    //Assert
-        //    Assert.Inconclusive("Uma exceção do tipo FullCollectionException deveria ter acontecido!");
-        //}
+        private StaticQueue<int?> _staticQueue;
 
 
-        //[TestMethod, TestCategory("StaticQueue"), ExpectedException(typeof(EmptyCollectionException))]
-        //public void Pop_EmptyList_EmptyCollectionException()
-        //{
-        //    //Arrange
-        //    //Act
-        //    _staticQueue.Pop();
-        //    //Assert
-        //    Assert.Inconclusive("Uma exceção do tipo EmptyCollectionException deveria ter acontecido,pois, não existe nenhum elemento na coleção!");
-        //}
+        [TestInitialize]
+        public void Initialize()
+        {
+            _staticQueue = new StaticQueue<int?>(100,Shared.DefaultIntComparison);
+        }
 
-        //[TestMethod, TestCategory("StaticQueue")]
-        //public void Pop_InsertABC_RetriveABC()
-        //{
-        //    //Arrange
-        //    _staticQueue.Push(new ObjectTest("AAAA", 1));
-        //    _staticQueue.Push(new ObjectTest("BBBB", 2));       
-        //    _staticQueue.Push(new ObjectTest("CCCC", 3));
-        //    //Act
-        //    ObjectTest popedObject1 = _staticQueue.Pop();
-        //    ObjectTest popedObject2 = _staticQueue.Pop();
-        //    ObjectTest popedObject3 = _staticQueue.Pop();
-        //    //Assert
-        //    Assert.IsTrue(popedObject1.Id == 1 && popedObject2.Id == 2 && popedObject3.Id == 3);
+        [TestMethod, TestCategory("StaticQueue")]
+        public void Push_ThreeObjects_LengthEqualsThree()
+        {
+            //Arrange
+            //Act
+            _staticQueue.Push(2);
+            _staticQueue.Push(1);
+            _staticQueue.Push(4);
+            //Assert
+            Assert.IsTrue(_staticQueue.Count == 3);
+        }
 
-        //}
+        /// <summary>
+        /// Técnica: Caminho.
+        /// </summary>
+        [TestMethod, TestCategory("StaticQueue"), ExpectedException(typeof(NullObjectException))]
+        public void Push_NullValue_NullObjectException()
+        {
+            //Arrange 
+            //Act
+            _staticQueue.Push(null);
+            //Assert
+            Assert.Inconclusive("An exception was expected because it tried to add a null value.");
+        }
+
+        /// <summary>
+        /// Técnica: Caminho e Decisão.
+        /// </summary>
+        [TestMethod, TestCategory("StaticQueue")]
+        public void Push_ObjectInFullCollectionResizable_LengthEqualsThree()
+        {
+            //Arrange
+            _staticQueue = new StaticQueue<int?>(2,Shared.DefaultIntComparison);
+            //Act
+            _staticQueue.Push(1);
+            _staticQueue.Push(2);
+            _staticQueue.Push(3);
+            //Assert
+            Assert.IsTrue(_staticQueue.Count == 3 && _staticQueue.MaxSize == 1002);
+        }
+
+        /// <summary>
+        /// Técnica: Caminho e Decisão.
+        /// </summary>
+        [TestMethod, TestCategory("StaticQueue"), ExpectedException(typeof(FullCollectionException))]
+
+        public void Push_ObjectInFullCollectionNotResizable_FullCollectionException()
+        {
+            //Arrange
+            _staticQueue = new StaticQueue<int?>(2, Shared.DefaultIntComparison, false);
+            //Act
+            _staticQueue.Push(1);
+            _staticQueue.Push(2);
+            _staticQueue.Push(3); // It should be occur an exception here.
+            //Assert
+            Assert.Inconclusive("An exception was expected because the collection is currently full.");
+        }
+
+
+        /// <summary>
+        /// Técnica: Caminho.
+        /// </summary>
+        [TestMethod, TestCategory("StaticQueue"), ExpectedException(typeof(EmptyCollectionException))]
+        public void Pop_EmptyList_EmptyCollectionException()
+        {
+            //Arrange
+            //Act
+            _staticQueue.Pop();
+            //Assert
+            Assert.Inconclusive("An exception was expected because the collection is currently empty.");
+        }
+
+        /// <summary>
+        /// Técnica: Ciclo. Executar o for nenhuma vez
+        /// </summary>
+        [TestMethod, TestCategory("StaticQueue")]
+        public void Pop_AddOneItemAndPop_Success()
+        {
+            //Arrange
+            _staticQueue.Push(1);
+            //Act
+            int? popedObject1 = _staticQueue.Pop();
+            //Assert
+            Assert.IsTrue(popedObject1 == 1);
+
+        }
+
+        /// <summary>
+        /// Técnica: Ciclo. Executar o for uma vez
+        /// </summary>
+        [TestMethod, TestCategory("StaticQueue")]
+        public void Pop_AddTwoItemAndPopThem_Success()
+        {
+            //Arrange
+            _staticQueue.Push(1);
+            _staticQueue.Push(2);
+            //Act
+            int? popedObject1 = _staticQueue.Pop();
+            int? popedObject2 = _staticQueue.Pop();
+            //Assert
+            Assert.IsTrue(popedObject1 == 1 && popedObject2 == 2);
+        }
+
+        /// <summary>
+        /// Técnica: Ciclo. Executar o for N-vezes.
+        /// </summary>
+        [TestMethod, TestCategory("StaticQueue")]
+        public void Pop_AddThreeItemAndPopThem_Success()
+        {
+            //Arrange
+            _staticQueue.Push(1);
+            _staticQueue.Push(2);
+            _staticQueue.Push(3);
+            //Act
+            int? popedObject1 = _staticQueue.Pop();
+            int? popedObject2 = _staticQueue.Pop();
+            int? popedObject3 = _staticQueue.Pop();
+
+            //Assert
+            Assert.IsTrue(popedObject1 == 1 && popedObject2 == 2 && popedObject3 == 3);
+        }
+
+        /// <summary>
+        /// Técnica: Caminho
+        /// </summary>
+        [TestMethod, TestCategory("StaticQueue"), ExpectedException(typeof(EmptyCollectionException))]
+        public void Peek_EmptyCollection_Exception()
+        {
+            //Arrange
+            //Act
+            _staticQueue.Peek();
+            //Assert
+            Assert.Inconclusive("An exception was expected because the collection is empty.");
+        }
+
+        /// <summary>
+        /// Técnica: Caminho
+        /// </summary>
+        [TestMethod, TestCategory("StaticQueue")]
+        public void Peek_RetriveOneValue_Success()
+        {
+            //Arrange
+            _staticQueue.Push(8);
+            _staticQueue.Push(3);
+            _staticQueue.Push(10);
+            _staticQueue.Push(1);
+            _staticQueue.Push(100);
+            //Act
+            int? value =_staticQueue.Peek();
+            //Assert
+            Assert.IsTrue(value == 8,"The value eight was expected.");
+        }
     }
 }

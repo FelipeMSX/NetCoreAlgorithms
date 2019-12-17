@@ -6,6 +6,9 @@ using Algorithms.Exceptions;
 namespace Algorithms.Collections
 {
 
+    /// <summary>
+    /// This collection represents a static queue.
+    /// </summary>
 	public class StaticQueue<T> : QueueStackBase<T>
     {
 		public StaticQueue(Comparison<T> comparator) : base(comparator)
@@ -17,6 +20,10 @@ namespace Algorithms.Collections
 		{
 		}
 
+
+        /// <summary>
+        /// Adds a new item in the ending of the queue.
+        /// </summary>
 		public override void Push(T obj)
 		{
 			//Validações
@@ -39,6 +46,9 @@ namespace Algorithms.Collections
                 yield return this[i];
         }
 
+        /// <summary>
+        /// Removes the first item to comes out. All items must be shifted in one position.
+        /// </summary>
         public override T Pop()
 		{
 			if (Empty())
@@ -47,15 +57,17 @@ namespace Algorithms.Collections
 			T item = Vector[0];
 
             Count--;
-            //Desloca os itens
+            //Shifts the itens.
             for (int i = 0; i < Count; i++)
-			{
 				Vector[i] = Vector[i + 1];
-			}
 
 			return item;
 		}
 
+
+        /// <summary>
+        /// Retrieves the first item from the collection, but it remains in the collection.
+        /// </summary>
         public override T Peek()
         {
             if (Empty())
