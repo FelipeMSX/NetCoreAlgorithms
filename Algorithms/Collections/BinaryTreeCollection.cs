@@ -8,6 +8,7 @@ using Algorithms.Helpers.TreeHelpers;
 using Algorithms.Exceptions;
 using Algorithms.Interfaces;
 using Algorithms.Nodes;
+using Algorithms.Helpers;
 
 namespace Algorithms.Collections
 {
@@ -42,9 +43,9 @@ namespace Algorithms.Collections
                 TreeSearchNode<TValue> searchNode = FindPreviousNodeByValue(value);
 
                 //Se chegar aqui deve ser inserido.
-                if (Comparator(searchNode.Value, value) > 0)
+                if (Comparator.Check(searchNode.Value, value) == ComparisonResult.Greater)
                     searchNode.Left = newNode;
-                else if (Comparator(searchNode.Value, value) < 0)
+                else if (Comparator.Check(searchNode.Value, value) == ComparisonResult.Lesser)
                     searchNode.Right = newNode;
                 else
                     throw new EqualsElementException();
@@ -83,7 +84,5 @@ namespace Algorithms.Collections
 
             return true;
         }
-
-  
     }
 }

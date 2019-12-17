@@ -11,6 +11,7 @@
     <Folder Include="Sorts\" />
     <Folder Include="Study\" />
     <Folder Include="Searchs\" />
+    <Folder Include="TestResults\" />
   </ItemGroup>
 
 </Project>

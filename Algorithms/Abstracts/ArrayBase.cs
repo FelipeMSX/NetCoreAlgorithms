@@ -105,9 +105,6 @@ namespace Algorithms.Abstracts
 
         public void CopyTo(T[] array, int arrayIndex) => _collectionHelper.CopyTo(array, arrayIndex);
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }

@@ -6,6 +6,9 @@ using Algorithms.Exceptions;
 namespace Algorithms.Collections
 {
 
+    /// <summary>
+    /// Represents a stack and it was implemented using a vector.
+    /// </summary>
     public class StaticStack<T> : QueueStackBase<T> 
 	{
   
@@ -18,18 +21,29 @@ namespace Algorithms.Collections
 		{
 		}
 
-
+        /// <summary>
+        /// Puts a item in the stack and putting a item in the end of the vector.
+        /// </summary>
 		public override void Push(T obj)
 		{
             //Validações
-			if (obj == null)
-				throw new NullObjectException();
-			if (Full())
-				IncreaseCapacity(DefaultSize);
+            if (obj == null)
+                throw new NullObjectException();
+            if (Full() && !Resizable)
+                throw new FullCollectionException();
+            else
+            if (Full())
+            {
+                IncreaseCapacity(DefaultSize);
+            }
 
-			Vector[Count++] = obj;
+            Vector[Count++] = obj;
 		}
 
+
+        /// <summary>
+        /// Removes the item in the top of the stack.
+        /// </summary>
 		public override T Pop()
 		{
 			if (Empty())
@@ -41,6 +55,9 @@ namespace Algorithms.Collections
 			return temp;
 		}
 
+        /// <summary>
+        /// Retrieves the item in the top of the stack without removing it.
+        /// </summary>
         public override T Peek()
         {
             if (Empty())
