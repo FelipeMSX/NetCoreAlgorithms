@@ -66,6 +66,10 @@ namespace Algorithms.Collections
             return Vector[Count - 1];
         }
 
+        public override T First() => Empty() ? default(T) : Vector[Count - 1];
+
+        public override T Last() => Empty() ? default(T) : Vector[0];
+
         public override IEnumerator<T> GetEnumerator()
         {
             for (int i = 0; i < Count; i++)

@@ -18,7 +18,6 @@ namespace Algorithms.Abstracts
         public T this[int index]
         {
             get => Vector[index];
-            set => Vector[index] = value;
         }
 
 
@@ -46,7 +45,7 @@ namespace Algorithms.Abstracts
             protected set
             {
                 if (value < maxSize)
-                    throw new ValueNotValidException("Max size can't be less than current!");
+                    throw new ValueNotValidException("The new value can't be less than current!");
                 maxSize = value;
             }
         }
@@ -54,7 +53,6 @@ namespace Algorithms.Abstracts
         public bool AllowEqualsElements { get; protected set; }
         public bool Resizable { get; set; }
         public int Count { get; protected set; }
-        public bool IsReadOnly => false;
 
         #endregion
 
@@ -68,8 +66,8 @@ namespace Algorithms.Abstracts
 
         public bool Empty() => Count == 0;
         public bool Full() => Count == MaxSize;
-        public T First() => Empty() ? default(T) : Vector[0];
-        public T Last() => Empty() ? default(T) : Vector[Count - 1];
+        public virtual T First() => Empty() ? default(T) : Vector[0];
+        public virtual T Last() => Empty() ? default(T) : Vector[Count - 1];
 
         public virtual T Retrieve(T item)
         {

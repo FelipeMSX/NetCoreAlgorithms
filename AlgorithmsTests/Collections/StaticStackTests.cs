@@ -189,5 +189,111 @@ namespace Algorithms_Test.Collections
             //Assert
             Assert.IsTrue(expectedList.SequenceEqual(_staticStack), "The collections should be the same.");
         }
+
+
+        /// <summary>
+        /// Técnica: Caminho
+        /// </summary>
+        [TestMethod, TestCategory("StaticStack")]
+        public void First_EmptyStack_DefaultValue()
+        {
+            //Arrange
+            //Act
+            int? value = _staticStack.First();
+            //Assert
+            Assert.IsNull(value, "A null value was expected.");
+        }
+
+
+        /// <summary>
+        /// Técnica: Caminho
+        /// </summary>
+        [DataTestMethod]
+        [DataRow(1, 2, 3, 3)]
+        [DataRow(10, 1, 100, 100)]
+        [DataRow(3, 2, 1, 1)]
+        [TestMethod, TestCategory("StaticStack")]
+        public void First_DynamicValuesStack_DefaultValue(int? valueA, int? valueB, int? valueC, int? expectedValue)
+        {
+            //Arrange
+            _staticStack.Push(valueA);
+            _staticStack.Push(valueB);
+            _staticStack.Push(valueC);
+            //Act
+            int? resultValue = _staticStack.First();
+            //Assert
+            Assert.IsTrue(expectedValue == resultValue, "The returned value is different from the expected value");
+        }
+
+        /// <summary>
+        /// Técnica: Caminho
+        /// </summary>
+        [DataTestMethod]
+        [DataRow(1, 1)]
+        [DataRow(10,10)]
+        [DataRow(3,3)]
+        [TestMethod, TestCategory("StaticStack")]
+        public void First_OnlyOneValue_DefaultValue(int? valueA, int? expectedValue)
+        {
+            //Arrange
+            _staticStack.Push(valueA);
+            //Act
+            int? resultValue = _staticStack.First();
+            //Assert
+            Assert.IsTrue(expectedValue == resultValue, "The returned value is different from the expected value.");
+        }
+
+
+        /// <summary>
+        /// Técnica: Caminho
+        /// </summary>
+        [TestMethod, TestCategory("StaticStack")]
+        public void Last_EmptyStack_DefaultValue()
+        {
+            //Arrange
+            //Act
+            int? value = _staticStack.Last();
+            //Assert
+            Assert.IsNull(value, "A null value was expected.");
+        }
+
+
+        /// <summary>
+        /// Técnica: Caminho
+        /// </summary>
+        [DataTestMethod]
+        [DataRow(1, 2, 3, 1)]
+        [DataRow(10, 1, 100, 10)]
+        [DataRow(3, 2, 1, 3)]
+        [TestMethod, TestCategory("StaticStack")]
+        public void Last_DynamicValuesStack_DefaultValue(int? valueA, int? valueB, int? valueC, int? expectedValue)
+        {
+            //Arrange
+            _staticStack.Push(valueA);
+            _staticStack.Push(valueB);
+            _staticStack.Push(valueC);
+            //Act
+            int? resultValue = _staticStack.Last();
+            //Assert
+            Assert.IsTrue(expectedValue == resultValue, "The returned value is different from the expected value");
+        }
+
+        /// <summary>
+        /// Técnica: Caminho
+        /// </summary>
+        [DataTestMethod]
+        [DataRow(1, 1)]
+        [DataRow(10, 10)]
+        [DataRow(3, 3)]
+        [TestMethod, TestCategory("StaticStack")]
+        public void Last_OnlyOneValue_DefaultValue(int? valueA, int? expectedValue)
+        {
+            //Arrange
+            _staticStack.Push(valueA);
+            //Act
+            int? resultValue = _staticStack.Last();
+            //Assert
+            Assert.IsTrue(expectedValue == resultValue, "The returned value is different from the expected value.");
+        }
     }
 }

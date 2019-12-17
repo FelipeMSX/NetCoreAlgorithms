@@ -15,13 +15,13 @@ namespace Algorithms_Test.Collections
         private BinaryTreeCollection<int?> _binaryTree;
 
         [TestInitialize]
-        public void SetUp()
+        public void TearUp()
         {
             _binaryTree = new BinaryTreeCollection<int?>(Shared.DefaultIntComparison);
         }
 
         [TestCleanup]
-        public void Cleanning()
+        public void TearDown()
         {
             _binaryTree = null;
         }

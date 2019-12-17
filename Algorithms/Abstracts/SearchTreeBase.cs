@@ -16,7 +16,6 @@ namespace Algorithms.Abstracts
 
         public int Count { get; protected set; }
 		public bool IsEmpty() => Count == 0;
-		public bool IsReadOnly => false;
 		public Comparison<TValue> Comparator { get; }
 
 		/// <summary>
