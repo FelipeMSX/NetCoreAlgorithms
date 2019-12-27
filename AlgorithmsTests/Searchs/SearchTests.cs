@@ -29,7 +29,7 @@ namespace AlgorithmsTests.search
         /// <summary>
         /// Técnica: Caminho de Decisão.
         /// </summary>
-        [TestMethod, TestCategory("Search"), ExpectedException(typeof(ComparerNotSetException))]
+        [TestMethod, TestCategory("Search"), ExpectedException(typeof(ComparerNotSetException)), Timeout(3000)]
         public void BinarySearch_ComparerIsNull_Exception()
         {
             //Arrange
@@ -44,7 +44,7 @@ namespace AlgorithmsTests.search
         /// <summary>
         /// Técnica: Caminho de Decisão. 
         /// </summary>
-        [TestMethod, TestCategory("Search"), ExpectedException(typeof(NullObjectException))]
+        [TestMethod, TestCategory("Search"), ExpectedException(typeof(NullObjectException)), Timeout(3000)]
         public void BinarySearch_ListIsNull_Exception()
         {
             //Arrange
@@ -58,7 +58,7 @@ namespace AlgorithmsTests.search
         /// <summary>
         /// Técnica: Caminho de Decisão. 
         /// </summary>
-        [TestMethod, TestCategory("Search"), ExpectedException(typeof(NullObjectException))]
+        [TestMethod, TestCategory("Search"), ExpectedException(typeof(NullObjectException)), Timeout(3000)]
         public void BinarySearch_ItemIsNull_Exception()
         {
             //Arrange
@@ -74,7 +74,7 @@ namespace AlgorithmsTests.search
         /// Objetivo: Executar o if.
         ///</summary>
         /// <!--(comparator(orderedArray[mid], item) >= 1)->
-        [TestMethod, TestCategory("Search")]
+        [TestMethod, TestCategory("Search"), Timeout(3000)]
         public void BinarySearch_RetrieveFirstPositionItem_Object()
         {
             //Arrange
@@ -91,7 +91,7 @@ namespace AlgorithmsTests.search
         /// Objetivo: Executar o if.
         ///</summary>
         /// <!--(comparator(orderedArray[mid], item) <= -1)->
-        [TestMethod, TestCategory("Search")]
+        [TestMethod, TestCategory("Search"), Timeout(3000)]
         public void BinarySearch_RetrieveLastPositionItem_Object()
         {
             //Arrange
@@ -109,7 +109,7 @@ namespace AlgorithmsTests.search
         /// Objetivo: Pular o loop sem executá-lo nenhuma vez
         /// </summary>
         /// <!--while (left <= right)-->
-        [TestMethod, TestCategory("Search")]
+        [TestMethod, TestCategory("Search"), Timeout(3000)]
         public void BinarySearch_EmptyList_DefaultValue()
         {
             //Arrange
@@ -125,7 +125,7 @@ namespace AlgorithmsTests.search
         /// Objetivo: Executar o loop uma vez.
         /// </summary>
         /// <!--while (left <= right)-->
-        [TestMethod, TestCategory("Search")]
+        [TestMethod, TestCategory("Search"), Timeout(3000)]
         public void BinarySearch_ListHasOneItem_RetrieveObject()
         {
             //Arrange

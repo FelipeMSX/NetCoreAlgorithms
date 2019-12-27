@@ -24,7 +24,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Caminho.
         /// </summary>
-        [TestMethod, TestCategory("OrderedLinkedList"), ExpectedException(typeof(NullObjectException))]
+        [TestMethod, TestCategory("OrderedLinkedList"), ExpectedException(typeof(NullObjectException)), Timeout(3000)]
         public void Add_ObjectIsNull_Exception()
         {
             //Arrange
@@ -37,7 +37,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Caminho.
         /// </summary>
-        [TestMethod, TestCategory("OrderedLinkedList")]
+        [TestMethod, TestCategory("OrderedLinkedList"), Timeout(3000)]
         public void Add_OnlyOneValue_Success()
         {
             //Arrange
@@ -50,7 +50,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Caminho.
         /// </summary>
-        [TestMethod, TestCategory("OrderedLinkedList")]
+        [TestMethod, TestCategory("OrderedLinkedList"), Timeout(3000)]
         public void Add_TwoDifferentValuesAndAllowEquals_Success()
         {
             //Arrange
@@ -65,7 +65,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Laço. Executar o laço N vezes.
         /// </summary>
-        [TestMethod, TestCategory("OrderedLinkedList")]
+        [TestMethod, TestCategory("OrderedLinkedList"), Timeout(3000)]
         public void Add_ThreeDifferentValuesAndAllowEquals_Success()
         {
             //Arrange
@@ -80,7 +80,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Caminho.
         /// </summary>
-        [TestMethod, TestCategory("OrderedLinkedList")]
+        [TestMethod, TestCategory("OrderedLinkedList"), Timeout(3000)]
         public void Add_TwoValuesInFirstPosition_Ordered()
         {
             //Arrange
@@ -96,7 +96,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Laço. Executar o laço N vezes.
         /// </summary>
-        [TestMethod, TestCategory("OrderedLinkedList")]
+        [TestMethod, TestCategory("OrderedLinkedList"), Timeout(3000)]
         public void Add_DesorderedValues_Ordered()
         {
             //Arrange
@@ -115,7 +115,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Caminho.
         /// </summary>
-        [TestMethod, TestCategory("OrderedLinkedList"), ExpectedException(typeof(EqualsElementException))]
+        [TestMethod, TestCategory("OrderedLinkedList"), ExpectedException(typeof(EqualsElementException)), Timeout(3000)]
         public void Add_EqualsElementsInsertionOnHead_Exception()
         {
             //Arrange
@@ -130,7 +130,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Caminho.
         /// </summary>
-        [TestMethod, TestCategory("OrderedLinkedList"), ExpectedException(typeof(EqualsElementException))]
+        [TestMethod, TestCategory("OrderedLinkedList"), ExpectedException(typeof(EqualsElementException)), Timeout(3000)]
         public void Add_EqualsElementsMiddle_Exception()
         {
             //Arrange

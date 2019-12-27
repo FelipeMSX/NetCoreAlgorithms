@@ -16,8 +16,8 @@ namespace Algorithms.Collections
 		{
 		}
 
-        public StaticStack(int maxsize, Comparison<T> comparator, bool resizable = true, bool allowEqualsElements = true) 
-            : base (maxsize, comparator, resizable, allowEqualsElements)
+        public StaticStack(int maxsize, Comparison<T> comparator, bool resizable = true) 
+            : base (maxsize, comparator, resizable)
 		{
 		}
 

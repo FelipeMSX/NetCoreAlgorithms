@@ -20,7 +20,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Caminho de Decisão.
         /// </summary>
-        [TestMethod, TestCategory("LinkedList"), ExpectedException(typeof(NullObjectException))]
+        [TestMethod, TestCategory("LinkedList"), ExpectedException(typeof(NullObjectException)), Timeout(3000)]
         public void Add_ObjectIsNull_Exception()
         {
             //Arrange
@@ -33,7 +33,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Caminho de Decisão.
         /// </summary>
-        [TestMethod, TestCategory("LinkedList")]
+        [TestMethod, TestCategory("LinkedList"), Timeout(3000)]
         public void Add_AddFirstElement_SizeEqualsOne()
         {
             //Arrange
@@ -48,7 +48,7 @@ namespace Algorithms_Test.Collections
         /// Objetivo: Executar o laço nenhuma vez.
         /// </summary>
         /// <!--while (searchNode.HasNext())-->
-        [TestMethod, TestCategory("LinkedList")]
+        [TestMethod, TestCategory("LinkedList"), Timeout(3000)]
         public void Add_AddTwoElements_SizeEqualsTwo()
         {
             //Arrange
@@ -64,7 +64,7 @@ namespace Algorithms_Test.Collections
         /// Objetivo: Executar o laço uma vez.
         /// </summary>
         /// <!--while (searchNode.HasNext())-->
-        [TestMethod, TestCategory("LinkedList")]
+        [TestMethod, TestCategory("LinkedList"), Timeout(3000)]
         public void Add_AddTwoElements2_SizeEqualsThree()
         {
             //Arrange
@@ -81,7 +81,7 @@ namespace Algorithms_Test.Collections
         /// Objetivo: Executar o laço 3 vezes.
         /// </summary>
         /// <!--while (searchNode.HasNext())-->
-        [TestMethod, TestCategory("LinkedList")]
+        [TestMethod, TestCategory("LinkedList"), Timeout(3000)]
         public void Add_AddFourElements_SizeEqualsFour()
         {
             //Arrange
@@ -99,7 +99,7 @@ namespace Algorithms_Test.Collections
         /// Objetivo: Executar o caminho.
         /// </summary>
         /// <!--if (obj == null)-->
-        [TestMethod, TestCategory("LinkedList"), ExpectedException(typeof(NullObjectException))]
+        [TestMethod, TestCategory("LinkedList"), ExpectedException(typeof(NullObjectException)), Timeout(3000)]
         public void Remove_NullObject_Exception()
         {
             //Arrange
@@ -115,7 +115,7 @@ namespace Algorithms_Test.Collections
         /// Objetivo: Executar o caminho.
         /// </summary>
         /// <!--if (Empty())-->
-        [TestMethod, TestCategory("LinkedList"), ExpectedException(typeof(EmptyCollectionException))]
+        [TestMethod, TestCategory("LinkedList"), ExpectedException(typeof(EmptyCollectionException)), Timeout(3000)]
         public void Remove_EmptyList_Exception()
         {
             //Arrange
@@ -131,7 +131,7 @@ namespace Algorithms_Test.Collections
         /// Objetivo: Executar o caminho.
         /// </summary>
         /// <!--(Comparator(Head.Next.Value, obj) == 0)-->
-        [TestMethod, TestCategory("LinkedList")]
+        [TestMethod, TestCategory("LinkedList"), Timeout(3000)]
         public void Remove_ListSizeEqualsOne_Object()
         {
             //Arrange
@@ -148,7 +148,7 @@ namespace Algorithms_Test.Collections
         /// Objetivo: Executar o caminho.
         /// </summary>
         /// <!--(previous != null)-->
-        [TestMethod, TestCategory("LinkedList")]
+        [TestMethod, TestCategory("LinkedList"), Timeout(3000)]
         public void Remove_ElementInMiddleOfList_Object()
         {
             //Arrange
@@ -166,7 +166,7 @@ namespace Algorithms_Test.Collections
         /// Objetivo: Executar o caminho.
         /// </summary>
         /// <!--(previous != null)-->
-        [TestMethod, TestCategory("LinkedList"), ExpectedException(typeof(ElementNotFoundException))]
+        [TestMethod, TestCategory("LinkedList"), ExpectedException(typeof(ElementNotFoundException)), Timeout(3000)]
         public void Remove_ThereAreNotElementsInTheList_Exception()
         {
             //Arrange
@@ -184,7 +184,7 @@ namespace Algorithms_Test.Collections
         /// Objetivo: Executar o caminho.
         /// </summary>
         /// <!--if(Empty())-->
-        [TestMethod, TestCategory("LinkedList"), ExpectedException(typeof(EmptyCollectionException))]
+        [TestMethod, TestCategory("LinkedList"), ExpectedException(typeof(EmptyCollectionException)), Timeout(3000)]
         public void Retrieve_ThereIsNotElementsInTheList_Exception()
         {
             //Arrange
@@ -199,7 +199,7 @@ namespace Algorithms_Test.Collections
         /// Objetivo: Executar o caminho.
         /// </summary>
         /// <!--if (obj == null)-->
-        [TestMethod, TestCategory("LinkedList"), ExpectedException(typeof(NullObjectException))]
+        [TestMethod, TestCategory("LinkedList"), ExpectedException(typeof(NullObjectException)), Timeout(3000)]
         public void Retrieve_SearchWithNullObject_Exception()
         {
             //Arrange
@@ -216,7 +216,7 @@ namespace Algorithms_Test.Collections
         /// Objetivo: Pular o while sem executar nenhuma vez.
         /// </summary>
         /// <!--while (current != null && Comparator(current.Value, obj) != 0)-->
-        [TestMethod, TestCategory("LinkedList")]
+        [TestMethod, TestCategory("LinkedList"), Timeout(3000)]
         public void Retrieve_RetrieveFirstElement_Object()
         {
             //Arrange
@@ -233,7 +233,7 @@ namespace Algorithms_Test.Collections
         /// Objetivo: Pular o while pelo somente uma vez.
         /// </summary>
         /// <!--while (current != null && Comparator(current.Value, obj) != 0)-->
-        [TestMethod, TestCategory("LinkedList")]
+        [TestMethod, TestCategory("LinkedList"), Timeout(3000)]
         public void Retrieve_ElementInTheEndOfList_Object()
         {
             //Arrange
@@ -250,7 +250,7 @@ namespace Algorithms_Test.Collections
         /// Técnica: Particionamento.
         /// Objetivo: Recuperar um elemento que não existe na lista.
         /// </summary>
-        [TestMethod, TestCategory("LinkedList")]
+        [TestMethod, TestCategory("LinkedList"), Timeout(3000)]
         public void Retrieve_ElementDoesNotExistInList_Object()
         {
             //Arrange
@@ -268,7 +268,7 @@ namespace Algorithms_Test.Collections
         /// Objetivo: Executar o caminho do if.
         /// </summary>
         /// <!--if (Empty())-->
-        [TestMethod, TestCategory("LinkedList"), ExpectedException(typeof(EmptyCollectionException))]
+        [TestMethod, TestCategory("LinkedList"), ExpectedException(typeof(EmptyCollectionException)), Timeout(3000)]
         public void First_EmptyList_Exception()
         {
             //Arrange
@@ -283,7 +283,7 @@ namespace Algorithms_Test.Collections
         /// Objetivo: Executar o caminho do if.
         /// </summary>
         /// <!--if (Empty())-->
-        [TestMethod, TestCategory("LinkedList")]
+        [TestMethod, TestCategory("LinkedList"), Timeout(3000)]
         public void First_ThereAreElementsInTheList_FisrtObject()
         {
             //Arrange
@@ -302,7 +302,7 @@ namespace Algorithms_Test.Collections
         /// Objetivo: Executar o caminho do if.
         /// </summary>
         /// <!--if (Empty())-->
-        [TestMethod, TestCategory("LinkedList"), ExpectedException(typeof(EmptyCollectionException))]
+        [TestMethod, TestCategory("LinkedList"), ExpectedException(typeof(EmptyCollectionException)), Timeout(3000)]
         public void Last_EmptyList_Exception()
         {
             //Arrange
@@ -317,7 +317,7 @@ namespace Algorithms_Test.Collections
         /// Objetivo: Executar o laço nenhuma vez.
         /// </summary>
         /// <!--while (current.HasNext())-->
-        [TestMethod, TestCategory("LinkedList")]
+        [TestMethod, TestCategory("LinkedList"), Timeout(3000)]
         public void Last_ElementInTheHead_LastObject()
         {
             //Arrange
@@ -334,7 +334,7 @@ namespace Algorithms_Test.Collections
         /// Objetivo: Executar o laço uma vez.
         /// </summary>
         /// <!--while (current.HasNext())-->
-        [TestMethod, TestCategory("LinkedList")]
+        [TestMethod, TestCategory("LinkedList"), Timeout(3000)]
         public void Last_ElementInTheEnd_LastObject()
         {
             //Arrange
@@ -352,7 +352,7 @@ namespace Algorithms_Test.Collections
         /// Objetivo: Executar o laço nenhuma vez.
         /// </summary>
         /// <!--while (current.HasNext())-->
-        [TestMethod, TestCategory("LinkedList")]
+        [TestMethod, TestCategory("LinkedList"), Timeout(3000)]
         public void GetEnumerator_ThereAreNotElementInTheList_Object()
         {
             //Arrange
@@ -371,7 +371,7 @@ namespace Algorithms_Test.Collections
         /// Objetivo: Executar o laço uma vez.
         /// </summary>
         /// <!--while (current.HasNext())-->
-        [TestMethod, TestCategory("LinkedList")]
+        [TestMethod, TestCategory("LinkedList"), Timeout(3000)]
         public void GetEnumerator_OneElement_Object()
         {
             //Arrange
@@ -403,7 +403,7 @@ namespace Algorithms_Test.Collections
         /// Objetivo: Executar o laço N vezes.
         /// </summary>
         /// <!--while (current.HasNext())-->
-        [TestMethod, TestCategory("LinkedList")]
+        [TestMethod, TestCategory("LinkedList"), Timeout(3000)]
         public void GetEnumerator_ThreeElements_Object()
         {
             //Arrange
@@ -433,7 +433,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Caminho
         /// </summary>
-        [TestMethod, TestCategory("LinkedList")]
+        [TestMethod, TestCategory("LinkedList"), Timeout(3000)]
         public void Clear_FilledList_EmptyList()
         {
             //Arrange

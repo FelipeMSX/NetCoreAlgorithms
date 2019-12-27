@@ -14,8 +14,8 @@ namespace Algorithms.Abstracts
         {
         }
 
-        protected QueueStackBase(int maxsize, Comparison<T> comparator, bool resizable = true, bool allowEqualsElements = true)
-            : base(maxsize, comparator, resizable, allowEqualsElements)
+        protected QueueStackBase(int maxsize, Comparison<T> comparator, bool resizable = true)
+            : base(maxsize, comparator, resizable)
         {
         }
     }

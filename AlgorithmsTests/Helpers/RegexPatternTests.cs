@@ -13,7 +13,7 @@ namespace Algorithms_Test.Helpers
         /// <summary>
         /// Técnica: Particionamento de Equivalência.
         /// </summary>
-        [TestMethod, TestCategory("RegexExpressions")]
+        [TestMethod, TestCategory("RegexExpressions"), Timeout(3000)]
         public void CPF_ValidPattern_ValidCPF()
         {
             //Arrange
@@ -30,7 +30,7 @@ namespace Algorithms_Test.Helpers
         /// <summary>
         /// Técnica: Particionamento de Equivalência.
         /// </summary>
-        [TestMethod, TestCategory("RegexExpressions")]
+        [TestMethod, TestCategory("RegexExpressions"), Timeout(3000)]
         public void CPF_MissingACharacter_InvalidCPF()
         {
             //Arrange
@@ -43,7 +43,7 @@ namespace Algorithms_Test.Helpers
         /// <summary>
         /// Técnica: Particionamento de Equivalência.
         /// </summary>
-        [TestMethod, TestCategory("RegexExpressions")]
+        [TestMethod, TestCategory("RegexExpressions"), Timeout(3000)]
         public void CPF_MissingAllCharacteres_InvalidCPF()
         {
             //Arrange
@@ -56,7 +56,7 @@ namespace Algorithms_Test.Helpers
         /// <summary>
         /// Técnica: Particionamento de Equivalência.
         /// </summary>
-        [TestMethod, TestCategory("RegexExpressions"), ExpectedException(typeof(ArgumentNullException))]
+        [TestMethod, TestCategory("RegexExpressions"), ExpectedException(typeof(ArgumentNullException)), Timeout(3000)]
         public void CPF_NullInput_InvalidCPF()
         {
             //Arrange
@@ -69,7 +69,7 @@ namespace Algorithms_Test.Helpers
         /// <summary>
         /// Técnica: Particionamento de Equivalência.
         /// </summary>
-        [TestMethod, TestCategory("RegexExpressions")]
+        [TestMethod, TestCategory("RegexExpressions"), Timeout(3000)]
         public void CPF_OnlyNumbers_InvalidCPF()
         {
             //Arrange
@@ -85,7 +85,7 @@ namespace Algorithms_Test.Helpers
         /// <summary>
         /// Técnica: Particionamento de Equivalência.
         /// </summary>
-        [TestMethod, TestCategory("RegexExpressions")]
+        [TestMethod, TestCategory("RegexExpressions"), Timeout(3000)]
         public void CNPJ_ValidPattern_ValidCPNJ()
         {
             //Arrange
@@ -102,7 +102,7 @@ namespace Algorithms_Test.Helpers
         /// <summary>
         /// Técnica: Particionamento de Equivalência.
         /// </summary>
-        [TestMethod, TestCategory("RegexExpressions")]
+        [TestMethod, TestCategory("RegexExpressions"), Timeout(3000)]
         public void CNPJ_MissingADigit_InvalidCNPJ()
         {
             //Arrange
@@ -115,7 +115,7 @@ namespace Algorithms_Test.Helpers
         /// <summary>
         /// Técnica: Particionamento de Equivalência.
         /// </summary>
-        [TestMethod, TestCategory("RegexExpressions")]
+        [TestMethod, TestCategory("RegexExpressions"), Timeout(3000)]
         public void CNPJ_WithCharacter_InvalidCNPJ()
         {
             //Arrange
@@ -128,7 +128,7 @@ namespace Algorithms_Test.Helpers
         /// <summary>
         /// Técnica: Particionamento de Equivalência.
         /// </summary>
-        [TestMethod, TestCategory("RegexExpressions")]
+        [TestMethod, TestCategory("RegexExpressions"), Timeout(3000)]
         public void CNPJ_MissingAllCharacteres_InvalidCNPJ()
         {
             //Arrange
@@ -141,7 +141,7 @@ namespace Algorithms_Test.Helpers
         /// <summary>
         /// Técnica: Particionamento de Equivalência.
         /// </summary>
-        [TestMethod, TestCategory("RegexExpressions"), ExpectedException(typeof(ArgumentNullException))]
+        [TestMethod, TestCategory("RegexExpressions"), ExpectedException(typeof(ArgumentNullException)), Timeout(3000)]
         public void CPNJ_NullInput_InvalidCNPJ()
         {
             //Arrange
@@ -154,7 +154,7 @@ namespace Algorithms_Test.Helpers
         /// <summary>
         /// Técnica: Particionamento de Equivalência.
         /// </summary>
-        [TestMethod, TestCategory("RegexExpressions")]
+        [TestMethod, TestCategory("RegexExpressions"), Timeout(3000)]
         public void CNPJ_OnlyNumbers_InvalidCNPJ()
         {
             //Arrange
@@ -171,7 +171,7 @@ namespace Algorithms_Test.Helpers
         /// <summary>
         /// Técnica: Particionamento de Equivalência.
         /// </summary>
-        [TestMethod, TestCategory("RegexExpressions")]
+        [TestMethod, TestCategory("RegexExpressions"), Timeout(3000)]
         public void IP_ValidPattern_ValidIP()
         {
             //Arrange
@@ -184,7 +184,7 @@ namespace Algorithms_Test.Helpers
         /// <summary>
         /// Técnica: Particionamento de Equivalência.
         /// </summary>
-        [TestMethod, TestCategory("RegexExpressions")]
+        [TestMethod, TestCategory("RegexExpressions"), Timeout(3000)]
         public void IP_ValidPatternWithOneSingleDigit_ValidIP()
         {
             //Arrange
@@ -201,7 +201,7 @@ namespace Algorithms_Test.Helpers
         /// <summary>
         /// Técnica: Particionamento de Equivalência.
         /// </summary>
-        [TestMethod, TestCategory("RegexExpressions")]
+        [TestMethod, TestCategory("RegexExpressions"), Timeout(3000)]
         public void IP_PatternWithCharacterNotValid_InvalidIP()
         {
             //Arrange
@@ -214,7 +214,7 @@ namespace Algorithms_Test.Helpers
         /// <summary>
         /// Técnica: Particionamento de Equivalência.
         /// </summary>
-        [TestMethod, TestCategory("RegexExpressions")]
+        [TestMethod, TestCategory("RegexExpressions"), Timeout(3000)]
         public void IP_MissingAllCharacteres_InvalidIP()
         {
             //Arrange
@@ -227,7 +227,7 @@ namespace Algorithms_Test.Helpers
         /// <summary>
         /// Técnica: Particionamento de Equivalência.
         /// </summary>
-        [TestMethod, TestCategory("RegexExpressions"), ExpectedException(typeof(ArgumentNullException))]
+        [TestMethod, TestCategory("RegexExpressions"), ExpectedException(typeof(ArgumentNullException)), Timeout(3000)]
         public void IP_NullInput_InvalidIP()
         {
             //Arrange
@@ -240,7 +240,7 @@ namespace Algorithms_Test.Helpers
         /// <summary>
         /// Técnica: Particionamento de Equivalência.
         /// </summary>
-        [TestMethod, TestCategory("RegexExpressions")]
+        [TestMethod, TestCategory("RegexExpressions"), Timeout(3000)]
         public void IP_OnlyNumbers_InvalidIP()
         {
             //Arrange

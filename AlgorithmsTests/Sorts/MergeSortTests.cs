@@ -17,7 +17,7 @@ namespace AlgorithmsTests.Sorts
 		}
 
 		[TestMethod]
-		[TestCategory("MergeSort")]
+		[TestCategory("MergeSort"), Timeout(3000)]
 		public void Sort_StringList_CrescenteOrderedList()
 		{		
             //Arrange
@@ -39,7 +39,7 @@ namespace AlgorithmsTests.Sorts
         }
 
 
-        [TestMethod, TestCategory("MergeSort"), ExpectedException(typeof(NullObjectException))]
+        [TestMethod, TestCategory("MergeSort"), ExpectedException(typeof(NullObjectException)), Timeout(3000)]
         public void Sort_NullValue_Exception()
         {
             //Arrange
@@ -52,7 +52,7 @@ namespace AlgorithmsTests.Sorts
             Assert.Inconclusive();
         }
 
-        [TestMethod, TestCategory("MergeSort"), ExpectedException(typeof(ComparerNotSetException))]
+        [TestMethod, TestCategory("MergeSort"), ExpectedException(typeof(ComparerNotSetException)), Timeout(3000)]
         public void Sort_EmptyComparator_Exception()
         {
             //Arrange

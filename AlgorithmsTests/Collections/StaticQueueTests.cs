@@ -22,7 +22,7 @@ namespace Algorithms_Test.Collections
             _staticQueue = new StaticQueue<int?>(100,Shared.DefaultIntComparison);
         }
 
-        [TestMethod, TestCategory("StaticQueue")]
+        [TestMethod, TestCategory("StaticQueue"), Timeout(3000)]
         public void Push_ThreeObjects_LengthEqualsThree()
         {
             //Arrange
@@ -37,7 +37,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Caminho.
         /// </summary>
-        [TestMethod, TestCategory("StaticQueue"), ExpectedException(typeof(NullObjectException))]
+        [TestMethod, TestCategory("StaticQueue"), ExpectedException(typeof(NullObjectException)), Timeout(3000)]
         public void Push_NullValue_NullObjectException()
         {
             //Arrange 
@@ -50,7 +50,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Caminho e Decisão.
         /// </summary>
-        [TestMethod, TestCategory("StaticQueue")]
+        [TestMethod, TestCategory("StaticQueue"), Timeout(3000)]
         public void Push_ObjectInFullCollectionResizable_LengthEqualsThree()
         {
             //Arrange
@@ -66,7 +66,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Caminho e Decisão.
         /// </summary>
-        [TestMethod, TestCategory("StaticQueue"), ExpectedException(typeof(FullCollectionException))]
+        [TestMethod, TestCategory("StaticQueue"), ExpectedException(typeof(FullCollectionException)), Timeout(3000)]
 
         public void Push_ObjectInFullCollectionNotResizable_FullCollectionException()
         {
@@ -84,7 +84,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Caminho.
         /// </summary>
-        [TestMethod, TestCategory("StaticQueue"), ExpectedException(typeof(EmptyCollectionException))]
+        [TestMethod, TestCategory("StaticQueue"), ExpectedException(typeof(EmptyCollectionException)), Timeout(3000)]
         public void Pop_EmptyList_EmptyCollectionException()
         {
             //Arrange
@@ -97,7 +97,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Ciclo. Executar o for nenhuma vez
         /// </summary>
-        [TestMethod, TestCategory("StaticQueue")]
+        [TestMethod, TestCategory("StaticQueue"), Timeout(3000)]
         public void Pop_AddOneItemAndPop_Success()
         {
             //Arrange
@@ -112,7 +112,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Ciclo. Executar o for uma vez
         /// </summary>
-        [TestMethod, TestCategory("StaticQueue")]
+        [TestMethod, TestCategory("StaticQueue"), Timeout(3000)]
         public void Pop_AddTwoItemAndPopThem_Success()
         {
             //Arrange
@@ -128,7 +128,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Ciclo. Executar o for N-vezes.
         /// </summary>
-        [TestMethod, TestCategory("StaticQueue")]
+        [TestMethod, TestCategory("StaticQueue"), Timeout(3000)]
         public void Pop_AddThreeItemAndPopThem_Success()
         {
             //Arrange
@@ -147,7 +147,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Caminho
         /// </summary>
-        [TestMethod, TestCategory("StaticQueue"), ExpectedException(typeof(EmptyCollectionException))]
+        [TestMethod, TestCategory("StaticQueue"), ExpectedException(typeof(EmptyCollectionException)), Timeout(3000)]
         public void Peek_EmptyCollection_Exception()
         {
             //Arrange
@@ -160,7 +160,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Caminho
         /// </summary>
-        [TestMethod, TestCategory("StaticQueue")]
+        [TestMethod, TestCategory("StaticQueue"), Timeout(3000)]
         public void Peek_RetriveOneValue_Success()
         {
             //Arrange
@@ -179,7 +179,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Caminho
         /// </summary>
-        [TestMethod, TestCategory("StaticQueue")]
+        [TestMethod, TestCategory("StaticQueue"), Timeout(3000)]
         public void GetEnumerator_RetriveValues_Success()
         {
             //Arrange

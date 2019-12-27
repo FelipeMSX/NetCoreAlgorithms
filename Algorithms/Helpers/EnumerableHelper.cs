@@ -14,21 +14,26 @@ namespace Algorithms.Helpers
 
         public EnumerableHelper(IEnumerable<T> collection, Comparison<T> comparator)
         {
-            _collection = collection;
-            _comparator = comparator;
+            _collection = collection ?? throw new ArgumentNullException("The array cannot be null.");
+            _comparator = comparator ?? throw new ComparerNotSetException("The comparator must be declared."); 
         }
 
+        /// <summary>
+        /// Verifies if there is an specific item in the collection.
+        /// </summary>
+        /// <exception cref="ArgumentNullException"/>
         public bool Contains(T item)
         {
-            if (_comparator == null)
-                throw new NullObjectException("The comparator must be declared.");
             if (item == null)
                 throw new ArgumentNullException("The argument cannot be null.");
 
             return _collection.Any(x => _comparator.Check(item, x) == ComparisonResult.Equal);
         }
 
-
+        /// <summary>
+        /// Creates a copy of the collection to an array.
+        /// </summary>
+        /// <exception cref="ArgumentNullException"/>
         public void CopyTo(T[] array, int arrayIndex)
         {
             if (array == null)

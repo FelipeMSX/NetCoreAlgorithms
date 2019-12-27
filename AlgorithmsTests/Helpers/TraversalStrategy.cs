@@ -52,7 +52,7 @@ namespace Algorithms_Test.Helpers
         /// <summary>
         /// Técnica: Teste de Ciclo. Executar o ciclo nenhuma vez.
         /// </summary>
-        [TestMethod, TestCategory("TraversalStrategy")]
+        [TestMethod, TestCategory("TraversalStrategy"), Timeout(3000)]
         public void TraversalInOrder_WhenEmptyCollection_True()
         {
             //Arrange
@@ -66,7 +66,7 @@ namespace Algorithms_Test.Helpers
         /// <summary>
         /// Técnica: Teste de Ciclo. Executar o ciclo N vezes.
         /// </summary>
-        [TestMethod, TestCategory("TraversalStrategy")]
+        [TestMethod, TestCategory("TraversalStrategy"), Timeout(3000)]
         public void TraversalInOrder_WhenFilledWithValues_ExpectedOrder()
         {
             //Arrange
@@ -91,7 +91,7 @@ namespace Algorithms_Test.Helpers
         /// <summary>
         /// Técnica: Teste de Ciclo. Executar o ciclo nenhuma vez.
         /// </summary>
-        [TestMethod, TestCategory("TraversalStrategy")]
+        [TestMethod, TestCategory("TraversalStrategy"), Timeout(3000)]
         public void TraversalPreOrder_WhenEmptyCollection2_True()
         {
             //Arrange
@@ -105,7 +105,7 @@ namespace Algorithms_Test.Helpers
         /// <summary>
         /// Técnica: Teste de Ciclo. Executar o ciclo N vezes.
         /// </summary>
-        [TestMethod, TestCategory("TraversalStrategy")]
+        [TestMethod, TestCategory("TraversalStrategy"), Timeout(3000)]
         public void TraversalPreOrder_WhenFilledWithValues_ExpectedOrder()
         {
             //Arrange
@@ -148,7 +148,7 @@ namespace Algorithms_Test.Helpers
         /// <summary>
         /// Técnica: Teste de Ciclo. Executar o ciclo nenhuma vez.
         /// </summary>
-        [TestMethod, TestCategory("TraversalStrategy")]
+        [TestMethod, TestCategory("TraversalStrategy"), Timeout(3000)]
         public void TraversalPostOrder_WhenEmptyCollection2_True()
         {
             //Arrange
@@ -162,7 +162,7 @@ namespace Algorithms_Test.Helpers
         /// <summary>
         /// Técnica: Teste de Ciclo. Executar o ciclo N vezes.
         /// </summary>
-        [TestMethod, TestCategory("TraversalStrategy")]
+        [TestMethod, TestCategory("TraversalStrategy"), Timeout(3000)]
         public void TraversalPostOrder_WhenFilledWithValues_ExpectedOrder()
         {
             //Arrange

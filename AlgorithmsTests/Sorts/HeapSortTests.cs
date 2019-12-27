@@ -16,7 +16,7 @@ namespace AlgorithmsTests.Sorts
             vector = new int[] { 100, 40, 20, 30, 4, -500, 0, 20, -25, 25 };
         } 
 
-        [TestMethod, TestCategory("Heapsort")]
+        [TestMethod, TestCategory("Heapsort"), Timeout(3000)]
         public void Sort_VectorNumbers_CrescentOrderedList()
         {
             //Arrange
@@ -38,7 +38,7 @@ namespace AlgorithmsTests.Sorts
             Assert.IsTrue(isOrdered, "A ordem do vetor deveria estar crescente!");
         }
 
-        [TestMethod, TestCategory("Heapsort")]
+        [TestMethod, TestCategory("Heapsort"), Timeout(3000)]
         public void Sort_ListNumbers_CrescentOrderedList()
         {
             //Arrange
@@ -61,7 +61,7 @@ namespace AlgorithmsTests.Sorts
             Assert.IsTrue(isOrdered, "A ordem da lista deveria estar crescente!");
         }
 
-        [TestMethod, TestCategory("Heapsort")]
+        [TestMethod, TestCategory("Heapsort"), Timeout(3000)]
         public void Sort_VectorNumbers_DecrescentOrderedList()
         {
             //Arrange
@@ -83,7 +83,7 @@ namespace AlgorithmsTests.Sorts
         }
 
 
-        [TestMethod, TestCategory("Heapsort"), ExpectedException(typeof(NullObjectException))]
+        [TestMethod, TestCategory("Heapsort"), ExpectedException(typeof(NullObjectException)), Timeout(3000)]
         public void Sort_NullValue_Exception()
         {
             //Arrange
@@ -96,7 +96,7 @@ namespace AlgorithmsTests.Sorts
             Assert.Inconclusive();
         }
 
-        [TestMethod, TestCategory("Heapsort"), ExpectedException(typeof(ComparerNotSetException))]
+        [TestMethod, TestCategory("Heapsort"), ExpectedException(typeof(ComparerNotSetException)), Timeout(3000)]
         public void Sort_EmptyComparator_Exception()
         {
             //Arrange

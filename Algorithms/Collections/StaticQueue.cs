@@ -15,8 +15,8 @@ namespace Algorithms.Collections
 		{
 		}
 
-        public StaticQueue(int maxsize, Comparison<T> comparator, bool resizable = true, bool allowEqualsElements = true)
-            : base(maxsize, comparator, resizable, allowEqualsElements)
+        public StaticQueue(int maxsize, Comparison<T> comparator, bool resizable = true)
+            : base(maxsize, comparator, resizable)
 		{
 		}
 

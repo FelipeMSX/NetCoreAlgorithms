@@ -18,7 +18,7 @@ namespace Algorithms_Test.Collections
             _staticStack = new StaticStack<int?>(1000, Shared.DefaultIntComparison);
         }
 
-        [TestMethod, TestCategory("StaticStack")]
+        [TestMethod, TestCategory("StaticStack"), Timeout(3000)]
         public void Push_ThreeObjects_LengthEqualsThree()
         {
             //Arrange
@@ -33,7 +33,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Caminho.
         /// </summary>
-        [TestMethod, TestCategory("StaticStack"), ExpectedException(typeof(NullObjectException))]
+        [TestMethod, TestCategory("StaticStack"), ExpectedException(typeof(NullObjectException)), Timeout(3000)]
         public void Push_NullValue_NullObjectException()
         {
             //Arrange 
@@ -46,7 +46,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Caminho e Decisão.
         /// </summary>
-        [TestMethod, TestCategory("StaticStack")]
+        [TestMethod, TestCategory("StaticStack"), Timeout(3000)]
         public void Push_ObjectInFullCollectionResizable_LengthEqualsThree()
         {
             //Arrange
@@ -62,7 +62,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Caminho e Decisão.
         /// </summary>
-        [TestMethod, TestCategory("StaticStack"), ExpectedException(typeof(FullCollectionException))]
+        [TestMethod, TestCategory("StaticStack"), ExpectedException(typeof(FullCollectionException)), Timeout(3000)]
 
         public void Push_ObjectInFullCollectionNotResizable_FullCollectionException()
         {
@@ -80,7 +80,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Caminho.
         /// </summary>
-        [TestMethod, TestCategory("StaticStack"), ExpectedException(typeof(EmptyCollectionException))]
+        [TestMethod, TestCategory("StaticStack"), ExpectedException(typeof(EmptyCollectionException)), Timeout(3000)]
         public void Pop_EmptyList_EmptyCollectionException()
         {
             //Arrange
@@ -93,7 +93,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Ciclo. Executar o for nenhuma vez
         /// </summary>
-        [TestMethod, TestCategory("StaticStack")]
+        [TestMethod, TestCategory("StaticStack"), Timeout(3000)]
         public void Pop_AddOneItemAndPop_Success()
         {
             //Arrange
@@ -108,7 +108,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Ciclo. Executar o for uma vez
         /// </summary>
-        [TestMethod, TestCategory("StaticStack")]
+        [TestMethod, TestCategory("StaticStack"), Timeout(3000)]
         public void Pop_AddTwoItemAndPopThem_Success()
         {
             //Arrange
@@ -124,7 +124,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Ciclo. Executar o for N-vezes.
         /// </summary>
-        [TestMethod, TestCategory("StaticStack")]
+        [TestMethod, TestCategory("StaticStack"), Timeout(3000)]
         public void Pop_AddThreeItemAndPopThem_Success()
         {
             //Arrange
@@ -143,7 +143,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Caminho
         /// </summary>
-        [TestMethod, TestCategory("StaticStack"), ExpectedException(typeof(EmptyCollectionException))]
+        [TestMethod, TestCategory("StaticStack"), ExpectedException(typeof(EmptyCollectionException)), Timeout(3000)]
         public void Peek_EmptyCollection_Exception()
         {
             //Arrange
@@ -156,7 +156,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Caminho
         /// </summary>
-        [TestMethod, TestCategory("StaticStack")]
+        [TestMethod, TestCategory("StaticStack"), Timeout(3000)]
         public void Peek_RetriveOneValue_Success()
         {
             //Arrange
@@ -175,7 +175,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Caminho
         /// </summary>
-        [TestMethod, TestCategory("StaticStack")]
+        [TestMethod, TestCategory("StaticStack"), Timeout(3000)]
         public void GetEnumerator_RetriveValues_Success()
         {
             //Arrange
@@ -194,7 +194,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Caminho
         /// </summary>
-        [TestMethod, TestCategory("StaticStack")]
+        [TestMethod, TestCategory("StaticStack"), Timeout(3000)]
         public void First_EmptyStack_DefaultValue()
         {
             //Arrange
@@ -212,7 +212,7 @@ namespace Algorithms_Test.Collections
         [DataRow(1, 2, 3, 3)]
         [DataRow(10, 1, 100, 100)]
         [DataRow(3, 2, 1, 1)]
-        [TestMethod, TestCategory("StaticStack")]
+        [TestMethod, TestCategory("StaticStack"), Timeout(3000)]
         public void First_DynamicValuesStack_DefaultValue(int? valueA, int? valueB, int? valueC, int? expectedValue)
         {
             //Arrange
@@ -232,7 +232,7 @@ namespace Algorithms_Test.Collections
         [DataRow(1, 1)]
         [DataRow(10,10)]
         [DataRow(3,3)]
-        [TestMethod, TestCategory("StaticStack")]
+        [TestMethod, TestCategory("StaticStack"), Timeout(3000)]
         public void First_OnlyOneValue_DefaultValue(int? valueA, int? expectedValue)
         {
             //Arrange
@@ -247,7 +247,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Caminho
         /// </summary>
-        [TestMethod, TestCategory("StaticStack")]
+        [TestMethod, TestCategory("StaticStack"), Timeout(3000)]
         public void Last_EmptyStack_DefaultValue()
         {
             //Arrange
@@ -265,7 +265,7 @@ namespace Algorithms_Test.Collections
         [DataRow(1, 2, 3, 1)]
         [DataRow(10, 1, 100, 10)]
         [DataRow(3, 2, 1, 3)]
-        [TestMethod, TestCategory("StaticStack")]
+        [TestMethod, TestCategory("StaticStack"), Timeout(3000)]
         public void Last_DynamicValuesStack_DefaultValue(int? valueA, int? valueB, int? valueC, int? expectedValue)
         {
             //Arrange
@@ -285,7 +285,7 @@ namespace Algorithms_Test.Collections
         [DataRow(1, 1)]
         [DataRow(10, 10)]
         [DataRow(3, 3)]
-        [TestMethod, TestCategory("StaticStack")]
+        [TestMethod, TestCategory("StaticStack"), Timeout(3000)]
         public void Last_OnlyOneValue_DefaultValue(int? valueA, int? expectedValue)
         {
             //Arrange

@@ -30,7 +30,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Caminho e Decisão.
         /// </summary>
-        [TestMethod, TestCategory("BinaryTree"), ExpectedException(typeof(NullObjectException))]
+        [TestMethod, TestCategory("BinaryTree"), ExpectedException(typeof(NullObjectException)), Timeout(3000)]
         public void Add_WhenObjectIsNull_Exception()
         {
             //Arrange
@@ -43,7 +43,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Caminho e Decisão.
         /// </summary>
-        [TestMethod, TestCategory("BinaryTree")]
+        [TestMethod, TestCategory("BinaryTree"), Timeout(3000)]
         public void Add_PuttingOneObject_OneObjectAdded()
         {
             //Arrange
@@ -56,7 +56,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Caminho e Decisão.
         /// </summary>
-        [TestMethod, TestCategory("BinaryTree")]
+        [TestMethod, TestCategory("BinaryTree"), Timeout(3000)]
         public void Add_RootAndLeft_Success()
         {
             //Arrange
@@ -70,7 +70,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Caminho e Decisão.
         /// </summary>
-        [TestMethod, TestCategory("BinaryTree")]
+        [TestMethod, TestCategory("BinaryTree"), Timeout(3000)]
         public void Add_RootAndLeftAndRight_Success()
         {
             //Arrange
@@ -85,7 +85,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Caminho e Decisão.
         /// </summary>
-        [TestMethod, TestCategory("BinaryTree")]
+        [TestMethod, TestCategory("BinaryTree"), Timeout(3000)]
         public void Add_RootAndLeftAndLeftAndRight_Success()
         {
             //Arrange
@@ -101,7 +101,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Caminho e Decisão.
         /// </summary>
-        [TestMethod, TestCategory("BinaryTree")]
+        [TestMethod, TestCategory("BinaryTree"), Timeout(3000)]
         public void Add_RootAndRightAndRightAndRight_Success()
         {
             //Arrange
@@ -117,7 +117,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Caminho e Decisão.
         /// </summary>
-        [TestMethod, TestCategory("BinaryTree"), ExpectedException(typeof(EqualsElementException))]
+        [TestMethod, TestCategory("BinaryTree"), ExpectedException(typeof(EqualsElementException)), Timeout(3000)]
         public void Add_EqualsElements_Fail()
         {
             //Arrange
@@ -132,7 +132,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Caminho e Decisão.
         /// </summary>
-        [TestMethod, TestCategory("BinaryTree"), ExpectedException(typeof(NullObjectException))]
+        [TestMethod, TestCategory("BinaryTree"), ExpectedException(typeof(NullObjectException)), Timeout(3000)]
         public void Retrieve_NullValue_Exception()
         {
             //Arrange
@@ -146,7 +146,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Caminho e Decisão.
         /// </summary>
-        [TestMethod, TestCategory("BinaryTree"), ExpectedException(typeof(EmptyCollectionException))]
+        [TestMethod, TestCategory("BinaryTree"), ExpectedException(typeof(EmptyCollectionException)), Timeout(3000)]
         public void Retrieve_TryingRetrieveInEmptyCollection_Exception()
         {
             //Arrange
@@ -159,7 +159,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Caminho e Decisão.
         /// </summary>
-        [TestMethod, TestCategory("BinaryTree")]
+        [TestMethod, TestCategory("BinaryTree"), Timeout(3000)]
         public void Retrieve_RootAndLeft_LeftObjectReturned()
         {
             //Arrange
@@ -175,7 +175,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Caminho e Decisão.
         /// </summary>
-        [TestMethod, TestCategory("BinaryTree"), ExpectedException(typeof(ElementNotFoundException))]
+        [TestMethod, TestCategory("BinaryTree"), ExpectedException(typeof(ElementNotFoundException)), Timeout(3000)]
         public void Retrieve_TryingRetrieveAnNonExistentElement_Exception()
         {
             //Arrange
@@ -190,7 +190,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Caminho e Decisão.
         /// </summary>
-        [TestMethod, TestCategory("BinaryTree")]
+        [TestMethod, TestCategory("BinaryTree"), Timeout(3000)]
         public void GetEnumerator_RootAndRightAndRightAndRight_CrescentOrder()
         {
             //Arrange
@@ -208,7 +208,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Caminho e Decisão.
         /// </summary>
-        [TestMethod, TestCategory("BinaryTree")]
+        [TestMethod, TestCategory("BinaryTree"), Timeout(3000)]
         public void GetEnumerator_RootAndLeftAndLeftAndRight_CrescentOrder()
         {
             //Arrange
@@ -225,7 +225,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Caminho e Decisão.
         /// </summary>
-        [TestMethod, TestCategory("BinaryTree")]
+        [TestMethod, TestCategory("BinaryTree"), Timeout(3000)]
         public void Remove_WhenObjectIsNull_Exception()
         {
             //Arrange
@@ -240,7 +240,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Caminho e Decisão.
         /// </summary>
-        [TestMethod, TestCategory("BinaryTree")]
+        [TestMethod, TestCategory("BinaryTree"), Timeout(3000)]
         public void Remove_WhenCollectionIsEmpty_Exception()
         {
             //Arrange
@@ -253,7 +253,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Caminho e Decisão.
         /// </summary>
-        [TestMethod, TestCategory("BinaryTree")]
+        [TestMethod, TestCategory("BinaryTree"), Timeout(3000)]
         public void Remove_WhenTreeNotContainsValueWithOnlyOneObject_Exception()
         {
             //Arrange
@@ -267,7 +267,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Caminho e Decisão.
         /// </summary>
-        [TestMethod, TestCategory("BinaryTree")]
+        [TestMethod, TestCategory("BinaryTree"), Timeout(3000)]
         public void Remove_WhenTreeHasOnlyOneValue_Success()
         {
             //Arrange
@@ -281,7 +281,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Caminho e Decisão.
         /// </summary>
-        [TestMethod, TestCategory("BinaryTree")]
+        [TestMethod, TestCategory("BinaryTree"), Timeout(3000)]
         public void Remove_NodeHasNoChildren_Success()
         {
             //Arrange
@@ -297,7 +297,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Caminho e Decisão.
         /// </summary>
-        [TestMethod, TestCategory("BinaryTree")]
+        [TestMethod, TestCategory("BinaryTree"), Timeout(3000)]
         public void Remove_NodeHasLeftChildren_Success()
         {
             //Arrange
@@ -314,7 +314,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Caminho e Decisão.
         /// </summary>
-        [TestMethod, TestCategory("BinaryTree")]
+        [TestMethod, TestCategory("BinaryTree"), Timeout(3000)]
         public void Remove_NodeHasRightChildren_Success()
         {
             //Arrange
@@ -332,7 +332,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Caminho e Decisão.
         /// </summary>
-        [TestMethod, TestCategory("BinaryTree")]
+        [TestMethod, TestCategory("BinaryTree"), Timeout(3000)]
         public void Remove_NodeHasRightAndLeftChildren_Success()
         {
             //Arrange
@@ -349,7 +349,7 @@ namespace Algorithms_Test.Collections
         /// <summary>
         /// Técnica: Caminho e Decisão.
         /// </summary>
-        [TestMethod, TestCategory("BinaryTree")]
+        [TestMethod, TestCategory("BinaryTree"), Timeout(3000)]
         public void Remove_NodeHasRightAndLeftChildrenAndRightNodeHasLeftChildren_Success()
         {
             //Arrange

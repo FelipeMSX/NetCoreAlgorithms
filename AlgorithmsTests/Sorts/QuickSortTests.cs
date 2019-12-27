@@ -16,7 +16,7 @@ namespace AlgorithmsTests.Sorts
         }
 
         [TestMethod]
-        [TestCategory("QuickSort")]
+        [TestCategory("QuickSort"), Timeout(3000)]
         public void Sort_StringList_CrescenteOrderedList()
         {
             //Arrange
@@ -37,12 +37,11 @@ namespace AlgorithmsTests.Sorts
             Assert.IsTrue(isOrdered, "A ordem da lista deveria estar crescente!");
         }
 
-        [TestMethod, TestCategory("QuickSort"), ExpectedException(typeof(NullObjectException))]
+        [TestMethod, TestCategory("QuickSort"), ExpectedException(typeof(NullObjectException)), Timeout(3000)]
         public void Sort_NullValue_Exception()
         {
             //Arrange
             QuickSort<int> quicksort = new QuickSort<int>((x, y) => x.CompareTo(y));
-
             //Act
             quicksort.Sort(null);
 
@@ -50,7 +49,7 @@ namespace AlgorithmsTests.Sorts
             Assert.Inconclusive();
         }
 
-        [TestMethod, TestCategory("QuickSort"), ExpectedException(typeof(ComparerNotSetException))]
+        [TestMethod, TestCategory("QuickSort"), ExpectedException(typeof(ComparerNotSetException)), Timeout(3000)]
         public void Sort_EmptyComparator_Exception()
         {
             //Arrange

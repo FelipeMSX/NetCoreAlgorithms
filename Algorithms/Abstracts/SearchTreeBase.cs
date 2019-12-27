@@ -31,7 +31,7 @@ namespace Algorithms.Abstracts
 
 		protected SearchTreeBase(Comparison<TValue> comparator, ITraversalStrategy<TValue> traversalStrategy)
 		{
-			Comparator        = comparator ?? throw new NullObjectException("The comparison object cannot be null");
+			Comparator        = comparator ?? throw new ComparerNotSetException("The comparison object cannot be null");
 			TraversalStrategy = traversalStrategy ?? throw new NullObjectException("The traversal strategy object cannot be null");
             _collectionHelper = new EnumerableHelper<TValue>(this, Comparator);
         }

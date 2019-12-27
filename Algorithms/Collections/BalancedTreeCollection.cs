@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Algorithms.Helpers;
 
 namespace Algorithms.Collections
 {
@@ -42,9 +43,9 @@ namespace Algorithms.Collections
                 BalancedTreeSearchNode<TValue> searchNode = (BalancedTreeSearchNode<TValue>) FindPreviousNodeByValue(value);
 
                 //Se chegar aqui deve ser inserido.
-                if (Comparator(searchNode.Value, value) > 0)
+                if (Comparator.Check(searchNode.Value, value) == ComparisonResult.Greater)
                     searchNode.Left = newNode;
-                else if (Comparator(searchNode.Value, value) < 0)
+                else if (Comparator.Check(searchNode.Value, value) == ComparisonResult.Lesser)
                     searchNode.Right = newNode;
                 else
                     throw new EqualsElementException();
@@ -75,6 +76,11 @@ namespace Algorithms.Collections
             pivot.Left        = root;
             pivot.Parent      = root.Parent;
             root.Parent       = pivot;
+        }
+
+        private void CheckHeightUntilRoot()
+        {
+
         }
     }
 }
