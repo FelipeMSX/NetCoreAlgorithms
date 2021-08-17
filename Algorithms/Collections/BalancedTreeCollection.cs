@@ -1,14 +1,10 @@
 ﻿using Algorithms.Abstracts;
-using Algorithms.Helpers.TreeHelpers;
 using Algorithms.Exceptions;
+using Algorithms.Helpers;
+using Algorithms.Helpers.TreeHelpers;
 using Algorithms.Interfaces;
 using Algorithms.Nodes;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Algorithms.Helpers;
 
 namespace Algorithms.Collections
 {

@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Algorithms.Collections
+﻿namespace Algorithms.Collections
 {
     public class UnionFind
     {
         private readonly int[] _vector;
-        
+
         /// <summary>
         /// Counts the amount of sets in the collection.
         /// </summary>
@@ -34,7 +30,12 @@ namespace Algorithms.Collections
         {
             int i = FindRoot(p);
             int j = FindRoot(q);
-            _vector[i] = j;
+
+            if (i != j)
+            {
+                _vector[i] = j;
+                Count--;
+            }
         }
 
         public bool IsConnected(int p, int q) => FindRoot(p) == FindRoot(q);
