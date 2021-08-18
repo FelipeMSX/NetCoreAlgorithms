@@ -5,7 +5,7 @@ using Algorithms.Exceptions;
 using Algorithms.Helpers;
 using Algorithms.Nodes;
 
-namespace Algorithms.Collections
+namespace Algorithms.Collections.Dynamic
 {
 
 	public class LinkedList<T> : LinkedListBase<T, LinkedNode<T>>
@@ -13,28 +13,19 @@ namespace Algorithms.Collections
         public LinkedList(Comparison<T> comparator) : base(comparator)
         {
             Head = new LinkedNode<T>();
-        }
+		}
 
 		public override void Add(T item)
 		{
 			if (item == null)
 				throw new NullObjectException();
 
-			LinkedNode<T> newNode;
-			newNode = new LinkedNode<T>(item);
+			LinkedNode<T> newNode = new LinkedNode<T>(item);
 
 			if (IsEmpty())
-				Head.Next = newNode;
+				InsertNodeToEmptyList(newNode);
 			else
-			{
-				LinkedNode<T> searchNode = Head.Next;
-
-				while (searchNode.HasNext())
-					searchNode = searchNode.Next;
-				
-				searchNode.Next = newNode;		
-			}
-			Count++;
+				InsertNodeBefore(Head.Next, newNode);
 		}
 
 		public override bool Remove(T item)
@@ -79,7 +70,7 @@ namespace Algorithms.Collections
 				current = current.Next;
 			}
            
-			return Comparator.Check(current.Value, item) == ComparisonResult.Equal ? current.Value : default(T);
+			return Comparator.Check(current.Value, item) == ComparisonResult.Equal ? current.Value : default;
 		}
 
 		
@@ -125,7 +116,20 @@ namespace Algorithms.Collections
             return current.Value;
         }
 
-        private LinkedNode<T> SearchPreviousPosition(T objectKey)
+		private void InsertNodeToEmptyList(LinkedNode<T> newNode)
+		{
+			Head.Next = newNode;
+			Count++;
+		}
+
+		private void InsertNodeBefore(LinkedNode<T> node, LinkedNode<T> newNode)
+		{
+			newNode.Next = node;
+			Head.Next = node;
+			Count++;
+		}
+
+		private LinkedNode<T> SearchPreviousPosition(T objectKey)
         {
             LinkedNode<T> search = Head.Next;
             LinkedNode<T> previous = Head.Next;
@@ -139,6 +143,21 @@ namespace Algorithms.Collections
                 search = search.Next;
             }
             return null;
+        }
+
+        public override bool RemoveFirst()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool RemoveLast()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void AddLast(T item)
+        {
+            throw new NotImplementedException();
         }
     }
 }

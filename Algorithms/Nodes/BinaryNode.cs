@@ -17,7 +17,7 @@ namespace Algorithms.Nodes
 		/// <summary>
 		/// Representa um ponteiro para um node pai.
 		/// </summary>
-		public BinaryNode<T> Father { get; set; }
+		public BinaryNode<T> Parent { get; set; }
 
 		public BinaryNode() : base()
 		{
@@ -44,6 +44,13 @@ namespace Algorithms.Nodes
 		/// Avalia se existe um node anterior ao atual.
 		/// </summary>
 		/// <returns>Retorna true se existir um node anterior, caso contrário, false.</returns>
-		public bool HasFather() => Father != null;
-	}
+		public bool HasFather() => Parent != null;
+
+		public override void Invalidate()
+		{
+			base.Invalidate();
+			Right = Left = Parent = null;
+		}
+
+    }
 }

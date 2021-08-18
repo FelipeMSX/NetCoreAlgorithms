@@ -1,7 +1,7 @@
 ﻿using Algorithms.Nodes;
 using System.Collections.Generic;
 
-namespace Algorithms.Interfaces
+namespace Algorithms.Collections.TreeTraversalStrategies
 {
     public interface ITraversalStrategy<T>
     {

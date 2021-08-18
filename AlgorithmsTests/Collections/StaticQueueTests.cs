@@ -13,13 +13,13 @@ namespace Algorithms_Test.Collections
     public class StaticQueueTests
     {
 
-        private StaticQueue<int?> _staticQueue;
+        private Algorithms.Collections.Queue<int?> _staticQueue;
 
 
         [TestInitialize]
         public void Initialize()
         {
-            _staticQueue = new StaticQueue<int?>(100,Shared.DefaultIntComparison);
+            _staticQueue = new Algorithms.Collections.Queue<int?>(100, Shared.DefaultIntComparison);
         }
 
         [TestMethod, TestCategory("StaticQueue"), Timeout(3000)]
@@ -54,7 +54,7 @@ namespace Algorithms_Test.Collections
         public void Push_ObjectInFullCollectionResizable_LengthEqualsThree()
         {
             //Arrange
-            _staticQueue = new StaticQueue<int?>(2,Shared.DefaultIntComparison);
+            _staticQueue = new Algorithms.Collections.Queue<int?>(2, Shared.DefaultIntComparison);
             //Act
             _staticQueue.Push(1);
             _staticQueue.Push(2);
@@ -71,7 +71,7 @@ namespace Algorithms_Test.Collections
         public void Push_ObjectInFullCollectionNotResizable_FullCollectionException()
         {
             //Arrange
-            _staticQueue = new StaticQueue<int?>(2, Shared.DefaultIntComparison, false);
+            _staticQueue = new Algorithms.Collections.Queue<int?>(2, Shared.DefaultIntComparison, false);
             //Act
             _staticQueue.Push(1);
             _staticQueue.Push(2);

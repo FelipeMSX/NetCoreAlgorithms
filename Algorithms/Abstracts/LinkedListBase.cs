@@ -9,16 +9,16 @@ using Algorithms.Helpers;
 namespace Algorithms.Abstracts
 {
 
-    public abstract class LinkedListBase<T, E> : IEnumerable<T>, IDefaultComparator<T>
-        where E : NodeBase<T>, new()
+    public abstract class LinkedListBase<TValue, ENode> : IEnumerable<TValue>, IDefaultComparator<TValue>
+        where ENode : NodeBase<TValue>, new()
     {
 
-        private readonly IEnumerableHelper<T> _enumerableHelper;
+        private readonly IEnumerableHelper<TValue> _enumerableHelper;
 
         /// <summary>
         /// Aponta para o primeiro item da coleção da coleção. Não armazena dados.
         /// </summary>
-        protected E Head { get; set; }
+        protected ENode Head { get; set; }
 
         /// <summary>
         /// Informa se a coleção está vazia.
@@ -28,30 +28,33 @@ namespace Algorithms.Abstracts
         /// <summary>
         /// Fornece um método de comparação para os objetos da coleção.
         /// </summary>
-        public Comparison<T> Comparator { get; }
+        public Comparison<TValue> Comparator { get; }
         public int Count { get; protected set; }
 
-        protected LinkedListBase(Comparison<T> comparator)
+        protected LinkedListBase(Comparison<TValue> comparator)
         {
             Comparator = comparator ?? throw new NullObjectException("The comparison object cannot be null");
-            _enumerableHelper = new EnumerableHelper<T>(this,comparator);
+            _enumerableHelper = new EnumerableHelper<TValue>(this,comparator);
         }
-        public abstract IEnumerator<T> GetEnumerator();
-        public abstract void Add(T item);
-        public abstract bool Remove(T item);
-        public abstract T Retrieve(T item);
-        public abstract T First();
-        public abstract T Last();
+        public abstract IEnumerator<TValue> GetEnumerator();
+        public abstract void Add(TValue item);
+        public abstract void AddLast(TValue item);
+        public abstract bool Remove(TValue item);
+        public abstract bool RemoveFirst();
+        public abstract bool RemoveLast();
+        public abstract TValue Retrieve(TValue item);
+        public abstract TValue First();
+        public abstract TValue Last();
         public void Clear()
         {
-            Head = new E();
+            Head = new ENode();
             Count = 0;
         }
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
-        public bool Contains(T item) => _enumerableHelper.Contains(item);
+        public bool Contains(TValue item) => _enumerableHelper.Contains(item);
 
-        public void CopyTo(T[] array, int arrayIndex) => _enumerableHelper.CopyTo(array, arrayIndex);
+        public void CopyTo(TValue[] array, int arrayIndex) => _enumerableHelper.CopyTo(array, arrayIndex);
     }
 }

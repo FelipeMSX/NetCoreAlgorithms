@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using Algorithms.Abstracts;
 using Algorithms.Exceptions;
 
-namespace Algorithms.Collections
+namespace Algorithms.Collections.Static
 {
 
     /// <summary>
     /// This collection represents a static queue.
     /// </summary>
-	public class StaticQueue<T> : QueueStackBase<T>
+	public class Queue<T> : QueueStackBase<T>
     {
-		public StaticQueue(Comparison<T> comparator) : base(comparator)
+		public Queue(Comparison<T> comparator) : base(comparator)
 		{
 		}
 
-        public StaticQueue(int maxsize, Comparison<T> comparator, bool resizable = true)
+        public Queue(int maxsize, Comparison<T> comparator, bool resizable = true)
             : base(maxsize, comparator, resizable)
 		{
 		}

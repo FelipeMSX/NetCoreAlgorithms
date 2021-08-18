@@ -19,14 +19,10 @@ namespace Algorithms.Nodes
 		/// </summary>
 		public TreeSearchNode<T> Parent { get; set; }
 
-		public TreeSearchNode() : base()
-		{
-		}
+		public TreeSearchNode() : base() {}
 
 		/// <param name="obj">Objeto genérico que será armazenado no node.</param>
-		public TreeSearchNode(T obj) : base(obj)
-		{
-		}
+		public TreeSearchNode(T obj) : base(obj) {}
 
 		/// <summary>
 		/// Avalia se existe um próximo node.
@@ -45,5 +41,11 @@ namespace Algorithms.Nodes
 		/// </summary>
 		/// <returns>Retorna true se existir um node superior, caso contrário, false.</returns>
 		public bool HasFather() => Parent != null;
-	}
+
+        public override void Invalidate()
+        {
+			base.Invalidate();
+			Left = Right = Parent = null;
+		}
+    }
 }

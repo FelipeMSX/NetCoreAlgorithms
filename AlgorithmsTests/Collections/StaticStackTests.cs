@@ -10,12 +10,12 @@ namespace Algorithms_Test.Collections
     [TestClass]
     public class StaticStackTests
     {
-        private StaticStack<int?> _staticStack;
+        private Algorithms.Collections.Stack<int?> _staticStack;
 
         [TestInitialize]
         public void Initialize()
         {
-            _staticStack = new StaticStack<int?>(1000, Shared.DefaultIntComparison);
+            _staticStack = new Algorithms.Collections.Stack<int?>(1000, Shared.DefaultIntComparison);
         }
 
         [TestMethod, TestCategory("StaticStack"), Timeout(3000)]
@@ -50,7 +50,7 @@ namespace Algorithms_Test.Collections
         public void Push_ObjectInFullCollectionResizable_LengthEqualsThree()
         {
             //Arrange
-            _staticStack = new StaticStack<int?>(2, Shared.DefaultIntComparison);
+            _staticStack = new Algorithms.Collections.Stack<int?>(2, Shared.DefaultIntComparison);
             //Act
             _staticStack.Push(1);
             _staticStack.Push(2);
@@ -67,7 +67,7 @@ namespace Algorithms_Test.Collections
         public void Push_ObjectInFullCollectionNotResizable_FullCollectionException()
         {
             //Arrange
-            _staticStack = new StaticStack<int?>(2, Shared.DefaultIntComparison, false);
+            _staticStack = new Algorithms.Collections.Stack<int?>(2, Shared.DefaultIntComparison, false);
             //Act
             _staticStack.Push(1);
             _staticStack.Push(2);

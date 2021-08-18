@@ -16,12 +16,12 @@ namespace Algorithms_Test.Abstracts
     public class ArrayBaseTests
     {
         //The test must be executed in a devired class;
-        private StaticQueue<int?> _arrayBase;
+        private Queue<int?> _arrayBase;
 
         [TestInitialize]
         public void TearUp()
         {
-            _arrayBase = new StaticQueue<int?>(Shared.DefaultIntComparison);
+            _arrayBase = new Queue<int?>(Shared.DefaultIntComparison);
         }
 
         /// <summary>
@@ -257,7 +257,7 @@ namespace Algorithms_Test.Abstracts
         public void IncreaseCapacity_WhenCollectionIsNotResizable_Exception()
         {
             //Arrange
-            _arrayBase = new StaticQueue<int?>(5,Shared.DefaultIntComparison, false);
+            _arrayBase = new Queue<int?>(5,Shared.DefaultIntComparison, false);
             _arrayBase.Push(1);
             _arrayBase.Push(2);
             _arrayBase.Push(3);
@@ -276,7 +276,7 @@ namespace Algorithms_Test.Abstracts
         public void IncreaseCapacity_WhenInvalidValue_Exception()
         {
             //Arrange
-            _arrayBase = new StaticQueue<int?>(5, Shared.DefaultIntComparison, true);
+            _arrayBase = new Queue<int?>(5, Shared.DefaultIntComparison, true);
             _arrayBase.Push(1);
             _arrayBase.Push(2);
             _arrayBase.Push(3);
@@ -295,7 +295,7 @@ namespace Algorithms_Test.Abstracts
         public void IncreaseCapacity_WhenCollectionIsEmpty_Success()
         {
             //Arrange
-            _arrayBase = new StaticQueue<int?>(5, Shared.DefaultIntComparison, true);
+            _arrayBase = new Queue<int?>(5, Shared.DefaultIntComparison, true);
             //Act
             _arrayBase.IncreaseCapacity(5);
             //Assert
@@ -309,7 +309,7 @@ namespace Algorithms_Test.Abstracts
         public void IncreaseCapacity_WhenCollectionHasValues_Success()
         {
             //Arrange
-            _arrayBase = new StaticQueue<int?>(5, Shared.DefaultIntComparison, true);
+            _arrayBase = new Queue<int?>(5, Shared.DefaultIntComparison, true);
             _arrayBase.Push(1);
             _arrayBase.Push(2);
             _arrayBase.Push(3);
@@ -328,7 +328,7 @@ namespace Algorithms_Test.Abstracts
         public void ArrayBaseConstructor_PassNullComparator_Exception()
         {
             //Arrange
-            _arrayBase = new StaticQueue<int?>(5, null, true);
+            _arrayBase = new Queue<int?>(5, null, true);
             _arrayBase.Push(1);
             _arrayBase.Push(2);
             _arrayBase.Push(3);

@@ -1,34 +1,29 @@
 ﻿using Algorithms.Abstracts;
-using Algorithms.Collections;
-using Algorithms.Interfaces;
+using Algorithms.Helpers;
 using Algorithms.Nodes;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Algorithms.Helpers.TreeHelpers
+namespace Algorithms.Collections.TreeTraversalStrategies
 {
     //Postorder (Left, Right, Root)
     public class PostOrderTraversal<T> : ITraversalStrategy<T>
     {
         public IEnumerator<T> Traversal(TreeSearchNode<T> node)
         {
-            QueueStackBase<TreeSearchNode<T>> staticStack = new StaticStack<TreeSearchNode<T>>(1000, ComparatorHelper.EmptyComparison);
+            QueueStackBase<TreeSearchNode<T>> stack = new Static.Stack<TreeSearchNode<T>>(TraversalStrategyHelper.DEFAULT_STACK_SIZE, ComparatorHelper.EmptyComparison);
 
             TreeSearchNode<T> lastNodeVisited = null;
 
-            while (staticStack.Count > 0 || node != null)
+            while (stack.Count > 0 || node != null)
             {
                 if (node != null)
                 {
-                    staticStack.Push(node);
+                    stack.Push(node);
                     node = node.Left;
                 }
                 else
                 {
-                    TreeSearchNode<T> peekNode = staticStack.Peek();
+                    TreeSearchNode<T> peekNode = stack.Peek();
                     if (peekNode.Right != null && lastNodeVisited != peekNode.Right)
                     {
                         node = peekNode.Right;
@@ -36,7 +31,7 @@ namespace Algorithms.Helpers.TreeHelpers
                     else
                     {
                         yield return peekNode.Value;
-                        lastNodeVisited = staticStack.Pop();
+                        lastNodeVisited = stack.Pop();
                     }
                 }
             }

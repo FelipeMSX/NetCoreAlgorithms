@@ -1,28 +1,28 @@
 ﻿using Algorithms.Abstracts;
-using Algorithms.Collections;
-using Algorithms.Interfaces;
+using Algorithms.Collections.Dynamic;
+using Algorithms.Helpers;
 using Algorithms.Nodes;
 using System.Collections.Generic;
 
-namespace Algorithms.Helpers.TreeHelpers
+namespace Algorithms.Collections.TreeTraversalStrategies
 {
-    //Inorder(Left, Root, Right)
+    //Inorder(Left, Root, Right) Depth-First Search (DFS) variation
     public class InOrderTraversal<T> : ITraversalStrategy<T>
     {
         public IEnumerator<T> Traversal(TreeSearchNode<T> node)
         {
-            QueueStackBase<TreeSearchNode<T>> staticStack = new StaticStack<TreeSearchNode<T>>(1000,ComparatorHelper.EmptyComparison);
+            Dynamic.LinkedList<TreeSearchNode<T>> linkedList = new Dynamic.LinkedList<TreeSearchNode<T>>(ComparatorHelper.EmptyComparison);
 
-            while(staticStack.Count > 0 || node != null)
+            while(linkedList.Count > 0 || node != null)
             {
                 if(node != null)
                 {
-                    staticStack.Push(node);
+                    linkedList.Add(node);
                     node = node.Left;
                 }
                 else
                 {
-                    node = staticStack.Pop();
+                    node = linkedList.RemoveLast();
                     yield return node.Value;
                     node = node.Right;
                 }

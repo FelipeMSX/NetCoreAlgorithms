@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using Algorithms.Abstracts;
 using Algorithms.Exceptions;
 
-namespace Algorithms.Collections
+namespace Algorithms.Collections.Static
 {
 
     /// <summary>
     /// Represents a stack and it was implemented using a vector.
     /// </summary>
-    public class StaticStack<T> : QueueStackBase<T> 
+    public class Stack<T> : QueueStackBase<T> 
 	{
   
-		public StaticStack(Comparison<T> comparator) : base(comparator)
+		public Stack(Comparison<T> comparator) : base(comparator)
 		{
 		}
 
-        public StaticStack(int maxsize, Comparison<T> comparator, bool resizable = true) 
+        public Stack(int maxsize, Comparison<T> comparator, bool resizable = true) 
             : base (maxsize, comparator, resizable)
 		{
 		}

@@ -6,7 +6,7 @@ using Algorithms.Interfaces;
 using Algorithms.Nodes;
 using System;
 
-namespace Algorithms.Collections
+namespace Algorithms.Collections.Dynamic
 {
     public class BalancedTreeCollection<TValue> : SearchTreeBase<TValue, BalancedTreeSearchNode<TValue>>
     {

@@ -10,7 +10,7 @@ using Algorithms.Interfaces;
 using Algorithms.Nodes;
 using Algorithms.Helpers;
 
-namespace Algorithms.Collections
+namespace Algorithms.Collections.Dynamic
 {
     public class BinaryTreeCollection<TValue> : SearchTreeBase<TValue, TreeSearchNode<TValue>>
     {

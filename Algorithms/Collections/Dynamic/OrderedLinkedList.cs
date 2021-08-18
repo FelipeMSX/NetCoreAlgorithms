@@ -4,7 +4,7 @@ using Algorithms.Exceptions;
 using Algorithms.Helpers;
 using Algorithms.Nodes;
 
-namespace Algorithms.Collections
+namespace Algorithms.Collections.Dynamic
 {
 
     /// <summary>

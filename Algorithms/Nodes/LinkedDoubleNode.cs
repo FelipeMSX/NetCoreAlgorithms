@@ -21,27 +21,27 @@ namespace Algorithms.Nodes
 		/// </summary>
 		public LinkedDoubleNode<T> Next { get; set; }
 
-		public LinkedDoubleNode() : base()
-		{
-		}
+		public LinkedDoubleNode() : base(){}
 
 		/// <param name="obj">Objeto genérico que será armazenado no node.</param>
-		public LinkedDoubleNode(T obj) : base(obj)
-		{
-		}
+		public LinkedDoubleNode(T obj) : base(obj) {}
 
 		/// <summary>
 		/// Avalia se existe um próximo node.
 		/// </summary>
 		/// <returns>Retorna true se existir um próximo node, caso contrário, false.</returns>
 		public bool HasNext() => Next != null;
-		
 
 		/// <summary>
 		/// Avalia se existe um node anterior ao atual.
 		/// </summary>
 		/// <returns>Retorna true se existir um node anterior, caso contrário, false.</returns>
 		public bool HasPrevious() => Previous != null;
-		
-	}
+
+		public override void Invalidate() 
+		{
+			base.Invalidate();
+			Next  = Previous = null;
+		}
+    }
 }
