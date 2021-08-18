@@ -3,7 +3,7 @@
 namespace Algorithms.Abstracts
 {
     /// <summary>
-    /// Classe que tem como função armazenar um objeto qualquer.
+    /// Represents a object that can hold data for creating some nodes.
     /// </summary>
     /// <author>Felipe Morais</author>
     /// <email>felipemsx18@gmail.com</email>
