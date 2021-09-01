@@ -1,7 +1,7 @@
 ﻿using Algorithms.Abstracts;
+using Algorithms.Collections.TreeTraversalStrategies;
 using Algorithms.Exceptions;
 using Algorithms.Helpers;
-using Algorithms.Helpers.TreeHelpers;
 using Algorithms.Interfaces;
 using Algorithms.Nodes;
 using System;

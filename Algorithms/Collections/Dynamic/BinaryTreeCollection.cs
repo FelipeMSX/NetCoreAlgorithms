@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Algorithms.Abstracts;
-using Algorithms.Helpers.TreeHelpers;
 using Algorithms.Exceptions;
 using Algorithms.Interfaces;
 using Algorithms.Nodes;
 using Algorithms.Helpers;
+using Algorithms.Collections.TreeTraversalStrategies;
 
 namespace Algorithms.Collections.Dynamic
 {
