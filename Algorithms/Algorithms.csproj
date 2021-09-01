@@ -7,13 +7,11 @@
   <ItemGroup>
     <Folder Include="Abstracts\" />
     <Folder Include="Exceptions\" />
-    <Folder Include="DesignPatterns\" />
     <Folder Include="Helpers\TreeHelpers\" />
     <Folder Include="Sorts\" />
     <Folder Include="Study\" />
     <Folder Include="Searchs\" />
     <Folder Include="TestResults\" />
-    <Folder Include="DesignPatterns\Factory\" />
   </ItemGroup>
 
   <ItemGroup>
