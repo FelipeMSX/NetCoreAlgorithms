@@ -5,7 +5,6 @@ using Algorithms.Abstracts;
 using Algorithms.Collections;
 using Algorithms.Exceptions;
 using NSubstitute;
-using Algorithms.Collections.Static;
 
 namespace Algorithms_Test.Abstracts
 {
