@@ -6,6 +6,7 @@ using Algorithms.Exceptions;
 using Algorithms.Nodes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
+using Algorithms.Collections.Dynamic;
 
 namespace Algorithms_Test.Collections
 {

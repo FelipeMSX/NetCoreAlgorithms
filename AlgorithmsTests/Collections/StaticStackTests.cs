@@ -3,19 +3,19 @@ using Algorithms.Collections;
 using Algorithms.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
-using System.Collections.Generic;
+using Algorithms.Collections.Static;
 
 namespace Algorithms_Test.Collections
 {
     [TestClass]
     public class StaticStackTests
     {
-        private Algorithms.Collections.Stack<int?> _staticStack;
+        private Stack<int?> _staticStack;
 
         [TestInitialize]
         public void Initialize()
         {
-            _staticStack = new Algorithms.Collections.Stack<int?>(1000, Shared.DefaultIntComparison);
+            _staticStack = new Stack<int?>(1000, Shared.DefaultIntComparison);
         }
 
         [TestMethod, TestCategory("StaticStack"), Timeout(3000)]
@@ -50,7 +50,7 @@ namespace Algorithms_Test.Collections
         public void Push_ObjectInFullCollectionResizable_LengthEqualsThree()
         {
             //Arrange
-            _staticStack = new Algorithms.Collections.Stack<int?>(2, Shared.DefaultIntComparison);
+            _staticStack = new Stack<int?>(2, Shared.DefaultIntComparison);
             //Act
             _staticStack.Push(1);
             _staticStack.Push(2);
@@ -67,7 +67,7 @@ namespace Algorithms_Test.Collections
         public void Push_ObjectInFullCollectionNotResizable_FullCollectionException()
         {
             //Arrange
-            _staticStack = new Algorithms.Collections.Stack<int?>(2, Shared.DefaultIntComparison, false);
+            _staticStack = new Stack<int?>(2, Shared.DefaultIntComparison, false);
             //Act
             _staticStack.Push(1);
             _staticStack.Push(2);
@@ -185,7 +185,7 @@ namespace Algorithms_Test.Collections
             _staticStack.Push(4);
             _staticStack.Push(5);
             //Act
-            IEnumerable<int?> expectedList = _staticStack.OrderBy(x => x);
+            System.Collections.Generic.IEnumerable<int?> expectedList = _staticStack.OrderBy(x => x);
             //Assert
             Assert.IsTrue(expectedList.SequenceEqual(_staticStack), "The collections should be the same.");
         }

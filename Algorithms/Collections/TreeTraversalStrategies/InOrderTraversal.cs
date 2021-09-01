@@ -1,8 +1,7 @@
-﻿using Algorithms.Abstracts;
-using Algorithms.Collections.Dynamic;
+﻿using System.Collections.Generic;
 using Algorithms.Helpers;
+using Algorithms.Interfaces;
 using Algorithms.Nodes;
-using System.Collections.Generic;
 
 namespace Algorithms.Collections.TreeTraversalStrategies
 {
@@ -11,7 +10,7 @@ namespace Algorithms.Collections.TreeTraversalStrategies
     {
         public IEnumerator<T> Traversal(TreeSearchNode<T> node)
         {
-            Dynamic.LinkedList<TreeSearchNode<T>> linkedList = new Dynamic.LinkedList<TreeSearchNode<T>>(ComparatorHelper.EmptyComparison);
+            IInteracbleCollection<TreeSearchNode<T>> linkedList = new Dynamic.LinkedList<TreeSearchNode<T>>(ComparatorHelper.EmptyComparison);
 
             while(linkedList.Count > 0 || node != null)
             {
@@ -22,7 +21,8 @@ namespace Algorithms.Collections.TreeTraversalStrategies
                 }
                 else
                 {
-                    node = linkedList.RemoveLast();
+                    node = linkedList.First();
+                    linkedList.RemoveFirst();
                     yield return node.Value;
                     node = node.Right;
                 }

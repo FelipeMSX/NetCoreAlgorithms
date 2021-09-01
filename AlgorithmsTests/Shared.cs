@@ -8,6 +8,8 @@ namespace Algorithms_Test
 {
     public class Shared
     {
+        public const int DEFAULT_TIMEOUT = 3000;
+
         public static Comparison<int?> DefaultIntComparison { get; } = (x, y) =>
          {
              if (x > y)
