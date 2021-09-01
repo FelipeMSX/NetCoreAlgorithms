@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Diagnostics;
 using Algorithms.Collections;
-using Algorithms.Collections.Dynamic;
 using Algorithms.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -295,7 +293,7 @@ namespace Algorithms_Test.Collections
             //Act
             int? result = _linkedList.First();
             //Assert
-            Assert.IsTrue(result == 3, "The element with value one is expected!");
+            Assert.IsTrue(result == 1, "The element with value one is expected!");
         }
 
 
@@ -345,7 +343,7 @@ namespace Algorithms_Test.Collections
             //Act
             int? result = _linkedList.Last();
             //Assert
-            Assert.IsTrue(result == 1, "The element with value one is expected!");
+            Assert.IsTrue(result == 2, "The element with value one is expected!");
         }
 
 
@@ -419,15 +417,13 @@ namespace Algorithms_Test.Collections
             int count = 0;
             //Act
             foreach (int? item in _linkedList)
-            {
                 vectorResult[count++] = item;
-            }
 
             //Assert
             bool areEquals = true;
             for (int i = 0; i < vectorInput.Length; i++)
             {
-                areEquals = vectorInput[vectorInput.Length - i - 1] == vectorResult[i];
+                areEquals = vectorInput[i] == vectorResult[i];
                 if (!areEquals)
                     break;
             }

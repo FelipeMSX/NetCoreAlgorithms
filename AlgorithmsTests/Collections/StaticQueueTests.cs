@@ -5,7 +5,7 @@ using AlgorithmsTests;
 using Algorithms.Exceptions;
 using Algorithms.Abstracts;
 using System.Linq;
-using Algorithms.Collections.Static;
+using System.Collections.Generic;
 
 namespace Algorithms_Test.Collections
 {
@@ -13,13 +13,13 @@ namespace Algorithms_Test.Collections
     public class StaticQueueTests
     {
 
-        private Queue<int?> _staticQueue;
+        private Algorithms.Collections.Queue<int?> _staticQueue;
 
 
         [TestInitialize]
         public void Initialize()
         {
-            _staticQueue = new Queue<int?>(100, Shared.DefaultIntComparison);
+            _staticQueue = new Algorithms.Collections.Queue<int?>(100, Shared.DefaultIntComparison);
         }
 
         [TestMethod, TestCategory("StaticQueue"), Timeout(3000)]
@@ -54,7 +54,7 @@ namespace Algorithms_Test.Collections
         public void Push_ObjectInFullCollectionResizable_LengthEqualsThree()
         {
             //Arrange
-            _staticQueue = new Queue<int?>(2, Shared.DefaultIntComparison);
+            _staticQueue = new Algorithms.Collections.Queue<int?>(2, Shared.DefaultIntComparison);
             //Act
             _staticQueue.Push(1);
             _staticQueue.Push(2);
@@ -71,7 +71,7 @@ namespace Algorithms_Test.Collections
         public void Push_ObjectInFullCollectionNotResizable_FullCollectionException()
         {
             //Arrange
-            _staticQueue = new Queue<int?>(2, Shared.DefaultIntComparison, false);
+            _staticQueue = new Algorithms.Collections.Queue<int?>(2, Shared.DefaultIntComparison, false);
             //Act
             _staticQueue.Push(1);
             _staticQueue.Push(2);
@@ -189,7 +189,7 @@ namespace Algorithms_Test.Collections
             _staticQueue.Push(4);
             _staticQueue.Push(5);
             //Act
-            System.Collections.Generic.IEnumerable<int?> expectedList = _staticQueue.OrderBy(x => x);
+            IEnumerable<int?> expectedList = _staticQueue.OrderBy(x => x);
             //Assert
             Assert.IsTrue(expectedList.SequenceEqual(_staticQueue), "The collections should be the same.");
         }

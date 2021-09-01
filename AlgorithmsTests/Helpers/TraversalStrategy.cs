@@ -1,7 +1,6 @@
 ﻿using Algorithms.Collections;
-using Algorithms.Collections.Dynamic;
-using Algorithms.Collections.TreeTraversalStrategies;
 using Algorithms.Exceptions;
+using Algorithms.Helpers.TreeHelpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;

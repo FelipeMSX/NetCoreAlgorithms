@@ -7,6 +7,7 @@
   <ItemGroup>
     <Folder Include="Abstracts\" />
     <Folder Include="Exceptions\" />
+    <Folder Include="DesignPatterns\" />
     <Folder Include="Helpers\TreeHelpers\" />
     <Folder Include="Sorts\" />
     <Folder Include="Study\" />
@@ -14,7 +15,4 @@
     <Folder Include="TestResults\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Remove="DesignPatterns\Factory\" />
-  </ItemGroup>
 </Project>
