@@ -15,7 +15,7 @@ namespace Algorithms.Collections.Dynamic
     public class BinaryTreeCollection<TValue> : SearchTreeBase<TValue, TreeSearchNode<TValue>>
     {
 
-        public BinaryTreeCollection(Comparison<TValue> comparator) : base(comparator, new InOrderTraversal<TValue>())
+        public BinaryTreeCollection(Comparison<TValue> comparator) : base(comparator, new InOrderTraversalStrategy<TValue>())
         {
             Root = new TreeSearchNode<TValue>();
         }

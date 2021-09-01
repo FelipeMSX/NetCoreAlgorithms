@@ -105,7 +105,7 @@ namespace Algorithms.Collections.Dynamic
 		{
 			CheckEmptyCollection();
 
-			RemoveNodeFromList(Head.Next);
+			RemoveNodeFromList(Head);
 
 			return true;
 		}
@@ -126,15 +126,16 @@ namespace Algorithms.Collections.Dynamic
 
 		private T RemoveNodeFromList(LinkedNode<T> previousNode)
         {
-            LinkedNode<T> current = previousNode.Next;
-			AdjustLastNode(previousNode, current);
-            previousNode.Next = current.Next;
-			T Value = current.Value;
-			current.Invalidate();
+            LinkedNode<T> currentNodeToRemove = previousNode.Next;
+			AdjustLastNode(previousNode, currentNodeToRemove);
+            previousNode.Next = currentNodeToRemove.Next;
+			T Value = currentNodeToRemove.Value;
+			currentNodeToRemove.Invalidate();
             Count--;
 
             return Value;
         }
+
 
 		private void AdjustLastNode(LinkedNode<T> previousNode, LinkedNode<T> nextNode)
         {
