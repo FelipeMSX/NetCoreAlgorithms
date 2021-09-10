@@ -107,46 +107,14 @@ namespace Algorithms.Collections.Dynamic
 			}
 		}
 
-		public override bool RemoveFirst()
-		{
-			CheckEmptyCollection();
-
-			RemoveNodeFromList(Head);
-
-			return true;
-		}
-
-		public override bool RemoveLast()
-		{
-			CheckEmptyCollection();
-
-			RemoveNodeFromList(SearchPreviousPosition(LastNode.Value));
-
-			return true;
-		}
-
-		public override void AddLast(T item)
-		{
-			throw new NotImplementedException();
-		}
-
-		private T RemoveNodeFromList(LinkedNode<T> previousNode)
+        private T RemoveNodeFromList(LinkedNode<T> previousNode)
         {
-            LinkedNode<T> currentNodeToRemove = previousNode.Next;
-			AdjustLastNode(previousNode, currentNodeToRemove);
-            previousNode.Next = currentNodeToRemove.Next;
-			T Value = currentNodeToRemove.Value;
-			currentNodeToRemove.Invalidate();
+            LinkedNode<T> current = previousNode.Next;
+            previousNode.Next = current.Next;
+            current.Next = null;
             Count--;
             return current.Value;
         }
-
-
-		private void AdjustLastNode(LinkedNode<T> previousNode, LinkedNode<T> nextNode)
-        {
-			if (nextNode == LastNode)
-				LastNode = previousNode;
-		}
 
 		private void InsertNodeToEmptyList(LinkedNode<T> newNode)
 		{

@@ -15,6 +15,6 @@ namespace Algorithms.Abstracts
 
         protected NodeBase() { }
 
-        public virtual void Invalidate() { }
+        public virtual void Invalidate() => Value = default;
     }
 }

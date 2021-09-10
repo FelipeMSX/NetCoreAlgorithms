@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace Algorithms.Collections.TreeTraversalStrategies
 {
     //Inorder(Left, Root, Right) Depth-First Search (DFS) variation
-    public class InOrderTraversalStrategy<T> : ITraversalStrategy<T>
+    public class InOrderTraversal<T> : ITraversalStrategy<T>
     {
         public IEnumerator<T> Traversal(TreeSearchNode<T> node)
         {

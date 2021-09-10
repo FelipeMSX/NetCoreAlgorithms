@@ -58,7 +58,7 @@ namespace Algorithms_Test.Helpers
             //Arrange
             BinaryTreeCollection<int?> binaryTree = new BinaryTreeCollection<int?>(Shared.DefaultIntComparison);
             //Act
-            foreach (int? value in binaryTree) {}
+            foreach (int? value in _binaryTree){}
             //Assert
             Assert.IsTrue(true);
         }
@@ -95,9 +95,9 @@ namespace Algorithms_Test.Helpers
         public void TraversalPreOrder_WhenEmptyCollection2_True()
         {
             //Arrange
-            BinaryTreeCollection<int?> binaryTree = new BinaryTreeCollection<int?>(Shared.DefaultIntComparison, new PreOrderTraversalStrategy<int?>());
+            BinaryTreeCollection<int?> binaryTree = new BinaryTreeCollection<int?>(Shared.DefaultIntComparison, new PreOrderTraversal<int?>());
             //Act
-            foreach (int? value in binaryTree) {}
+            foreach (int? value in _binaryTree){}
             //Assert
             Assert.IsTrue(true);
         }
@@ -120,7 +120,7 @@ namespace Algorithms_Test.Helpers
              * 
              * 
              */
-            _binaryTree = new BinaryTreeCollection<int?>(Shared.DefaultIntComparison, new PreOrderTraversalStrategy<int?>());
+            _binaryTree = new BinaryTreeCollection<int?>(Shared.DefaultIntComparison, new PreOrderTraversal<int?>());
             _binaryTree.Add(10);
             _binaryTree.Add(3);
             _binaryTree.Add(20);
@@ -152,9 +152,9 @@ namespace Algorithms_Test.Helpers
         public void TraversalPostOrder_WhenEmptyCollection2_True()
         {
             //Arrange
-            BinaryTreeCollection<int?> binaryTree = new BinaryTreeCollection<int?>(Shared.DefaultIntComparison, new PostOrderTraversalStrategy<int?>());
+            BinaryTreeCollection<int?> binaryTree = new BinaryTreeCollection<int?>(Shared.DefaultIntComparison, new PostOrderTraversal<int?>());
             //Act
-            foreach (int? value in binaryTree) { }
+            foreach (int? value in _binaryTree) { }
             //Assert
             Assert.IsTrue(true);
         }
@@ -177,7 +177,7 @@ namespace Algorithms_Test.Helpers
              * 
              * 
              */
-            _binaryTree = new BinaryTreeCollection<int?>(Shared.DefaultIntComparison, new PostOrderTraversalStrategy<int?>());
+            _binaryTree = new BinaryTreeCollection<int?>(Shared.DefaultIntComparison, new PostOrderTraversal<int?>());
             _binaryTree.Add(10);
             _binaryTree.Add(3);
             _binaryTree.Add(20);

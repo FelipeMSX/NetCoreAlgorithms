@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace Algorithms.Collections.TreeTraversalStrategies
 {
     // Preorder (Root, Left, Right)
-    public class PreOrderTraversalStrategy<T> : ITraversalStrategy<T>
+    public class PreOrderTraversal<T> : ITraversalStrategy<T>
     {
         public IEnumerator<T> Traversal(TreeSearchNode<T> node)
         {
@@ -15,7 +15,7 @@ namespace Algorithms.Collections.TreeTraversalStrategies
                 yield break;
             }
 
-            QueueStackBase<TreeSearchNode<T>> stack = new Static.Stack<TreeSearchNode<T>>(1000, ComparatorHelper.EmptyComparison);
+            QueueStackBase<TreeSearchNode<T>> stack = new Static.Stack<TreeSearchNode<T>>(TraversalStrategyHelper.DEFAULT_STACK_SIZE, ComparatorHelper.EmptyComparison);
             stack.Push(node);
 
             while (stack.Count > 0)

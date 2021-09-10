@@ -6,11 +6,11 @@ using System.Collections.Generic;
 namespace Algorithms.Collections.TreeTraversalStrategies
 {
     //Postorder (Left, Right, Root)
-    public class PostOrderTraversalStrategy<T> : ITraversalStrategy<T>
+    public class PostOrderTraversal<T> : ITraversalStrategy<T>
     {
         public IEnumerator<T> Traversal(TreeSearchNode<T> node)
         {
-            QueueStackBase<TreeSearchNode<T>> stack = new Static.Stack<TreeSearchNode<T>>(1000, ComparatorHelper.EmptyComparison);
+            QueueStackBase<TreeSearchNode<T>> stack = new Static.Stack<TreeSearchNode<T>>(TraversalStrategyHelper.DEFAULT_STACK_SIZE, ComparatorHelper.EmptyComparison);
 
             TreeSearchNode<T> lastNodeVisited = null;
 
