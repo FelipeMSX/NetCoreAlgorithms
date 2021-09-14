@@ -8,7 +8,7 @@ using Algorithms.Nodes;
 namespace Algorithms.Collections.Dynamic
 {
 	/// <summary>
-	/// Inserts the element in the beginning of the collection. The last element is in the end of the collection.
+	/// Inserts the elemdent in the beginning of the collection. The last element is in the end of the collection.
 	/// Removes the object in the head, the last one inserted will be the first one to be removed. 
 	/// </summary>
 	public class LinkedList<T> : LinkedListBase<T, LinkedNode<T>>
