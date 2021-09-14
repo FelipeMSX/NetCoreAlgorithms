@@ -7,20 +7,18 @@ using Algorithms.Nodes;
 
 namespace Algorithms.Collections.Dynamic
 {
-	/// <summary>
-	/// Inserts the element in the beginning of the collection. The last element is in the end of the collection.
-	/// Removes the object in the head, the last one inserted will be the first one to be removed. 
-	/// </summary>
+
 	public class LinkedList<T> : LinkedListBase<T, LinkedNode<T>>
 	{
-		public LinkedList(Comparison<T> comparator) : base(comparator)
-		{
-			Head = new LinkedNode<T>();
+        public LinkedList(Comparison<T> comparator) : base(comparator)
+        {
+            Head = new LinkedNode<T>();
 		}
 
 		public override void Add(T item)
 		{
-			ValidateObject(item);
+			if (item == null)
+				throw new NullObjectException();
 
 			LinkedNode<T> newNode = new LinkedNode<T>(item);
 
@@ -32,72 +30,80 @@ namespace Algorithms.Collections.Dynamic
 
 		public override bool Remove(T item)
 		{
-			ValidateObject(item);
-			CheckEmptyCollection();
+			//Validações
+			if (item == null)
+				throw new NullObjectException();
+			if (IsEmpty())
+				throw new EmptyCollectionException();
 
-			//Removes the node from the head
+			//Remoção na cabeça da coleção.
 			if (Comparator.Check(Head.Next.Value, item) == ComparisonResult.Equal)
+            {
+                RemoveNodeFromList(Head);
+                return true;
+            }
+            //Caso quando a coleção possui vários elementos e é preciso procurar o elemento.
+            else
 			{
-				RemoveNodeFromList(Head);
-			}
-			//Caso quando a coleção possui vários elementos e é preciso procurar o elemento.
-			else
-			{
-				LinkedNode<T> previous = SearchPreviousPosition(item);
+                LinkedNode<T> previous = SearchPreviousPosition(item);
 
-				if (previous != null)
-					RemoveNodeFromList(previous);
-				else
-					throw new ElementNotFoundException();
-			}
-
-			return true;
+                if (previous != null)
+                {
+                    RemoveNodeFromList(previous);
+                    return true;
+                }
+                else
+                    throw new ElementNotFoundException();
+            }
 		}
 
 		public override T Retrieve(T item)
 		{
-			CheckEmptyCollection();
-			ValidateObject(item);
+			if (IsEmpty())
+				throw new EmptyCollectionException();
+			if (item == null)
+				throw new NullObjectException();
 
 			LinkedNode<T> current = Head.Next;
-
 			while (current.HasNext() && Comparator.Check(current.Value, item) != ComparisonResult.Equal)
 			{
 				current = current.Next;
 			}
-
+           
 			return Comparator.Check(current.Value, item) == ComparisonResult.Equal ? current.Value : default;
 		}
 
-
+		
 		public override T First()
 		{
-			CheckEmptyCollection();
+			//Validações
+			if (IsEmpty())
+				throw new EmptyCollectionException();
 
 			return Head.Next.Value;
 		}
 
 		public override T Last()
 		{
-			CheckEmptyCollection();
+			if (IsEmpty())
+				throw new EmptyCollectionException();
 
 			LinkedNode<T> current = Head.Next;
-
 			while (current.HasNext())
+			{
 				current = current.Next;
-
+			}
 			return current.Value;
 		}
 
 		public override IEnumerator<T> GetEnumerator()
 		{
 			LinkedNode<T> current = Head;
-
 			while (current.HasNext())
 			{
-				current = current.Next;
-				yield return current.Value;
-
+                current = current.Next;
+                yield return current.Value;
+				
 			}
 		}
 
@@ -132,8 +138,7 @@ namespace Algorithms.Collections.Dynamic
 			T Value = currentNodeToRemove.Value;
 			currentNodeToRemove.Invalidate();
             Count--;
-
-            return Value;
+            return current.Value;
         }
 
 
@@ -145,7 +150,6 @@ namespace Algorithms.Collections.Dynamic
 
 		private void InsertNodeToEmptyList(LinkedNode<T> newNode)
 		{
-			LastNode = newNode;
 			Head.Next = newNode;
 			Count++;
 		}
@@ -153,7 +157,7 @@ namespace Algorithms.Collections.Dynamic
 		private void InsertNodeBefore(LinkedNode<T> node, LinkedNode<T> newNode)
 		{
 			newNode.Next = node;
-			Head.Next = newNode;
+			Head.Next = node;
 			Count++;
 		}
 
@@ -171,6 +175,21 @@ namespace Algorithms.Collections.Dynamic
                 search = search.Next;
             }
             return null;
+        }
+
+        public override bool RemoveFirst()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool RemoveLast()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void AddLast(T item)
+        {
+            throw new NotImplementedException();
         }
     }
 }

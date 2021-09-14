@@ -1,5 +1,4 @@
 ﻿using Algorithms.Collections;
-using Algorithms.Collections.Dynamic;
 using Algorithms.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;

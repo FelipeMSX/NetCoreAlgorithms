@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using Algorithms.Collections.TreeTraversalStrategies;
 using Algorithms.Exceptions;
 using Algorithms.Helpers;
 using Algorithms.Interfaces;
