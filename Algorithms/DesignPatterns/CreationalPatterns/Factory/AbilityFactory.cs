@@ -1,4 +1,5 @@
-﻿using Algorithms.DesignPatterns.CreationalPatterns.Factory;
+﻿using System.Diagnostics;
+using Algorithms.DesignPatterns.CreationalPatterns.Factory;
 
 namespace Algorithms.DesignPatterns.CreationalPatterns.Factory
 {
@@ -6,6 +7,7 @@ namespace Algorithms.DesignPatterns.CreationalPatterns.Factory
     {
         public AbilityFactory()
         {
+            Debug.WriteLine("creating factory");
             base.Initialize(nameof(NullableAbility));
         }
     }

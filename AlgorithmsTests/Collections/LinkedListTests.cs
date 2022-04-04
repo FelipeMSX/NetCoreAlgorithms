@@ -232,7 +232,7 @@ namespace Algorithms_Test.Collections
 
         /// <summary>
         /// Técnica: Ciclo.
-        /// Objetivo: Pular o while pelo somente uma vez.
+        /// Objetivo: Pular o while pelo     somente uma vez.
         /// </summary>
         /// <!--while (current != null && Comparator(current.Value, obj) != 0)-->
         [TestMethod, TestCategory("LinkedList"), Timeout(3000)]

@@ -12,9 +12,13 @@
     <Folder Include="Study\" />
     <Folder Include="Searchs\" />
     <Folder Include="TestResults\" />
+    <Folder Include="DesignPatterns\BehavorialPatterns\" />
+    <Folder Include="DesignPatterns\BehavorialPatterns\State\" />
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="DesignPatterns\Factory\" />
+    <None Remove="DesignPatterns\BehavorialPatterns\" />
+    <None Remove="DesignPatterns\BehavorialPatterns\State\" />
   </ItemGroup>
 </Project>

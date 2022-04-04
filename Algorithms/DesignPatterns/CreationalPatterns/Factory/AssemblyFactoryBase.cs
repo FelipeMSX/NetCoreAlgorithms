@@ -6,19 +6,19 @@ using System.Reflection;
 
 namespace Algorithms.DesignPatterns.CreationalPatterns.Factory
 {
-    public class AssemblyFactoryBase<T>
+    public class AssemblyFactoryBase<T> where T : new()
     {
+
+        public const string EXCEPTION_TEXT = "There isn't any type in the collection";
+
         private Dictionary<string, Type> _cachedTypes;
 
         public bool IsInitialized => _cachedTypes != null;
-        public string NullableClassName { get; private set; }
 
         public int Count => IsInitialized ? _cachedTypes.Count : 0;
 
-        public void Initialize(string nullableClassName)
+        public void Initialize()
         {
-            NullableClassName = nullableClassName;
-            
             if (IsInitialized)
                 return;
 
@@ -28,21 +28,24 @@ namespace Algorithms.DesignPatterns.CreationalPatterns.Factory
             _cachedTypes = new Dictionary<string, Type>();
 
             foreach (Type type in abilitiesTypes)
-            {
                 _cachedTypes.Add(type.Name, type);
-            }
         }
 
-        public T CreateInstance(string abilityType) 
+        public T CreateInstance<E>() where E: T, new()
         {
-            if (_cachedTypes.Count == 0)
-                throw new EmptyCollectionException("There isn't any type in the collection");
+            string abilityType = typeof(E).Name;
 
-            return _cachedTypes.ContainsKey(abilityType) ? CreateType(abilityType) : CreateType(NullableClassName);
+            if (_cachedTypes.Count == 0)
+                throw new EmptyCollectionException(EXCEPTION_TEXT);
+
+            bool containsType = _cachedTypes.ContainsKey(abilityType);
+
+            return CreateType(typeof(E));
         }
 
 
-        private bool IsInheritanceType(Type type) => type.IsClass && !type.IsAbstract && type.IsSubclassOf(typeof(T));
-        private T CreateType(string key) => (T)Activator.CreateInstance(_cachedTypes[key]);
+        private static bool IsInheritanceType(Type type) => type.IsClass && !type.IsAbstract && type.IsSubclassOf(typeof(T));
+        private static T CreateType(T type)=>new T();
+        
     }
 }
