@@ -18,7 +18,7 @@
 
   <ItemGroup>
     <Folder Include="Abstracts\" />
-    <Folder Include="Collections\" />
+    <Folder Include="Collections\TreeTraversalStrategies\" />
     <Folder Include="Helpers\" />
     <Folder Include="Study\" />
     <Folder Include="Sorts\" />

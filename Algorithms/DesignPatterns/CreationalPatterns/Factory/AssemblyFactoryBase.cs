@@ -1,4 +1,5 @@
-﻿using Algorithms.Exceptions;
+﻿using Algorithms.Collections.TreeTraversalStrategies;
+using Algorithms.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,46 +7,72 @@ using System.Reflection;
 
 namespace Algorithms.DesignPatterns.CreationalPatterns.Factory
 {
-    public class AssemblyFactoryBase<T> where T : new()
+    //This is only suitable for stateless strategies.
+    public abstract class AssemblyFactoryBase<T> where T : class
     {
-
-        public const string EXCEPTION_TEXT = "There isn't any type in the collection";
-
-        private Dictionary<string, Type> _cachedTypes;
+        public const string EMPTY_COLLECTION = "There isn't any type in the collection";
 
         public bool IsInitialized => _cachedTypes != null;
 
         public int Count => IsInitialized ? _cachedTypes.Count : 0;
 
-        public void Initialize()
+        private Dictionary<string, T> _cachedTypes;
+
+        protected AssemblyFactoryBase()
+        {
+            Initialize();
+        }
+
+        private void Initialize()
         {
             if (IsInitialized)
                 return;
 
-            var abilitiesTypes = Assembly.GetAssembly(typeof(T)).GetTypes()
-                .Where(type => IsInheritanceType(type));
 
-            _cachedTypes = new Dictionary<string, Type>();
+            Type typeOfT = typeof(T);
+            var x = Assembly.GetAssembly(typeOfT).GetTypes();
+            var abilitiesTypes = Assembly.GetAssembly(typeOfT).GetTypes().Where(t => CheckInstanceType(typeOfT,t));
+
+            _cachedTypes = new Dictionary<string, T>();
 
             foreach (Type type in abilitiesTypes)
-                _cachedTypes.Add(type.Name, type);
+            {
+                _cachedTypes.Add(type.Name, CreateType(type));
+            }
         }
 
-        public T CreateInstance<E>() where E: T, new()
+        public T GetFactory<E>() where E : T, new()
         {
-            string abilityType = typeof(E).Name;
-
             if (_cachedTypes.Count == 0)
-                throw new EmptyCollectionException(EXCEPTION_TEXT);
+                throw new EmptyCollectionException(EMPTY_COLLECTION);
 
-            bool containsType = _cachedTypes.ContainsKey(abilityType);
+            string className = typeof(E).Name;
 
-            return CreateType(typeof(E));
+           return _cachedTypes[className];
         }
 
+        private bool CheckInstanceType(Type typeOfT, Type type)
+        {
+            bool isClass = typeOfT.IsAssignableFrom(type) && type.IsClass && !type.IsAbstract;
 
-        private static bool IsInheritanceType(Type type) => type.IsClass && !type.IsAbstract && type.IsSubclassOf(typeof(T));
-        private static T CreateType(T type)=>new T();
-        
+            if (isClass)
+                return true;
+
+            var interfaces = type.GetInterfaces();
+
+            bool isInterface = type.GetInterfaces()
+                .Any(i => typeOfT.IsGenericType && i.IsGenericType && i.BaseType == typeOfT.BaseType);
+
+            if (isInterface)
+                return true;
+
+            return false;
+        }
+
+        private static T CreateType(Type type)
+        {
+            return (T)Activator.CreateInstance(type);
+        }
+
     }
 }

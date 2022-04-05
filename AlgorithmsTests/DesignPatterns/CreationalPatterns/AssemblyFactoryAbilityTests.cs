@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace AlgorithmsTests.DesignPatterns.CreationalPatterns.Factory
 {
     [TestClass]
-	public class AbilityFactoryTests
+	public class AssemblyFactoryAbilityTests
 	{
 
         private AbilityFactory _abilityFactory;
@@ -14,6 +14,7 @@ namespace AlgorithmsTests.DesignPatterns.CreationalPatterns.Factory
         public void SetUp()
         {
             _abilityFactory = new AbilityFactory();
+
         }
 
         #region WhiteboxTests
@@ -37,7 +38,7 @@ namespace AlgorithmsTests.DesignPatterns.CreationalPatterns.Factory
         {
             //Arrange
             //Act
-            Ability ability = _abilityFactory.CreateInstance<FireAbility>();
+            Ability ability = _abilityFactory.GetFactory<FireAbility>();
             //Assert
             Assert.IsTrue(ability.Name == "Fire", $"The fire instance was expected, " +
                 $"but I got something different - {ability.GetType()}.");
@@ -50,23 +51,9 @@ namespace AlgorithmsTests.DesignPatterns.CreationalPatterns.Factory
         {
             //Arrange
             //Act
-            Ability ability = _abilityFactory.CreateInstance<PoisonAbility>();
+            Ability ability = _abilityFactory.GetFactory<PoisonAbility>();
             //Assert
             Assert.IsTrue(ability.Name == "Poison", "An exception was expected!");
-        }
-
-
-        /// <summary>
-        /// </summary>
-        [TestMethod, TestCategory("DesignPattenrs"), Timeout(Shared.DEFAULT_TIMEOUT)]
-        public void CreateInstance_GettingBaseClass_Success()
-        {
-            //Arrange
-            //Act
-            Ability ability = _abilityFactory.CreateInstance<Ability>();
-            //Assert
-            Assert.IsTrue(ability.Name == "Nullable", $"The fire instance was expected, " +
-                $"but I got something different - {ability.GetType()}.");
         }
 
         /// <summary>
@@ -76,7 +63,7 @@ namespace AlgorithmsTests.DesignPatterns.CreationalPatterns.Factory
         {
             //Arrange
             //Act
-            Ability ability = _abilityFactory.CreateInstance<NullableAbility>();
+            Ability ability = _abilityFactory.GetFactory<NullableAbility>();
             //Assert
             Assert.IsTrue(ability.Name == "Nullable", $"The fire instance was expected, " +
                 $"but I got something different - {ability.GetType()}.");
