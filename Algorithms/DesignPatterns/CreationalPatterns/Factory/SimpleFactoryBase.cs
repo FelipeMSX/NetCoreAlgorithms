@@ -9,14 +9,15 @@ namespace Algorithms.DesignPatterns.CreationalPatterns.Factory
         {      
         }
 
-        public T CreateInstance<E>() where E : T, new()
+        public T CreateInstance<E>() where E : T
         {
-           return new E();
+           return (T)Activator.CreateInstance(typeof(E));
         }
 
-        public T CreateInstance<E>(params object[] args) where E : T, new()
+        //Maybe this can be a performance hit whether it`s invoked many times.
+        public T CreateInstance<E>(params object[] args) where E : T
         {
-            return (E)Activator.CreateInstance(typeof(E), args);
+            return (T)Activator.CreateInstance(typeof(E), args);
         }
     }
 }

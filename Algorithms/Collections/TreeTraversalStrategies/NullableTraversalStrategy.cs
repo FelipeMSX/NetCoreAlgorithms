@@ -4,9 +4,9 @@ using Algorithms.Nodes;
 
 namespace Algorithms.Collections.TreeTraversalStrategies
 {
-    public class NullableTraversalStrategy<T> : ITraversalStrategy<T>
+    public class NullableTraversalStrategy: ITraversalStrategy
     {
-        public IEnumerator<T> Traversal(TreeSearchNode<T> node)
+        public IEnumerator<T> Traversal<T>(TreeSearchNode<T> node)
         {
             yield break; 
         }

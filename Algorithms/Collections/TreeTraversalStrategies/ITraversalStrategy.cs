@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 namespace Algorithms.Collections.TreeTraversalStrategies
 {
-    public interface ITraversalStrategy<T>
+    public interface ITraversalStrategy
     {
-        IEnumerator<T> Traversal(TreeSearchNode<T> node);
+        IEnumerator<T> Traversal<T>(TreeSearchNode<T> node);
     }
 }

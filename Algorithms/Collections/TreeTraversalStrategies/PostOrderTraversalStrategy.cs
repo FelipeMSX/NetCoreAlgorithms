@@ -6,9 +6,9 @@ using System.Collections.Generic;
 namespace Algorithms.Collections.TreeTraversalStrategies
 {
     //Postorder (Left, Right, Root)
-    public class PostOrderTraversalStrategy<T> : ITraversalStrategy<T>
+    public class PostOrderTraversalStrategy : ITraversalStrategy
     {
-        public IEnumerator<T> Traversal(TreeSearchNode<T> node)
+        public IEnumerator<T> Traversal<T>(TreeSearchNode<T> node)
         {
             QueueStackBase<TreeSearchNode<T>> stack = new Static.Stack<TreeSearchNode<T>>(1000, ComparatorHelper.EmptyComparison);
 

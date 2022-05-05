@@ -6,9 +6,9 @@ using System.Collections.Generic;
 namespace Algorithms.Collections.TreeTraversalStrategies
 {
     // Preorder (Root, Left, Right)
-    public class PreOrderTraversalStrategy<T> : ITraversalStrategy<T>
+    public class PreOrderTraversalStrategy : ITraversalStrategy
     {
-        public IEnumerator<T> Traversal(TreeSearchNode<T> node)
+        public IEnumerator<T> Traversal<T>(TreeSearchNode<T> node)
         {
             if(node == null)
             {

@@ -23,10 +23,14 @@
     <Folder Include="Study\" />
     <Folder Include="Sorts\" />
     <Folder Include="Searchs\" />
+    <Folder Include="DesignPatterns\CreationalPatterns\UseCases\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Algorithms\Algorithms.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="DesignPatterns\CreationalPatterns\Data\" />
+  </ItemGroup>
 </Project>

@@ -19,9 +19,6 @@ namespace AlgorithmsTests.DesignPatterns.CreationalPatterns.Factory
 
         #region WhiteboxTests
 
-        /// <summary>
-        /// Técnica: Caminho de Decisão.
-        /// </summary>
         [TestMethod, TestCategory("DesignPattenrs"), Timeout(Shared.DEFAULT_TIMEOUT)]
         public void Count_CheckCurrentSize_Exception()
         {

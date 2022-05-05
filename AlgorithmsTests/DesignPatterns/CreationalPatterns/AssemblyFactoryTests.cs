@@ -1,5 +1,6 @@
 ﻿using Algorithms.DesignPatterns.CreationalPatterns.Factory;
 using Algorithms_Test;
+using AlgorithmsTests.DesignPatterns.CreationalPatterns.UseCases;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AlgorithmsTests.DesignPatterns.CreationalPatterns.Factory
@@ -17,7 +18,7 @@ namespace AlgorithmsTests.DesignPatterns.CreationalPatterns.Factory
 
         }
 
-        #region WhiteboxTests
+        #region WhiteboxTests - Abstract Class
 
         /// <summary>
         /// Técnica: Caminho de Decisão.
@@ -38,7 +39,7 @@ namespace AlgorithmsTests.DesignPatterns.CreationalPatterns.Factory
         {
             //Arrange
             //Act
-            Ability ability = _abilityFactory.GetFactory<FireAbility>();
+            AbilityAbstract ability = _abilityFactory.GetFactory<FireAbility>();
             //Assert
             Assert.IsTrue(ability.Name == "Fire", $"The fire instance was expected, " +
                 $"but I got something different - {ability.GetType()}.");
@@ -51,7 +52,7 @@ namespace AlgorithmsTests.DesignPatterns.CreationalPatterns.Factory
         {
             //Arrange
             //Act
-            Ability ability = _abilityFactory.GetFactory<PoisonAbility>();
+            AbilityAbstract ability = _abilityFactory.GetFactory<PoisonAbility>();
             //Assert
             Assert.IsTrue(ability.Name == "Poison", "An exception was expected!");
         }
@@ -63,7 +64,7 @@ namespace AlgorithmsTests.DesignPatterns.CreationalPatterns.Factory
         {
             //Arrange
             //Act
-            Ability ability = _abilityFactory.GetFactory<NullableAbility>();
+            AbilityAbstract ability = _abilityFactory.GetFactory<NullableAbility>();
             //Assert
             Assert.IsTrue(ability.Name == "Nullable", $"The fire instance was expected, " +
                 $"but I got something different - {ability.GetType()}.");

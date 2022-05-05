@@ -10,12 +10,12 @@ namespace Algorithms.Collections.Dynamic
 {
     public class BalancedTreeCollection<TValue> : SearchTreeBase<TValue, BalancedTreeSearchNode<TValue>>
     {
-        public BalancedTreeCollection(Comparison<TValue> comparator) : base(comparator, new InOrderTraversalStrategy<TValue>())
+        public BalancedTreeCollection(Comparison<TValue> comparator) : base(comparator, new InOrderTraversalStrategy())
         {
             Root = new BalancedTreeSearchNode<TValue>();
         }
 
-        public BalancedTreeCollection(Comparison<TValue> comparator, ITraversalStrategy<TValue> traversalStrategy) : base(comparator, traversalStrategy)
+        public BalancedTreeCollection(Comparison<TValue> comparator, ITraversalStrategy traversalStrategy) : base(comparator, traversalStrategy)
         {
             Root = new BalancedTreeSearchNode<TValue>();
         }

@@ -1,14 +1,18 @@
-﻿using Algorithms.Collections.TreeTraversalStrategies;
-using Algorithms.Exceptions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Algorithms.Exceptions;
 
 namespace Algorithms.DesignPatterns.CreationalPatterns.Factory
 {
     //This is only suitable for stateless strategies.
-    public abstract class AssemblyFactoryBase<T> where T : class
+    /// <summary>
+    /// This is only suitable for stateless strategies.
+    /// It works with abstract and interfaces.
+    /// It doesn`t support generic parameters.
+    /// </summary>
+    public abstract class AssemblyCachedFactoryBase<T> where T : class
     {
         public const string EMPTY_COLLECTION = "There isn't any type in the collection";
 
@@ -18,7 +22,7 @@ namespace Algorithms.DesignPatterns.CreationalPatterns.Factory
 
         private Dictionary<string, T> _cachedTypes;
 
-        protected AssemblyFactoryBase()
+        protected AssemblyCachedFactoryBase()
         {
             Initialize();
         }
@@ -28,9 +32,7 @@ namespace Algorithms.DesignPatterns.CreationalPatterns.Factory
             if (IsInitialized)
                 return;
 
-
             Type typeOfT = typeof(T);
-            var x = Assembly.GetAssembly(typeOfT).GetTypes();
             var abilitiesTypes = Assembly.GetAssembly(typeOfT).GetTypes().Where(t => CheckInstanceType(typeOfT,t));
 
             _cachedTypes = new Dictionary<string, T>();
@@ -51,28 +53,16 @@ namespace Algorithms.DesignPatterns.CreationalPatterns.Factory
            return _cachedTypes[className];
         }
 
-        private bool CheckInstanceType(Type typeOfT, Type type)
+        private static bool CheckInstanceType(Type typeOfT, Type type)
         {
-            bool isClass = typeOfT.IsAssignableFrom(type) && type.IsClass && !type.IsAbstract;
+            bool isDerived = typeOfT.IsAssignableFrom(type) && type.IsClass && !type.IsAbstract;
 
-            if (isClass)
-                return true;
-
-            var interfaces = type.GetInterfaces();
-
-            bool isInterface = type.GetInterfaces()
-                .Any(i => typeOfT.IsGenericType && i.IsGenericType && i.BaseType == typeOfT.BaseType);
-
-            if (isInterface)
-                return true;
-
-            return false;
+            return isDerived;
         }
 
         private static T CreateType(Type type)
         {
             return (T)Activator.CreateInstance(type);
         }
-
     }
 }

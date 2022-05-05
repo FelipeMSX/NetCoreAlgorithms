@@ -23,14 +23,14 @@ namespace Algorithms.Abstracts
 		/// Root não contém dados, é o "ponteiro" para o primeiro objeto da árvore.
 		/// </summary>
 		protected TNode Root { get; set; }
-		protected ITraversalStrategy<TValue> TraversalStrategy { get; set; }
+		protected ITraversalStrategy TraversalStrategy { get; set; }
 		protected TreeSearchNode<TValue> FirstNode
 		{
 			get => Root.Parent;
 			set => Root.Parent = value;
 		}
 
-		protected SearchTreeBase(Comparison<TValue> comparator, ITraversalStrategy<TValue> traversalStrategy)
+		protected SearchTreeBase(Comparison<TValue> comparator, ITraversalStrategy traversalStrategy)
 		{
 			Comparator        = comparator ?? throw new ComparerNotSetException("The comparison object cannot be null");
 			TraversalStrategy = traversalStrategy ?? throw new NullObjectException("The traversal strategy object cannot be null");
@@ -50,8 +50,8 @@ namespace Algorithms.Abstracts
 		public IEnumerator<TValue> GetEnumerator()
 		{
             return TraversalStrategy.Traversal(Root.Parent);
-
         }
+
 
 		public TValue Retrieve(TValue item)
 		{
