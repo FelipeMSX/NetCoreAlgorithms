@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections;
 using Algorithms.Helpers;
 using System.Linq;
+using Core;
 
 namespace Algorithms.Abstracts
 {
@@ -33,6 +34,8 @@ namespace Algorithms.Abstracts
             Resizable           = resizable;
             _comparator         = comparator ?? throw new ComparerNotSetException("The comparison object cannot be null");
             _collectionHelper   = new EnumerableHelper<T>(this, _comparator);
+
+            new XLinq();
         }
 
         protected ArrayBase(Comparison<T> comparator) : this(1000, comparator, true)

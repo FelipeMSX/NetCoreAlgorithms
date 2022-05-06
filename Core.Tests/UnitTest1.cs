@@ -1,3 +1,4 @@
+﻿using Core.Iterators;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Core.Tests
@@ -8,6 +9,8 @@ namespace Core.Tests
         [TestMethod]
         public void TestMethod1()
         {
+            TestForEach teste = new TestForEach();
+            teste.teste();
         }
     }
 }
