@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
@@ -20,5 +20,9 @@
     <None Remove="DesignPatterns\Factory\" />
     <None Remove="DesignPatterns\BehavorialPatterns\" />
     <None Remove="DesignPatterns\BehavorialPatterns\State\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj" />
   </ItemGroup>
 </Project>

@@ -7,6 +7,7 @@ using Algorithms.Nodes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
 using Algorithms.Collections.Dynamic;
+using Algorithms.Collections.TreeTraversalStrategies;
 
 namespace Algorithms_Test.Collections
 {
