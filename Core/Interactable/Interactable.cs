@@ -4,7 +4,7 @@ namespace Core.Interactable
 {
     public static class Interactable
     {
-        public static T First<T>(this INumerable<T> collection, Func<T, bool> predicate)
+        public static T First<T>(this INumerator<T> collection, Func<T, bool> predicate)
         {
             foreach (T element in collection)
             {
@@ -25,7 +25,7 @@ namespace Core.Interactable
     }
 }
 
-public class MyList<T> :INumerable<T>
+public class MyList<T> :INumerator<T>
 {
     public INumerator<T> GetEnumerator()
     {

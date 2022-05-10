@@ -2,23 +2,24 @@
 
 namespace Core.Iterators
 {
-    public class ArrayIterator<T> : Iterator<T>
+    public class ListIterator<T> : Iterator<T>
     {
-        private T[] _source { get; }
+        private IList<T> _source { get; }
         private int _currentIndex = 0;
 
-        public ArrayIterator(T[] source)
+        public ListIterator(IList<T> source)
         {
             _source = source;
         }
 
         public override bool MoveNext()
         {
-            if(_currentIndex < _source.Length  )
+            if(_currentIndex < _source.Count  )
             {
                 Current = _source[_currentIndex++];
                 return true;
             }
+
             return false;
         }
 
