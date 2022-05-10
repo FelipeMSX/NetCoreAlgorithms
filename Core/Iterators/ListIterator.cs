@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using Core.Abstracts;
-using Core.Interfaces;
+﻿using Core.Abstracts;
 
 namespace Core.Iterators
 {

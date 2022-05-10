@@ -2,18 +2,18 @@
 
 namespace Core.Abstracts
 {
-    public abstract class Iterator<T> : IEnumeratorX<T>, IEnumerableX<T>
+    public abstract class Iterator<T> : INumerator<T>, INumerable<T>
     {
         public T Current { get; protected set; }
 
-        object IEnumeratorX.Current => Current;
+        object INumerator.Current => Current;
 
-        IEnumeratorX IEnumerableX.GetEnumerator()
+        INumerator INumerable.GetEnumerator()
         {
             return GetEnumerator();
         }
 
-        public IEnumeratorX<T> GetEnumerator()
+        public INumerator<T> GetEnumerator()
         {
             return this;
         }

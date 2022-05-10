@@ -35,7 +35,6 @@ namespace Algorithms.Abstracts
             _comparator         = comparator ?? throw new ComparerNotSetException("The comparison object cannot be null");
             _collectionHelper   = new EnumerableHelper<T>(this, _comparator);
 
-            new XLinq();
         }
 
         protected ArrayBase(Comparison<T> comparator) : this(1000, comparator, true)

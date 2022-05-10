@@ -9,8 +9,6 @@ namespace Core.Tests
         [TestMethod]
         public void TestMethod1()
         {
-            TestForEach teste = new TestForEach();
-            teste.teste();
         }
     }
 }

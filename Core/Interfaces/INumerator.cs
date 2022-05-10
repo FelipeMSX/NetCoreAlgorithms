@@ -1,11 +1,11 @@
 ﻿namespace Core.Interfaces
 {
-	public interface IEnumeratorX<out T>: IEnumeratorX
+	public interface INumerator<out T>: INumerator
 	{
 		new T Current {get;}
 	}
 
-	public interface IEnumeratorX
+	public interface INumerator
 	{
 		object Current { get; }
 

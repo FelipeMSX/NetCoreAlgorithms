@@ -1,15 +1,18 @@
 ﻿using Core.Interfaces;
 
-namespace Core
+namespace Core.Interactable
 {
-    public static class XLinq
+    public static class Interactable
     {
-        public static T First<T>(this IEnumerableX<T> collection, Func<T, bool> predicate)
+        public static T First<T>(this INumerable<T> collection, Func<T, bool> predicate)
         {
             foreach (T element in collection)
             {
                 if (predicate(element)) return element;
             }
+
+            //TODO
+            throw new Exception();
         }
     }
 
@@ -18,19 +21,18 @@ namespace Core
         public LINQ_Test()
         {
             MyList<int> teste = new();
-            teste.First(2);
         }
     }
 }
 
-public class MyList<T> : IEnumerableX<T>
+public class MyList<T> :INumerable<T>
 {
-    public IEnumeratorX<T> GetEnumerator()
+    public INumerator<T> GetEnumerator()
     {
         throw new NotImplementedException();
     }
 
-    IEnumeratorX IEnumerableX.GetEnumerator()
+    INumerator INumerable.GetEnumerator()
     {
         throw new NotImplementedException();
     }
