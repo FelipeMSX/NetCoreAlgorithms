@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Algorithms.Abstracts;
 using Algorithms.Exceptions;
 
@@ -40,6 +41,47 @@ namespace Algorithms.Collections.Static
             Vector[Count++] = obj;
 		}
 
+        public async void TesteEnumerator()
+        {
+            //Arrange
+            Queue<int?> _staticQueue = new Queue<int?>(100, (x,y) => 0);
+            _staticQueue.Push(1);
+            _staticQueue.Push(2);
+            _staticQueue.Push(3);
+            _staticQueue.Push(4);
+            _staticQueue.Push(5);
+            _staticQueue.Push(6);
+            _staticQueue.Push(7);
+            _staticQueue.Push(8);
+            _staticQueue.Push(9);
+            _staticQueue.Push(10);
+            _staticQueue.Push(11);
+
+
+            //Act
+
+            // Create a task and supply a user delegate by using a lambda expression.
+            Task taskA = new(() => {
+
+                foreach (int item in _staticQueue)
+                {
+                    Console.WriteLine("TaskA int: " + item);
+                }
+            });
+
+            Task taskB = new(() => {
+
+                foreach (int item in _staticQueue)
+                {
+                    Console.WriteLine("TaskA int: " + item);
+                }
+            });
+
+
+            await taskA;
+            await taskB;
+
+        }
 
         /// <summary>
         /// Removes the item in the top of the stack.

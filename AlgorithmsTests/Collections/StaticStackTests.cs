@@ -4,6 +4,7 @@ using Algorithms.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
 using Algorithms.Collections.Static;
+using System.Threading.Tasks;
 
 namespace Algorithms_Test.Collections
 {
@@ -294,6 +295,19 @@ namespace Algorithms_Test.Collections
             int? resultValue = _staticStack.Last();
             //Assert
             Assert.IsTrue(expectedValue == resultValue, "The returned value is different from the expected value.");
+        }
+
+        /// <summary>
+        /// Técnica: Caminho
+        /// </summary>
+
+        [TestMethod, TestCategory("StaticStack"), Timeout(3000)]
+        public void TesteAsync()
+        {
+            Task.Run((() =>
+            {
+                _staticStack.TesteEnumerator();
+            }));
         }
     }
 }

@@ -6,6 +6,7 @@ using Algorithms.Exceptions;
 using Algorithms.Abstracts;
 using System.Linq;
 using Algorithms.Collections.Static;
+using System.Threading.Tasks;
 
 namespace Algorithms_Test.Collections
 {

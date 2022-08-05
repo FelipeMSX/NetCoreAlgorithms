@@ -2,20 +2,19 @@
 
 namespace Core.Abstracts
 {
-    public abstract class Iterator<T> : INumerator<T>, INumerator<T>
+    public abstract class Iterator<T> : INumerator<T?>, INumerator
     {
-        public T Current { get; protected set; }
+        public T? Current { get; protected set; }
 
-        object INumerator.Current => Current;
-
-        INumerator INumerable.GetEnumerator()
+        object INumerator.Current
         {
-            return GetEnumerator();
-        }
+            get
+            {
+                if (Current == null)
+                    throw new NullReferenceException();
 
-        public INumerator<T> GetEnumerator()
-        {
-            return this;
+                return Current;
+            }
         }
 
         public abstract bool MoveNext();

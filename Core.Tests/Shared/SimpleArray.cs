@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using Core.Interfaces;
 using Core.Iterators;
-using NSubstitute;
 
 namespace Core.Tests.Shared
 {
  
-public class SimpleArray : Interfaces.IList<int>
+public class SimpleArray : IList<int>
     {
 
         public int this[int index] { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
@@ -17,7 +14,6 @@ public class SimpleArray : Interfaces.IList<int>
 
         public int Current => throw new NotImplementedException();
 
-        object INumerator.Current => throw new NotImplementedException();
 
         public void Add(int item)
         {
@@ -34,11 +30,6 @@ public class SimpleArray : Interfaces.IList<int>
             throw new NotImplementedException();
         }
 
-        public INumerator<int> GetEnumerator()
-        {
-            return this;
-            
-        }
 
         public int Last()
         {
@@ -55,28 +46,18 @@ public class SimpleArray : Interfaces.IList<int>
             throw new NotImplementedException();
         }
 
-        INumerator INumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
-
+    
         public bool MoveNext()
         {
             throw new NotImplementedException();
         }
-    }
 
-    public class teste : IEnumerable<int>
-    {
-        public IEnumerator<int> GetEnumerator()
+        public INumerator<int> GetEnumerator()
         {
-            for (int i = 0; i < 5; i++)
-            {
-                yield return i;
-            }
+            return new ListIterator<int>(this);
         }
 
-        IEnumerator IEnumerable.GetEnumerator()
+        INumerator INumerable.GetEnumerator()
         {
             return GetEnumerator();
         }

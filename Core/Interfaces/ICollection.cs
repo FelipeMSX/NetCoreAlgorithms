@@ -1,7 +1,7 @@
 ﻿
 namespace Core.Interfaces
 {
-    public interface ICollection<T> : INumerator<T>, INumerable
+    public interface ICollection<T> : INumerable<T>
     {
         int Count { get; }
         void Add(T item);

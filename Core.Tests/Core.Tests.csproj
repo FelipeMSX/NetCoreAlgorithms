@@ -22,9 +22,10 @@
     <None Remove="Iterators\" />
     <None Remove="Shared\" />
     <None Remove="NSubstitute" />
+    <None Remove="Shared\SimpleArraycs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Iterators\" />
-    <Folder Include="Shared\" />
+    <Folder Include="Shared2\" />
   </ItemGroup>
 </Project>

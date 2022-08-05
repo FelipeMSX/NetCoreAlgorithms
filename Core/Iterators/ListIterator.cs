@@ -4,10 +4,10 @@ namespace Core.Iterators
 {
     public class ListIterator<T> : Iterator<T>
     {
-        private IList<T> _source { get; }
+        private Interfaces.IList<T> _source { get; }
         private int _currentIndex = 0;
 
-        public ListIterator(IList<T> source)
+        public ListIterator(Interfaces.IList<T> source)
         {
             _source = source;
         }

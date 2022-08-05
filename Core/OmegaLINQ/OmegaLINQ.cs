@@ -1,10 +1,10 @@
 ﻿using Core.Interfaces;
 
-namespace Core.Interactable
+namespace Core.OmegaLINQ
 {
-    public static class Interactable
+    public static class OmegaLINQ
     {
-        public static T First<T>(this INumerator<T> collection, Func<T, bool> predicate)
+        public static T First<T>(this INumerable<T> collection, Func<T, bool> predicate)
         {
             foreach (T element in collection)
             {
@@ -25,9 +25,17 @@ namespace Core.Interactable
     }
 }
 
-public class MyList<T> :INumerator<T>
+public class MyList<T> : INumerable<T>
 {
+    public T Current => throw new NotImplementedException();
+
+
     public INumerator<T> GetEnumerator()
+    {
+        throw new NotImplementedException();
+    }
+
+    public bool MoveNext()
     {
         throw new NotImplementedException();
     }
