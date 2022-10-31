@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Algorithms", "Algorithms.cs
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlgorithmsTests", "..\AlgorithmsTests\AlgorithmsTests.csproj", "{A933C175-7E18-4E7C-8159-6262E73B976A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "..\Core\Core.csproj", "{2C0C9E6A-C03E-4630-9043-C5FE4846F4D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OmegaCore", "..\Core\OmegaCore.csproj", "{2C0C9E6A-C03E-4630-9043-C5FE4846F4D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Tests", "..\Core.Tests\Core.Tests.csproj", "{C30E8AA0-98A2-492C-9CAA-9F94362F852F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OmegaCore.Tests", "..\Core.Tests\OmegaCore.Tests.csproj", "{C30E8AA0-98A2-492C-9CAA-9F94362F852F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
