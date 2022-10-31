@@ -1,7 +1,7 @@
 ﻿
 namespace Core.Interfaces
 {
-    public interface ICollection<T> : INumerable<T>
+    public interface IOmegaCollection<T> : IOmegaNumerable<T>
     {
         int Count { get; }
         void Add(T item);

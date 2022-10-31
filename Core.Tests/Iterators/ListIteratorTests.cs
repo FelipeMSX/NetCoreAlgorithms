@@ -8,7 +8,7 @@ namespace Core.Tests.Iterators
     public class ListIteratorsTests
     {
 
-        private IList<int?> _list;
+        private IOmegaList<int?> _list;
 
         [TestInitialize]
         public void TearUp()

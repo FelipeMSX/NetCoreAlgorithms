@@ -11,8 +11,4 @@
     <None Remove="Abstracts\" />
     <None Remove="Iterators\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Abstracts\" />
-    <Folder Include="Iterators\" />
-  </ItemGroup>
 </Project>

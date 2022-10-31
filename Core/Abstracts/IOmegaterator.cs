@@ -2,7 +2,7 @@
 
 namespace Core.Abstracts
 {
-    public abstract class Iterator<T> : INumerator<T?>, INumerator
+    public abstract class IOmegaterator<T> : IOmegaNumerator<T?>, INumerator
     {
         public T? Current { get; protected set; }
 

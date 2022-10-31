@@ -1,6 +1,6 @@
 ﻿namespace Core.Interfaces
 {
-    public interface IList<T> : ICollection<T>
+    public interface IOmegaList<T> : IOmegaCollection<T>
     {
         T this[int index] { get; set; }
     }

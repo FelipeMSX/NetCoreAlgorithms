@@ -1,6 +1,6 @@
 ﻿namespace Core.Interfaces
 {
-	public interface INumerator<out T>: INumerator
+	public interface IOmegaNumerator<out T>: INumerator
 	{
 		new T Current { get; }
 	}

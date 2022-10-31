@@ -5,7 +5,7 @@ using Core.Iterators;
 namespace Core.Tests.Shared
 {
  
-public class SimpleArray : IList<int>
+public class SimpleArray : IOmegaList<int>
     {
 
         public int this[int index] { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
@@ -52,9 +52,9 @@ public class SimpleArray : IList<int>
             throw new NotImplementedException();
         }
 
-        public INumerator<int> GetEnumerator()
+        public IOmegaNumerator<int> GetEnumerator()
         {
-            return new ListIterator<int>(this);
+            return new OmegaListIterator<int>(this);
         }
 
         INumerator INumerable.GetEnumerator()

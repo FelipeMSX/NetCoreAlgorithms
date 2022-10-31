@@ -4,7 +4,7 @@ using Core.Interfaces;
 
 namespace Algorithms.Collections
 {
-    public class ListPlus<T> : Core.Interfaces.IList<T>
+    public class ListPlus<T> : Core.Interfaces.IOmegaList<T>
     {
         public T this[int index] { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
@@ -42,7 +42,7 @@ namespace Algorithms.Collections
             throw new System.NotImplementedException();
         }
 
-        public INumerator<T> GetEnumerator()
+        public IOmegaNumerator<T> GetEnumerator()
         {
             throw new System.NotImplementedException();
         }

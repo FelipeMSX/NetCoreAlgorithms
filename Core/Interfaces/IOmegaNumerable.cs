@@ -1,8 +1,8 @@
 ﻿namespace Core.Interfaces
 {
-	public interface INumerable<out T> : INumerable
+	public interface IOmegaNumerable<out T> : INumerable
 	{
-		new INumerator<T> GetEnumerator();
+		new IOmegaNumerator<T> GetEnumerator();
 	}
 
 	public interface INumerable
