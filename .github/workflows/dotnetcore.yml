@@ -17,3 +17,7 @@ jobs:
       run: dotnet build Algorithms/Algorithms.csproj --configuration 'Debug'
     - name: Tests
       run: dotnet test AlgorithmsTests/AlgorithmsTests.csproj --configuration 'Debug'
+    - name: Build with dotnet
+      run: dotnet build OmegaCore/OmegaCore.csproj --configuration 'Debug'
+    - name: Tests
+      run: dotnet test OmegaCoreTests/OmegaCoreTests.csproj --configuration 'Debug'
