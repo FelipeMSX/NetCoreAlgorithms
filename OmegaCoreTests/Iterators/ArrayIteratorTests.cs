@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Core.Tests.Iterators
+namespace OmegaCoreTests.Iterators
 {
     [TestClass]
     public class ArrayIteratorTests

@@ -23,6 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Core\OmegaCore.csproj" />
+    <ProjectReference Include="..\OmegaCore\OmegaCore.csproj" />
   </ItemGroup>
 </Project>

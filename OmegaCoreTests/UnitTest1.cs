@@ -1,7 +1,7 @@
-﻿using Core.Iterators;
+﻿using OmegaCore.Iterators;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Core.Tests
+namespace OmegaCoreTests
 {
     [TestClass]
     public class UnitTest1

@@ -1,10 +1,10 @@
 ﻿using System.Text;
 using System.Threading.Tasks;
-using Core.Interfaces;
+using OmegaCore.Interfaces;
 
 namespace Algorithms.Collections
 {
-    public class ListPlus<T> : Core.Interfaces.IOmegaList<T>
+    public class ListPlus<T> : OmegaCore.Interfaces.IOmegaList<T>
     {
         public T this[int index] { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 

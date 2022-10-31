@@ -1,4 +1,4 @@
-﻿namespace Core.Interfaces
+﻿namespace OmegaCore.Interfaces
 {
 	public interface IOmegaNumerator<out T>: INumerator
 	{

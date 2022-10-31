@@ -1,8 +1,8 @@
 ﻿using System;
-using Core.Interfaces;
-using Core.Iterators;
+using OmegaCore.Interfaces;
+using OmegaCore.Iterators;
 
-namespace Core.Tests.Shared
+namespace OmegaCoreTests.Shared
 {
  
 public class SimpleArray : IOmegaList<int>

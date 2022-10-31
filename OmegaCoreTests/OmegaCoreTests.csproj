@@ -16,10 +16,6 @@
 </PackageReference>
     <PackageReference Include="NSubstitute" Version="4.4.0" />
   </ItemGroup>
-
-  <ItemGroup>   
-    <ProjectReference Include="..\Core\OmegaCore.csproj" />
-  </ItemGroup>
   <ItemGroup>
     <None Remove="Iterators\" />
     <None Remove="Shared\" />
@@ -29,5 +25,8 @@
   <ItemGroup>
     <Folder Include="Iterators\" />
     <Folder Include="Shared2\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OmegaCore\OmegaCore.csproj" />
   </ItemGroup>
 </Project>

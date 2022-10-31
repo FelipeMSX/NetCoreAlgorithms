@@ -1,6 +1,6 @@
-﻿using Core.Abstracts;
+﻿using OmegaCore.Abstracts;
 
-namespace Core.Iterators
+namespace OmegaCore.Iterators
 {
     public class OmegaListIterator<T> : IOmegaterator<T>
     {

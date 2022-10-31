@@ -1,6 +1,6 @@
-﻿using Core.Interfaces;
+﻿using OmegaCore.Interfaces;
 
-namespace Core.Abstracts
+namespace OmegaCore.Abstracts
 {
     public abstract class IOmegaterator<T> : IOmegaNumerator<T?>, INumerator
     {

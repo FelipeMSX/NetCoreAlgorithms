@@ -1,5 +1,5 @@
 ﻿
-namespace Core.Interfaces
+namespace OmegaCore.Interfaces
 {
     public interface IOmegaCollection<T> : IOmegaNumerable<T>
     {

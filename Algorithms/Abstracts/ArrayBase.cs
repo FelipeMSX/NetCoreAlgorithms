@@ -4,8 +4,6 @@ using Algorithms.Exceptions;
 using System.Collections.Generic;
 using System.Collections;
 using Algorithms.Helpers;
-using System.Linq;
-using Core;
 
 namespace Algorithms.Abstracts
 {

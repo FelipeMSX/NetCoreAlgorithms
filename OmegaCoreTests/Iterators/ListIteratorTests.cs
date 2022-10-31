@@ -1,11 +1,11 @@
 ﻿using System;
-using Core.Interfaces;
+using OmegaCore.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Core.Tests.Iterators
+namespace OmegaCoreTests.Iterators
 {
     [TestClass]
-    public class OmegaLINQTests
+    public class ListIteratorsTests
     {
 
         private IOmegaList<int?> _list;

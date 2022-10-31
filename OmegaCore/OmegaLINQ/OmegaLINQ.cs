@@ -1,6 +1,6 @@
-﻿using Core.Interfaces;
+﻿using OmegaCore.Interfaces;
 
-namespace Core.OmegaLINQ
+namespace OmegaCore.OmegaLINQ
 {
     public static class OmegaLINQ
     {
