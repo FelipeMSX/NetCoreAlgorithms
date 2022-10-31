@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlgorithmsTests", "..\Algor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OmegaCore", "..\Core\OmegaCore.csproj", "{2C0C9E6A-C03E-4630-9043-C5FE4846F4D5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OmegaCore.Tests", "..\Core.Tests\OmegaCore.Tests.csproj", "{C30E8AA0-98A2-492C-9CAA-9F94362F852F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OmegaCoreTests", "..\Core.Tests\OmegaCoreTests.csproj", "{C30E8AA0-98A2-492C-9CAA-9F94362F852F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
