@@ -1,13 +1,13 @@
 ﻿namespace OmegaCore.Interfaces
 {
-	public interface IOmegaNumerable<out T> : INumerable
+	public interface IOmegaNumerable<out T> : IOmegaNumerable
 	{
 		new IOmegaNumerator<T> GetEnumerator();
 	}
 
-	public interface INumerable
+	public interface IOmegaNumerable
     {
-		INumerator GetEnumerator();
+		IOmegaNumerator GetEnumerator();
     }
 }
 

@@ -1,11 +1,11 @@
 ﻿namespace OmegaCore.Interfaces
 {
-	public interface IOmegaNumerator<out T>: INumerator
+	public interface IOmegaNumerator<out T>: IOmegaNumerator
 	{
 		new T Current { get; }
 	}
 
-	public interface INumerator
+	public interface IOmegaNumerator
 	{
 		object Current { get; }
 

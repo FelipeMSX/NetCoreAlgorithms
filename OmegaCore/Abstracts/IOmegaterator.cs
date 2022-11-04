@@ -2,11 +2,11 @@
 
 namespace OmegaCore.Abstracts
 {
-    public abstract class IOmegaterator<T> : IOmegaNumerator<T?>, INumerator
+    public abstract class IOmegaterator<T> : IOmegaNumerator<T?>, IOmegaNumerator
     {
         public T? Current { get; protected set; }
 
-        object INumerator.Current
+        object IOmegaNumerator.Current
         {
             get
             {

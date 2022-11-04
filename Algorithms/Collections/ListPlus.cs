@@ -47,7 +47,7 @@ namespace Algorithms.Collections
             throw new System.NotImplementedException();
         }
 
-        INumerator INumerable.GetEnumerator()
+        IOmegaNumerator IOmegaNumerable.GetEnumerator()
         {
             throw new System.NotImplementedException();
         }
