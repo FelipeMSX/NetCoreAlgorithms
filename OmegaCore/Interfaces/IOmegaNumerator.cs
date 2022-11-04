@@ -1,7 +1,7 @@
 ﻿namespace OmegaCore.Interfaces
 {
-	public interface IOmegaNumerator<out T>: IOmegaNumerator
-	{
+	public interface IOmegaNumerator<out T>: IOmegaNumerator, IDisposable
+    {
 		new T Current { get; }
 	}
 

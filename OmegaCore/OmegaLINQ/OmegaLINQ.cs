@@ -1,4 +1,5 @@
-﻿using OmegaCore.Exceptions;
+﻿using OmegaCore.Collections;
+using OmegaCore.Exceptions;
 using OmegaCore.Interfaces;
 using OmegaCore.Iterators;
 
@@ -22,32 +23,45 @@ namespace OmegaCore.OmegaLINQ
             return default;
         }
 
-        public static IOmegaNumerable<T>? Filter<T>(this IOmegaNumerable<T> collection, Func<T, bool> predicate)
+        //public static IOmegaNumerable<T> Filter<T>(this IOmegaNumerable<T> collection, Func<T, bool> predicate)
+        //{
+        //    IOmegaList<T> list = new OmegaList<T>();
+
+        //    foreach (T element in collection)
+        //        if (predicate(element))
+        //            list.Add(element); 
+
+        //    return list;
+        //}
+
+
+        public static IOmegaNumerable<TSource> Filter<TSource>(this IOmegaNumerable<TSource> source, Func<TSource, bool> predicate)
         {
-            OmegaListIterator<T> iterator = new OmegaListIterator<T>();
-            yield return  iterator.Current;
-            //foreach (T element in collection)
-            //{
-            //    if (predicate(element)) yield return element ;
-            //}
+            //IOmegaList<T> list = new OmegaList<T>();
+
+            return (IOmegaNumerable<TSource>)FilterIterator(source, predicate);
         }
 
-        public static IOmegaNumerable<TSource> Skip<TSource>(this IOmegaNumerable<TSource> source, int count)
+        private static IEnumerable<TSource> FilterIterator<TSource>(IOmegaNumerable<TSource> source, Func<TSource, bool> predicate)
         {
-            return SkipIterator<TSource>(source, count);
+            foreach (TSource element in source)
+                if (predicate(element)) yield return element;
         }
 
-        private static IOmegaNumerable<TSource> SkipIterator<TSource>(IOmegaNumerable<TSource> source, int count)
+        public static IEnumerable<TSource> Take<TSource>(this IOmegaNumerable<TSource> source, int count)
         {
-            var enumerator = source.GetEnumerator();
+            return TakeIterator(source, count);
+        }
 
-            using (IOmegaNumerable<TSource> e = source.GetEnumerator())
-            {
-                while (count > 0 && enumerator.MoveNext()) count--;
+        private static IEnumerable<TSource> TakeIterator<TSource>(IOmegaNumerable<TSource> source, int count)
+        {
             if (count <= 0)
+                yield break;
+
+            foreach (TSource element in source)
             {
-                while (enumerator.MoveNext()) yield return enumerator.Current;
-            }
+                yield return element;
+                if (--count == 0) break;
             }
         }
     }

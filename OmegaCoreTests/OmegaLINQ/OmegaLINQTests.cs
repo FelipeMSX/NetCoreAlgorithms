@@ -12,13 +12,13 @@ namespace OmegaCoreTests.OmegaLINQ
     {
 
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
-        private IOmegaList<int> _enumerableCollection ;
+        private IOmegaList<int> _enumerableCollection;
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 
         [TestInitialize]
         public void TearUp()
         {
-    
+
             _enumerableCollection = new SimpleList<int>(new int[10] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 });
         }
 
@@ -48,7 +48,7 @@ namespace OmegaCoreTests.OmegaLINQ
             //Arrange
             _enumerableCollection = new SimpleList<int>();
             //Act
-            _enumerableCollection.First((x)=> true);
+            _enumerableCollection.First((x) => true);
         }
 
         [TestMethod, ExpectedException(typeof(ElementNotFoundException))]
@@ -96,9 +96,9 @@ namespace OmegaCoreTests.OmegaLINQ
         public void FirstOrDefault_WithReferenceObjectAndFullCollection_Found()
         {
             //Arrange
-            IOmegaList<string> collection = new SimpleList<string>(new string[3] {"a","b","c"});
+            IOmegaList<string> collection = new SimpleList<string>(new string[3] { "a", "b", "c" });
             //Act
-            string? result = collection.FirstOrDefault((x) => x=="c");
+            string? result = collection.FirstOrDefault((x) => x == "c");
             //Assert
             Assert.IsTrue(result == "c");
         }
@@ -112,6 +112,30 @@ namespace OmegaCoreTests.OmegaLINQ
             string? result = collection.FirstOrDefault((x) => x == "d");
             //Assert
             Assert.IsTrue(result == null);
+        }
+        #endregion
+
+
+        #region Take
+        [TestMethod]
+        [DataRow(3)]
+        public void Take_WhenFilledCollection_Found(int value)
+        {
+            //Act
+            IEnumerable<int> result = _enumerableCollection.Take(value);
+            int count = 0;
+
+            bool isValid = true;
+            foreach (int item in result)
+            {
+                if (item != _enumerableCollection[count++])
+                {
+                    isValid = false;
+                    break;
+                }
+            }
+            //Assert
+            Assert.IsTrue(isValid);
         }
         #endregion
     }

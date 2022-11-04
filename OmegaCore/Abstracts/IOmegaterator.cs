@@ -2,9 +2,9 @@
 
 namespace OmegaCore.Abstracts
 {
-    public abstract class IOmegaterator<T> : IOmegaNumerator<T?>, IOmegaNumerator
+    public abstract class IOmegaterator<T> : IOmegaNumerator<T>, IOmegaNumerator
     {
-        public T? Current { get; protected set; }
+        public T Current { get; protected set; }
 
         object IOmegaNumerator.Current
         {
@@ -15,6 +15,11 @@ namespace OmegaCore.Abstracts
 
                 return Current;
             }
+        }
+
+        public void Dispose()
+        {
+            
         }
 
         public abstract bool MoveNext();

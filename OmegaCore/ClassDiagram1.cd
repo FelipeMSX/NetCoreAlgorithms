@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="OmegaCore.Iterators.OmegaArrayIterator&lt;T&gt;">
+    <Position X="6.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAABAAAEAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Iterators\OmegaArrayIterator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OmegaCore.Iterators.OmegaListIterator&lt;T&gt;">
+    <Position X="2.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAABAAAEAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Iterators\OmegaListIterator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OmegaCore.Abstracts.IOmegaterator&lt;T&gt;">
+    <Position X="4.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAABAAAAACAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Abstracts\IOmegaterator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="OmegaCore.Interfaces.IOmegaCollection&lt;T&gt;">
+    <Position X="10.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIIAAAAAAAAAAQAAAAAABAQAAAAAAAAAAAACAABAAAA=</HashCode>
+      <FileName>Interfaces\IOmegaCollection.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="OmegaCore.Interfaces.IOmegaList&lt;T&gt;">
+    <Position X="12.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IOmegaList.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="OmegaCore.Interfaces.IOmegaNumerable">
+    <Position X="10.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IOmegaNumerable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="OmegaCore.Interfaces.IOmegaNumerable&lt;T&gt;">
+    <Position X="10.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IOmegaNumerable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="OmegaCore.Interfaces.IOmegaNumerator">
+    <Position X="12.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IOmegaNumerator.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="OmegaCore.Interfaces.IOmegaNumerator&lt;T&gt;">
+    <Position X="12.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IOmegaNumerator.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
