@@ -7,7 +7,7 @@ namespace OmegaCore.OmegaLINQ
 {
     public static class OmegaLINQ
     {
-        public static T First<T>(this IOmegaNumerable<T> collection, Func<T, bool> predicate)
+        public static T First<T>(this IOmegaEnumerable<T> collection, Func<T, bool> predicate)
         {
             foreach (T element in collection)
                 if (predicate(element)) return element;
@@ -15,7 +15,7 @@ namespace OmegaCore.OmegaLINQ
             throw new ElementNotFoundException();
         }
 
-        public static T? FirstOrDefault<T>(this IOmegaNumerable<T> collection, Func<T, bool> predicate)
+        public static T? FirstOrDefault<T>(this IOmegaEnumerable<T> collection, Func<T, bool> predicate)
         {
             foreach (T element in collection)
                 if (predicate(element)) return element;
@@ -23,46 +23,34 @@ namespace OmegaCore.OmegaLINQ
             return default;
         }
 
-        //public static IOmegaNumerable<T> Filter<T>(this IOmegaNumerable<T> collection, Func<T, bool> predicate)
-        //{
-        //    IOmegaList<T> list = new OmegaList<T>();
-
-        //    foreach (T element in collection)
-        //        if (predicate(element))
-        //            list.Add(element); 
-
-        //    return list;
-        //}
-
-
-        public static IOmegaNumerable<TSource> Filter<TSource>(this IOmegaNumerable<TSource> source, Func<TSource, bool> predicate)
+        public static int Count<T>(this IOmegaEnumerable<T> collection, Func<T, bool> predicate)
         {
-            //IOmegaList<T> list = new OmegaList<T>();
+            int count = 0;
 
-            return (IOmegaNumerable<TSource>)FilterIterator(source, predicate);
+            foreach (T element in collection)
+                if (predicate(element)) count++;
+
+            return count;
         }
 
-        private static IEnumerable<TSource> FilterIterator<TSource>(IOmegaNumerable<TSource> source, Func<TSource, bool> predicate)
+        public static int Count<T>(this IOmegaEnumerable<T> collection)
         {
-            foreach (TSource element in source)
-                if (predicate(element)) yield return element;
+            int count = 0;
+
+            foreach (T element in collection)
+                count++;
+
+            return count;
         }
 
-        public static IEnumerable<TSource> Take<TSource>(this IOmegaNumerable<TSource> source, int count)
+        public static IOmegaEnumerable<TSource> Filter<TSource>(this IOmegaEnumerable<TSource> source, Func<TSource, bool> predicate)
         {
-            return TakeIterator(source, count);
+            return new OmegaFilterIterator<TSource>(source, predicate);
         }
 
-        private static IEnumerable<TSource> TakeIterator<TSource>(IOmegaNumerable<TSource> source, int count)
+        public static IOmegaEnumerable<TSource> Take<TSource>(this IOmegaEnumerable<TSource> source, int count)
         {
-            if (count <= 0)
-                yield break;
-
-            foreach (TSource element in source)
-            {
-                yield return element;
-                if (--count == 0) break;
-            }
+            return new OmegaTakeIterator<TSource>(source, count);
         }
     }
 

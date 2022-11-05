@@ -18,8 +18,7 @@ namespace OmegaCoreTests.OmegaLINQ
         [TestInitialize]
         public void TearUp()
         {
-
-            _enumerableCollection = new SimpleList<int>(new int[10] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 });
+            _enumerableCollection = new SimpleList<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 });
         }
 
         [TestCleanup]
@@ -30,7 +29,7 @@ namespace OmegaCoreTests.OmegaLINQ
         }
 
         #region First
-        [TestMethod]
+        [TestMethod, TestCategory("OmegaLINQ")]
         [DataRow(1)]
         [DataRow(2)]
         [DataRow(3)]
@@ -42,7 +41,7 @@ namespace OmegaCoreTests.OmegaLINQ
             Assert.IsTrue(result == value);
         }
 
-        [TestMethod, ExpectedException(typeof(ElementNotFoundException))]
+        [TestMethod, TestCategory("OmegaLINQ"), ExpectedException(typeof(ElementNotFoundException))]
         public void First_WhenEmptyCollection_Exception()
         {
             //Arrange
@@ -51,7 +50,7 @@ namespace OmegaCoreTests.OmegaLINQ
             _enumerableCollection.First((x) => true);
         }
 
-        [TestMethod, ExpectedException(typeof(ElementNotFoundException))]
+        [TestMethod, TestCategory("OmegaLINQ"), ExpectedException(typeof(ElementNotFoundException))]
         public void First_WhenElementIsNotInTheCollection_Exception()
         {
             //Act
@@ -60,7 +59,7 @@ namespace OmegaCoreTests.OmegaLINQ
         #endregion
 
         #region FirstOrDefault
-        [TestMethod]
+        [TestMethod, TestCategory("OmegaLINQ")]
         [DataRow(1)]
         [DataRow(2)]
         [DataRow(3)]
@@ -72,7 +71,7 @@ namespace OmegaCoreTests.OmegaLINQ
             Assert.IsTrue(result == value);
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("OmegaLINQ")]
         public void FirstOrDefault_WhenEmptyCollection_Zero()
         {
             //Arrange
@@ -83,7 +82,7 @@ namespace OmegaCoreTests.OmegaLINQ
             Assert.IsTrue(result == 0);
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("OmegaLINQ")]
         public void FirstOrDefault_WhenElementIsNotInTheCollection_Zero()
         {
             //Act
@@ -92,7 +91,7 @@ namespace OmegaCoreTests.OmegaLINQ
             Assert.IsTrue(result == 0);
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("OmegaLINQ")]
         public void FirstOrDefault_WithReferenceObjectAndFullCollection_Found()
         {
             //Arrange
@@ -103,7 +102,7 @@ namespace OmegaCoreTests.OmegaLINQ
             Assert.IsTrue(result == "c");
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("OmegaLINQ")]
         public void FirstOrDefault_WithReferenceObjectAndFullCollection_Null()
         {
             //Arrange
@@ -115,27 +114,100 @@ namespace OmegaCoreTests.OmegaLINQ
         }
         #endregion
 
-
         #region Take
-        [TestMethod]
+        [TestMethod, TestCategory("OmegaLINQ")]
         [DataRow(3)]
         public void Take_WhenFilledCollection_Found(int value)
         {
             //Act
-            IEnumerable<int> result = _enumerableCollection.Take(value);
-            int count = 0;
+            IOmegaEnumerable<int> result = _enumerableCollection.Take(value);
+            int itemMatch = 0;
 
             bool isValid = true;
             foreach (int item in result)
             {
-                if (item != _enumerableCollection[count++])
+                if (item != _enumerableCollection[itemMatch])
                 {
                     isValid = false;
                     break;
                 }
+                itemMatch++;
             }
             //Assert
             Assert.IsTrue(isValid);
+        }
+        #endregion
+
+        #region Filter
+        [TestMethod, TestCategory("OmegaLINQ")]
+        public void Filter_WhenFilledCollection_FiveElements()
+        {
+            //Act
+            IOmegaEnumerable<int> result = _enumerableCollection.Filter((x) => x % 2 == 0);
+            int count = 0;
+
+            foreach (int item in result)
+            {
+                count++;
+            }
+            //Assert
+            Assert.IsTrue(count == 5);
+        }
+        #endregion
+
+        #region Count
+        [TestMethod, TestCategory("OmegaLINQ")]
+        public void Count_WhenFilledCollectionWithPredicate_FiveElements()
+        {
+            //Act
+            int result = _enumerableCollection.Count((x) => x % 2 == 0);
+
+            //Assert
+            Assert.IsTrue(result == 5);
+        }
+
+        [TestMethod, TestCategory("OmegaLINQ")]
+        public void Count_EmptyCollectionWithPredicate_Zero()
+        {
+            //Arrange
+            _enumerableCollection = new SimpleList<int>();
+            //Act
+            int result = _enumerableCollection.Count((x) => x % 2 == 0);
+
+            //Assert
+            Assert.IsTrue(result == 0);
+        }
+
+        [TestMethod, TestCategory("OmegaLINQ")]
+        public void Count_WhenFilledCollectionWithPredicate_TenElements()
+        {
+            //Act
+            int result = _enumerableCollection.Count((x) => true);
+
+            //Assert
+            Assert.IsTrue(result == 10);
+        }
+
+        [TestMethod, TestCategory("OmegaLINQ")]
+        public void Count_EmptyCollection_Zero()
+        {
+            //Arrange
+            _enumerableCollection = new SimpleList<int>();
+            //Act
+            int result = _enumerableCollection.Count();
+
+            //Assert
+            Assert.IsTrue(result == 0);
+        }
+
+        [TestMethod, TestCategory("OmegaLINQ")]
+        public void Count_WhenFilledCollection_TenElements()
+        {
+            //Act
+            int result = _enumerableCollection.Count();
+
+            //Assert
+            Assert.IsTrue(result == 10);
         }
         #endregion
     }

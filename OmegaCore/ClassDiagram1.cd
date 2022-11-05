@@ -22,6 +22,13 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
+  <Class Name="OmegaCore.OmegaLINQ.OmegaLINQ">
+    <Position X="5.25" Y="5.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAQAAAAAAAAQAABAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>OmegaLINQ\OmegaLINQ.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Interface Name="OmegaCore.Interfaces.IOmegaCollection&lt;T&gt;">
     <Position X="10.25" Y="4.5" Width="1.5" />
     <TypeIdentifier>
@@ -36,25 +43,25 @@
       <FileName>Interfaces\IOmegaList.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="OmegaCore.Interfaces.IOmegaNumerable">
+  <Interface Name="OmegaCore.Interfaces.IOmegaEnumerable&lt;T&gt;">
     <Position X="10.25" Y="1" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Interfaces\IOmegaNumerable.cs</FileName>
+      <FileName>Interfaces\IOmegaEnumerable.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="OmegaCore.Interfaces.IOmegaNumerable&lt;T&gt;">
+  <Interface Name="OmegaCore.Interfaces.IOmegaEnumerable">
     <Position X="10.25" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Interfaces\IOmegaNumerable.cs</FileName>
+      <FileName>Interfaces\IOmegaEnumerable.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="OmegaCore.Interfaces.IOmegaNumerator">
+  <Interface Name="OmegaCore.Interfaces.IOmegaEnumerator&lt;T&gt;">
     <Position X="12.5" Y="1" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
-      <FileName>Interfaces\IOmegaNumerator.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IOmegaEnumerator.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="OmegaCore.Interfaces.IOmegaNumerator&lt;T&gt;">

@@ -60,14 +60,14 @@ namespace OmegaCoreTests.Shared
             throw new NotImplementedException();
         }
 
-        public IOmegaNumerator<T> GetEnumerator()
+        public IOmegaEnumerator<T> GetEnumerator()
         {
             return new OmegaListIterator<T>(this);
         }
 
-        IOmegaNumerator IOmegaNumerable.GetEnumerator()
+        IOmegaEnumerator IOmegaEnumerable.GetEnumerator()
         {
-            return GetEnumerator();
+           return this.GetEnumerator();
         }
     }
 }

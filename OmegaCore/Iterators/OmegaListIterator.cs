@@ -1,8 +1,9 @@
 ﻿using OmegaCore.Abstracts;
+using OmegaCore.Interfaces;
 
 namespace OmegaCore.Iterators
 {
-    public class OmegaListIterator<T> : IOmegaterator<T>
+    public class OmegaListIterator<T> : IOmegaIteratorBase<T>
     {
         private Interfaces.IOmegaList<T> _source { get; }
         private int _currentIndex = 0;

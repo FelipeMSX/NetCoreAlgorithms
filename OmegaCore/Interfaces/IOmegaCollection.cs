@@ -1,7 +1,7 @@
 ﻿
 namespace OmegaCore.Interfaces
 {
-    public interface IOmegaCollection<T> : IOmegaNumerable<T>
+    public interface IOmegaCollection<T> : IOmegaEnumerable<T>
     {
         int Count { get; }
         void Add(T item);

@@ -42,12 +42,12 @@ namespace Algorithms.Collections
             throw new System.NotImplementedException();
         }
 
-        public IOmegaNumerator<T> GetEnumerator()
+        public IOmegaEnumerator<T> GetEnumerator()
         {
             throw new System.NotImplementedException();
         }
 
-        IOmegaNumerator IOmegaNumerable.GetEnumerator()
+        IOmegaEnumerator IOmegaEnumerable.GetEnumerator()
         {
             throw new System.NotImplementedException();
         }

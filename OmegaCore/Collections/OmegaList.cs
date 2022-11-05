@@ -58,12 +58,12 @@ namespace OmegaCore.Collections
             throw new System.NotImplementedException();
         }
 
-        IOmegaNumerator<T> IOmegaNumerable<T>.GetEnumerator()
+        public IOmegaEnumerator<T> GetEnumerator()
         {
             throw new NotImplementedException();
         }
 
-        IOmegaNumerator IOmegaNumerable.GetEnumerator()
+        IOmegaEnumerator IOmegaEnumerable.GetEnumerator()
         {
             throw new NotImplementedException();
         }
