@@ -23,7 +23,6 @@
     <None Remove="Shared\SimpleArraycs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Iterators\" />
     <Folder Include="Shared2\" />
   </ItemGroup>
   <ItemGroup>

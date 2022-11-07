@@ -3,13 +3,13 @@ using OmegaCore.Interfaces;
 
 namespace OmegaCore.Iterators
 {
-    public class OmegaFilterIterator<T> : IOmegaIteratorBase<T>
+    public class OmegaPredicateIterator<T> : IOmegaIteratorBase<T>
     {
         private readonly IOmegaEnumerator<T> _sourceEnumerator;
 
         private readonly Func<T, bool> _predicate;
 
-        public OmegaFilterIterator(IOmegaEnumerable<T> source, Func<T, bool> predicate)
+        public OmegaPredicateIterator(IOmegaEnumerable<T> source, Func<T, bool> predicate)
         {
             _sourceEnumerator = source.GetEnumerator();
             _predicate = predicate;

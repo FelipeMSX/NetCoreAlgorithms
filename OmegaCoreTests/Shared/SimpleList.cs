@@ -67,7 +67,7 @@ namespace OmegaCoreTests.Shared
 
         IOmegaEnumerator IOmegaEnumerable.GetEnumerator()
         {
-           return this.GetEnumerator();
+           return GetEnumerator();
         }
     }
 }

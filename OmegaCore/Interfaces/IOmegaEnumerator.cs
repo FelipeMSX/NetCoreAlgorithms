@@ -1,6 +1,6 @@
 ﻿namespace OmegaCore.Interfaces
 {
-	public interface IOmegaEnumerator<out T>: IOmegaEnumerator, IDisposable
+	public interface IOmegaEnumerator<out T>: IOmegaEnumerator, IOmegaDisposable
     {
 		new T Current { get; }
 	}

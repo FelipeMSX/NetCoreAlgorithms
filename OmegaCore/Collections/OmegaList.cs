@@ -5,6 +5,7 @@ namespace OmegaCore.Collections
 {
     public class OmegaList<T> : IOmegaList<T>
     {
+        private const int INITIAL_CAPACITY = 100;
         private readonly T[] _internalArray;
         public T this[int index] { get => _internalArray[index]; set => _internalArray[index] = value; }
 
@@ -17,22 +18,21 @@ namespace OmegaCore.Collections
             _internalArray = internalArray;
         }
 
-        public OmegaList()
+        public OmegaList(int capacity = INITIAL_CAPACITY)
         {
-            _internalArray = Array.Empty<T>();
+            _internalArray = new T[capacity];
         }
 
         public void Add(T item)
         {
             if(item == null)
-                throw new ArgumentNullException("item");
+                throw new ArgumentNullException(nameof(item));
 
             _internalArray[Count++] = item;
         }
 
         public void Clear()
         {
-            throw new System.NotImplementedException();
         }
 
         public T First()
@@ -40,12 +40,9 @@ namespace OmegaCore.Collections
             return _internalArray[0];
         }
 
-
-
         public T Last()
         {
             return _internalArray[Count -1];
-
         }
 
         public bool Remove(T item)
@@ -60,12 +57,16 @@ namespace OmegaCore.Collections
 
         public IOmegaEnumerator<T> GetEnumerator()
         {
-            throw new NotImplementedException();
+            return new OmegaListIterator<T>(this);
         }
 
         IOmegaEnumerator IOmegaEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return this.GetEnumerator();
+        }
+
+        public void Dispose()
+        {
         }
     }
 }

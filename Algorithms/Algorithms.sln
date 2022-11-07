@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OmegaCore", "..\OmegaCore\O
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OmegaCoreTests", "..\OmegaCoreTests\OmegaCoreTests.csproj", "{C30E8AA0-98A2-492C-9CAA-9F94362F852F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OmegaCoreBenchmarks", "..\OmegaCoreBenchmarks\OmegaCoreBenchmarks.csproj", "{DE447BBB-57D7-4F7D-B3D7-30642C626056}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{C30E8AA0-98A2-492C-9CAA-9F94362F852F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C30E8AA0-98A2-492C-9CAA-9F94362F852F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C30E8AA0-98A2-492C-9CAA-9F94362F852F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE447BBB-57D7-4F7D-B3D7-30642C626056}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE447BBB-57D7-4F7D-B3D7-30642C626056}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE447BBB-57D7-4F7D-B3D7-30642C626056}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE447BBB-57D7-4F7D-B3D7-30642C626056}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

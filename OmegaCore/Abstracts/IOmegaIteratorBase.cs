@@ -6,16 +6,7 @@ namespace OmegaCore.Abstracts
     {
         public T? Current { get; protected set; }
 
-        object IOmegaEnumerator.Current
-        {
-            get
-            {
-                if (Current == null)
-                    throw new NullReferenceException();
-
-                return Current;
-            }
-        }
+        object IOmegaEnumerator.Current => Current;
 
         public void Dispose()
         {

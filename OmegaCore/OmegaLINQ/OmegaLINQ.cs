@@ -7,45 +7,63 @@ namespace OmegaCore.OmegaLINQ
 {
     public static class OmegaLINQ
     {
-        public static T First<T>(this IOmegaEnumerable<T> collection, Func<T, bool> predicate)
+        public static TSource First<TSource>(this IOmegaEnumerable<TSource> collection, Func<TSource, bool> predicate)
         {
-            foreach (T element in collection)
+            foreach (TSource element in collection)
                 if (predicate(element)) return element;
 
             throw new ElementNotFoundException();
         }
 
-        public static T? FirstOrDefault<T>(this IOmegaEnumerable<T> collection, Func<T, bool> predicate)
+        public static TSource? FirstOrDefault<TSource>(this IOmegaEnumerable<TSource> collection, Func<TSource, bool> predicate)
         {
-            foreach (T element in collection)
+            foreach (TSource element in collection)
                 if (predicate(element)) return element;
 
             return default;
         }
 
-        public static int Count<T>(this IOmegaEnumerable<T> collection, Func<T, bool> predicate)
+        public static int Count<TSource>(this IOmegaEnumerable<TSource> collection, Func<TSource, bool> predicate)
         {
             int count = 0;
 
-            foreach (T element in collection)
+            foreach (TSource element in collection)
                 if (predicate(element)) count++;
 
             return count;
         }
 
-        public static int Count<T>(this IOmegaEnumerable<T> collection)
+        public static int Count<TSource>(this IOmegaEnumerable<TSource> source)
         {
             int count = 0;
 
-            foreach (T element in collection)
+            if (source is IOmegaList<TSource> list) 
+                return list.Count;
+
+            if (source is IOmegaCollection<TSource> collection)
+                return collection.Count;
+
+            foreach (TSource element in source)
                 count++;
 
             return count;
         }
 
+        public static TSource[] ToArray<TSource>(this IOmegaEnumerable<TSource> source)
+        {
+            int count = Count(source);
+
+            TSource[] newArray = new TSource[count];
+
+            foreach (TSource element in source)
+                newArray[count++] = element;
+
+            return newArray;
+        }
+
         public static IOmegaEnumerable<TSource> Filter<TSource>(this IOmegaEnumerable<TSource> source, Func<TSource, bool> predicate)
         {
-            return new OmegaFilterIterator<TSource>(source, predicate);
+            return new OmegaPredicateIterator<TSource>(source, predicate);
         }
 
         public static IOmegaEnumerable<TSource> Take<TSource>(this IOmegaEnumerable<TSource> source, int count)
