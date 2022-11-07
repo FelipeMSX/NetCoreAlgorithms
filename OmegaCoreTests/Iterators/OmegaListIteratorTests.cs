@@ -9,7 +9,7 @@ using OmegaCore.Collections;
 namespace OmegaCoreTests.Iterators
 {
     [TestClass]
-    public class OmegaListIteratorTests
+    public class OmegaListTests
     {
 
         private IOmegaList<SampleObject> _list;
@@ -61,7 +61,7 @@ namespace OmegaCoreTests.Iterators
             bool success = IterateOverCollection(_list, _iterator);
             _iterator.Reset();
 
-            if(!success)
+            if (!success)
                 success = IterateOverCollection(_list, _iterator);
 
             //Assert
@@ -72,7 +72,7 @@ namespace OmegaCoreTests.Iterators
         public void Reset_CheckCurrentValueAfterReset_NullValue()
         {
             //Act
-          IterateOverCollection(_list, _iterator);
+            IterateOverCollection(_list, _iterator);
             _iterator.Reset();
 
             //Assert

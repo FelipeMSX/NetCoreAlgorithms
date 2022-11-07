@@ -3,5 +3,8 @@
     public interface IOmegaList<T> : IOmegaCollection<T>
     {
         T this[int index] { get; set; }
+
+        bool IsEmpty();
+
     }
 }

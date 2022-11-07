@@ -13,6 +13,16 @@ namespace OmegaCoreTests.Shared
             Name = name;
         }
 
+        public override bool Equals(object? obj)
+        {
+            if (obj is SampleObject other)
+            {
+                return Name == other.Name;
+            }
+
+            return false;
+        }
+
         public static IOmegaList<SampleObject> CreateSampleList()
         {
             string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";

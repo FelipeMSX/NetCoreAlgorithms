@@ -1,4 +1,5 @@
-﻿using OmegaCore.Interfaces;
+﻿using OmegaCore.Exceptions;
+using OmegaCore.Interfaces;
 using OmegaCore.Iterators;
 
 namespace OmegaCore.Collections
@@ -6,16 +7,19 @@ namespace OmegaCore.Collections
     public class OmegaList<T> : IOmegaList<T>
     {
         private const int INITIAL_CAPACITY = 100;
-        private readonly T[] _internalArray;
+        private T[] _internalArray;
+
         public T this[int index] { get => _internalArray[index]; set => _internalArray[index] = value; }
 
-        public int Count {get; private set; }   
+        public int Count { get; private set; }
 
 
-        //TODO - Does it to create a new copy?
-        public OmegaList(T[] internalArray)
+        //TODO - Does it need to create a new copy?
+        public OmegaList(T[] elements)
         {
-            _internalArray = internalArray;
+            _internalArray = new T[elements.Length];
+            elements.CopyTo(_internalArray, 0);
+            Count = elements.Length;
         }
 
         public OmegaList(int capacity = INITIAL_CAPACITY)
@@ -25,7 +29,7 @@ namespace OmegaCore.Collections
 
         public void Add(T item)
         {
-            if(item == null)
+            if (item == null)
                 throw new ArgumentNullException(nameof(item));
 
             _internalArray[Count++] = item;
@@ -33,26 +37,59 @@ namespace OmegaCore.Collections
 
         public void Clear()
         {
+            _internalArray = new T[INITIAL_CAPACITY];
+            Count = 0;
         }
 
-        public T First()
-        {
-            return _internalArray[0];
-        }
+        public T First() => _internalArray[0];
 
-        public T Last()
-        {
-            return _internalArray[Count -1];
-        }
+        public T Last() => _internalArray[Count - 1];
+
+        public bool IsEmpty() => Count == 0;
 
         public bool Remove(T item)
         {
-            throw new System.NotImplementedException();
+            if (IsEmpty())
+                return false;
+
+            int index = 0;
+
+            while (index < Count)
+            {
+                if (item.Equals(_internalArray[index]))
+                {
+                    //Shift the itens.
+                    for (int i = index; i < Count; i++)
+                        _internalArray[i] = _internalArray[i + 1];
+
+                    _internalArray[Count - 1] = default;
+                    Count--;
+                    return true;
+
+                }
+                index++;
+            }
+
+            return false;
         }
 
         public T Retrieve(T item)
         {
-            throw new System.NotImplementedException();
+            if (IsEmpty())
+                throw new EmptyCollectionException(); ;
+
+            int index = 0;
+
+            while (index < Count)
+            {
+                if (item.Equals(_internalArray[index]))
+                {
+                    return _internalArray[index];
+                }
+                index++;
+            }
+
+            throw new ElementNotFoundException();
         }
 
         public IOmegaEnumerator<T> GetEnumerator()
@@ -67,6 +104,8 @@ namespace OmegaCore.Collections
 
         public void Dispose()
         {
+            _internalArray = null;
         }
+
     }
 }

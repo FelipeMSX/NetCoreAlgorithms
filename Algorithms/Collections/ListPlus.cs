@@ -51,5 +51,10 @@ namespace Algorithms.Collections
         {
             throw new System.NotImplementedException();
         }
+
+        public bool IsEmpty()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

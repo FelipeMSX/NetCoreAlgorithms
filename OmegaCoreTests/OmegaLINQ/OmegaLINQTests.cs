@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OmegaCore.Collections;
 using OmegaCore.Exceptions;
 using OmegaCore.Interfaces;
 using OmegaCore.OmegaLINQ;
@@ -18,7 +19,7 @@ namespace OmegaCoreTests.OmegaLINQ
         [TestInitialize]
         public void TearUp()
         {
-            _enumerableCollection = new SimpleList<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 });
+            _enumerableCollection = new OmegaList<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 });
         }
 
         [TestCleanup]
@@ -45,7 +46,7 @@ namespace OmegaCoreTests.OmegaLINQ
         public void First_WhenEmptyCollection_Exception()
         {
             //Arrange
-            _enumerableCollection = new SimpleList<int>();
+            _enumerableCollection = new OmegaList<int>();
             //Act
             _enumerableCollection.First((x) => true);
         }
@@ -75,7 +76,7 @@ namespace OmegaCoreTests.OmegaLINQ
         public void FirstOrDefault_WhenEmptyCollection_Zero()
         {
             //Arrange
-            _enumerableCollection = new SimpleList<int>();
+            _enumerableCollection = new OmegaList<int>();
             //Act
             int result = _enumerableCollection.FirstOrDefault((x) => true);
             //Assert
@@ -95,7 +96,7 @@ namespace OmegaCoreTests.OmegaLINQ
         public void FirstOrDefault_WithReferenceObjectAndFullCollection_Found()
         {
             //Arrange
-            IOmegaList<string> collection = new SimpleList<string>(new string[3] { "a", "b", "c" });
+            IOmegaList<string> collection = new OmegaList<string>(new string[3] { "a", "b", "c" });
             //Act
             string? result = collection.FirstOrDefault((x) => x == "c");
             //Assert
@@ -106,7 +107,7 @@ namespace OmegaCoreTests.OmegaLINQ
         public void FirstOrDefault_WithReferenceObjectAndFullCollection_Null()
         {
             //Arrange
-            IOmegaList<string> collection = new SimpleList<string>(new string[3] { "a", "b", "c" });
+            IOmegaList<string> collection = new OmegaList<string>(new string[3] { "a", "b", "c" });
             //Act
             string? result = collection.FirstOrDefault((x) => x == "d");
             //Assert
@@ -170,7 +171,7 @@ namespace OmegaCoreTests.OmegaLINQ
         public void Count_EmptyCollectionWithPredicate_Zero()
         {
             //Arrange
-            _enumerableCollection = new SimpleList<int>();
+            _enumerableCollection = new OmegaList<int>();
             //Act
             int result = _enumerableCollection.Count((x) => x % 2 == 0);
 
@@ -192,7 +193,7 @@ namespace OmegaCoreTests.OmegaLINQ
         public void Count_EmptyCollection_Zero()
         {
             //Arrange
-            _enumerableCollection = new SimpleList<int>();
+            _enumerableCollection = new OmegaList<int>();
             //Act
             int result = _enumerableCollection.Count();
 
