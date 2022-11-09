@@ -26,7 +26,7 @@ namespace OmegaCore.Iterators
         public override void Reset()
         {
             _currentIndex = 0;
-            Current = _source[_currentIndex];
+            Current = default;
         }
 
     }

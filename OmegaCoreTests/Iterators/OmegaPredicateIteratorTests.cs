@@ -9,17 +9,20 @@ using OmegaCore.Collections;
 namespace OmegaCoreTests.Iterators
 {
     [TestClass]
-    public class OmegaListIteratorTests
+    public class OmegaPredicateIteratorTests
     {
 
         private IOmegaList<SampleObject> _list;
         private IOmegaIteratorBase<SampleObject> _iterator;
 
+        private readonly Func<SampleObject, bool> _predicate = (sampleObject) => int.TryParse(sampleObject.Name, out int numericValue);
+
+
         [TestInitialize]
         public void TearUp()
         {
             _list = SampleObject.CreateSampleList();
-            _iterator = new OmegaListIterator<SampleObject>(_list);
+            _iterator = new OmegaPredicateIterator<SampleObject>(_list, _predicate);
         }
 
         [TestCleanup]
@@ -33,6 +36,9 @@ namespace OmegaCoreTests.Iterators
         public void MoveNext_WithFilledCollection_AllElementsReturned()
         {
             //Act
+            _list = new OmegaList<SampleObject>();
+            _iterator = new OmegaPredicateIterator<SampleObject>(_list, (x) => true);
+
             bool success = Helpers.CheckListOrder(_list, _iterator);
             //Assert
             Assert.IsTrue(success);
@@ -43,7 +49,7 @@ namespace OmegaCoreTests.Iterators
         {
             //Arrange
             _list = new OmegaList<SampleObject>();
-            _iterator = new OmegaListIterator<SampleObject>(_list);
+            _iterator = new OmegaPredicateIterator<SampleObject>(_list, _predicate);
             bool success = true;
 
             //Act   
@@ -58,11 +64,11 @@ namespace OmegaCoreTests.Iterators
         public void Reset_FilledCollectionIteraveTwoTimes_Success()
         {
             //Act
-            bool success = Helpers.CheckListOrder(_list, _iterator);
+            bool success = CheckNumbers(_iterator);
             _iterator.Reset();
 
             if (!success)
-                success = Helpers.CheckListOrder(_list, _iterator);
+                success = CheckNumbers(_iterator);
 
             //Assert
             Assert.IsTrue(success);
@@ -72,11 +78,21 @@ namespace OmegaCoreTests.Iterators
         public void Reset_CheckCurrentValueAfterReset_NullValue()
         {
             //Act
-            Helpers.CheckListOrder(_list, _iterator);
+            CheckNumbers(_iterator);
             _iterator.Reset();
 
             //Assert
             Assert.IsTrue(_iterator.Current == null);
+        }
+
+        private bool CheckNumbers<T>(IOmegaIteratorBase<T> iterator) where T : SampleObject
+        {
+            bool success = true;
+
+            while (iterator.MoveNext() && success)
+                int.Parse(iterator.Current.Name);
+
+            return success;
         }
     }
 }

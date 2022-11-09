@@ -37,7 +37,7 @@ namespace OmegaCore.OmegaLINQ
         {
             int count = 0;
 
-            if (source is IOmegaList<TSource> list) 
+            if (source is IOmegaList<TSource> list)
                 return list.Count;
 
             if (source is IOmegaCollection<TSource> collection)
@@ -51,12 +51,23 @@ namespace OmegaCore.OmegaLINQ
 
         public static TSource[] ToArray<TSource>(this IOmegaEnumerable<TSource> source)
         {
-            int count = Count(source);
+            //Maybe this can generate extra allocation every time that is called
+            TSource[] newArray = null;
 
-            TSource[] newArray = new TSource[count];
+            if (source is IOmegaCollection<TSource> collection)
+            {
+                newArray = new TSource[collection.Count];
+                collection.CopyTo(newArray, collection.Count);
+                return newArray;
+            }
+            else
+            {
+                newArray = new TSource[Count(source)];
+                int index = 0;
 
-            foreach (TSource element in source)
-                newArray[count++] = element;
+                foreach (TSource element in source)
+                    newArray[index++] = element;
+            }
 
             return newArray;
         }

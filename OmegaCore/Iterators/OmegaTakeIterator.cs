@@ -15,6 +15,7 @@ namespace OmegaCore.Iterators
         {
             _sourceEnumerator = source.GetEnumerator();
             Count = count;
+            _count = count;
         }
 
         public override bool MoveNext()

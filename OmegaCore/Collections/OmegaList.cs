@@ -107,5 +107,10 @@ namespace OmegaCore.Collections
             _internalArray = null;
         }
 
+        public void CopyTo(T[] array, int lenght)
+        {
+            for (int i = 0; i < lenght; i++)
+                array[i] = this[i];
+        }
     }
 }

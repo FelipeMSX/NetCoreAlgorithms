@@ -29,24 +29,29 @@ namespace MyBenchmarks
 
         }
 
-        [Benchmark]
-        public void OmegaEnumerable_Count() => _iOmegaEnumerable.Count();
+        //[Benchmark]
+        //public void OmegaEnumerable_Count() => _iOmegaEnumerable.Count();
+
+        //[Benchmark]
+        //public void Enumerable_Count() => _iEnumerable.Count();
+
+        //[Benchmark]
+        //public void OmegaEnumerable_Take() => _iOmegaEnumerable.Take(100);
+
+        //[Benchmark]
+        //public void Enumerable_Take() => _iEnumerable.Take(100);
+
+        //[Benchmark]
+        //public void OmegaEnumerable_FirstOrDefault() => _iOmegaEnumerable.FirstOrDefault((x) => x > 1000);
+
+        //[Benchmark]
+        //public void Enumerable_FirsOrDefault() => _iEnumerable.FirstOrDefault((x) => x > 1000);
 
         [Benchmark]
-        public void Enumerable_Count() => _iEnumerable.Count();
+        public void OmegaEnumerable_ToArray() => _iOmegaEnumerable.ToArray();
 
         [Benchmark]
-        public void OmegaEnumerable_Take() => _iOmegaEnumerable.Take(100);
-
-        [Benchmark]
-        public void Enumerable_Take() => _iEnumerable.Take(100);
-
-
-        [Benchmark]
-        public void OmegaEnumerable_FirstOrDefault() => _iOmegaEnumerable.FirstOrDefault((x) => x > 1000);
-
-        [Benchmark]
-        public void Enumerable_FirsOrDefault() => _iEnumerable.FirstOrDefault((x) => x > 1000);
+        public void Enumerable_ToArray() => _iEnumerable.ToArray();
     }
 
     public class Program

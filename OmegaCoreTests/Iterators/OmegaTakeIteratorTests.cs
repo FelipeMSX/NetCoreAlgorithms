@@ -9,7 +9,7 @@ using OmegaCore.Collections;
 namespace OmegaCoreTests.Iterators
 {
     [TestClass]
-    public class OmegaListIteratorTests
+    public class OmegaTakeIteratorTests
     {
 
         private IOmegaList<SampleObject> _list;
@@ -19,7 +19,7 @@ namespace OmegaCoreTests.Iterators
         public void TearUp()
         {
             _list = SampleObject.CreateSampleList();
-            _iterator = new OmegaListIterator<SampleObject>(_list);
+            _iterator = new OmegaTakeIterator<SampleObject>(_list,10);
         }
 
         [TestCleanup]
@@ -43,7 +43,7 @@ namespace OmegaCoreTests.Iterators
         {
             //Arrange
             _list = new OmegaList<SampleObject>();
-            _iterator = new OmegaListIterator<SampleObject>(_list);
+            _iterator = new OmegaTakeIterator<SampleObject>(_list,0);
             bool success = true;
 
             //Act   
@@ -54,15 +54,30 @@ namespace OmegaCoreTests.Iterators
             Assert.IsTrue(success);
         }
 
+
+        [TestMethod,Timeout(10000)]
+        public void MoveNext_IteratingUntilTheEnd_Success()
+        {
+            //Arrange
+            _list = SampleObject.CreateSampleList();
+            _iterator = new OmegaTakeIterator<SampleObject>(_list, 9999999);
+
+            //Act   
+            while (_iterator.MoveNext())
+
+            //Assert
+            Assert.IsTrue(true);
+        }
+
         [TestMethod]
         public void Reset_FilledCollectionIteraveTwoTimes_Success()
         {
             //Act
-            bool success = Helpers.CheckListOrder(_list, _iterator);
+            bool success = CheckListOrder(_list, _iterator,10);
             _iterator.Reset();
 
             if (!success)
-                success = Helpers.CheckListOrder(_list, _iterator);
+                success = CheckListOrder(_list, _iterator,10);
 
             //Assert
             Assert.IsTrue(success);
@@ -72,11 +87,31 @@ namespace OmegaCoreTests.Iterators
         public void Reset_CheckCurrentValueAfterReset_NullValue()
         {
             //Act
-            Helpers.CheckListOrder(_list, _iterator);
+            CheckListOrder(_list, _iterator, 10);
             _iterator.Reset();
 
             //Assert
             Assert.IsTrue(_iterator.Current == null);
+        }
+
+        private bool CheckListOrder<T>(IOmegaList<T> list, IOmegaIteratorBase<T> iterator, int expectedCount)
+        {
+            bool isInOrder = true;
+            int index = 0;
+            int count = expectedCount;
+
+            while (iterator.MoveNext() && isInOrder)
+            {
+                if (!list[index++].Equals(iterator.Current))
+                    isInOrder = false;
+
+                count--;
+            }
+
+            if (count > 0)
+                return false;
+
+            return isInOrder;
         }
     }
 }

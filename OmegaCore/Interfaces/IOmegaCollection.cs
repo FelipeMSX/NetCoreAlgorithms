@@ -1,7 +1,7 @@
 ﻿
 namespace OmegaCore.Interfaces
 {
-    public interface IOmegaCollection<T> : IOmegaEnumerable<T>
+    public interface IOmegaCollection<T> : IOmegaEnumerable<T>, IOmegaDisposable
     {
         int Count { get; }
         void Add(T item);
@@ -10,5 +10,6 @@ namespace OmegaCore.Interfaces
         T First();
         T Last();
         void Clear();
+        void CopyTo(T[] array, int lenght);
     }
 }
