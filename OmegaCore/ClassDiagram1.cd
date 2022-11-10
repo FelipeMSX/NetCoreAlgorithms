@@ -1,74 +1,109 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram MajorVersion="1" MinorVersion="1">
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
   <Class Name="OmegaCore.Iterators.OmegaArrayIterator&lt;T&gt;">
-    <Position X="6.75" Y="1.25" Width="1.5" />
+    <Position X="5" Y="4" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAEAABAAAEAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
       <FileName>Iterators\OmegaArrayIterator.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="OmegaCore.Iterators.OmegaListIterator&lt;T&gt;">
-    <Position X="2.25" Y="1.25" Width="1.5" />
+    <Position X="5" Y="9.5" Width="3" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAEAABAAAEAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
       <FileName>Iterators\OmegaListIterator.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="OmegaCore.Abstracts.IOmegaterator&lt;T&gt;">
-    <Position X="4.5" Y="2" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>EAAAAAAAAAAABAAAAACAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
-      <FileName>Abstracts\IOmegaterator.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
   <Class Name="OmegaCore.OmegaLINQ.OmegaLINQ">
-    <Position X="5.25" Y="5.75" Width="2.5" />
+    <Position X="16.75" Y="6.5" Width="7.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAIAAAAAQAAAAAAAAQAABAAAAAAAAEAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAIAAAAAQAAAAAAAAQAABAAAAAAAAEAAABAAAA=</HashCode>
       <FileName>OmegaLINQ\OmegaLINQ.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="OmegaCore.Iterators.OmegaTakeIterator&lt;T&gt;">
+    <Position X="5" Y="0.5" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAQAAAAIAAAAIACAAAAAAAA=</HashCode>
+      <FileName>Iterators\OmegaTakeIterator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OmegaCore.Iterators.OmegaPredicateIterator&lt;T&gt;">
+    <Position X="5" Y="6.5" Width="5.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAIAIAAIAAAAAAAAAA=</HashCode>
+      <FileName>Iterators\OmegaPredicateIterator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OmegaCore.Abstracts.IOmegaIteratorBase&lt;T&gt;">
+    <Position X="0.5" Y="0.5" Width="4" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAACAABBAAAACAAAAAAAAAIAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Abstracts\IOmegaIteratorBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OmegaCore.Collections.OmegaList&lt;T&gt;">
+    <Position X="20.75" Y="1" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AIJAAAAAACAAARAACAAABAQAAAAAoAAAAAACAAhAAAA=</HashCode>
+      <FileName>Collections\OmegaList.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
   <Interface Name="OmegaCore.Interfaces.IOmegaCollection&lt;T&gt;">
-    <Position X="10.25" Y="4.5" Width="1.5" />
+    <Position X="12" Y="0.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AIIAAAAAAAAAAQAAAAAABAQAAAAAAAAAAAACAABAAAA=</HashCode>
       <FileName>Interfaces\IOmegaCollection.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="OmegaCore.Interfaces.IOmegaList&lt;T&gt;">
-    <Position X="12.5" Y="4.75" Width="1.5" />
+    <Position X="14.75" Y="2" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AABAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Interfaces\IOmegaList.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="OmegaCore.Interfaces.IOmegaEnumerable&lt;T&gt;">
-    <Position X="10.25" Y="1" Width="1.5" />
+    <Position X="11.5" Y="3.5" Width="3" />
+    <InheritanceLine Type="OmegaCore.Interfaces.IOmegaEnumerable" FixedFromPoint="true">
+      <Path>
+        <Point X="13" Y="5.25" />
+        <Point X="13" Y="4.733" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Interfaces\IOmegaEnumerable.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="OmegaCore.Interfaces.IOmegaEnumerable">
-    <Position X="10.25" Y="2.75" Width="1.5" />
+    <Position X="11.75" Y="5.25" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Interfaces\IOmegaEnumerable.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="OmegaCore.Interfaces.IOmegaEnumerator&lt;T&gt;">
-    <Position X="12.5" Y="1" Width="1.5" />
+    <Position X="16" Y="0.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Interfaces\IOmegaEnumerator.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="OmegaCore.Interfaces.IOmegaNumerator&lt;T&gt;">
-    <Position X="12.5" Y="3" Width="1.5" />
+  <Interface Name="OmegaCore.Interfaces.IOmegaDisposable">
+    <Position X="18.75" Y="0.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Interfaces\IOmegaNumerator.cs</FileName>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IOmegaDisposable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="OmegaCore.Interfaces.IOmegaEnumerator">
+    <Position X="18.5" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAACAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IOmegaEnumerator.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Font Name="Segoe UI" Size="9" />
