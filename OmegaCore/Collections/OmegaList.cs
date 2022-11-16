@@ -14,6 +14,15 @@ namespace OmegaCore.Collections
         public int Count { get; private set; }
 
 
+        public OmegaList(IOmegaCollection<T> collection)
+        {
+            _internalArray = new T[collection.Count];
+
+            foreach (T item in collection)
+                _internalArray[Count++] = item;
+
+        }
+
         //TODO - Does it need to create a new copy?
         public OmegaList(T[] elements)
         {

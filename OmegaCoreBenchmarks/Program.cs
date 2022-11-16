@@ -47,11 +47,40 @@ namespace MyBenchmarks
         //[Benchmark]
         //public void Enumerable_FirsOrDefault() => _iEnumerable.FirstOrDefault((x) => x > 1000);
 
-        [Benchmark]
-        public void OmegaEnumerable_ToArray() => _iOmegaEnumerable.ToArray();
+        //[Benchmark]
+        //public void OmegaEnumerable_ToArray() => _iOmegaEnumerable.ToArray();
+
+        //[Benchmark]
+        //public void Enumerable_ToArray() => _iEnumerable.ToArray();
 
         [Benchmark]
-        public void Enumerable_ToArray() => _iEnumerable.ToArray();
+        public void Garbagetest ()
+        {
+            for (int i = 0; i < 1; i++)
+            {
+                GargabeObject obj =  new GargabeObject(2);
+            }
+        }
+
+        [Benchmark]
+        public void Garbagetest_DoNothing()
+        {
+            for (int i = 0; i < 1; i++)
+            {
+            }
+        }
+
+        public class GargabeObject
+        {
+           public int Id { get; set; }
+            public int Id2 { get; set; }
+
+
+            public GargabeObject(int id)
+            {
+                Id = id;    
+            }
+        }
     }
 
     public class Program
@@ -61,4 +90,6 @@ namespace MyBenchmarks
             var summary = BenchmarkRunner.Run<OmegaEnumerableVsEnumerable>();
         }
     }
+
+    
 }
