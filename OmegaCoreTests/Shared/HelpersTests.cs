@@ -4,7 +4,7 @@ using System;
 
 namespace OmegaCoreTests.Shared
 {
-    public static class Helpers
+    public static class HelpersTests
     {
         public static bool CheckArrayOrder<T>(T[] collection, IOmegaIteratorBase<T> iterator )
         {

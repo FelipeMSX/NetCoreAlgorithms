@@ -2,31 +2,46 @@
 {
     public static class ArrayHelpers
     {
-        public  static T[] IncreaseCapacity<T>(T[] source,int newSize)
+        public static T[] IncreaseCapacity<T>(this T[] source, int newSize)
         {
             T[] newSource = new T[newSize];
 
-            for (int i = 0; i < source.Length; i++)
-                newSource[i] = source[i];
+            OmegaCopy(source, newSource);
 
             return newSource;
         }
 
-        public static void Copy<T>(this T[] source, T[] destination) 
-        { 
+        public static void OmegaCopy<T>(this T[] source, T[] destination)
+        {
+            if (destination.Length < source.Length)
+                throw new ArgumentException("The destination array should has a size greater or equals than source");
 
+            for (int i = 0; i < source.Length; i++)
+                destination[i] = source[i];
         }
 
-
-        public static void Shift<T>(T[] source, int init, int end)
+        public static void Shift<T>(this T[] source, int init, int end)
         {
+            if(init >= end)
+                throw new ArgumentException("Init should be greater than End");
+            if (source.Length < init || source.Length < end)
+                throw new ArgumentException("Init or End is out of range in the source collection");
+
             for (int i = init; i < end; i++)
                 source[i] = source[i + 1];
+
+            source[end] = default!;
         }
 
-        public static void Shift<T>(T[] source, int init)
+        public static void Shift<T>(this T[] source, int init)
         {
-           Shift(source, init, source.Length - 1);  
+            Shift(source, init, source.Length - 1);
+        }
+
+        public static void SetDefault<T>(this T[] source)
+        {
+            for (int i = 0; i < source.Length; i++)
+                source[i] = default!;
         }
     }
 }

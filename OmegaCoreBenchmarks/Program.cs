@@ -1,6 +1,7 @@
 ﻿using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Running;
 using OmegaCore.Collections;
+using OmegaCore.Helpers;
 using OmegaCore.Interfaces;
 using OmegaCore.OmegaLINQ;
 using System.Security.Cryptography;
@@ -29,46 +30,59 @@ namespace MyBenchmarks
 
         }
 
-        //[Benchmark]
-        //public void OmegaEnumerable_Count() => _iOmegaEnumerable.Count();
-
-        //[Benchmark]
-        //public void Enumerable_Count() => _iEnumerable.Count();
-
-        //[Benchmark]
-        //public void OmegaEnumerable_Take() => _iOmegaEnumerable.Take(100);
-
-        //[Benchmark]
-        //public void Enumerable_Take() => _iEnumerable.Take(100);
-
-        //[Benchmark]
-        //public void OmegaEnumerable_FirstOrDefault() => _iOmegaEnumerable.FirstOrDefault((x) => x > 1000);
-
-        //[Benchmark]
-        //public void Enumerable_FirsOrDefault() => _iEnumerable.FirstOrDefault((x) => x > 1000);
-
-        //[Benchmark]
-        //public void OmegaEnumerable_ToArray() => _iOmegaEnumerable.ToArray();
-
-        //[Benchmark]
-        //public void Enumerable_ToArray() => _iEnumerable.ToArray();
+        [Benchmark]
+        public void OmegaEnumerable_Count() => _iOmegaEnumerable.Count();
 
         [Benchmark]
-        public void Garbagetest ()
+        public void Enumerable_Count() => _iEnumerable.Count();
+
+        [Benchmark]
+        public void OmegaEnumerable_Take() => _iOmegaEnumerable.Take(100);
+
+        [Benchmark]
+        public void Enumerable_Take() => _iEnumerable.Take(100);
+
+        [Benchmark]
+        public void OmegaEnumerable_FirstOrDefault() => _iOmegaEnumerable.FirstOrDefault((x) => x > 1000);
+
+        [Benchmark]
+        public void Enumerable_FirsOrDefault() => _iEnumerable.FirstOrDefault((x) => x > 1000);
+
+        [Benchmark]
+        public void OmegaEnumerable_ToArray() => _iOmegaEnumerable.ToArray();
+
+        [Benchmark]
+        public void Enumerable_ToArray() => _iEnumerable.ToArray();
+
+        [Benchmark]
+        public void OmegaArrayHelpers_Copy()
         {
-            for (int i = 0; i < 1; i++)
-            {
-                GargabeObject obj =  new GargabeObject(2);
-            }
+            int[] newArray = new int[N];
+            data.OmegaCopy(newArray);
         }
 
         [Benchmark]
-        public void Garbagetest_DoNothing()
-        {
-            for (int i = 0; i < 1; i++)
-            {
-            }
+        public void Array_Copy() {
+            int[] newArray = new int[N];
+            data.CopyTo(newArray, 0);
         }
+
+        //[Benchmark]
+        //public void Garbagetest ()
+        //{
+        //    for (int i = 0; i < 1; i++)
+        //    {
+        //        GargabeObject obj =  new GargabeObject(2);
+        //    }
+        //}
+
+        //[Benchmark]
+        //public void Garbagetest_DoNothing()
+        //{
+        //    for (int i = 0; i < 1; i++)
+        //    {
+        //    }
+        //}
 
         public class GargabeObject
         {

@@ -33,7 +33,7 @@ namespace OmegaCoreTests.Iterators
         public void MoveNext_WithFilledCollection_AllElementsReturned()
         {
             //Act
-            bool success = Helpers.CheckListOrder(_list, _iterator);
+            bool success = HelpersTests.CheckListOrder(_list, _iterator);
             //Assert
             Assert.IsTrue(success);
         }
@@ -58,11 +58,11 @@ namespace OmegaCoreTests.Iterators
         public void Reset_FilledCollectionIteraveTwoTimes_Success()
         {
             //Act
-            bool success = Helpers.CheckListOrder(_list, _iterator);
+            bool success = HelpersTests.CheckListOrder(_list, _iterator);
             _iterator.Reset();
 
             if (!success)
-                success = Helpers.CheckListOrder(_list, _iterator);
+                success = HelpersTests.CheckListOrder(_list, _iterator);
 
             //Assert
             Assert.IsTrue(success);
@@ -72,7 +72,7 @@ namespace OmegaCoreTests.Iterators
         public void Reset_CheckCurrentValueAfterReset_NullValue()
         {
             //Act
-            Helpers.CheckListOrder(_list, _iterator);
+            HelpersTests.CheckListOrder(_list, _iterator);
             _iterator.Reset();
 
             //Assert

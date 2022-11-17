@@ -24,7 +24,7 @@ namespace OmegaCore.Collections
             _capacity = INITIAL_CAPACITY;
         }
 
-        public OmegaQueue(int initialCapacity,bool resizable)
+        public OmegaQueue(int initialCapacity, bool resizable)
         {
             _internalArray = new T[initialCapacity];
             _capacity = initialCapacity;
@@ -43,7 +43,7 @@ namespace OmegaCore.Collections
         public OmegaQueue(T[] elements)
         {
             _internalArray = new T[elements.Length];
-            elements.CopyTo(_internalArray, 0);
+            elements.OmegaCopy(_internalArray);
             Count = elements.Length;
         }
 
@@ -60,7 +60,7 @@ namespace OmegaCore.Collections
             else if (IsFull())
             {
                 _capacity *= GROWING_FACTOR;
-                _internalArray = ArrayHelpers.IncreaseCapacity(_internalArray, _capacity);
+                _internalArray = _internalArray.IncreaseCapacity(_capacity);
             }
 
             _internalArray[Count++] = obj;
@@ -76,38 +76,8 @@ namespace OmegaCore.Collections
                 throw new EmptyCollectionException();
 
             T item = _internalArray[0];
-
-            //Shifts the itens.
-            //for (int i = 0; i < Count; i++)
-            //    _internalArray[i] = _internalArray[i + 1];
-            /*
-             * 
-             * init = 0; end = 3; lenght = 2; count = 3
-             *  n
-             *  i  
-             *  
-             *  i = 0;
-             *  i  n
-             *  0, 1, 2
-             *  1, 2, 3
-             *  
-             *  -------
-             *              
-             *  i = 1;
-             *  i < 2
-             *  
-             *  0, 1, 2
-             *  [1, 2, 3]
-             *  
-             *  i = 0
-             *  n = 2
-             * 
-             */
-
-            ArrayHelpers.Shift(_internalArray, 0, Count);
-
+            _internalArray.Shift(0, Count);
             Count--;
-
 
             return item;
         }
@@ -128,24 +98,23 @@ namespace OmegaCore.Collections
         public void Clear()
         {
             for (int i = 0; i < Count; i++)
-                _internalArray[i] = default;
+                _internalArray[i] = default!;
 
             Count = 0;
         }
 
         public void CopyTo(T[] array, int lenght)
         {
-            for (int i = 0; i < lenght; i++)
-                array[i] = _internalArray[i];
+            array.OmegaCopy(array);
         }
 
         public void Dispose()
         {
             for (int i = 0; i < Count; i++)
-                _internalArray[i] = default;
+                _internalArray[i] = default!;
 
             Count = 0;
-            _internalArray = null;
+            _internalArray = null!;
         }
 
         public IOmegaEnumerator<T> GetEnumerator()

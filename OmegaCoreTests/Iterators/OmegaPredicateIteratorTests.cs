@@ -39,7 +39,7 @@ namespace OmegaCoreTests.Iterators
             _list = new OmegaList<SampleObject>();
             _iterator = new OmegaPredicateIterator<SampleObject>(_list, (x) => true);
 
-            bool success = Helpers.CheckListOrder(_list, _iterator);
+            bool success = HelpersTests.CheckListOrder(_list, _iterator);
             //Assert
             Assert.IsTrue(success);
         }

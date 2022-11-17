@@ -61,5 +61,10 @@ namespace Algorithms.Collections
         {
             throw new System.NotImplementedException();
         }
+
+        void IOmegaCollection<T>.CopyTo(T[] array, int lenght)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

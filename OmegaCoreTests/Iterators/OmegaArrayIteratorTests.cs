@@ -45,7 +45,7 @@ namespace OmegaCoreTests.Iterators
         public void MoveNext_CustomEnumerator_ExpectedOrder()
         {
             //Act
-            bool isInOrder = Helpers.CheckArrayOrder(_collection, _iterator);
+            bool isInOrder = HelpersTests.CheckArrayOrder(_collection, _iterator);
 
             //Assert
             Assert.IsTrue(isInOrder, "The order of the collection should be {1,2,3,4,5}. It got something different");
@@ -55,12 +55,12 @@ namespace OmegaCoreTests.Iterators
         public void Reset_ResetingCollectionTwoTimes_ExpectedOrder()
         {
             //Act
-            bool isInOrder = Helpers.CheckArrayOrder(_collection, _iterator);
+            bool isInOrder = HelpersTests.CheckArrayOrder(_collection, _iterator);
 
             if (isInOrder)
             {
                 _iterator.Reset();
-                isInOrder = Helpers.CheckArrayOrder(_collection, _iterator);
+                isInOrder = HelpersTests.CheckArrayOrder(_collection, _iterator);
             }
 
             //Assert
@@ -71,7 +71,7 @@ namespace OmegaCoreTests.Iterators
         public void Reset_ResetingCollectionAndGettingDefaultValue_Zero()
         {
             //Act
-            Helpers.CheckArrayOrder(_collection, _iterator);
+            HelpersTests.CheckArrayOrder(_collection, _iterator);
             _iterator.Reset();
 
             //Assert
