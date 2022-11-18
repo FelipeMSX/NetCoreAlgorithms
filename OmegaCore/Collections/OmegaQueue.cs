@@ -94,12 +94,9 @@ namespace OmegaCore.Collections
             return _internalArray[0];
         }
 
-
         public void Clear()
         {
-            for (int i = 0; i < Count; i++)
-                _internalArray[i] = default!;
-
+            _internalArray.Reset(Count);
             Count = 0;
         }
 

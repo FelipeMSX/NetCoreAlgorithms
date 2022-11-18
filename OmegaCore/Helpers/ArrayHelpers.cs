@@ -38,9 +38,11 @@
             Shift(source, init, source.Length - 1);
         }
 
-        public static void SetDefault<T>(this T[] source)
+        public static void Reset<T>(this T[] source, int count = 0)
         {
-            for (int i = 0; i < source.Length; i++)
+            int maxSize = count != 0 ? count : source.Length;
+
+            for (int i = 0; i < maxSize; i++)
                 source[i] = default!;
         }
     }
