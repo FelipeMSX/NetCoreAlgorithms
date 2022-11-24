@@ -1,4 +1,6 @@
-﻿namespace OmegaCore.Helpers
+﻿using System.Diagnostics;
+
+namespace OmegaCore.Helpers
 {
     public static class ArrayHelpers
     {
@@ -38,9 +40,11 @@
             Shift(source, init, source.Length - 1);
         }
 
-        public static void SetDefault<T>(this T[] source)
+        public static void Clear<T>(this T[] source, int count = 0)
         {
-            for (int i = 0; i < source.Length; i++)
+            int index = count == 0 ? source.Length: count;
+
+            for (int i = 0; i < index; i++)
                 source[i] = default!;
         }
     }

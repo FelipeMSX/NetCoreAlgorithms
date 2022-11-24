@@ -6,7 +6,6 @@ namespace OmegaCore.Exceptions
     {
         public new const string Message = "This collection does not contain any element!";
 
-
         public EmptyCollectionException() : base(Message) { }
 
         public EmptyCollectionException(string message) : base(message ?? Message) { }

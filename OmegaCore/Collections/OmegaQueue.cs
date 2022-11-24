@@ -110,9 +110,7 @@ namespace OmegaCore.Collections
 
         public void Dispose()
         {
-            for (int i = 0; i < Count; i++)
-                _internalArray[i] = default!;
-
+           _internalArray.Clear(Count);
             Count = 0;
             _internalArray = null!;
         }
@@ -122,12 +120,12 @@ namespace OmegaCore.Collections
             return new OmegaArrayIterator<T>(_internalArray);
         }
 
-        private bool IsEmpty() => Count == 0;
-        private bool IsFull() => Count == _capacity;
-
         IOmegaEnumerator IOmegaEnumerable.GetEnumerator()
         {
             return this.GetEnumerator();
         }
+
+        private bool IsEmpty() => Count == 0;
+        private bool IsFull() => Count == _capacity;
     }
 }

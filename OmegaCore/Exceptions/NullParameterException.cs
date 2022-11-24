@@ -5,19 +5,12 @@ namespace Algorithms.Exceptions
 {
     public class NullParameterException : Exception, ISerializable
     {
-        public const string DefaultMessage = "The object can't be null!";
+        public new const string Message = "The object can't be null!";
 
-        public NullParameterException() : base(DefaultMessage)
-        {
-        }
+        public NullParameterException() : base(Message){}
 
-        public NullParameterException(string message) : base(message ?? DefaultMessage)
-        {
-        }
+        public NullParameterException(string message) : base(message ?? Message){}
 
-        public NullParameterException(string message, Exception innerException) : base(message ?? DefaultMessage, innerException)
-        {
-
-        }
+        public NullParameterException(string message, Exception innerException) : base(message ?? Message, innerException){}
     }
 }

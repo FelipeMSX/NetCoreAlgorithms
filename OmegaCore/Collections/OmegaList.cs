@@ -7,7 +7,7 @@ namespace OmegaCore.Collections
     public class OmegaList<T> : IOmegaList<T>
     {
         private const int INITIAL_CAPACITY = 100;
-        private T[] _internalArray;
+        private T[]? _internalArray;
 
         public T this[int index] { get => _internalArray[index]; set => _internalArray[index] = value; }
 

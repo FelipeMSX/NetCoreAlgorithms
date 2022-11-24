@@ -52,7 +52,7 @@ namespace OmegaCore.OmegaLINQ
         public static TSource[] ToArray<TSource>(this IOmegaEnumerable<TSource> source)
         {
             //Maybe this can generate extra allocation every time that is called
-            TSource[] newArray = null;
+            TSource[]? newArray = null;
 
             if (source is IOmegaCollection<TSource> collection)
             {

@@ -2,7 +2,6 @@
 using OmegaCore.Abstracts;
 using OmegaCore.Helpers;
 using OmegaCore.Iterators;
-using OmegaCoreTests.Shared;
 using System;
 
 namespace OmegaCoreTests.Helpers
@@ -116,6 +115,48 @@ namespace OmegaCoreTests.Helpers
         {
             //Act
             _collection.Shift(2, 6);
+        }
+
+        [TestMethod]
+        public void Clear_WithCollectionLength_AllValuesAreDefault()
+        {
+            //Act
+            _collection.Clear();
+
+            bool isValid = true;
+            int count = 0;
+
+            while (isValid && count < _collection.Length)
+                isValid = _collection[count++] == default;
+
+            //Assert
+            Assert.IsTrue(isValid);
+        }
+
+        [TestMethod]
+        public void Clear_WithSpecifiedSize_TwoElementsCleared()
+        {
+            //Act
+            _collection.Clear(2);
+
+            bool isValid = true;
+            int count = 0;
+
+            while (isValid && count < 2)
+                isValid = _collection[count++] == default;
+
+            //Assert
+            Assert.IsTrue(isValid);
+        }
+
+        [TestMethod]
+        public void Clear_NegativeValue_NothingHappens()
+        {
+            //Act
+            _collection.Clear(-1);
+
+            //Assert
+            Assert.IsTrue(_collection[0] == 1);
         }
     }
 }
