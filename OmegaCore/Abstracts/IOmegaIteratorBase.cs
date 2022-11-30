@@ -4,26 +4,17 @@ namespace OmegaCore.Abstracts
 {
     public abstract class IOmegaIteratorBase<T> : IOmegaEnumerator<T>, IOmegaEnumerable<T>
     {
-        public T? Current { get; protected set; }
+        public T Current { get; protected set; }
 
-        object IOmegaEnumerator.Current => Current;
-
-        public void Dispose()
-        {
-            Current = default;
-        }
+        object IOmegaEnumerator.Current => Current!;
 
         public abstract bool MoveNext();
         public abstract void Reset();
+        public abstract void Dispose();
 
-        IOmegaEnumerator IOmegaEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();   
-        }
+        IOmegaEnumerator IOmegaEnumerable.GetEnumerator() => GetEnumerator();   
+        
+        public IOmegaEnumerator<T> GetEnumerator() =>  this;
 
-        public IOmegaEnumerator<T> GetEnumerator()
-        {
-            return this;
-        }
     }
 }

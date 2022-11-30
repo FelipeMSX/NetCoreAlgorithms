@@ -81,6 +81,17 @@ namespace OmegaCore.OmegaLINQ
         {
             return new OmegaTakeIterator<TSource>(source, count);
         }
+
+        //public static IOmegaEnumerable<TSource> Take<TSource>(this IOmegaEnumerable<TSource> source, int count)
+        //{
+        //    var enumerator = source.GetEnumerator();
+        //    return TakeIterator(source, count);
+        //}
+        //private static IEnumerable<TSource> TakeIterator<TSource>(IOmegaEnumerable<TSource> source, int count)
+        //{
+        //    if (count <= 0)
+        //        yield break;
+
     }
 
 }

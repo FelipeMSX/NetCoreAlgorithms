@@ -23,7 +23,7 @@ namespace OmegaCoreTests.Iterators
         [TestCleanup]
         public void TearDown()
         {
-            _collection = null;
+            _collection = null!;
             _iterator.Dispose();
         }
 

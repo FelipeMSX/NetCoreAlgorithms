@@ -42,30 +42,30 @@ namespace MyBenchmarks
         [Benchmark]
         public void Enumerable_Take() => _iEnumerable.Take(100);
 
-        [Benchmark]
-        public void OmegaEnumerable_FirstOrDefault() => _iOmegaEnumerable.FirstOrDefault((x) => x > 1000);
+        //[Benchmark]
+        //public void OmegaEnumerable_FirstOrDefault() => _iOmegaEnumerable.FirstOrDefault((x) => x > 1000);
 
-        [Benchmark]
-        public void Enumerable_FirsOrDefault() => _iEnumerable.FirstOrDefault((x) => x > 1000);
+        //[Benchmark]
+        //public void Enumerable_FirsOrDefault() => _iEnumerable.FirstOrDefault((x) => x > 1000);
 
-        [Benchmark]
-        public void OmegaEnumerable_ToArray() => _iOmegaEnumerable.ToArray();
+        //[Benchmark]
+        //public void OmegaEnumerable_ToArray() => _iOmegaEnumerable.ToArray();
 
-        [Benchmark]
-        public void Enumerable_ToArray() => _iEnumerable.ToArray();
+        //[Benchmark]
+        //public void Enumerable_ToArray() => _iEnumerable.ToArray();
 
-        [Benchmark]
-        public void OmegaArrayHelpers_Copy()
-        {
-            int[] newArray = new int[N];
-            data.OmegaCopy(newArray);
-        }
+        //[Benchmark]
+        //public void OmegaArrayHelpers_Copy()
+        //{
+        //    int[] newArray = new int[N];
+        //    data.OmegaCopy(newArray);
+        //}
 
-        [Benchmark]
-        public void Array_Copy() {
-            int[] newArray = new int[N];
-            data.CopyTo(newArray, 0);
-        }
+        //[Benchmark]
+        //public void Array_Copy() {
+        //    int[] newArray = new int[N];
+        //    data.CopyTo(newArray, 0);
+        //}
 
         //[Benchmark]
         //public void Garbagetest ()

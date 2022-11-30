@@ -12,9 +12,7 @@ namespace OmegaCoreTests.OmegaLINQ
     public class OmegaLINQTests
     {
 
-#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         private IOmegaList<int> _enumerableCollection;
-#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 
         [TestInitialize]
         public void TearUp()
@@ -26,7 +24,7 @@ namespace OmegaCoreTests.OmegaLINQ
         public void TearDown()
         {
             //Dar dispose;
-            _enumerableCollection = null;
+            _enumerableCollection.Dispose();
         }
 
         #region First

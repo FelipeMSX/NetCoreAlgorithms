@@ -7,7 +7,7 @@ namespace OmegaCore.Iterators
     {
         public int Count { get; }
 
-        private readonly IOmegaEnumerator<T> _sourceEnumerator;
+        private IOmegaEnumerator<T> _sourceEnumerator;
 
         private int _count;
 
@@ -36,9 +36,16 @@ namespace OmegaCore.Iterators
 
         public override void Reset()
         {
-            Current = default;
+            Current = default!;
             _count = Count;
             _sourceEnumerator.Reset();
+        }
+
+        public override void Dispose()
+        {
+            _sourceEnumerator.Dispose();
+            Current = default!;
+            _sourceEnumerator= null!;
         }
     }
 }

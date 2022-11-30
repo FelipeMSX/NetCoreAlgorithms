@@ -5,7 +5,7 @@ namespace OmegaCore.Iterators
 {
     public class OmegaListIterator<T> : IOmegaIteratorBase<T>
     {
-        private readonly IOmegaList<T> _source;
+        private IOmegaList<T> _source;
         private int _currentIndex = 0;
 
         public OmegaListIterator(IOmegaList<T> source)
@@ -27,7 +27,13 @@ namespace OmegaCore.Iterators
         public override void Reset()
         {
             _currentIndex = 0;
-            Current = default;
+            Current = default!;
+        }
+
+        public override void Dispose()
+        {
+            Current = default!;
+            _source = null!;
         }
     }
 }

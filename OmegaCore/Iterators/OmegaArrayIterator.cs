@@ -1,11 +1,10 @@
 ﻿using OmegaCore.Abstracts;
-using OmegaCore.Interfaces;
 
 namespace OmegaCore.Iterators
 {
     public class OmegaArrayIterator<T> : IOmegaIteratorBase<T>
     {
-        private readonly T[] _source;
+        private T[] _source;
         private int _currentIndex = 0;
 
         public OmegaArrayIterator(T[] source)
@@ -26,8 +25,13 @@ namespace OmegaCore.Iterators
         public override void Reset()
         {
             _currentIndex = 0;
-            Current = default;
+            Current = default!;
         }
 
+        public override void Dispose()
+        {
+            Current = default!;
+            _source = null!;
+        }
     }
 }

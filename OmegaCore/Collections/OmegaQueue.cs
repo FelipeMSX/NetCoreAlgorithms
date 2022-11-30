@@ -97,9 +97,7 @@ namespace OmegaCore.Collections
 
         public void Clear()
         {
-            for (int i = 0; i < Count; i++)
-                _internalArray[i] = default!;
-
+            _internalArray.Clear(Count);
             Count = 0;
         }
 
@@ -110,9 +108,7 @@ namespace OmegaCore.Collections
 
         public void Dispose()
         {
-           _internalArray.Clear(Count);
-            Count = 0;
-            _internalArray = null!;
+            Clear();
         }
 
         public IOmegaEnumerator<T> GetEnumerator()

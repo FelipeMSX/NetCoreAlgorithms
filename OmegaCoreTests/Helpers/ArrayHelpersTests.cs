@@ -154,9 +154,46 @@ namespace OmegaCoreTests.Helpers
         {
             //Act
             _collection.Clear(-1);
-
             //Assert
             Assert.IsTrue(_collection[0] == 1);
+        }
+
+        [TestMethod]
+        public void IndexOf_FilledCollection_LastElementIndex()
+        {
+            //Act
+            int indexOfItem = _collection.IndexOf(5);
+            //Assert
+            Assert.IsTrue(indexOfItem == 4);
+        }
+
+        [TestMethod]
+        public void IndexOf_FilledCollection_FirstElementIndex()
+        {
+            //Act
+            int indexOfItem = _collection.IndexOf(1);
+            //Assert
+            Assert.IsTrue(indexOfItem == 0);
+        }
+
+        [TestMethod]
+        public void IndexOf_FilledCollection_ItemNotFound()
+        {
+            //Act
+            int indexOfItem = _collection.IndexOf(10);
+            //Assert
+            Assert.IsTrue(indexOfItem == -1);
+        }
+
+        [TestMethod]
+        public void IndexOf_EmptyCOllection_ItemNotFound()
+        {
+            int[] destination = new int[0];
+
+            //Act
+            int indexOfItem = _collection.IndexOf(10);
+            //Assert
+            Assert.IsTrue(indexOfItem == -1);
         }
     }
 }

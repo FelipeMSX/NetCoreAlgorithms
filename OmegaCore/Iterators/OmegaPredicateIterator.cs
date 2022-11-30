@@ -5,9 +5,9 @@ namespace OmegaCore.Iterators
 {
     public class OmegaPredicateIterator<T> : IOmegaIteratorBase<T>
     {
-        private readonly IOmegaEnumerator<T> _sourceEnumerator;
+        private IOmegaEnumerator<T> _sourceEnumerator;
 
-        private readonly Func<T, bool> _predicate;
+        private Func<T, bool> _predicate;
 
         public OmegaPredicateIterator(IOmegaEnumerable<T> source, Func<T, bool> predicate)
         {
@@ -19,7 +19,7 @@ namespace OmegaCore.Iterators
         {
             while (_sourceEnumerator.MoveNext())
             {
-                if (_predicate(_sourceEnumerator.Current))
+                if (_predicate(_sourceEnumerator.Current!))
                 {
                     Current = _sourceEnumerator.Current;
                     return true;
@@ -30,8 +30,16 @@ namespace OmegaCore.Iterators
 
         public override void Reset()
         {
-            Current = default;
+            Current = default!;
             _sourceEnumerator.Reset();
+        }
+
+        public override void Dispose()
+        {
+            _sourceEnumerator.Dispose();
+            Current = default!;
+            _sourceEnumerator = null!;
+            _predicate= null!;
         }
     }
 }

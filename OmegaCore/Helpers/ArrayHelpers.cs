@@ -47,5 +47,23 @@ namespace OmegaCore.Helpers
             for (int i = 0; i < index; i++)
                 source[i] = default!;
         }
+
+        public static int IndexOf<T>(this T[] source, T item)
+        {
+            if (item == null)
+                throw new ArgumentNullException(nameof(item));
+
+            int index = 0;
+
+            while (index < source.Length)
+            {
+                if (item.Equals(source[index]))
+                    return index;
+
+                index++;
+            }
+
+            return -1;
+        }
     }
 }

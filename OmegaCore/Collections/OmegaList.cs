@@ -1,4 +1,5 @@
 ﻿using OmegaCore.Exceptions;
+using OmegaCore.Helpers;
 using OmegaCore.Interfaces;
 using OmegaCore.Iterators;
 
@@ -7,12 +8,11 @@ namespace OmegaCore.Collections
     public class OmegaList<T> : IOmegaList<T>
     {
         private const int INITIAL_CAPACITY = 100;
-        private T[]? _internalArray;
+        private readonly T[] _internalArray;
 
         public T this[int index] { get => _internalArray[index]; set => _internalArray[index] = value; }
 
         public int Count { get; private set; }
-
 
         public OmegaList(IOmegaCollection<T> collection)
         {
@@ -23,11 +23,10 @@ namespace OmegaCore.Collections
 
         }
 
-        //TODO - Does it need to create a new copy?
         public OmegaList(T[] elements)
         {
             _internalArray = new T[elements.Length];
-            elements.CopyTo(_internalArray, 0);
+            elements.OmegaCopy(_internalArray);
             Count = elements.Length;
         }
 
@@ -46,38 +45,41 @@ namespace OmegaCore.Collections
 
         public void Clear()
         {
-            _internalArray = new T[INITIAL_CAPACITY];
+            _internalArray.Clear(Count);
             Count = 0;
         }
 
-        public T First() => _internalArray[0];
+        public T First()
+        {
+            if (IsEmpty())
+                throw new EmptyCollectionException();
 
-        public T Last() => _internalArray[Count - 1];
+            return _internalArray[0];
+
+        }
+
+        public T Last() 
+        {
+            if (IsEmpty())
+                throw new EmptyCollectionException();
+
+           return  _internalArray[Count - 1]; 
+        }
 
         public bool IsEmpty() => Count == 0;
 
         public bool Remove(T item)
         {
+            if (item == null)
+                throw new ArgumentNullException(nameof(item));
+
             if (IsEmpty())
                 return false;
 
-            int index = 0;
+            int indexOfItem = _internalArray.IndexOf(item);
 
-            while (index < Count)
-            {
-                if (item.Equals(_internalArray[index]))
-                {
-                    //Shift the itens.
-                    for (int i = index; i < Count; i++)
-                        _internalArray[i] = _internalArray[i + 1];
-
-                    _internalArray[Count - 1] = default;
-                    Count--;
-                    return true;
-
-                }
-                index++;
-            }
+            if (indexOfItem >= 0)
+                _internalArray.Shift(indexOfItem);
 
             return false;
         }
@@ -85,18 +87,12 @@ namespace OmegaCore.Collections
         public T Retrieve(T item)
         {
             if (IsEmpty())
-                throw new EmptyCollectionException(); ;
+                throw new EmptyCollectionException();
 
-            int index = 0;
+            int indexOfItem = _internalArray.IndexOf(item);
 
-            while (index < Count)
-            {
-                if (item.Equals(_internalArray[index]))
-                {
-                    return _internalArray[index];
-                }
-                index++;
-            }
+            if (indexOfItem >= 0)
+                return _internalArray[indexOfItem];
 
             throw new ElementNotFoundException();
         }
@@ -113,13 +109,12 @@ namespace OmegaCore.Collections
 
         public void Dispose()
         {
-            _internalArray = null;
+            Clear();
         }
 
         public void CopyTo(T[] array, int lenght)
         {
-            for (int i = 0; i < lenght; i++)
-                array[i] = this[i];
+            array.OmegaCopy(array);
         }
     }
 }

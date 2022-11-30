@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OmegaCore", "..\OmegaCore\O
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OmegaCoreTests", "..\OmegaCoreTests\OmegaCoreTests.csproj", "{C30E8AA0-98A2-492C-9CAA-9F94362F852F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OmegaCoreBenchmarks", "..\OmegaCoreBenchmarks\OmegaCoreBenchmarks.csproj", "{DE447BBB-57D7-4F7D-B3D7-30642C626056}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OmegaCoreBenchmarks", "..\OmegaCoreBenchmarks\OmegaCoreBenchmarks.csproj", "{DE447BBB-57D7-4F7D-B3D7-30642C626056}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
