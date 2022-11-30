@@ -6,6 +6,7 @@ using OmegaCore.Abstracts;
 using OmegaCore.Iterators;
 using OmegaCore.Collections;
 using OmegaCore.Exceptions;
+using NSubstitute;
 
 namespace OmegaCoreTests.Collections
 {
@@ -114,6 +115,57 @@ namespace OmegaCoreTests.Collections
             //Act
             _list.Last();
         }
+
+        [TestMethod]
+        public void Remove_CollectionHasItem_Removed()
+        {
+            //Arrange
+            _list = new OmegaList<SampleObject>();
+            var newObjectA = new SampleObject("a");
+            var newObjectB = new SampleObject("b");
+            var newObjectC = new SampleObject("C");
+            _list.Add(newObjectA);
+            _list.Add(newObjectB);
+            _list.Add(newObjectC);
+
+            //Act
+            bool success = _list.Remove(newObjectA);
+            //Assert
+            Assert.IsTrue(success);
+        }
+
+        [TestMethod]
+        public void Remove_ItemNotFound_NotRemoved()
+        {
+            //Arrange
+            var newObject = new SampleObject("notFound");
+            //Act
+            bool success = _list.Remove(newObject);
+            //Assert
+            Assert.IsFalse(success);
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void Remove_NullElement_Exception()
+        {
+            //Act
+            _list.Remove(null!);
+        }
+
+        [TestMethod]
+        public void Remove_EmptyCollection_NotRemoved()
+        {
+
+            ////Arrange
+            //_list = new OmegaList<SampleObject>();
+            //var newObject = new SampleObject("notFound");
+            ////Act
+            //bool success = _list.Remove(newObject);
+            ////Assert
+            //Assert.IsFalse(success);
+        }
     }
+
+
 }
 

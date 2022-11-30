@@ -79,7 +79,10 @@ namespace OmegaCore.Collections
             int indexOfItem = _internalArray.IndexOf(item);
 
             if (indexOfItem >= 0)
+            {
                 _internalArray.Shift(indexOfItem);
+                return true;
+            }
 
             return false;
         }
