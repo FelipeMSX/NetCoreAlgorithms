@@ -1,5 +1,5 @@
 ﻿using OmegaCore.Exceptions;
-using OmegaCore.Helpers;
+using OmegaCore.Extensions;
 using OmegaCore.Interfaces;
 using OmegaCore.Iterators;
 

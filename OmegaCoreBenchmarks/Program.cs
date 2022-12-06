@@ -1,7 +1,7 @@
 ﻿using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Running;
 using OmegaCore.Collections;
-using OmegaCore.Helpers;
+using OmegaCore.Extensions;
 using OmegaCore.Interfaces;
 using OmegaCore.OmegaLINQ;
 using System.Security.Cryptography;

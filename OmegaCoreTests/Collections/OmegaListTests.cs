@@ -7,6 +7,9 @@ using OmegaCore.Iterators;
 using OmegaCore.Collections;
 using OmegaCore.Exceptions;
 using NSubstitute;
+using OmegaCore.Extensions;
+using System.Reflection;
+using NSubstitute.ClearExtensions;
 
 namespace OmegaCoreTests.Collections
 {
@@ -16,12 +19,14 @@ namespace OmegaCoreTests.Collections
 
         private IOmegaList<SampleObject> _list;
         private IOmegaIteratorBase<SampleObject> _iterator;
+        private IArrayExtensions _arrayExtensions;
 
         [TestInitialize]
         public void TearUp()
         {
             _list = SampleObject.CreateSampleList();
             _iterator = new OmegaListIterator<SampleObject>(_list);
+             _arrayExtensions = Substitute.For<IArrayExtensions>();
         }
 
         [TestCleanup]
@@ -29,6 +34,8 @@ namespace OmegaCoreTests.Collections
         {
             _iterator.Dispose();
             _list.Clear();
+            _arrayExtensions.ClearSubstitute();
+            _arrayExtensions = null!;
         }
 
         [TestMethod]
@@ -116,6 +123,7 @@ namespace OmegaCoreTests.Collections
             _list.Last();
         }
 
+
         [TestMethod]
         public void Remove_CollectionHasItem_Removed()
         {
@@ -127,6 +135,11 @@ namespace OmegaCoreTests.Collections
             _list.Add(newObjectA);
             _list.Add(newObjectB);
             _list.Add(newObjectC);
+
+            SampleObject[] internalArray = RetrieveArrayByReflection();
+            _arrayExtensions.IndexOf(internalArray, newObjectA).Returns(2);
+            OverrideArrayExtensions();
+
 
             //Act
             bool success = _list.Remove(newObjectA);
@@ -163,6 +176,22 @@ namespace OmegaCoreTests.Collections
             //bool success = _list.Remove(newObject);
             ////Assert
             //Assert.IsFalse(success);
+        }
+
+        private SampleObject[] RetrieveArrayByReflection()
+        {
+            Type type = typeof(OmegaList<SampleObject>);
+            var field = type.GetField("_internalArray", BindingFlags.NonPublic | BindingFlags.Instance);
+
+            return field.GetValue(_list) as SampleObject[];
+        }
+
+        private void OverrideArrayExtensions()
+        {
+            Type type = typeof(ArrayExtensions);
+            var property = type.GetProperty("Instance", BindingFlags.Static | BindingFlags.Public | BindingFlags.GetProperty);
+            property.SetValue(ArrayExtensions.Instance, _arrayExtensions);
+
         }
     }
 

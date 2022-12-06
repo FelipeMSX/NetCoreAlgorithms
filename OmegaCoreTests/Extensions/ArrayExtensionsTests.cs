@@ -1,13 +1,13 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OmegaCore.Abstracts;
-using OmegaCore.Helpers;
+using OmegaCore.Extensions;
 using OmegaCore.Iterators;
 using System;
 
-namespace OmegaCoreTests.Helpers
+namespace OmegaCoreTests.Extensions
 {
     [TestClass]
-    public class ArrayHelpersTests
+    public class ArrayExtensionsTests
     {
 
         private int[] _collection;
