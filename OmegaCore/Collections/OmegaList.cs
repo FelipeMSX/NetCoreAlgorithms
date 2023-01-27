@@ -55,15 +55,14 @@ namespace OmegaCore.Collections
                 throw new EmptyCollectionException();
 
             return _internalArray[0];
-
         }
 
-        public T Last() 
+        public T Last()
         {
             if (IsEmpty())
                 throw new EmptyCollectionException();
 
-           return  _internalArray[Count - 1]; 
+            return _internalArray[Count - 1];
         }
 
         public bool IsEmpty() => Count == 0;
@@ -81,6 +80,7 @@ namespace OmegaCore.Collections
             if (indexOfItem >= 0)
             {
                 _internalArray.Shift(indexOfItem);
+                Count--;
                 return true;
             }
 
@@ -100,24 +100,12 @@ namespace OmegaCore.Collections
             throw new ElementNotFoundException();
         }
 
-        public IOmegaEnumerator<T> GetEnumerator()
-        {
-            return new OmegaListIterator<T>(this);
-        }
+        public IOmegaEnumerator<T> GetEnumerator() => new OmegaListIterator<T>(this);
 
-        IOmegaEnumerator IOmegaEnumerable.GetEnumerator()
-        {
-            return this.GetEnumerator();
-        }
+        IOmegaEnumerator IOmegaEnumerable.GetEnumerator() => this.GetEnumerator();
 
-        public void Dispose()
-        {
-            Clear();
-        }
+        public void Dispose() => Clear();
 
-        public void CopyTo(T[] array, int lenght)
-        {
-            array.OmegaCopy(array);
-        }
+        public void CopyTo(T[] array, int lenght) => array.OmegaCopy(array);
     }
 }

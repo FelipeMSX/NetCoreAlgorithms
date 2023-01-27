@@ -6,6 +6,8 @@ namespace OmegaCore.Extensions
         T[] IncreaseCapacity<T>(T[] source, int newSize);
         void OmegaCopy<T>(T[] source, T[] destination);
         void Shift<T>(T[] source, int init, int end);
+        void Shift<T>(T[] source, int init);
+
         int IndexOf<T>(T[] source, T item);
         void Clear<T>(T[] source, int count = 0);
     }
@@ -77,17 +79,17 @@ namespace OmegaCore.Extensions
 
     public static class ArrayExtensions
     {
-        public static IArrayExtensions Instance { get; private set; } = new ArrayInternalExtensions();
+        public static IArrayExtensions Instance { get; set; } = new ArrayInternalExtensions();
 
         public static T[] IncreaseCapacity<T>(this T[] source, int newSize) => Instance.IncreaseCapacity(source, newSize);
 
         public static void OmegaCopy<T>(this T[] source, T[] destination) => Instance.OmegaCopy(source, destination);
 
-        public static void Shift<T>(this T[] source, int init, int end) => Instance.Shift(source, init, end);
-
         public static void Clear<T>(this T[] source, int count = 0) => Instance.Clear(source, count);
 
-        public static void Shift<T>(this T[] source, int init) => Shift(source, init, source.Length - 1);
+        public static void Shift<T>(this T[] source, int init, int end) => Instance.Shift(source, init, end);
+
+        public static void Shift<T>(this T[] source, int init) => Instance.Shift(source, init);
 
         public static int IndexOf<T>(this T[] source, T item) => Instance.IndexOf(source, item);
     }

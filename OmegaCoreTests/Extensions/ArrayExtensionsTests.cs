@@ -3,6 +3,7 @@ using OmegaCore.Abstracts;
 using OmegaCore.Extensions;
 using OmegaCore.Iterators;
 using System;
+using System.Collections.Specialized;
 
 namespace OmegaCoreTests.Extensions
 {
@@ -186,14 +187,20 @@ namespace OmegaCoreTests.Extensions
         }
 
         [TestMethod]
-        public void IndexOf_EmptyCOllection_ItemNotFound()
+        public void IndexOf_EmptyCollection_ItemNotFound()
         {
-            int[] destination = new int[0];
-
             //Act
             int indexOfItem = _collection.IndexOf(10);
             //Assert
             Assert.IsTrue(indexOfItem == -1);
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        public void IndexOf_NullValue_Exception()
+        {
+            string[] stringCollection = new string[4] { "a", "b", "c", "d" };
+            //Act
+            stringCollection.IndexOf(null);
         }
     }
 }
