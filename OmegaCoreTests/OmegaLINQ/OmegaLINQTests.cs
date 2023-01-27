@@ -28,7 +28,7 @@ namespace OmegaCoreTests.OmegaLINQ
         }
 
         #region First
-        [TestMethod, TestCategory("OmegaLINQ")]
+        [TestMethod]
         [DataRow(1)]
         [DataRow(2)]
         [DataRow(3)]
@@ -40,7 +40,7 @@ namespace OmegaCoreTests.OmegaLINQ
             Assert.IsTrue(result == value);
         }
 
-        [TestMethod, TestCategory("OmegaLINQ"), ExpectedException(typeof(ElementNotFoundException))]
+        [TestMethod, ExpectedException(typeof(ElementNotFoundException))]
         public void First_WhenEmptyCollection_Exception()
         {
             //Arrange
@@ -49,7 +49,7 @@ namespace OmegaCoreTests.OmegaLINQ
             _enumerableCollection.First((x) => true);
         }
 
-        [TestMethod, TestCategory("OmegaLINQ"), ExpectedException(typeof(ElementNotFoundException))]
+        [TestMethod, ExpectedException(typeof(ElementNotFoundException))]
         public void First_WhenElementIsNotInTheCollection_Exception()
         {
             //Act
@@ -58,7 +58,7 @@ namespace OmegaCoreTests.OmegaLINQ
         #endregion
 
         #region FirstOrDefault
-        [TestMethod, TestCategory("OmegaLINQ")]
+        [TestMethod]
         [DataRow(1)]
         [DataRow(2)]
         [DataRow(3)]
@@ -70,7 +70,7 @@ namespace OmegaCoreTests.OmegaLINQ
             Assert.IsTrue(result == value);
         }
 
-        [TestMethod, TestCategory("OmegaLINQ")]
+        [TestMethod]
         public void FirstOrDefault_WhenEmptyCollection_Zero()
         {
             //Arrange
@@ -81,7 +81,7 @@ namespace OmegaCoreTests.OmegaLINQ
             Assert.IsTrue(result == 0);
         }
 
-        [TestMethod, TestCategory("OmegaLINQ")]
+        [TestMethod]
         public void FirstOrDefault_WhenElementIsNotInTheCollection_Zero()
         {
             //Act
@@ -90,7 +90,7 @@ namespace OmegaCoreTests.OmegaLINQ
             Assert.IsTrue(result == 0);
         }
 
-        [TestMethod, TestCategory("OmegaLINQ")]
+        [TestMethod]
         public void FirstOrDefault_WithReferenceObjectAndFullCollection_Found()
         {
             //Arrange
@@ -101,7 +101,7 @@ namespace OmegaCoreTests.OmegaLINQ
             Assert.IsTrue(result == "c");
         }
 
-        [TestMethod, TestCategory("OmegaLINQ")]
+        [TestMethod]
         public void FirstOrDefault_WithReferenceObjectAndFullCollection_Null()
         {
             //Arrange
@@ -114,7 +114,7 @@ namespace OmegaCoreTests.OmegaLINQ
         #endregion
 
         #region Take
-        [TestMethod, TestCategory("OmegaLINQ")]
+        [TestMethod]
         [DataRow(3)]
         public void Take_WhenFilledCollection_Found(int value)
         {
@@ -138,7 +138,7 @@ namespace OmegaCoreTests.OmegaLINQ
         #endregion
 
         #region Filter
-        [TestMethod, TestCategory("OmegaLINQ")]
+        [TestMethod]
         public void Filter_WhenFilledCollection_FiveElements()
         {
             //Act
@@ -155,7 +155,7 @@ namespace OmegaCoreTests.OmegaLINQ
         #endregion
 
         #region Count
-        [TestMethod, TestCategory("OmegaLINQ")]
+        [TestMethod]
         public void Count_WhenFilledCollectionWithPredicate_FiveElements()
         {
             //Act
@@ -165,7 +165,7 @@ namespace OmegaCoreTests.OmegaLINQ
             Assert.IsTrue(result == 5);
         }
 
-        [TestMethod, TestCategory("OmegaLINQ")]
+        [TestMethod]
         public void Count_EmptyCollectionWithPredicate_Zero()
         {
             //Arrange
@@ -177,7 +177,7 @@ namespace OmegaCoreTests.OmegaLINQ
             Assert.IsTrue(result == 0);
         }
 
-        [TestMethod, TestCategory("OmegaLINQ")]
+        [TestMethod]
         public void Count_WhenFilledCollectionWithPredicate_TenElements()
         {
             //Act
@@ -187,7 +187,7 @@ namespace OmegaCoreTests.OmegaLINQ
             Assert.IsTrue(result == 10);
         }
 
-        [TestMethod, TestCategory("OmegaLINQ")]
+        [TestMethod]
         public void Count_EmptyCollection_Zero()
         {
             //Arrange
@@ -199,7 +199,7 @@ namespace OmegaCoreTests.OmegaLINQ
             Assert.IsTrue(result == 0);
         }
 
-        [TestMethod, TestCategory("OmegaLINQ")]
+        [TestMethod]
         public void Count_WhenFilledCollection_TenElements()
         {
             //Act

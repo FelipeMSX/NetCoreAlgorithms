@@ -3,7 +3,6 @@ using OmegaCore.Abstracts;
 using OmegaCore.Extensions;
 using OmegaCore.Iterators;
 using System;
-using System.Collections.Specialized;
 
 namespace OmegaCoreTests.Extensions
 {
@@ -29,6 +28,7 @@ namespace OmegaCoreTests.Extensions
             _iterator.Dispose();
         }
 
+        #region IncreaseCapacity
         [TestMethod]
         public void IncreaseCapacity_FilledCollection_DoubleCapacity()
         {
@@ -39,7 +39,7 @@ namespace OmegaCoreTests.Extensions
         }
 
         [TestMethod]
-        public void Copy_FilledCollection_AllElementsInTheSource()
+        public void IncreaseCapacity_FilledCollection_AllElementsInTheSource()
         {
             //Act
             int[] newCollection = _collection.IncreaseCapacity(_collection.Length * 2);
@@ -56,10 +56,53 @@ namespace OmegaCoreTests.Extensions
             //Assert
             Assert.IsTrue(success, "All elements should be in the new collection, but for some reason it wasn't");
         }
+        #endregion
+
+        #region OmegaCopy  
+
+        [TestMethod]
+        public void OmegaCopy_CopyCollection_AllElementsCopied()
+        {
+            //Act
+            int[] newCollection = new int[_collection.Length];
+            _collection.OmegaCopy(newCollection);
+
+            bool allElementsFound = true;
+            int count = 0;
+            while (allElementsFound && count < _collection.Length)
+            {
+                if (!newCollection[count].Equals(_collection[count]))
+                    allElementsFound = false;
+
+                count++;
+            }
+            //Assert
+            Assert.IsTrue(allElementsFound, "All elements should be in the new collection, but for some reason it wasn't");
+        }
+
+        [TestMethod]
+        public void OmegaCopy_CopyCollectionWithLengthDefined_TwoElementsCopied()
+        {
+            //Act
+            int[] newCollection = new int[_collection.Length];
+            _collection.OmegaCopy(newCollection,2);
+
+            bool success = true;
+            int count = 0;
+            while (success && count < 2)
+            {
+                if (!newCollection[count].Equals(_collection[count]))
+                    success = false;
+
+                count++;
+            }
+            //Assert
+            Assert.IsTrue(success, "All elements should be in the new collection, but for some reason it wasn't");
+        }
 
 
         [TestMethod, ExpectedException(typeof(ArgumentException))]
-        public void Copy_DestinationLengthLesserTheSource_Exception()
+        public void OmegaCopy_DestinationLengthLesserTheSource_Exception()
         {
             //Act
             int[] destination = new int[2];
@@ -67,7 +110,7 @@ namespace OmegaCoreTests.Extensions
         }
 
         [TestMethod]
-        public void Copy_CollectionLengthIsZero_Empty()
+        public void OmegaCopy_CollectionLengthIsZero_Empty()
         {
             //Act
             int[] destination = new int[2];
@@ -76,7 +119,9 @@ namespace OmegaCoreTests.Extensions
             //Assert
             Assert.IsTrue(destination[0] == default);
         }
+        #endregion
 
+        #region Shift
         [TestMethod]
         public void Shift_ShiftingUntilTheEnd_AllElementsShifted()
         {
@@ -117,7 +162,9 @@ namespace OmegaCoreTests.Extensions
             //Act
             _collection.Shift(2, 6);
         }
+        #endregion
 
+        #region Clear
         [TestMethod]
         public void Clear_WithCollectionLength_AllValuesAreDefault()
         {
@@ -158,7 +205,9 @@ namespace OmegaCoreTests.Extensions
             //Assert
             Assert.IsTrue(_collection[0] == 1);
         }
+        #endregion
 
+        #region IndexOf
         [TestMethod]
         public void IndexOf_FilledCollection_LastElementIndex()
         {
@@ -202,6 +251,9 @@ namespace OmegaCoreTests.Extensions
             //Act
             stringCollection.IndexOf(null);
         }
+        #endregion
+
+
     }
 }
 

@@ -289,7 +289,7 @@ namespace OmegaCoreTests.Collections
         {
             var _arrayExtensions = Substitute.For<IArrayExtensions>();
             _arrayExtensions.IndexOf(Arg.Any<SampleObject[]>(), Arg.Any<SampleObject>()).Returns(1);
-            _arrayExtensions.When(x => x.Shift(Arg.Any<SampleObject[]>(), Arg.Any<int>())).Do(x =>
+            _arrayExtensions.When(x => x.Shift(Arg.Any<SampleObject[]>(), Arg.Any<int>(), Arg.Any<int>())).Do(x =>
             {
                 SampleObject[] source = x.Arg<SampleObject[]>();
                 source[1] = source[2];

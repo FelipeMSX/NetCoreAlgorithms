@@ -106,6 +106,6 @@ namespace OmegaCore.Collections
 
         public void Dispose() => Clear();
 
-        public void CopyTo(T[] array, int lenght) => array.OmegaCopy(array);
+        public void CopyTo(T[] array, int lenght) => array.OmegaCopy(array, lenght);
     }
 }
