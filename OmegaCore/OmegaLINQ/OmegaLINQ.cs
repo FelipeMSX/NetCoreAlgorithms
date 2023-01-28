@@ -16,6 +16,8 @@ namespace OmegaCore.OmegaLINQ
 
         TSource[] ToArray<TSource>(IOmegaEnumerable<TSource> source);
 
+        bool Some<TSource>(IOmegaEnumerable<TSource> source, Func<TSource, bool> predicate);
+
         IOmegaEnumerable<TSource> Filter<TSource>(IOmegaEnumerable<TSource> source, Func<TSource, bool> predicate);
 
         IOmegaEnumerable<TSource> Take<TSource>(IOmegaEnumerable<TSource> source, int count);
@@ -87,6 +89,14 @@ namespace OmegaCore.OmegaLINQ
             return newArray;
         }
 
+        public bool Some<TSource>(IOmegaEnumerable<TSource> source, Func<TSource, bool> predicate)
+        {
+            foreach (TSource element in source)
+                if (predicate(element)) return true;
+
+            return false;
+        }
+
         public IOmegaEnumerable<TSource> Filter<TSource>(IOmegaEnumerable<TSource> source, Func<TSource, bool> predicate)
         {
             return new OmegaPredicateIterator<TSource>(source, predicate);
@@ -109,6 +119,8 @@ namespace OmegaCore.OmegaLINQ
         public static int Count<TSource>(this IOmegaEnumerable<TSource> collection, Func<TSource, bool> predicate) => Instance.Count(collection, predicate);
 
         public static int Count<TSource>(this IOmegaEnumerable<TSource> collection) => Instance.Count(collection);
+
+        public static bool Some<TSource>(this IOmegaEnumerable<TSource> collection, Func<TSource, bool> predicate) => Instance.Some(collection, predicate);
 
         public static TSource[] ToArray<TSource>(this IOmegaEnumerable<TSource> source) => Instance.ToArray(source);
 

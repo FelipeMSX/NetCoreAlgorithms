@@ -4,6 +4,7 @@ using OmegaCore.Exceptions;
 using OmegaCore.Interfaces;
 using OmegaCore.OmegaLINQ;
 using OmegaCoreTests.Shared;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace OmegaCoreTests.OmegaLINQ
@@ -312,5 +313,34 @@ namespace OmegaCoreTests.OmegaLINQ
             Assert.IsTrue(allNumbersAreEquals);
         }
         #endregion
+
+        #region Some
+        [TestMethod]
+        public void Some_WhenFilledCollection_HasElement()
+        {
+            //Act
+            bool hasItem = _list.Some((x) => x % 2 == 0);
+            //Assert
+            Assert.IsTrue(hasItem);
+        }
+
+        [TestMethod]
+        public void Some_WhenFilledCollection_False()
+        {
+            //Act
+            bool hasItem = _list.Some((x) => x > 40);
+            //Assert
+            Assert.IsFalse(hasItem);
+        }
+        #endregion
+
+        [TestMethod]
+        public void Take_WhenFilledCollection_HasElement()
+        {
+            //Act
+           int[] result =  _list.Filter((x) => x > 50).ToArray();
+            //Assert
+            //Assert.IsTrue(hasItem);
+        }
     }
 }
