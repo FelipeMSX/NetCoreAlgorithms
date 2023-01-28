@@ -4,29 +4,29 @@ namespace OmegaCore.Extensions
     public interface IArrayExtensions
     {
         T[] IncreaseCapacity<T>(T[] source, int newSize);
-        void OmegaCopy<T>(T[] source, T[] destination, int length);
+        void OmegaCopy<T>(T[] source, T[] destination, int startIndex = 0);
         void Shift<T>(T[] source, int init, int end);
         int IndexOf<T>(T[] source, T item);
         void Clear<T>(T[] source, int count = 0);
     }
 
-    public class ArrayInternalExtensions : IArrayExtensions
+    public class InternalArrayExtensions : IArrayExtensions
     {
         public T[] IncreaseCapacity<T>(T[] source, int newSize)
         {
             T[] newSource = new T[newSize];
 
-            OmegaCopy(source, newSource, newSource.Length);
+            OmegaCopy(source, newSource, 0);
 
             return newSource;
         }
 
-        public void OmegaCopy<T>(T[] source, T[] destination, int length)
+        public void OmegaCopy<T>(T[] source, T[] destination, int startIndex = 0)
         {
             if (destination.Length < source.Length)
                 throw new ArgumentException("The destination array should has a size greater or equals than source");
 
-            for (int i = 0; i < source.Length && i < length; i++)
+            for (int i = startIndex; i < source.Length; i++)
                 destination[i] = source[i];
         }
 
@@ -72,13 +72,11 @@ namespace OmegaCore.Extensions
 
     public static class ArrayExtensions
     {
-        public static IArrayExtensions Instance { get; set; } = new ArrayInternalExtensions();
+        public static IArrayExtensions Instance { get; set; } = new InternalArrayExtensions();
 
         public static T[] IncreaseCapacity<T>(this T[] source, int newSize) => Instance.IncreaseCapacity(source, newSize);
 
-        public static void OmegaCopy<T>(this T[] source, T[] destination, int length) => Instance.OmegaCopy(source, destination, length);
-
-        public static void OmegaCopy<T>(this T[] source, T[] destination) => Instance.OmegaCopy(source, destination, source.Length);
+        public static void OmegaCopy<T>(this T[] source, T[] destination, int startIndex = 0) => Instance.OmegaCopy(source, destination, startIndex);
 
         public static void Clear<T>(this T[] source, int count = 0) => Instance.Clear(source, count);
 

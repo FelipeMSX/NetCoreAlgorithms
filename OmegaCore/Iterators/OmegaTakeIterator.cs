@@ -7,7 +7,7 @@ namespace OmegaCore.Iterators
     {
         public int Count { get; }
 
-        private IOmegaEnumerator<T> _sourceEnumerator;
+        private IOmegaEnumerator<T>? _sourceEnumerator;
 
         private int _count;
 
@@ -20,11 +20,10 @@ namespace OmegaCore.Iterators
 
         public override bool MoveNext()
         {
-
             if (_count <= 0)
                 return false;
 
-            if (_sourceEnumerator.MoveNext())
+            if (_sourceEnumerator!.MoveNext())
             {
                 Current = _sourceEnumerator.Current;
                 _count--;
@@ -38,12 +37,12 @@ namespace OmegaCore.Iterators
         {
             Current = default!;
             _count = Count;
-            _sourceEnumerator.Reset();
+            _sourceEnumerator!.Reset();
         }
 
         public override void Dispose()
         {
-            _sourceEnumerator.Dispose();
+            _sourceEnumerator!.Dispose();
             Current = default!;
             _sourceEnumerator= null!;
         }

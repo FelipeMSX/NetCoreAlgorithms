@@ -1,5 +1,4 @@
-﻿using System;
-using OmegaCore.Interfaces;
+﻿using OmegaCore.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OmegaCoreTests.Shared;
 using OmegaCore.Abstracts;

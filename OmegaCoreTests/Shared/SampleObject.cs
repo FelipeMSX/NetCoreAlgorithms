@@ -37,5 +37,10 @@ namespace OmegaCoreTests.Shared
 
             return list;
         }
+
+        public override int GetHashCode()
+        {
+            return Name.GetHashCode();
+        }
     }
 }

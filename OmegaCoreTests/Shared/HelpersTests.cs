@@ -13,7 +13,7 @@ namespace OmegaCoreTests.Shared
 
             while (iterator.MoveNext() && isInOrder)
             {
-                if (!iterator.Current.Equals(collection[count++]))
+                if (!iterator.Current!.Equals(collection[count++]))
                     isInOrder = false;
             }
 
@@ -27,7 +27,7 @@ namespace OmegaCoreTests.Shared
 
             while (iterator.MoveNext() && isInOrder)
             {
-                if (!list[index++].Equals(iterator.Current))
+                if (!list[index++]!.Equals(iterator.Current))
                     isInOrder = false;
             }
 

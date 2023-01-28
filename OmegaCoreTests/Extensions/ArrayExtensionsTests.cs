@@ -81,31 +81,33 @@ namespace OmegaCoreTests.Extensions
         }
 
         [TestMethod]
-        public void OmegaCopy_CopyCollectionWithLengthDefined_TwoElementsCopied()
+        public void OmegaCopy_CopyTheLastItem_TwoElementsCopied()
         {
-            //Act
+            //Arrange
             int[] newCollection = new int[_collection.Length];
-            _collection.OmegaCopy(newCollection,2);
-
-            bool success = true;
-            int count = 0;
-            while (success && count < 2)
-            {
-                if (!newCollection[count].Equals(_collection[count]))
-                    success = false;
-
-                count++;
-            }
+            //Act
+            _collection.OmegaCopy(newCollection, _collection.Length-1);
             //Assert
-            Assert.IsTrue(success, "All elements should be in the new collection, but for some reason it wasn't");
+            Assert.IsTrue((newCollection[_collection.Length - 1] == 5), "The element should be 5");
         }
 
+        [TestMethod]
+        public void OmegaCopy_CopyOnlyOneElementAndCheckingDefaultValue_DefaultValue()
+        {
+            //Arrange
+            int[] newCollection = new int[_collection.Length];
+            //Act
+            _collection.OmegaCopy(newCollection, _collection.Length - 1);
+            //Assert
+            Assert.IsTrue((newCollection[0] == default), "The element should be default");
+        }
 
         [TestMethod, ExpectedException(typeof(ArgumentException))]
         public void OmegaCopy_DestinationLengthLesserTheSource_Exception()
         {
-            //Act
+            //Arrange
             int[] destination = new int[2];
+            //Act
             _collection.OmegaCopy(destination);
         }
 
@@ -252,8 +254,6 @@ namespace OmegaCoreTests.Extensions
             stringCollection.IndexOf(null);
         }
         #endregion
-
-
     }
 }
 

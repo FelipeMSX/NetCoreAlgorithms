@@ -61,10 +61,8 @@ namespace OmegaCoreTests.Iterators
             //Arrange
             _list = SampleObject.CreateSampleList();
             _iterator = new OmegaTakeIterator<SampleObject>(_list, 9999999);
-
             //Act   
             while (_iterator.MoveNext())
-
             //Assert
             Assert.IsTrue(true);
         }
@@ -94,7 +92,7 @@ namespace OmegaCoreTests.Iterators
             Assert.IsTrue(_iterator.Current == null);
         }
 
-        private bool CheckListOrder<T>(IOmegaList<T> list, IOmegaIteratorBase<T> iterator, int expectedCount)
+        private static bool CheckListOrder<T>(IOmegaList<T> list, IOmegaIteratorBase<T> iterator, int expectedCount)
         {
             bool isInOrder = true;
             int index = 0;
@@ -102,7 +100,7 @@ namespace OmegaCoreTests.Iterators
 
             while (iterator.MoveNext() && isInOrder)
             {
-                if (!list[index++].Equals(iterator.Current))
+                if (!list[index++]!.Equals(iterator.Current))
                     isInOrder = false;
 
                 count--;

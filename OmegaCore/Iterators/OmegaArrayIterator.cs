@@ -4,7 +4,7 @@ namespace OmegaCore.Iterators
 {
     public class OmegaArrayIterator<T> : IOmegaIteratorBase<T>
     {
-        private T[] _source;
+        private T[]? _source;
         private int _currentIndex = 0;
 
         public OmegaArrayIterator(T[] source)
@@ -14,7 +14,7 @@ namespace OmegaCore.Iterators
 
         public override bool MoveNext()
         {
-            if (_currentIndex < _source.Length)
+            if (_currentIndex < _source!.Length)
             {
                 Current = _source[_currentIndex++];
                 return true;
@@ -31,7 +31,7 @@ namespace OmegaCore.Iterators
         public override void Dispose()
         {
             Current = default!;
-            _source = null!;
+            _source = null;
         }
     }
 }

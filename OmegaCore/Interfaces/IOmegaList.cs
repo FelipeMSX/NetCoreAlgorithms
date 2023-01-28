@@ -5,6 +5,5 @@
         T this[int index] { get; set; }
 
         bool IsEmpty();
-
     }
 }

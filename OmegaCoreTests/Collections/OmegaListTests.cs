@@ -81,7 +81,7 @@ namespace OmegaCoreTests.Collections
         public void First_ListWithElements_ElementA()
         {
             //Arrange
-            _list = new OmegaList<SampleObject>(new SampleObject[] { new SampleObject("a"), new SampleObject("b"), new SampleObject("c") });
+            _list = CreateSimpleList();
             //Act
             SampleObject firstElement = _list.First();
             //Assert
@@ -103,7 +103,7 @@ namespace OmegaCoreTests.Collections
         public void Last_ListWithElements_ElementC()
         {
             //Arrange
-            _list = new OmegaList<SampleObject>(new SampleObject[] { new SampleObject("a"), new SampleObject("b"), new SampleObject("c") });
+            _list = CreateSimpleList();
             //Act
             SampleObject lastElement = _list.Last();
             //Assert
@@ -126,7 +126,7 @@ namespace OmegaCoreTests.Collections
         public void Remove_CollectionHasItem_ReturnsSuccess()
         {
             //Arrange
-            _list = new OmegaList<SampleObject>(new SampleObject[] { new SampleObject("a"), new SampleObject("b"), new SampleObject("c") });
+            _list = CreateSimpleList();
             var _arrayExtensions = CreateMockForRemoveMethod();
             //Act
             bool success = _list.Remove(new SampleObject("b"));
@@ -139,7 +139,7 @@ namespace OmegaCoreTests.Collections
         public void Remove_CollectionHasItem_ArrayElementRemoved()
         {
             //Arrange
-            _list = new OmegaList<SampleObject>(new SampleObject[] { new SampleObject("a"), new SampleObject("b"), new SampleObject("c") });
+            _list = CreateSimpleList();
             var _arrayExtensions = CreateMockForRemoveMethod();
 
             //Act
@@ -160,7 +160,7 @@ namespace OmegaCoreTests.Collections
         public void Remove_CollectionHasItem_CountShouldBeTwo()
         {
             //Arrange
-            _list = new OmegaList<SampleObject>(new SampleObject[] { new SampleObject("a"), new SampleObject("b"), new SampleObject("c") });
+            _list = CreateSimpleList();
             var _arrayExtensions = CreateMockForRemoveMethod();
             //Act
             _list.Remove(new SampleObject("b"));
@@ -200,51 +200,54 @@ namespace OmegaCoreTests.Collections
         }
         #endregion
 
-        #region Retrieve
-        [TestMethod, ExpectedException(typeof(EmptyCollectionException))]
-        public void Retrieve_EmptyCollection_Exception()
+        #region Clear
+        [TestMethod]
+        public void Clear_FilledCollection_ArrayWithDefaultValues()
         {
             //Arrange
-            _list = new OmegaList<SampleObject>();
-            var newObject = new SampleObject("notFound");
+            _list = CreateSimpleList();
+
+            var _arrayExtensions = Substitute.For<IArrayExtensions>();
+            _arrayExtensions.When(x => x.Clear(Arg.Any<SampleObject[]>(), Arg.Any<int>())).Do(x =>
+            {
+                SampleObject[] source = x.ArgAt<SampleObject[]>(0);
+                source[0] = default!;
+                source[1] = default!;
+                source[2] = default!;
+            });
+
+            ArrayExtensions.Instance = _arrayExtensions;
+
             //Act
-            _list.Retrieve(newObject);
+            _list.Clear();
+            _arrayExtensions.ClearSubstitute();
+            //Assert
+            Assert.IsTrue(_list[0] == default && _list[1] == default && _list[2] == default);
         }
+
 
         [TestMethod]
-        public void Retrieve_CollectionFilled_ExpectedObject()
+        public void Clear_FilledCollection_CountIsZero()
         {
             //Arrange
-            _list = new OmegaList<SampleObject>(new SampleObject[] { new SampleObject("a"), new SampleObject("b"), new SampleObject("c") });
+            _list = CreateSimpleList();
 
             var _arrayExtensions = Substitute.For<IArrayExtensions>();
-            _arrayExtensions.IndexOf(Arg.Any<SampleObject[]>(), Arg.Any<SampleObject>()).Returns(1);
-            var objectToFind = new SampleObject("b");
+            _arrayExtensions.When(x => x.Clear(Arg.Any<SampleObject[]>(), Arg.Any<int>())).Do(x =>
+            {
+                SampleObject[] source = x.ArgAt<SampleObject[]>(0);
+                source[0] = default!;
+                source[1] = default!;
+                source[2] = default!;
+            });
 
             ArrayExtensions.Instance = _arrayExtensions;
-            //Act
-            var resultObject = _list.Retrieve(objectToFind);
-            _arrayExtensions.ClearSubstitute();
 
+            //Act
+            _list.Clear();
+            _arrayExtensions.ClearSubstitute();
             //Assert
-            Assert.AreEqual(objectToFind, resultObject);
-        }
-
-
-        [TestMethod, ExpectedException(typeof(ElementNotFoundException))]
-        public void Retrieve_CollectionFilled_ElementNotFoundException()
-        {
-            //Arrange
-            _list = new OmegaList<SampleObject>(new SampleObject[] { new SampleObject("a"), new SampleObject("b"), new SampleObject("c") });
-
-            var _arrayExtensions = Substitute.For<IArrayExtensions>();
-            _arrayExtensions.IndexOf(Arg.Any<SampleObject[]>(), Arg.Any<SampleObject>()).Returns(-1);
-            var objectToFind = new SampleObject("NotFound");
-
-            ArrayExtensions.Instance = _arrayExtensions;
-            //Act
-            _list.Retrieve(objectToFind);
-            _arrayExtensions.ClearSubstitute();
+            Assert.IsTrue(_list.Count == 0);
         }
         #endregion
 
@@ -252,7 +255,7 @@ namespace OmegaCoreTests.Collections
         public void OmegaList_PassingCollection_CollectionInitialized()
         {
             //Arrange
-            var _listToBePassed = new OmegaList<SampleObject>(new SampleObject[] { new SampleObject("a"), new SampleObject("b"), new SampleObject("c") });
+            var _listToBePassed = CreateSimpleList();
             //Act
             _list = new OmegaList<SampleObject>(_listToBePassed);
             //Assert
@@ -284,6 +287,30 @@ namespace OmegaCoreTests.Collections
             Assert.IsTrue(count == 3);
         }
 
+        [TestMethod]
+        public void Copy_CollectionWithThreeElements_AllElementsCopied()
+        {
+            //Arrange
+            IOmegaList<string> listOfStrings = new OmegaList<string>(new string[] { "a", "b", "c" });
+            string[] copied = new string[3];
+
+            var _arrayExtensions = Substitute.For<IArrayExtensions>();
+            _arrayExtensions.When(x => x.OmegaCopy(Arg.Any<string[]>(), Arg.Any<string[]>(), Arg.Any<int>())).Do(x =>
+            {
+                string[] source = x.ArgAt<string[]>(0);
+                string[] destination = x.ArgAt<string[]>(1);
+                destination[0] = source[0];
+                destination[1] = source[1];
+                destination[2] = source[2];
+            });
+            ArrayExtensions.Instance = _arrayExtensions;
+
+            //Act
+            listOfStrings.CopyTo(copied, 3);
+            _arrayExtensions.ClearSubstitute();
+            //Assert
+            Assert.IsTrue(copied[0] == listOfStrings[0] && copied[1] == listOfStrings[1] && copied[2] == listOfStrings[2]);
+        }
 
         private static IArrayExtensions CreateMockForRemoveMethod()
         {
@@ -299,6 +326,11 @@ namespace OmegaCoreTests.Collections
             ArrayExtensions.Instance = _arrayExtensions;
 
             return _arrayExtensions;
+        }
+
+        private static IOmegaList<SampleObject> CreateSimpleList()
+        {
+            return new OmegaList<SampleObject>(new SampleObject[] { new SampleObject("a"), new SampleObject("b"), new SampleObject("c") });
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace OmegaCore.Interfaces
 {
-    public interface IOmegaQueue<T>
+    public interface IOmegaQueue<T> : IOmegaSimpleCollection<T>
     {
         void Queue(T item);
 

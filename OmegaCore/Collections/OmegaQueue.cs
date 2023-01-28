@@ -6,7 +6,7 @@ using OmegaCore.Iterators;
 
 namespace OmegaCore.Collections
 {
-    public class OmegaQueue<T> : IOmegaSimpleCollection<T>, IOmegaQueue<T>
+    public class OmegaQueue<T> : IOmegaQueue<T>
     {
         private const int INITIAL_CAPACITY = 100;
         private const int GROWING_FACTOR = 2;

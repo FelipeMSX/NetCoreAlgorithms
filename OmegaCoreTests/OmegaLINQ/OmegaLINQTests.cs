@@ -12,19 +12,19 @@ namespace OmegaCoreTests.OmegaLINQ
     public class OmegaLINQTests
     {
 
-        private IOmegaList<int> _enumerableCollection;
+        private IOmegaList<int> _list;
 
         [TestInitialize]
         public void TearUp()
         {
-            _enumerableCollection = new OmegaList<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 });
+            _list = new OmegaList<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 });
         }
 
         [TestCleanup]
         public void TearDown()
         {
             //Dar dispose;
-            _enumerableCollection.Dispose();
+            _list.Dispose();
         }
 
         #region First
@@ -35,7 +35,7 @@ namespace OmegaCoreTests.OmegaLINQ
         public void First_WhenFilledCollection_Found(int value)
         {
             //Act
-            int result = _enumerableCollection.First((x) => x == value);
+            int result = _list.First((x) => x == value);
             //Assert
             Assert.IsTrue(result == value);
         }
@@ -44,16 +44,16 @@ namespace OmegaCoreTests.OmegaLINQ
         public void First_WhenEmptyCollection_Exception()
         {
             //Arrange
-            _enumerableCollection = new OmegaList<int>();
+            _list = new OmegaList<int>();
             //Act
-            _enumerableCollection.First((x) => true);
+            _list.First((x) => true);
         }
 
         [TestMethod, ExpectedException(typeof(ElementNotFoundException))]
         public void First_WhenElementIsNotInTheCollection_Exception()
         {
             //Act
-            _enumerableCollection.First((x) => 30 == x);
+            _list.First((x) => 30 == x);
         }
         #endregion
 
@@ -65,7 +65,7 @@ namespace OmegaCoreTests.OmegaLINQ
         public void FirstOrDefault_WhenFilledCollection_Found(int value)
         {
             //Act
-            int result = _enumerableCollection.FirstOrDefault((x) => x == value);
+            int result = _list.FirstOrDefault((x) => x == value);
             //Assert
             Assert.IsTrue(result == value);
         }
@@ -74,9 +74,9 @@ namespace OmegaCoreTests.OmegaLINQ
         public void FirstOrDefault_WhenEmptyCollection_Zero()
         {
             //Arrange
-            _enumerableCollection = new OmegaList<int>();
+            _list = new OmegaList<int>();
             //Act
-            int result = _enumerableCollection.FirstOrDefault((x) => true);
+            int result = _list.FirstOrDefault((x) => true);
             //Assert
             Assert.IsTrue(result == 0);
         }
@@ -85,7 +85,7 @@ namespace OmegaCoreTests.OmegaLINQ
         public void FirstOrDefault_WhenElementIsNotInTheCollection_Zero()
         {
             //Act
-            int result = _enumerableCollection.FirstOrDefault((x) => 30 == x);
+            int result = _list.FirstOrDefault((x) => 30 == x);
             //Assert
             Assert.IsTrue(result == 0);
         }
@@ -119,13 +119,13 @@ namespace OmegaCoreTests.OmegaLINQ
         public void Take_WhenFilledCollection_Found(int value)
         {
             //Act
-            IOmegaEnumerable<int> result = _enumerableCollection.Take(value);
+            IOmegaEnumerable<int> result = _list.Take(value);
             int itemMatch = 0;
 
             bool isValid = true;
             foreach (int item in result)
             {
-                if (item != _enumerableCollection[itemMatch])
+                if (item != _list[itemMatch])
                 {
                     isValid = false;
                     break;
@@ -142,15 +142,42 @@ namespace OmegaCoreTests.OmegaLINQ
         public void Filter_WhenFilledCollection_FiveElements()
         {
             //Act
-            IOmegaEnumerable<int> result = _enumerableCollection.Filter((x) => x % 2 == 0);
+            IOmegaEnumerable<int> result = _list.Filter((x) => x % 2 == 0);
             int count = 0;
 
             foreach (int item in result)
-            {
                 count++;
-            }
             //Assert
             Assert.IsTrue(count == 5);
+        }
+
+        [TestMethod]
+        public void Filter_WhenFilledCollectionAndFilterEverything_Empty()
+        {
+            //Act
+            IOmegaEnumerable<int> result = _list.Filter((x) => false);
+            int count = 0;
+
+            foreach (int item in result)
+                count++;
+            //Assert
+            Assert.IsTrue(count == 0);
+        }
+
+        [TestMethod]
+        public void Filter_EmptyCollection_Empty()
+        {
+            //Arrange
+            _list = new OmegaList<int>();
+            //Act
+            IOmegaEnumerable<int> result = _list.Filter((x) => true);
+            int count = 0;
+
+            foreach (int item in result)
+                count++;
+
+            //Assert
+            Assert.IsTrue(count == 0);
         }
         #endregion
 
@@ -159,8 +186,7 @@ namespace OmegaCoreTests.OmegaLINQ
         public void Count_WhenFilledCollectionWithPredicate_FiveElements()
         {
             //Act
-            int result = _enumerableCollection.Count((x) => x % 2 == 0);
-
+            int result = _list.Count((x) => x % 2 == 0);
             //Assert
             Assert.IsTrue(result == 5);
         }
@@ -169,10 +195,9 @@ namespace OmegaCoreTests.OmegaLINQ
         public void Count_EmptyCollectionWithPredicate_Zero()
         {
             //Arrange
-            _enumerableCollection = new OmegaList<int>();
+            _list = new OmegaList<int>();
             //Act
-            int result = _enumerableCollection.Count((x) => x % 2 == 0);
-
+            int result = _list.Count((x) => x % 2 == 0);
             //Assert
             Assert.IsTrue(result == 0);
         }
@@ -181,8 +206,7 @@ namespace OmegaCoreTests.OmegaLINQ
         public void Count_WhenFilledCollectionWithPredicate_TenElements()
         {
             //Act
-            int result = _enumerableCollection.Count((x) => true);
-
+            int result = _list.Count((x) => true);
             //Assert
             Assert.IsTrue(result == 10);
         }
@@ -191,10 +215,9 @@ namespace OmegaCoreTests.OmegaLINQ
         public void Count_EmptyCollection_Zero()
         {
             //Arrange
-            _enumerableCollection = new OmegaList<int>();
+            _list = new OmegaList<int>();
             //Act
-            int result = _enumerableCollection.Count();
-
+            int result = _list.Count();
             //Assert
             Assert.IsTrue(result == 0);
         }
@@ -203,12 +226,91 @@ namespace OmegaCoreTests.OmegaLINQ
         public void Count_WhenFilledCollection_TenElements()
         {
             //Act
-            int result = _enumerableCollection.Count();
-
+            int result = _list.Count();
             //Assert
             Assert.IsTrue(result == 10);
+        }
+
+        [TestMethod]
+        public void Count_WithList_Five()
+        {
+            //Arrange
+            IOmegaList<int> list = new OmegaList<int>(new int[] { 1, 2, 3, 4, 5 });
+            //Act
+            int result = list.Count();
+            //Assert
+            Assert.IsTrue(result == 5);
+        }
+
+        [TestMethod]
+        public void Count_WithCollectionType_Five()
+        {
+            //Arrange
+            IOmegaCollection<int> collection = new OmegaCollection();
+            //Act
+            int result = collection.Count();
+            //Assert
+            Assert.IsTrue(result == 5);
+        }
+
+        [TestMethod]
+        public void Count_WithEnumerableType_Five()
+        {
+            //Arrange
+            IOmegaEnumerable<int> enumerable = new OmegaEnumerable();
+            //Act
+            int result = enumerable.Count();
+            //Assert
+            Assert.IsTrue(result == 5);
+        }
+
+        #endregion
+
+        #region ToArray
+        [TestMethod]
+        public void ToArray_CopyCollection_AllElementsCopied()
+        {
+            //Act
+            int[] arrayCopied = _list.ToArray();
+            //Assert
+            bool allNumbersAreEquals = true;
+            int count = 0;
+
+            while (count < _list.Count && allNumbersAreEquals)
+            {
+                if (arrayCopied[count] != _list[count])
+                {
+                    allNumbersAreEquals = false;
+                }
+                count++;
+            }
+            Assert.IsTrue(allNumbersAreEquals);
+        }
+
+        [TestMethod]
+        public void ToArray_CopyEnumerable_AllElementsCopied()
+        {
+            //Arrange
+            IOmegaEnumerable<int> enumerable = new OmegaEnumerable();
+
+            //Act
+            int[] arrayCopied = enumerable.ToArray();
+            //Assert
+            bool allNumbersAreEquals = true;
+            int count = 0;
+
+            foreach (int item in enumerable)
+            {
+                if (arrayCopied[count] != _list[count])
+                {
+                    allNumbersAreEquals = false;
+                    break;
+                }
+                count++;
+            }
+
+            Assert.IsTrue(allNumbersAreEquals);
         }
         #endregion
     }
 }
-

@@ -1,16 +1,16 @@
 ﻿namespace OmegaCore.Interfaces
 {
-	public interface IOmegaEnumerator<out T>: IOmegaEnumerator, IOmegaDisposable
+    public interface IOmegaEnumerator<out T> : IOmegaEnumerator, IOmegaDisposable
     {
-		new T Current { get; }
-	}
+        new T Current { get; }
+    }
 
-	public interface IOmegaEnumerator
-	{
-		object Current { get; }
+    public interface IOmegaEnumerator
+    {
+        object Current { get; }
 
-		bool MoveNext();
+        bool MoveNext();
 
-		void Reset();
-	}
+        void Reset();
+    }
 }

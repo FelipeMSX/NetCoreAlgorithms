@@ -5,6 +5,6 @@ namespace OmegaCore.Interfaces
     {
         int Count { get; }
         void Clear();
-        void CopyTo(T[] array, int lenght);
+        void CopyTo(T[] array, int startIndex);
     }
 }
