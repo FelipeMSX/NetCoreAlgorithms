@@ -116,7 +116,10 @@ namespace OmegaCoreTests.OmegaLINQ
 
         #region Take
         [TestMethod]
+        [DataRow(0)]
         [DataRow(3)]
+        [DataRow(10)]
+
         public void Take_WhenFilledCollection_Found(int value)
         {
             //Act
@@ -334,13 +337,33 @@ namespace OmegaCoreTests.OmegaLINQ
         }
         #endregion
 
+        #region ForEach
         [TestMethod]
-        public void Take_WhenFilledCollection_HasElement()
+        public void ForEach_WhenFilledCollection_CountIsTen()
         {
             //Act
-           int[] result =  _list.Filter((x) => x > 50).ToArray();
+            int count = 0;
+            _list.ForEach(x => count++);
             //Assert
-            //Assert.IsTrue(hasItem);
+            Assert.IsTrue(count == 10);
         }
+
+        [TestMethod]
+        public void ForEach_WhenFilledCollection_AllElementsAreTheSame()
+        {
+            //Act
+            bool allElementsAreTheSame = true;
+            int count = 0;
+            _list.ForEach(x => 
+            {
+                if(_list[count++] != x)
+                    allElementsAreTheSame = false;
+            });
+
+            //Assert
+            Assert.IsTrue(allElementsAreTheSame);
+        }
+        #endregion
+
     }
 }

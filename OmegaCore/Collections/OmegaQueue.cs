@@ -118,7 +118,7 @@ namespace OmegaCore.Collections
 
         IOmegaEnumerator IOmegaEnumerable.GetEnumerator()
         {
-            return this.GetEnumerator();
+            return GetEnumerator();
         }
 
         private bool IsEmpty() => Count == 0;
