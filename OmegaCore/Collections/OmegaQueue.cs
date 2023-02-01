@@ -11,44 +11,46 @@ namespace OmegaCore.Collections
         private const int INITIAL_CAPACITY = 100;
         private const int GROWING_FACTOR = 2;
         private T[] _internalArray;
-        private int _capacity;
 
         public int Count { get; private set; }
 
         public bool Resizable { get; private set; } = true;
 
+        public int MaxCapacity { get; private set; }
+
+        public T this[int index] { get => _internalArray[index]; }
 
         public OmegaQueue()
         {
             _internalArray = new T[INITIAL_CAPACITY];
-            _capacity = INITIAL_CAPACITY;
+            MaxCapacity = INITIAL_CAPACITY;
         }
 
-        public OmegaQueue(int initialCapacity, bool resizable)
+        public OmegaQueue(int initialCapacity, bool resizable = true)
         {
             _internalArray = new T[initialCapacity];
-            _capacity = initialCapacity;
+            MaxCapacity = initialCapacity;
             Resizable = resizable;
         }
 
         public OmegaQueue(IOmegaCollection<T> collection)
         {
-            _internalArray = new T[collection.Count];
-
-            foreach (T item in collection)
-                _internalArray[Count++] = item;
+            MaxCapacity = collection.Count * GROWING_FACTOR;
+            _internalArray = new T[MaxCapacity];
+            collection.CopyTo(_internalArray, 0);
+            Count = collection.Count;
         }
 
-        //TODO - Does it need to create a new copy?
         public OmegaQueue(T[] elements)
         {
-            _internalArray = new T[elements.Length];
+            MaxCapacity = elements.Length * GROWING_FACTOR;
+            _internalArray = new T[MaxCapacity];
             elements.OmegaCopy(_internalArray);
             Count = elements.Length;
         }
 
         /// <summary>
-        /// Adds a new item in the end of the queue.
+        /// Adds a new item in the queue.
         /// </summary>
         public void Queue(T obj)
         {
@@ -59,8 +61,8 @@ namespace OmegaCore.Collections
                 throw new FullCollectionException();
             else if (IsFull())
             {
-                _capacity *= GROWING_FACTOR;
-                _internalArray = _internalArray.IncreaseCapacity(_capacity);
+                MaxCapacity *= GROWING_FACTOR;
+                _internalArray = _internalArray.IncreaseCapacity(MaxCapacity);
             }
 
             _internalArray[Count++] = obj;
@@ -68,7 +70,7 @@ namespace OmegaCore.Collections
 
         /// <summary>
         /// Removes the first item to comes out. All items must be shifted in one position.
-        /// It takes O(N) the queue the collection.
+        /// It takes O(N).
         /// </summary>
         public T Unqueue()
         {
@@ -122,6 +124,6 @@ namespace OmegaCore.Collections
         }
 
         private bool IsEmpty() => Count == 0;
-        private bool IsFull() => Count == _capacity;
+        private bool IsFull() => Count == MaxCapacity;
     }
 }

@@ -2,7 +2,7 @@
 {
     public interface IOmegaList<T> : IOmegaCollection<T>
     {
-        T this[int index] { get; set; }
+        T this[int index] { get; }
 
         bool IsEmpty();
     }

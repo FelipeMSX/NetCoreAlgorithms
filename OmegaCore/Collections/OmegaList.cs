@@ -1,4 +1,5 @@
-﻿using OmegaCore.Exceptions;
+﻿using Algorithms.Exceptions;
+using OmegaCore.Exceptions;
 using OmegaCore.Extensions;
 using OmegaCore.Interfaces;
 using OmegaCore.Iterators;
@@ -10,17 +11,15 @@ namespace OmegaCore.Collections
         private const int INITIAL_CAPACITY = 100;
         private readonly T[] _internalArray;
 
-        public T this[int index] { get => _internalArray[index]; set => _internalArray[index] = value; }
+        public T this[int index] { get => _internalArray[index]; }
 
         public int Count { get; private set; }
 
         public OmegaList(IOmegaCollection<T> collection)
         {
             _internalArray = new T[collection.Count];
-
-            foreach (T item in collection)
-                _internalArray[Count++] = item;
-
+            collection.CopyTo(_internalArray, 0);
+            Count = collection.Count;
         }
 
         public OmegaList(T[] elements)
@@ -38,7 +37,7 @@ namespace OmegaCore.Collections
         public void Add(T item)
         {
             if (item == null)
-                throw new ArgumentNullException(nameof(item));
+                throw new NullParameterException(nameof(item));
 
             _internalArray[Count++] = item;
         }
@@ -70,7 +69,7 @@ namespace OmegaCore.Collections
         public bool Remove(T item)
         {
             if (item == null)
-                throw new ArgumentNullException(nameof(item));
+                throw new NullParameterException(nameof(item));
 
             if (IsEmpty())
                 return false;
@@ -93,6 +92,6 @@ namespace OmegaCore.Collections
 
         public void Dispose() => Clear();
 
-        public void CopyTo(T[] array, int lenght) => _internalArray.OmegaCopy(array, lenght);
+        public void CopyTo(T[] array, int startIndex) => _internalArray.OmegaCopy(array, startIndex);
     }
 }

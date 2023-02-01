@@ -6,6 +6,8 @@ namespace OmegaCoreTests.Shared
 {
     public class SampleObject
     {
+             
+        const string ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         public string Name { get; set; }
 
         public SampleObject(string name)
@@ -25,17 +27,29 @@ namespace OmegaCoreTests.Shared
 
         public static IOmegaList<SampleObject> CreateSampleList()
         {
-            string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
             IOmegaList<SampleObject> list = new OmegaList<SampleObject>();
             var random = new Random();
 
             for (int i = 0; i < 100; i++)
             {
-                string newValue = alphabet[random.Next(alphabet.Length - 1)].ToString();
+                string newValue = ALPHABET[random.Next(ALPHABET.Length - 1)].ToString();
                 list.Add(new SampleObject(newValue));
             }
 
             return list;
+        }
+
+        public static IOmegaQueue<SampleObject> CreateSampleQueue()
+        {
+            IOmegaQueue<SampleObject> queue = new OmegaQueue<SampleObject>();
+            var random = new Random();
+            for (int i = 0; i < 100; i++)
+            {
+                string newValue = ALPHABET[random.Next(ALPHABET.Length - 1)].ToString();
+                queue.Queue(new SampleObject(newValue));
+            }
+
+            return queue;
         }
 
         public override int GetHashCode()

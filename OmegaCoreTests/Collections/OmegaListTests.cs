@@ -9,7 +9,7 @@ using OmegaCore.Exceptions;
 using NSubstitute;
 using OmegaCore.Extensions;
 using NSubstitute.ClearExtensions;
-
+using Algorithms.Exceptions;
 
 namespace OmegaCoreTests.Collections
 {
@@ -66,7 +66,7 @@ namespace OmegaCoreTests.Collections
         }
 
 
-        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        [TestMethod, ExpectedException(typeof(NullParameterException))]
         public void Add_AddingNullElement_Exception()
         {
             //Arrange
@@ -180,7 +180,7 @@ namespace OmegaCoreTests.Collections
             Assert.IsFalse(itemRemoved);
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        [TestMethod, ExpectedException(typeof(NullParameterException))]
         public void Remove_NullElement_Exception()
         {
             //Act
@@ -306,7 +306,7 @@ namespace OmegaCoreTests.Collections
             ArrayExtensions.Instance = _arrayExtensions;
 
             //Act
-            listOfStrings.CopyTo(copied, 3);
+            listOfStrings.CopyTo(copied, 0);
             _arrayExtensions.ClearSubstitute();
             //Assert
             Assert.IsTrue(copied[0] == listOfStrings[0] && copied[1] == listOfStrings[1] && copied[2] == listOfStrings[2]);
