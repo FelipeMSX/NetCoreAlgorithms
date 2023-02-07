@@ -6,5 +6,6 @@
         bool Remove(T item);
         T First();
         T Last();
+        bool IsEmpty();
     }
 }

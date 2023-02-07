@@ -4,7 +4,7 @@ namespace OmegaCore.Extensions
     public interface IArrayExtensions
     {
         T[] IncreaseCapacity<T>(T[] source, int newSize);
-        void OmegaCopy<T>(T[] source, T[] destination, int startIndex = 0);
+        void OmegaCopy<T>(T[] source, T[] destination, int startIndex, int endIndex);
         void Shift<T>(T[] source, int init, int end);
         int IndexOf<T>(T[] source, T item);
         void Clear<T>(T[] source, int count = 0);
@@ -16,17 +16,19 @@ namespace OmegaCore.Extensions
         {
             T[] newSource = new T[newSize];
 
-            OmegaCopy(source, newSource, 0);
+            OmegaCopy(source, newSource, 0, source.Length - 1);
 
             return newSource;
         }
 
-        public void OmegaCopy<T>(T[] source, T[] destination, int startIndex = 0)
+        public void OmegaCopy<T>(T[] source, T[] destination, int startIndex, int endIndex)
         {
-            if (destination.Length < source.Length)
+            int count = endIndex - startIndex;
+            if (destination.Length < count || source.Length < count)
                 throw new ArgumentException("The destination array should has a size greater or equals than source");
 
-            for (int i = startIndex; i < source.Length; i++)
+
+            for (int i = startIndex; i <= endIndex; i++)
                 destination[i] = source[i];
         }
 
@@ -76,7 +78,7 @@ namespace OmegaCore.Extensions
 
         public static T[] IncreaseCapacity<T>(this T[] source, int newSize) => Instance.IncreaseCapacity(source, newSize);
 
-        public static void OmegaCopy<T>(this T[] source, T[] destination, int startIndex = 0) => Instance.OmegaCopy(source, destination, startIndex);
+        public static void OmegaCopy<T>(this T[] source, T[] destination, int startIndex, int endIndex) => Instance.OmegaCopy(source, destination, startIndex, endIndex);
 
         public static void Clear<T>(this T[] source, int count = 0) => Instance.Clear(source, count);
 

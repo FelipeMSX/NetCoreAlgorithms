@@ -1,6 +1,7 @@
 ﻿using Algorithms.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
+using NSubstitute.ClearExtensions;
 using OmegaCore.Collections;
 using OmegaCore.Exceptions;
 using OmegaCore.Extensions;
@@ -178,7 +179,10 @@ namespace OmegaCoreTests.Collections
         public void Unqueue_TwoElementsInQueue_ElementRemoved()
         {
             //Arrange
-            _queue = new OmegaQueue<SampleObject>(new SampleObject[] { new SampleObject("a"), new SampleObject("b") });
+            _queue = new OmegaQueue<SampleObject>();
+            _queue.Queue(new SampleObject("a"));
+            _queue.Queue(new SampleObject("b"));
+
             var _arrayExtensions = Substitute.For<IArrayExtensions>();
             _arrayExtensions.When(x => x.Shift(Arg.Any<SampleObject[]>(), 0, 2)).Do(x =>
             {
@@ -190,6 +194,7 @@ namespace OmegaCoreTests.Collections
 
             //Act
             var value = _queue.Unqueue();
+            _arrayExtensions.ClearSubstitute();
             //Assert
             Assert.IsTrue(value.Equals(new SampleObject("a")));
         }
@@ -205,11 +210,95 @@ namespace OmegaCoreTests.Collections
         }
         #endregion
 
+        #region Peek
+        [TestMethod]
+        public void Peek_WithOneElement_ElementPeeked()
+        {
+            //Arrange
+            _queue = CreateSimpleQueue();
+            //Act
+            var value = _queue.Peek();
+            //Assert
+            Assert.IsTrue(value.Equals(new SampleObject("a")));
+        }
 
+        [TestMethod, ExpectedException(typeof(EmptyCollectionException))]
+        public void Peek_EmptyColllection_Exception()
+        {
+            //Arrange
+            _queue = new OmegaQueue<SampleObject>();
+            //Act
+            _queue.Peek();
+
+        }
+        #endregion
+
+        #region CopyTo
+
+        [TestMethod]
+        public void CopyTo_TwoElementsInQueue_AllElementsCopied()
+        {
+            //Arrange
+            _queue = new OmegaQueue<SampleObject>();
+            _queue.Queue(new SampleObject("a"));
+            _queue.Queue(new SampleObject("b"));
+
+            var _arrayExtensions = Substitute.For<IArrayExtensions>();
+            _arrayExtensions.When(x => x.OmegaCopy(Arg.Any<SampleObject[]>(), Arg.Any<SampleObject[]>(), 0, 1)).Do(x =>
+            {
+                SampleObject[] destination = x.ArgAt<SampleObject[]>(1);
+                destination[0] = new SampleObject("a");
+                destination[1] = new SampleObject("b");
+            });
+            ArrayExtensions.Instance = _arrayExtensions;
+
+            SampleObject[] newArray = new SampleObject[2];
+            //Act
+            _queue.CopyTo(newArray,0);
+
+            _arrayExtensions.Received(1).OmegaCopy(Arg.Any<SampleObject[]>(), Arg.Any<SampleObject[]>(), 0, 1);
+            _arrayExtensions.ClearSubstitute();
+            //Assert
+            Assert.IsTrue(true);
+        }
+        #endregion
+
+
+
+        [TestMethod]
+        public void Dispose_UsingStatement_Disposed()
+        {
+            //Arrange
+            var _arrayExtensions = Substitute.For<IArrayExtensions>();
+
+            _arrayExtensions.When(x => x.Clear(Arg.Any<string[]>(), Arg.Any<int>())).Do(x =>
+            {
+                string[] source = x.ArgAt<string[]>(0);
+                source[0] = default!;
+                source[1] = default!;
+
+            });
+            ArrayExtensions.Instance = _arrayExtensions;
+
+            ////Act
+            using (OmegaQueue<string> queueOfStrings = new())
+            {
+                queueOfStrings.Queue("a");
+                queueOfStrings.Queue("b");
+            }
+
+            _arrayExtensions.Received(1).Clear(Arg.Any<string[]>(), Arg.Any<int>());
+            _arrayExtensions.ClearSubstitute();
+            ////Assert
+            Assert.IsTrue(true);
+        }
 
         private static IOmegaQueue<SampleObject> CreateSimpleQueue()
         {
-            return new OmegaQueue<SampleObject>(new SampleObject[] { new SampleObject("a") });
+            IOmegaQueue<SampleObject> queue = new OmegaQueue<SampleObject>();
+            queue.Queue(new SampleObject("a"));
+
+            return queue;
         }
     }
 }

@@ -11,5 +11,7 @@
         T Unqueue();
 
         T Peek();
+
+        bool IsFull();
     }
 }

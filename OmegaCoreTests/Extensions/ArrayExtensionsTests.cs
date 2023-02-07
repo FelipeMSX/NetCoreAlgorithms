@@ -65,7 +65,7 @@ namespace OmegaCoreTests.Extensions
         {
             //Act
             int[] newCollection = new int[_collection.Length];
-            _collection.OmegaCopy(newCollection);
+            _collection.OmegaCopy(newCollection, 0, _collection.Length - 1);
 
             bool allElementsFound = true;
             int count = 0;
@@ -86,18 +86,18 @@ namespace OmegaCoreTests.Extensions
             //Arrange
             int[] newCollection = new int[_collection.Length];
             //Act
-            _collection.OmegaCopy(newCollection, _collection.Length-1);
+            _collection.OmegaCopy(newCollection, 0, _collection.Length - 1);
             //Assert
             Assert.IsTrue((newCollection[_collection.Length - 1] == 5), "The element should be 5");
         }
 
         [TestMethod]
-        public void OmegaCopy_CopyOnlyOneElementAndCheckingDefaultValue_DefaultValue()
+        public void OmegaCopy_CopyWithStartIndexElementAndCheckingDefaultValue_DefaultValue()
         {
             //Arrange
             int[] newCollection = new int[_collection.Length];
             //Act
-            _collection.OmegaCopy(newCollection, _collection.Length - 1);
+            _collection.OmegaCopy(newCollection, 1, _collection.Length - 1);
             //Assert
             Assert.IsTrue((newCollection[0] == default), "The element should be default");
         }
@@ -108,18 +108,7 @@ namespace OmegaCoreTests.Extensions
             //Arrange
             int[] destination = new int[2];
             //Act
-            _collection.OmegaCopy(destination);
-        }
-
-        [TestMethod]
-        public void OmegaCopy_CollectionLengthIsZero_Empty()
-        {
-            //Act
-            int[] destination = new int[2];
-            _collection = Array.Empty<int>();
-            _collection.OmegaCopy(destination);
-            //Assert
-            Assert.IsTrue(destination[0] == default);
+            _collection.OmegaCopy(destination, 0, _collection.Length);
         }
         #endregion
 

@@ -35,18 +35,18 @@ namespace OmegaCore.Collections
 
         public OmegaQueue(IOmegaCollection<T> collection)
         {
-            MaxCapacity = collection.Count * GROWING_FACTOR;
+            Count = collection.Count;
+            MaxCapacity = Count * GROWING_FACTOR;
             _internalArray = new T[MaxCapacity];
             collection.CopyTo(_internalArray, 0);
-            Count = collection.Count;
         }
 
         public OmegaQueue(T[] elements)
         {
-            MaxCapacity = elements.Length * GROWING_FACTOR;
-            _internalArray = new T[MaxCapacity];
-            elements.OmegaCopy(_internalArray);
             Count = elements.Length;
+            MaxCapacity = Count * GROWING_FACTOR;
+            _internalArray = new T[MaxCapacity];
+            elements.OmegaCopy(_internalArray, 0, Count - 1);
         }
 
         /// <summary>
@@ -103,27 +103,11 @@ namespace OmegaCore.Collections
             Count = 0;
         }
 
-        public void CopyTo(T[] array, int lenght)
-        {
-            array.OmegaCopy(array);
-        }
-
-        public void Dispose()
-        {
-            Clear();
-        }
-
-        public IOmegaEnumerator<T> GetEnumerator()
-        {
-            return new OmegaArrayIterator<T>(_internalArray);
-        }
-
-        IOmegaEnumerator IOmegaEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
-
-        private bool IsEmpty() => Count == 0;
-        private bool IsFull() => Count == MaxCapacity;
+        public void CopyTo(T[] array, int startIndex) =>  array.OmegaCopy(array, startIndex, Count - 1);
+        public void Dispose() => Clear();
+        public IOmegaEnumerator<T> GetEnumerator() => new OmegaArrayIterator<T>(_internalArray);
+        IOmegaEnumerator IOmegaEnumerable.GetEnumerator() => GetEnumerator();
+        public bool IsEmpty() => Count == 0;
+        public bool IsFull() => Count == MaxCapacity;
     }
 }

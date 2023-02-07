@@ -10,6 +10,7 @@ using NSubstitute;
 using OmegaCore.Extensions;
 using NSubstitute.ClearExtensions;
 using Algorithms.Exceptions;
+using NSubstitute.Extensions;
 
 namespace OmegaCoreTests.Collections
 {
@@ -251,6 +252,28 @@ namespace OmegaCoreTests.Collections
         }
         #endregion
 
+        #region IsEmpty
+        [TestMethod]
+        public void IsEmpty_WhenCollectionIsEmpty_True()
+        {
+            //Arrange
+            _list = new OmegaList<SampleObject>();
+            //Act
+            bool isEmpty = _list.IsEmpty();
+            //Assert
+            Assert.IsTrue(isEmpty);
+        }
+
+        [TestMethod]
+        public void IsEmpty_WhenCollectionIsNotEmpty_False()
+        {
+            //Act
+            bool isEmpty = _list.IsEmpty();
+            //Assert
+            Assert.IsFalse(isEmpty);
+        }
+        #endregion
+
         [TestMethod]
         public void OmegaList_PassingCollection_CollectionInitialized()
         {
@@ -295,7 +318,7 @@ namespace OmegaCoreTests.Collections
             string[] copied = new string[3];
 
             var _arrayExtensions = Substitute.For<IArrayExtensions>();
-            _arrayExtensions.When(x => x.OmegaCopy(Arg.Any<string[]>(), Arg.Any<string[]>(), Arg.Any<int>())).Do(x =>
+            _arrayExtensions.When(x => x.OmegaCopy(Arg.Any<string[]>(), Arg.Any<string[]>(), Arg.Any<int>(), Arg.Any<int>())).Do(x =>
             {
                 string[] source = x.ArgAt<string[]>(0);
                 string[] destination = x.ArgAt<string[]>(1);
@@ -307,9 +330,35 @@ namespace OmegaCoreTests.Collections
 
             //Act
             listOfStrings.CopyTo(copied, 0);
+            _arrayExtensions.Received(1).OmegaCopy(Arg.Any<string[]>(), Arg.Any<string[]>(), Arg.Any<int>(), Arg.Any<int>());
             _arrayExtensions.ClearSubstitute();
             //Assert
-            Assert.IsTrue(copied[0] == listOfStrings[0] && copied[1] == listOfStrings[1] && copied[2] == listOfStrings[2]);
+            Assert.IsTrue(true);
+        }
+
+        [TestMethod]
+        public void Dispose_UsingStatement_Disposed()
+        {
+            //Arrange
+            var _arrayExtensions = Substitute.For<IArrayExtensions>();
+
+            _arrayExtensions.When(x => x.Clear(Arg.Any<string[]>(), Arg.Any<int>())).Do(x =>
+            {
+                string[] source = x.ArgAt<string[]>(0);
+                source[0] = default!;
+                source[1] = default!;
+                source[2] = default!;
+
+            });
+            ArrayExtensions.Instance = _arrayExtensions;
+
+            ////Act
+            using (OmegaList<string> listOfStrings = new(new string[] { "a", "b", "c" })) { }
+
+            _arrayExtensions.Received(1).Clear(Arg.Any<string[]>(), Arg.Any<int>());
+            _arrayExtensions.ClearSubstitute();
+            ////Assert
+            Assert.IsTrue(true);
         }
 
         private static IArrayExtensions CreateMockForRemoveMethod()

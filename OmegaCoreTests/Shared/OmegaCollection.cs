@@ -36,6 +36,11 @@ namespace OmegaCoreTests.Shared
 
         public IOmegaEnumerator<int> GetEnumerator() => new OmegaArrayIterator<int>(values);
 
+        public bool IsEmpty()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public int Last()
         {
             throw new System.NotImplementedException();

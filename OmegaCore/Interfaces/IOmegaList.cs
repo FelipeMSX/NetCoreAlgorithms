@@ -4,6 +4,5 @@
     {
         T this[int index] { get; }
 
-        bool IsEmpty();
     }
 }
