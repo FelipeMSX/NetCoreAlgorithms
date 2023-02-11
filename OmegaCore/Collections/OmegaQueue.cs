@@ -103,9 +103,9 @@ namespace OmegaCore.Collections
             Count = 0;
         }
 
-        public void CopyTo(T[] array, int startIndex) =>  array.OmegaCopy(array, startIndex, Count - 1);
+        public void CopyTo(T[] array, int startIndex) => array.OmegaCopy(array, startIndex, Count - 1);
         public void Dispose() => Clear();
-        public IOmegaEnumerator<T> GetEnumerator() => new OmegaArrayIterator<T>(_internalArray);
+        public IOmegaEnumerator<T> GetEnumerator() => new OmegaArrayIterator<T>(_internalArray, Count);
         IOmegaEnumerator IOmegaEnumerable.GetEnumerator() => GetEnumerator();
         public bool IsEmpty() => Count == 0;
         public bool IsFull() => Count == MaxCapacity;

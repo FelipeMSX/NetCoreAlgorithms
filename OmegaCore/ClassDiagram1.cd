@@ -3,35 +3,35 @@
   <Class Name="OmegaCore.Iterators.OmegaArrayIterator&lt;T&gt;">
     <Position X="5" Y="4" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAEAABAAAEAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAGAABAAAEAAAAAAAAAAAAAAAIACAAAAAAAA=</HashCode>
       <FileName>Iterators\OmegaArrayIterator.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="OmegaCore.Iterators.OmegaListIterator&lt;T&gt;">
     <Position X="5" Y="9.5" Width="3" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAEAABAAAEAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAGAABAAAEAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
       <FileName>Iterators\OmegaListIterator.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="OmegaCore.OmegaLINQ.OmegaLINQ">
     <Position X="16.75" Y="6.5" Width="7.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAIAAAAAQAAAAAAAAQAABAAAAAAAAEAAABAAAA=</HashCode>
+      <HashCode>AAAACAAIAAAAAQAAAAAAACQAABAAAAAAQAEAAABAAAA=</HashCode>
       <FileName>OmegaLINQ\OmegaLINQ.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="OmegaCore.Iterators.OmegaTakeIterator&lt;T&gt;">
     <Position X="5" Y="0.5" Width="4.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAABAAAAAAAAAQAAAAIAAAAIACAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAACAABAAAAAAAAAQAAAAIAAAAIACAAAAAAAA=</HashCode>
       <FileName>Iterators\OmegaTakeIterator.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="OmegaCore.Iterators.OmegaPredicateIterator&lt;T&gt;">
-    <Position X="5" Y="6.5" Width="5.25" />
+    <Position X="7.5" Y="6.75" Width="5.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAIAIAAIAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAACAABAAAAAAAAAAAAAAIAIAAIAAAAAAAAAA=</HashCode>
       <FileName>Iterators\OmegaPredicateIterator.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -46,7 +46,7 @@
   <Class Name="OmegaCore.Collections.OmegaList&lt;T&gt;">
     <Position X="20.75" Y="1" Width="4" />
     <TypeIdentifier>
-      <HashCode>AIJAAAAAACAAARAACAAABAQAAAAAoAAAAAACAAhAAAA=</HashCode>
+      <HashCode>AAJAAAAQACAAARAACAAABAQAAAAAoAAAAAACAAhAIAA=</HashCode>
       <FileName>Collections\OmegaList.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -54,14 +54,14 @@
   <Interface Name="OmegaCore.Interfaces.IOmegaCollection&lt;T&gt;">
     <Position X="12" Y="0.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AIIAAAAAAAAAAQAAAAAABAQAAAAAAAAAAAACAABAAAA=</HashCode>
+      <HashCode>AAJAAAAAAAAAAQAAAAAABAAAAAAAAAAAAAACAAAAAAA=</HashCode>
       <FileName>Interfaces\IOmegaCollection.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="OmegaCore.Interfaces.IOmegaList&lt;T&gt;">
     <Position X="14.75" Y="2" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AABAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Interfaces\IOmegaList.cs</FileName>
     </TypeIdentifier>
   </Interface>
@@ -95,7 +95,7 @@
   <Interface Name="OmegaCore.Interfaces.IOmegaDisposable">
     <Position X="18.75" Y="0.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Interfaces\IOmegaDisposable.cs</FileName>
     </TypeIdentifier>
   </Interface>

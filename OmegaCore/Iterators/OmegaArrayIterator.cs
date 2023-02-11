@@ -6,17 +6,19 @@ namespace OmegaCore.Iterators
     {
         private T[]? _source;
         private int _currentIndex = 0;
+        private readonly int _count = 0;
 
-        public OmegaArrayIterator(T[] source)
+        public OmegaArrayIterator(T[] source, int count)
         {
             _source = source;
+            _count = count;
         }
 
         public override bool MoveNext()
         {
-            if (_currentIndex < _source!.Length)
+            if (_currentIndex < _count)
             {
-                Current = _source[_currentIndex++];
+                Current = _source![_currentIndex++];
                 return true;
             }
             return false;

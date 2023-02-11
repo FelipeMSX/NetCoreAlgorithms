@@ -34,7 +34,7 @@ namespace OmegaCoreTests.Shared
             throw new System.NotImplementedException();
         }
 
-        public IOmegaEnumerator<int> GetEnumerator() => new OmegaArrayIterator<int>(values);
+        public IOmegaEnumerator<int> GetEnumerator() => new OmegaArrayIterator<int>(values, Count);
 
         public bool IsEmpty()
         {

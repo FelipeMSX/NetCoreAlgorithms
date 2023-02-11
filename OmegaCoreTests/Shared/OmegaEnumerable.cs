@@ -5,11 +5,11 @@ namespace OmegaCoreTests.Shared
 {
     internal class OmegaEnumerable : IOmegaEnumerable<int>
     {
-        private readonly int[] values = {1,2,3,4,5};
+        private readonly int[] values = { 1, 2, 3, 4, 5 };
 
-        public IOmegaEnumerator<int> GetEnumerator() => new OmegaArrayIterator<int>(values);
+        public IOmegaEnumerator<int> GetEnumerator() => new OmegaArrayIterator<int>(values, 5);
 
         IOmegaEnumerator IOmegaEnumerable.GetEnumerator() => GetEnumerator();
-        
+
     }
 }

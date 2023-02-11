@@ -17,7 +17,7 @@ namespace OmegaCoreTests.Iterators
         public void TearUp()
         {
             _collection = new int[5] { 1, 2, 3, 4, 5 };
-            _iterator = new OmegaArrayIterator<int>(_collection);
+            _iterator = new OmegaArrayIterator<int>(_collection, 5);
         }
 
         [TestCleanup]

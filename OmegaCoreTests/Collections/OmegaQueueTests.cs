@@ -87,9 +87,11 @@ namespace OmegaCoreTests.Collections
             _arrayExtensions.IncreaseCapacity(Arg.Any<SampleObject[]>(), 2).Returns(new SampleObject[2] { new SampleObject("a"), null! });
             ArrayExtensions.Instance = _arrayExtensions;
 
+
             //Act
             _queue.Queue(new SampleObject("a"));
             _queue.Queue(new SampleObject("b"));
+            _arrayExtensions.ClearSubstitute();
 
             //Assert
             Assert.IsTrue(_queue[0].Equals(new SampleObject("a")) && _queue[1].Equals(new SampleObject("b")));
@@ -107,6 +109,7 @@ namespace OmegaCoreTests.Collections
             //Act
             _queue.Queue(new SampleObject("a"));
             _queue.Queue(new SampleObject("b"));
+            _arrayExtensions.ClearSubstitute();
 
             //Assert
             Assert.IsTrue(_queue.Count == 2);
@@ -124,13 +127,13 @@ namespace OmegaCoreTests.Collections
             //Act
             _queue.Queue(new SampleObject("a"));
             _queue.Queue(new SampleObject("b"));
+            _arrayExtensions.ClearSubstitute();
 
             //Assert
             Assert.IsTrue(_queue.MaxCapacity == 2);
         }
 
         #endregion
-
 
         #region Unqueue
 
@@ -150,6 +153,7 @@ namespace OmegaCoreTests.Collections
 
             //Act
             _queue.Unqueue();
+            _arrayExtensions.ClearSubstitute();
 
             //Assert
             Assert.IsTrue(_queue.Count == 0);
@@ -171,6 +175,8 @@ namespace OmegaCoreTests.Collections
 
             //Act
             _queue.Unqueue();
+            _arrayExtensions.ClearSubstitute();
+
             //Assert
             Assert.IsNull(_queue[0]);
         }
@@ -205,7 +211,7 @@ namespace OmegaCoreTests.Collections
             //Arrange
             _queue = new OmegaQueue<SampleObject>();
             //Act
-             _queue.Unqueue();
+            _queue.Unqueue();
 
         }
         #endregion
@@ -254,7 +260,7 @@ namespace OmegaCoreTests.Collections
 
             SampleObject[] newArray = new SampleObject[2];
             //Act
-            _queue.CopyTo(newArray,0);
+            _queue.CopyTo(newArray, 0);
 
             _arrayExtensions.Received(1).OmegaCopy(Arg.Any<SampleObject[]>(), Arg.Any<SampleObject[]>(), 0, 1);
             _arrayExtensions.ClearSubstitute();
@@ -262,7 +268,6 @@ namespace OmegaCoreTests.Collections
             Assert.IsTrue(true);
         }
         #endregion
-
 
 
         [TestMethod]
@@ -291,6 +296,109 @@ namespace OmegaCoreTests.Collections
             _arrayExtensions.ClearSubstitute();
             ////Assert
             Assert.IsTrue(true);
+        }
+
+        [TestMethod]
+        public void OmegaQueue_PassingCollection_ArrayCopied()
+        {
+            //Arrange
+            var _arrayExtensions = Substitute.For<IArrayExtensions>();
+            _arrayExtensions.When(x => x.OmegaCopy(Arg.Any<SampleObject[]>(), Arg.Any<SampleObject[]>(), 0, 1)).Do(x =>
+            {
+                SampleObject[] destination = x.ArgAt<SampleObject[]>(1);
+                destination[0] = new SampleObject("a");
+                destination[1] = new SampleObject("b");
+            });
+
+            ArrayExtensions.Instance = _arrayExtensions;
+            IOmegaCollection<SampleObject> collection = new OmegaList<SampleObject>(new SampleObject[] { new SampleObject("a"), new SampleObject("b") });
+            //Act
+            _queue = new OmegaQueue<SampleObject>(collection);
+            _arrayExtensions.ClearSubstitute();
+
+            //Assert
+            Assert.IsTrue(_queue[0].Equals(new SampleObject("a")) && _queue[1].Equals(new SampleObject("b")));
+        }
+
+        [TestMethod]
+        public void OmegaQueue_PassingCollection_CountIsTwo()
+        {
+            //Arrange
+            var _arrayExtensions = Substitute.For<IArrayExtensions>();
+            _arrayExtensions.When(x => x.OmegaCopy(Arg.Any<SampleObject[]>(), Arg.Any<SampleObject[]>(), 0, 1)).Do(x =>
+            {
+                SampleObject[] destination = x.ArgAt<SampleObject[]>(1);
+                destination[0] = new SampleObject("a");
+                destination[1] = new SampleObject("b");
+            });
+
+            ArrayExtensions.Instance = _arrayExtensions;
+            IOmegaCollection<SampleObject> collection = new OmegaList<SampleObject>(new SampleObject[] { new SampleObject("a"), new SampleObject("b") });
+            //Act
+            _queue = new OmegaQueue<SampleObject>(collection);
+            _arrayExtensions.ClearSubstitute();
+
+            //Assert
+            Assert.IsTrue(_queue.Count == 2);
+        }
+
+        [TestMethod]
+        public void OmegaQueue_PassingArray_ArrayCopied()
+        {
+            //Arrange
+            var _arrayExtensions = Substitute.For<IArrayExtensions>();
+            _arrayExtensions.When(x => x.OmegaCopy(Arg.Any<SampleObject[]>(), Arg.Any<SampleObject[]>(), 0, 1)).Do(x =>
+            {
+                SampleObject[] destination = x.ArgAt<SampleObject[]>(1);
+                destination[0] = new SampleObject("a");
+                destination[1] = new SampleObject("b");
+            });
+
+            ArrayExtensions.Instance = _arrayExtensions;
+            //Act
+            _queue = new OmegaQueue<SampleObject>(new SampleObject[] { new SampleObject("a"), new SampleObject("b") });
+            _arrayExtensions.ClearSubstitute();
+
+            //Assert
+            Assert.IsTrue(_queue[0].Equals(new SampleObject("a")) && _queue[1].Equals(new SampleObject("b")));
+        }
+
+        [TestMethod]
+        public void OmegaQueue_PassingArray_CountIsTwo()
+        {
+            //Arrange
+            var _arrayExtensions = Substitute.For<IArrayExtensions>();
+            _arrayExtensions.When(x => x.OmegaCopy(Arg.Any<SampleObject[]>(), Arg.Any<SampleObject[]>(), 0, 1)).Do(x =>
+            {
+                SampleObject[] destination = x.ArgAt<SampleObject[]>(1);
+                destination[0] = new SampleObject("a");
+                destination[1] = new SampleObject("b");
+            });
+
+            ArrayExtensions.Instance = _arrayExtensions;
+            //Act
+            _queue = new OmegaQueue<SampleObject>(new SampleObject[] { new SampleObject("a"), new SampleObject("b") });
+            _arrayExtensions.ClearSubstitute();
+
+            //Assert
+            Assert.IsTrue(_queue.Count == 2);
+        }
+
+        [TestMethod]
+        public void GetEnumerator_UsingCovariance_LoopingAllObjects()
+        {
+            //Arrange
+            IOmegaQueue<string> listOfStrings = new OmegaQueue<string>(new string[] { "a", "b", "c" });
+            IOmegaEnumerable listOfObjects = listOfStrings;
+
+            //Act
+            int count = 0;
+
+            foreach (var item in listOfObjects)
+                count++;
+
+            //Assert
+            Assert.IsTrue(count == 3);
         }
 
         private static IOmegaQueue<SampleObject> CreateSimpleQueue()
