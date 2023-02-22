@@ -17,7 +17,7 @@ namespace OmegaCoreTests.Iterators
         [TestInitialize]
         public void TearUp()
         {
-            _list = SampleObject.CreateSampleList();
+            _list = SampleObject.CreateRandomSampleList();
             _iterator = new OmegaListIterator<SampleObject>(_list);
         }
 
@@ -32,7 +32,7 @@ namespace OmegaCoreTests.Iterators
         public void MoveNext_WithFilledCollection_AllElementsReturned()
         {
             //Act
-            bool success = HelpersTests.CheckListOrder(_list, _iterator);
+            bool success = HelpersTests.CheckListOrderOverIterator(_list, _iterator);
             //Assert
             Assert.IsTrue(success);
         }
@@ -57,11 +57,11 @@ namespace OmegaCoreTests.Iterators
         public void Reset_FilledCollectionIteraveTwoTimes_Success()
         {
             //Act
-            bool success = HelpersTests.CheckListOrder(_list, _iterator);
+            bool success = HelpersTests.CheckListOrderOverIterator(_list, _iterator);
             _iterator.Reset();
 
             if (!success)
-                success = HelpersTests.CheckListOrder(_list, _iterator);
+                success = HelpersTests.CheckListOrderOverIterator(_list, _iterator);
 
             //Assert
             Assert.IsTrue(success);
@@ -71,7 +71,7 @@ namespace OmegaCoreTests.Iterators
         public void Reset_CheckCurrentValueAfterReset_NullValue()
         {
             //Act
-            HelpersTests.CheckListOrder(_list, _iterator);
+            HelpersTests.CheckListOrderOverIterator(_list, _iterator);
             _iterator.Reset();
 
             //Assert

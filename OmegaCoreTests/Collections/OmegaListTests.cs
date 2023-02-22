@@ -30,7 +30,7 @@ namespace OmegaCoreTests.Collections
         [TestInitialize]
         public void TearUp()
         {
-            _list = SampleObject.CreateSampleList();
+            _list = SampleObject.CreateRandomSampleList();
             _iterator = new OmegaListIterator<SampleObject>(_list);
         }
 

@@ -2,6 +2,7 @@
 using OmegaCore.Abstracts;
 using OmegaCore.Extensions;
 using OmegaCore.Iterators;
+using OmegaCoreTests.Shared;
 using System;
 
 namespace OmegaCoreTests.Extensions
@@ -241,6 +242,42 @@ namespace OmegaCoreTests.Extensions
             string[] stringCollection = new string[4] { "a", "b", "c", "d" };
             //Act
             stringCollection.IndexOf(null);
+        }
+        #endregion
+
+        #region Swap
+        [TestMethod]
+        public void Swap_SwappingItemFiveAndItemOne_Swapped()
+        {
+            //Act
+            _collection.Swap(0, 4);
+            //Assert
+            Assert.IsTrue(_collection[0] == 5 && _collection[4] == 1);
+        }
+        #endregion
+
+        #region Reverse
+
+        [TestMethod]
+        public void Reserve_WhenArrayIsOdd_Reversed()
+        {
+            int[] expectedOrder = new int[5] { 5, 4, 3, 2, 1 };
+            //Act
+            _collection.Reverse();
+            //Assert
+            Assert.IsTrue(HelpersTests.CheckArrayOverArray(expectedOrder, _collection));
+        }
+
+        [TestMethod]
+        public void Reserve_WhenArrayIsEven_Reversed()
+        {
+            //Arrange
+            _collection = new int[4] { 1, 2, 3, 4 };
+            int[] expectedOrder = new int[4] { 4, 3, 2, 1 };
+            //Act
+            _collection.Reverse();
+            //Assert
+            Assert.IsTrue(HelpersTests.CheckArrayOverArray(expectedOrder, _collection));
         }
         #endregion
     }

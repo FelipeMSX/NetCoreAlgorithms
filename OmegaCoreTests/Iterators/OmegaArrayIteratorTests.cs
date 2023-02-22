@@ -45,22 +45,38 @@ namespace OmegaCoreTests.Iterators
         public void MoveNext_CustomEnumerator_ExpectedOrder()
         {
             //Act
-            bool isInOrder = HelpersTests.CheckArrayOrder(_collection, _iterator);
+            bool isInOrder = HelpersTests.CheckArrayOrderOverIterator(_collection, _iterator);
 
             //Assert
             Assert.IsTrue(isInOrder, "The order of the collection should be {1,2,3,4,5}. It got something different");
+        }
+
+
+        [TestMethod]
+        public void MoveNext_ReverseOrderCustomEnumerator_ExpectedOrder()
+        {
+            //Arrange
+            _collection = new int[5] { 1, 2, 3, 4, 5 };
+            int[] reverseCollection = new int[5] { 5, 4, 3, 2, 1 };
+
+            _iterator = new OmegaArrayIterator<int>(_collection, 5, true);
+            //Act
+            bool isInOrder = HelpersTests.CheckArrayOrderOverIterator(reverseCollection, _iterator);
+
+            //Assert
+            Assert.IsTrue(isInOrder, "The order of the collection should be {5,4,3,2,1}. It got something different");
         }
 
         [TestMethod]
         public void Reset_ResetingCollectionTwoTimes_ExpectedOrder()
         {
             //Act
-            bool isInOrder = HelpersTests.CheckArrayOrder(_collection, _iterator);
+            bool isInOrder = HelpersTests.CheckArrayOrderOverIterator(_collection, _iterator);
 
             if (isInOrder)
             {
                 _iterator.Reset();
-                isInOrder = HelpersTests.CheckArrayOrder(_collection, _iterator);
+                isInOrder = HelpersTests.CheckArrayOrderOverIterator(_collection, _iterator);
             }
 
             //Assert
@@ -71,7 +87,7 @@ namespace OmegaCoreTests.Iterators
         public void Reset_ResetingCollectionAndGettingDefaultValue_Zero()
         {
             //Act
-            HelpersTests.CheckArrayOrder(_collection, _iterator);
+            HelpersTests.CheckArrayOrderOverIterator(_collection, _iterator);
             _iterator.Reset();
 
             //Assert

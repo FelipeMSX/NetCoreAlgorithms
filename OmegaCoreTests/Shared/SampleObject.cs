@@ -25,7 +25,7 @@ namespace OmegaCoreTests.Shared
             return false;
         }
 
-        public static IOmegaList<SampleObject> CreateSampleList()
+        public static IOmegaList<SampleObject> CreateRandomSampleList()
         {
             IOmegaList<SampleObject> list = new OmegaList<SampleObject>();
             var random = new Random();
@@ -39,7 +39,7 @@ namespace OmegaCoreTests.Shared
             return list;
         }
 
-        public static IOmegaQueue<SampleObject> CreateSampleQueue()
+        public static IOmegaQueue<SampleObject> CreateRandomSampleQueue()
         {
             IOmegaQueue<SampleObject> queue = new OmegaQueue<SampleObject>();
             var random = new Random();
@@ -50,6 +50,18 @@ namespace OmegaCoreTests.Shared
             }
 
             return queue;
+        }
+        public static IOmegaStack<SampleObject> CreateRandomSampleStack()
+        {
+            IOmegaStack<SampleObject> stack = new OmegaStack<SampleObject>();
+            var random = new Random();
+            for (int i = 0; i < 100; i++)
+            {
+                string newValue = ALPHABET[random.Next(ALPHABET.Length - 1)].ToString();
+                stack.Push(new SampleObject(newValue));
+            }
+
+            return stack;
         }
 
         public override int GetHashCode()

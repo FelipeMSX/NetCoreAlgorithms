@@ -18,7 +18,7 @@ namespace OmegaCoreTests.Iterators
         [TestInitialize]
         public void TearUp()
         {
-            _list = SampleObject.CreateSampleList();
+            _list = SampleObject.CreateRandomSampleList();
             _iterator = new OmegaTakeIterator<SampleObject>(_list,10);
         }
 
@@ -33,7 +33,7 @@ namespace OmegaCoreTests.Iterators
         public void MoveNext_WithFilledCollection_AllElementsReturned()
         {
             //Act
-            bool success = HelpersTests.CheckListOrder(_list, _iterator);
+            bool success = HelpersTests.CheckListOrderOverIterator(_list, _iterator);
             //Assert
             Assert.IsTrue(success);
         }
@@ -59,7 +59,7 @@ namespace OmegaCoreTests.Iterators
         public void MoveNext_IteratingUntilTheEnd_Success()
         {
             //Arrange
-            _list = SampleObject.CreateSampleList();
+            _list = SampleObject.CreateRandomSampleList();
             _iterator = new OmegaTakeIterator<SampleObject>(_list, 9999999);
             //Act   
             while (_iterator.MoveNext())

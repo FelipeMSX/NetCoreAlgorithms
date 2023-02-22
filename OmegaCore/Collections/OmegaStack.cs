@@ -51,6 +51,7 @@ namespace OmegaCore.Collections
 
         /// <summary>
         /// Adds a new item in the Stack.
+        /// It takes O(1).
         /// </summary>
         public void Push(T obj)
         {
@@ -77,8 +78,9 @@ namespace OmegaCore.Collections
             if (IsEmpty())
                 throw new EmptyCollectionException();
 
-            T item = _internalArray[Count--];
             Count--;
+            T item = _internalArray[Count];
+            _internalArray[Count] = default!;
 
             return item;
         }
@@ -92,7 +94,7 @@ namespace OmegaCore.Collections
             if (IsEmpty())
                 throw new EmptyCollectionException();
 
-            return _internalArray[Count];
+            return _internalArray[Count - 1];
         }
 
 
@@ -103,8 +105,9 @@ namespace OmegaCore.Collections
         }
 
         public void CopyTo(T[] array, int startIndex) => array.OmegaCopy(array, startIndex, Count - 1);
+        
         public void Dispose() => Clear();
-        public IOmegaEnumerator<T> GetEnumerator() => new OmegaArrayIterator<T>(_internalArray, Count);
+        public IOmegaEnumerator<T> GetEnumerator() => new OmegaArrayIterator<T>(_internalArray, Count, true);
         IOmegaEnumerator IOmegaEnumerable.GetEnumerator() => GetEnumerator();
         public bool IsEmpty() => Count == 0;
         public bool IsFull() => Count == MaxCapacity;

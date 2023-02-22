@@ -8,6 +8,9 @@ namespace OmegaCore.Extensions
         void Shift<T>(T[] source, int init, int end);
         int IndexOf<T>(T[] source, T item);
         void Clear<T>(T[] source, int count = 0);
+        void Reverse<T>(T[] source, int count = 0);
+        void Swap<T>(T[] source, int sourceIndex, int destinationIndex);
+
     }
 
     public class InternalArrayExtensions : IArrayExtensions
@@ -47,7 +50,7 @@ namespace OmegaCore.Extensions
 
         public void Clear<T>(T[] source, int count = 0)
         {
-            int index = count == 0 ? source.Length : count;
+            int index = RetrieveArrayCount(source, count);
 
             for (int i = 0; i < index; i++)
                 source[i] = default!;
@@ -70,6 +73,24 @@ namespace OmegaCore.Extensions
 
             return -1;
         }
+
+        public void Reverse<T>(T[] source, int count = 0)
+        {
+            int arrayLenght = RetrieveArrayCount(source, count);
+            int middleIndex = arrayLenght / 2;
+
+            for (int i = 0; i < middleIndex; i++)
+                Swap(source, i, arrayLenght - 1 - i);
+        }
+
+        public void Swap<T>(T[] source, int sourceIndex, int destinationIndex)
+        {
+            //Tuples to swap values, I need to see this more deep.
+            (source[destinationIndex], source[sourceIndex]) = (source[sourceIndex], source[destinationIndex]);
+        }
+
+
+        private static int RetrieveArrayCount<T>(T[] source, int count) => count == 0 ? source.Length : count;
     }
 
     public static class ArrayExtensions
@@ -87,5 +108,10 @@ namespace OmegaCore.Extensions
         public static void Shift<T>(this T[] source, int init) => Instance.Shift(source, init, source.Length - 1);
 
         public static int IndexOf<T>(this T[] source, T item) => Instance.IndexOf(source, item);
+
+        public static void Swap<T>(this T[] source, int sourceIndex, int destinationInex) => Instance.Swap(source, sourceIndex, destinationInex);
+
+        public static void Reverse<T>(this T[] source, int count = 0) => Instance.Reverse(source, count);
+
     }
 }
