@@ -20,12 +20,18 @@ namespace OmegaCore.Collections
 
         public T this[int index] { get => _internalArray[index]; }
 
+        /// <summary>
+        /// Initializes the stack with the default size "100".
+        /// </summary>
         public OmegaStack()
         {
             _internalArray = new T[INITIAL_CAPACITY];
             MaxCapacity = INITIAL_CAPACITY;
         }
 
+        /// <summary>
+        /// Initializes the stack with initial size, and also with a resizable flag.
+        /// </summary>
         public OmegaStack(int initialCapacity, bool resizable = true)
         {
             _internalArray = new T[initialCapacity];
@@ -33,6 +39,9 @@ namespace OmegaCore.Collections
             Resizable = resizable;
         }
 
+        /// <summary>
+        /// Passes an IOmegaCollection and it will transfer all the elements to the stack.
+        /// </summary>
         public OmegaStack(IOmegaCollection<T> collection)
         {
             Count = collection.Count;
@@ -41,6 +50,9 @@ namespace OmegaCore.Collections
             collection.CopyTo(_internalArray, 0);
         }
 
+        /// <summary>
+        /// Passes an array and it will transfer all the elements to the stack.
+        /// </summary>
         public OmegaStack(T[] elements)
         {
             Count = elements.Length;
@@ -50,9 +62,11 @@ namespace OmegaCore.Collections
         }
 
         /// <summary>
-        /// Adds a new item in the Stack.
+        /// Adds a new item in the stack.
         /// It takes O(1).
         /// </summary>
+        /// <exception cref="NullParameterException"></exception>
+        /// <exception cref="FullCollectionException"></exception>
         public void Push(T obj)
         {
             //Validações
@@ -69,10 +83,12 @@ namespace OmegaCore.Collections
             _internalArray[Count++] = obj;
         }
 
+
         /// <summary>
-        /// Removes the first item to comes out.
+        /// Removes the first item to comes out in the stack.
         /// It takes O(1).
         /// </summary>
+        /// <exception cref="EmptyCollectionException"></exception>
         public T Pop()
         {
             if (IsEmpty())
@@ -85,10 +101,12 @@ namespace OmegaCore.Collections
             return item;
         }
 
+
         /// <summary>
         /// Retrieves the first item from the collection, but it remains in the collection.
         /// Takes O(1) to get the element.
         /// </summary>
+        /// <exception cref="EmptyCollectionException"></exception>
         public T Peek()
         {
             if (IsEmpty())
@@ -97,19 +115,30 @@ namespace OmegaCore.Collections
             return _internalArray[Count - 1];
         }
 
-
+        /// <summary>
+        /// Clears the queue making all positions in the array to be the default value. It does not disable the stack.
+        /// </summary>
         public void Clear()
         {
             _internalArray.Clear(Count);
             Count = 0;
         }
 
+        /// <summary>
+        /// Copies all the elements from the stack to the array. the result array will be the internal representation of the stack.
+        /// </summary>
         public void CopyTo(T[] array, int startIndex) => array.OmegaCopy(array, startIndex, Count - 1);
         
+        public bool IsEmpty() => Count == 0;
+
+        public bool IsFull() => Count == MaxCapacity;
+
+        //TODO - I need to find out a way to make the collection usable
+        /// <summary>
+        /// Invalidates the queue, and after that any operation should be avoid. 
+        /// </summary>
         public void Dispose() => Clear();
         public IOmegaEnumerator<T> GetEnumerator() => new OmegaArrayIterator<T>(_internalArray, Count, true);
         IOmegaEnumerator IOmegaEnumerable.GetEnumerator() => GetEnumerator();
-        public bool IsEmpty() => Count == 0;
-        public bool IsFull() => Count == MaxCapacity;
     }
 }

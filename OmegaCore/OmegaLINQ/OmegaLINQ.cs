@@ -121,6 +121,8 @@ namespace OmegaCore.OmegaLINQ
     {
         public static IOmegaLINQ Instance { get; set; } = new InternalOmegaLINQ();
 
+        /// <summary>
+        /// </summary>
         public static TSource First<TSource>(this IOmegaEnumerable<TSource> collection, Func<TSource, bool> predicate) => Instance.First(collection, predicate);
 
         public static TSource? FirstOrDefault<TSource>(this IOmegaEnumerable<TSource> collection, Func<TSource, bool> predicate) => Instance.FirstOrDefault(collection, predicate);

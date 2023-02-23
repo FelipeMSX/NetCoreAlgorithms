@@ -142,7 +142,7 @@ namespace OmegaCoreTests.Collections
         {
             //Arrange
             var arrayExtensions = Substitute.For<IArrayExtensions>();
-            arrayExtensions.When(x => x.Shift(Arg.Any<SampleObject[]>(), 0, 1)).Do(x =>
+            arrayExtensions.When(x => x.Shift(Arg.Any<SampleObject[]>(), 0, 0)).Do(x =>
             {
                 SampleObject[] source = x.ArgAt<SampleObject[]>(0);
                 source[0] = default!;
@@ -163,7 +163,7 @@ namespace OmegaCoreTests.Collections
         {
             //Arrange
             var arrayExtensions = Substitute.For<IArrayExtensions>();
-            arrayExtensions.When(x => x.Shift(Arg.Any<SampleObject[]>(), 0, 1)).Do(x =>
+            arrayExtensions.When(x => x.Shift(Arg.Any<SampleObject[]>(), 0, 0)).Do(x =>
             {
                 SampleObject[] source = x.ArgAt<SampleObject[]>(0);
                 source[0] = default!;
@@ -188,7 +188,7 @@ namespace OmegaCoreTests.Collections
             _queue.Queue(new SampleObject("b"));
 
             var arrayExtensions = Substitute.For<IArrayExtensions>();
-            arrayExtensions.When(x => x.Shift(Arg.Any<SampleObject[]>(), 0, 2)).Do(x =>
+            arrayExtensions.When(x => x.Shift(Arg.Any<SampleObject[]>(), 0, 1)).Do(x =>
             {
                 SampleObject[] source = x.ArgAt<SampleObject[]>(0);
                 source[0] = new SampleObject("b");

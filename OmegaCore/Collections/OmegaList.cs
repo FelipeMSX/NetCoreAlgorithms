@@ -17,6 +17,9 @@ namespace OmegaCore.Collections
 
         public int Count { get; private set; }
 
+        /// <summary>
+        /// Transfers all the items from the collection to the list.The max capacity will be the current size of the collection * GROWING_FACTOR.
+        /// </summary>
         public OmegaList(IOmegaCollection<T> collection)
         {
             Count = collection.Count;
@@ -24,6 +27,9 @@ namespace OmegaCore.Collections
             collection.CopyTo(_internalArray, 0);
         }
 
+        /// <summary>
+        /// Transfers all the items from the array to the list. The max capacity will be the current size of the array * GROWING_FACTOR.
+        /// </summary>
         public OmegaList(T[] elements)
         {
             Count = elements.Length;
@@ -31,11 +37,18 @@ namespace OmegaCore.Collections
             elements.OmegaCopy(_internalArray, 0, Count - 1);
         }
 
+        /// <summary>
+        /// Initializes the collection with a specified capacity.
+        /// </summary>
         public OmegaList(int capacity = INITIAL_CAPACITY)
         {
             _internalArray = new T[capacity];
         }
 
+        /// <summary>
+        /// Adds an item to list and it takes O(1) to add the element.
+        /// </summary>
+        /// <exception cref="NullParameterException"/>
         public void Add(T item)
         {
             if (item == null)
@@ -44,12 +57,19 @@ namespace OmegaCore.Collections
             _internalArray[Count++] = item;
         }
 
+        /// <summary>
+        /// Clears the list making all positions in the array to be the default value. It does not disable the queue.
+        /// </summary>
         public void Clear()
         {
             _internalArray.Clear(Count);
             Count = 0;
         }
 
+        /// <summary>
+        /// Gets the first element in the list.
+        /// </summary>
+        /// <exception cref="EmptyCollectionException"/>
         public T First()
         {
             if (IsEmpty())
@@ -58,6 +78,10 @@ namespace OmegaCore.Collections
             return _internalArray[0];
         }
 
+        /// <summary>
+        /// Gets the last element in the list.
+        /// </summary>
+        /// <exception cref="EmptyCollectionException"/>
         public T Last()
         {
             if (IsEmpty())
@@ -66,6 +90,10 @@ namespace OmegaCore.Collections
             return _internalArray[Count - 1];
         }
 
+        /// <summary>
+        /// Searches for the item in the collection, and after that it is going to be removed.
+        /// </summary>
+        /// <exception cref="NullParameterException"></exception>
         public bool Remove(T item)
         {
             if (item == null)
@@ -86,15 +114,22 @@ namespace OmegaCore.Collections
             return false;
         }
 
-        public IOmegaEnumerator<T> GetEnumerator() => new OmegaListIterator<T>(this);
-
-        IOmegaEnumerator IOmegaEnumerable.GetEnumerator() => GetEnumerator();
-
-        public void Dispose() { Clear(); }
-
+        /// <summary>
+        /// Copies all the elements from the list to the array.
+        /// </summary>
         public void CopyTo(T[] array, int startIndex) => _internalArray.OmegaCopy(array, startIndex, Count - 1);
 
         public bool IsEmpty() => Count == 0;
+
+        //TODO - I need to find out a way to make the collection usable
+        /// <summary>
+        /// Invalidates the queue, after that any operation should be avoid. 
+        /// </summary>
+        public void Dispose() { Clear(); }
+
+        public IOmegaEnumerator<T> GetEnumerator() => new OmegaListIterator<T>(this);
+
+        IOmegaEnumerator IOmegaEnumerable.GetEnumerator() => GetEnumerator();
 
     }
 }

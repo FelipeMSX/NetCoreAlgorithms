@@ -132,11 +132,11 @@ namespace OmegaCoreTests.Extensions
             Assert.IsTrue(_collection[4] == default);
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentException))]
-        public void Shift_EmptyCollection_Exception()
+        [TestMethod]
+        public void Shift_CollectionWithOneElement_Exception()
         {
             //Arrange
-            int[] newCollection = new int[0];
+            int[] newCollection = new int[1] { 1 };
             //Act
             newCollection.Shift(0, 0);
         }
@@ -276,6 +276,17 @@ namespace OmegaCoreTests.Extensions
             int[] expectedOrder = new int[4] { 4, 3, 2, 1 };
             //Act
             _collection.Reverse();
+            //Assert
+            Assert.IsTrue(HelpersTests.CheckArrayOverArray(expectedOrder, _collection));
+        }
+
+        [TestMethod]
+        public void Reserve_WithCount_Reversed()
+        {
+            //Arrange
+            int[] expectedOrder = new int[5] { 3, 2, 1, 4, 5 };
+            //Act
+            _collection.Reverse(3);
             //Assert
             Assert.IsTrue(HelpersTests.CheckArrayOverArray(expectedOrder, _collection));
         }
