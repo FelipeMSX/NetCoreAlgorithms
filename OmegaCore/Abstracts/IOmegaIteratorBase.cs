@@ -2,6 +2,10 @@
 
 namespace OmegaCore.Abstracts
 {
+    /// <summary>
+    /// Defines the base class to be used in every iterator in the lib. 
+    /// <para><author>Felipe Morais: felipeprodev@gmail.com</author></para>
+    /// </summary>
     public abstract class IOmegaIteratorBase<T> : IOmegaEnumerator<T>, IOmegaEnumerable<T>
     {
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.

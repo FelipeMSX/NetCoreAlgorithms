@@ -3,7 +3,7 @@
   <Class Name="OmegaCore.Iterators.OmegaArrayIterator&lt;T&gt;">
     <Position X="5" Y="4" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAGAABAAAEAAAAAAAAAAAAAAAIACAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAGAABAAAEEAAAAAAAAAAAAAAIACAAAAAAAA=</HashCode>
       <FileName>Iterators\OmegaArrayIterator.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -51,8 +51,39 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
+  <Class Name="OmegaCore.Collections.OmegaQueue&lt;T&gt;">
+    <Position X="25.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QABAAAAQACAEBBAACAAAAAQAQAAAoAAIAAAAAIhAIAA=</HashCode>
+      <FileName>Collections\OmegaQueue.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OmegaCore.Collections.OmegaStack&lt;T&gt;">
+    <Position X="27" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAQACAEBBAACAAAAAQAAACAoAAIAAAAAIhAKAA=</HashCode>
+      <FileName>Collections\OmegaStack.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OmegaCore.Extensions.InternalArrayExtensions" BaseTypeListCollapsed="true">
+    <Position X="28.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AFAAAAAAAQAAAAgAAAAAAAIAAAABAAAAAAACAABAAAA=</HashCode>
+      <FileName>Extensions\ArrayExtensions.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="OmegaCore.Extensions.ArrayExtensions">
+    <Position X="27" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAQAAAAgAAAAAAAIAAAABAAAAQAACAABAAAA=</HashCode>
+      <FileName>Extensions\ArrayExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Interface Name="OmegaCore.Interfaces.IOmegaCollection&lt;T&gt;">
-    <Position X="12" Y="0.5" Width="2" />
+    <Position X="11.5" Y="1.25" Width="2" />
     <TypeIdentifier>
       <HashCode>AAJAAAAAAAAAAQAAAAAABAAAAAAAAAAAAAACAAAAAAA=</HashCode>
       <FileName>Interfaces\IOmegaCollection.cs</FileName>
@@ -65,21 +96,15 @@
       <FileName>Interfaces\IOmegaList.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="OmegaCore.Interfaces.IOmegaEnumerable&lt;T&gt;">
-    <Position X="11.5" Y="3.5" Width="3" />
-    <InheritanceLine Type="OmegaCore.Interfaces.IOmegaEnumerable" FixedFromPoint="true">
-      <Path>
-        <Point X="13" Y="5.25" />
-        <Point X="13" Y="4.733" />
-      </Path>
-    </InheritanceLine>
+  <Interface Name="OmegaCore.Interfaces.IOmegaEnumerable">
+    <Position X="11.5" Y="4" Width="3" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Interfaces\IOmegaEnumerable.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="OmegaCore.Interfaces.IOmegaEnumerable">
-    <Position X="11.75" Y="5.25" Width="2.75" />
+  <Interface Name="OmegaCore.Interfaces.IOmegaEnumerable&lt;T&gt;">
+    <Position X="13.5" Y="6.25" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Interfaces\IOmegaEnumerable.cs</FileName>
@@ -93,7 +118,7 @@
     </TypeIdentifier>
   </Interface>
   <Interface Name="OmegaCore.Interfaces.IOmegaDisposable">
-    <Position X="18.75" Y="0.75" Width="1.5" />
+    <Position X="13.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Interfaces\IOmegaDisposable.cs</FileName>
@@ -104,6 +129,34 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAABAAAAACAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
       <FileName>Interfaces\IOmegaEnumerator.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="OmegaCore.Interfaces.IOmegaSimpleCollection&lt;T&gt;" Collapsed="true">
+    <Position X="9.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAABAIAA=</HashCode>
+      <FileName>Interfaces\IOmegaSimpleCollection.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="OmegaCore.Interfaces.IOmegaStack&lt;T&gt;" Collapsed="true">
+    <Position X="15.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAACAAAAAAAAACAAAAIAAAAAIAACAA=</HashCode>
+      <FileName>Interfaces\IOmegaStack.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="OmegaCore.Interfaces.IOmegaQueue&lt;T&gt;" Collapsed="true">
+    <Position X="17.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAEAAAACAAAAAAAQAAAAAAIAAAAAIAAAAA=</HashCode>
+      <FileName>Interfaces\IOmegaQueue.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="OmegaCore.Extensions.IArrayExtensions">
+    <Position X="25.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAQAAAAgAAAAAAAIAAAABAAAAAAACAABAAAA=</HashCode>
+      <FileName>Extensions\ArrayExtensions.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Font Name="Segoe UI" Size="9" />

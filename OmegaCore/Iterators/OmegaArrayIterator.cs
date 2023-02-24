@@ -2,6 +2,12 @@
 
 namespace OmegaCore.Iterators
 {
+    /// <summary>
+    /// Creates a iterator to interact with each item in the array. 
+    /// <para>The count value can be used optimize the process because in the array not all positions can have elements</para>
+    /// <para>the array can be iterated in the normal or reverse order</para>
+    /// <author>Felipe Morais: felipeprodev@gmail.com</author>
+    /// </summary>
     public class OmegaArrayIterator<T> : IOmegaIteratorBase<T>
     {
         private T[]? _source;

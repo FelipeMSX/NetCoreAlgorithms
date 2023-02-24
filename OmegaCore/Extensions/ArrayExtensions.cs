@@ -1,6 +1,9 @@
 ﻿
 namespace OmegaCore.Extensions
 {
+    /// <summary>
+    /// <author>Felipe Morais: felipeprodev@gmail.com</author>
+    /// </summary>
     public interface IArrayExtensions
     {
 
@@ -87,7 +90,6 @@ namespace OmegaCore.Extensions
 
         public void Swap<T>(T[] source, int sourceIndex, int destinationIndex)
         {
-            //Tuples to swap values, I need to see this more deeply.
             (source[destinationIndex], source[sourceIndex]) = (source[sourceIndex], source[destinationIndex]);
         }
 
@@ -95,8 +97,14 @@ namespace OmegaCore.Extensions
         private static int RetrieveArrayCount<T>(T[] source, int count) => count == 0 ? source.Length : count;
     }
 
+    /// <summary>
+    /// <author>Felipe Morais: felipeprodev@gmail.com</author>
+    /// </summary>
     public static class ArrayExtensions
     {
+        /// <summary>
+        /// TO-DO: Finds out a way to make the Instance not public or accessible. This is a work around to enable mocking in tests.
+        /// </summary>
         public static IArrayExtensions Instance { get; set; } = new InternalArrayExtensions();
 
         /// <summary>
