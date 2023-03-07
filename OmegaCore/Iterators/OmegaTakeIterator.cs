@@ -4,14 +4,13 @@ using OmegaCore.Interfaces;
 namespace OmegaCore.Iterators
 {
     /// <summary>
-    /// Creates a iterator to interact with each item in the array. 
-    /// <para>The count value can be used optimize the process because in the array not all positions can have elements</para>
-    /// <para>the array can be iterated in the normal or reverse order</para>
+    /// Creates an iterator to interact with each item in the enumerator. 
+    /// <para>When the internal count reaches the MaxCount the iterator will be stopped</para>
     /// <author>Felipe Morais: felipeprodev@gmail.com</author>
     /// </summary>
     public class OmegaTakeIterator<T> : IOmegaIteratorBase<T>
     {
-        public int Count { get; }
+        public int MaxCount { get; }
 
         private IOmegaEnumerator<T>? _sourceEnumerator;
 
@@ -20,19 +19,18 @@ namespace OmegaCore.Iterators
         public OmegaTakeIterator(IOmegaEnumerable<T> source, int count)
         {
             _sourceEnumerator = source.GetEnumerator();
-            Count = count;
-            _count = count;
+            MaxCount = count;
         }
 
         public override bool MoveNext()
         {
-            if (_count <= 0)
+            if (_count == MaxCount)
                 return false;
 
             if (_sourceEnumerator!.MoveNext())
             {
                 Current = _sourceEnumerator.Current;
-                _count--;
+                _count++;
                 return true;
             }
 
@@ -42,7 +40,7 @@ namespace OmegaCore.Iterators
         public override void Reset()
         {
             Current = default!;
-            _count = Count;
+            _count = MaxCount;
             _sourceEnumerator!.Reset();
         }
 
@@ -50,7 +48,7 @@ namespace OmegaCore.Iterators
         {
             _sourceEnumerator!.Dispose();
             Current = default!;
-            _sourceEnumerator= null!;
+            _sourceEnumerator = null!;
         }
     }
 }

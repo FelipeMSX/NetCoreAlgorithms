@@ -110,10 +110,12 @@ namespace OmegaCore.OmegaLINQ
             return new OmegaPredicateIterator<TSource>(source, predicate);
         }
 
+        //I figured out the problem creating my own iterator class that implements my custom IOmegaEnumerable interface.
         public IOmegaEnumerable<TSource> Take<TSource>(IOmegaEnumerable<TSource> source, int count)
         {
             return new OmegaTakeIterator<TSource>(source, count);
         }
+
     }
 
     /// <summary>
