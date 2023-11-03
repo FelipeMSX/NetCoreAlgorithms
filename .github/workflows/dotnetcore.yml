@@ -12,12 +12,12 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 6.0.x
+        dotnet-version: 7.0.x
     - name: Build with dotnet
-      run: dotnet build Algorithms/Algorithms.csproj --configuration 'Debug'
+      run: dotnet build Algorithms/Algorithms.csproj --configuration 'Release'
     - name: Tests
-      run: dotnet test AlgorithmsTests/AlgorithmsTests.csproj --configuration 'Debug'
+      run: dotnet test AlgorithmsTests/AlgorithmsTests.csproj --configuration 'Release'
     - name: Build with dotnet
-      run: dotnet build OmegaCore/OmegaCore.csproj --configuration 'Debug'
+      run: dotnet build OmegaCore/OmegaCore.csproj --configuration 'Release'
     - name: Tests
-      run: dotnet test OmegaCoreTests/OmegaCoreTests.csproj --configuration 'Debug'
+      run: dotnet test OmegaCoreTests/OmegaCoreTests.csproj --configuration 'Release'
