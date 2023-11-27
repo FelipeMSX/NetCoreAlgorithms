@@ -1,5 +1,5 @@
 ﻿using OmegaCore.Abstracts;
-using OmegaCore.Interfaces;
+using OmegaCore.Collections.Interfaces;
 
 namespace OmegaCore.Iterators
 {
@@ -11,7 +11,7 @@ namespace OmegaCore.Iterators
     /// </summary>
     public class OmegaListIterator<T> : IOmegaIteratorBase<T>
     {
-        private IOmegaList<T>? _source;
+        private IOmegaList<T> _source;
         private int _currentIndex = 0;
 
         public OmegaListIterator(IOmegaList<T> source)
@@ -21,7 +21,7 @@ namespace OmegaCore.Iterators
 
         public override bool MoveNext()
         {
-            if (_currentIndex < _source!.Count)
+            if (_currentIndex < _source.Count)
             {
                 Current = _source[_currentIndex++];
                 return true;
@@ -39,7 +39,7 @@ namespace OmegaCore.Iterators
         public override void Dispose()
         {
             Current = default!;
-            _source = null;
+            _source = null!;
         }
     }
 }

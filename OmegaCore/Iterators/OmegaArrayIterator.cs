@@ -10,7 +10,7 @@ namespace OmegaCore.Iterators
     /// </summary>
     public class OmegaArrayIterator<T> : IOmegaIteratorBase<T>
     {
-        private T[]? _source;
+        private T[] _source;
         private int _currentIndex = 0;
         private readonly int _count = 0;
         private readonly bool _revert;
@@ -31,7 +31,7 @@ namespace OmegaCore.Iterators
             {
                 if (_currentIndex > 0)
                 {
-                    Current = _source![--_currentIndex];
+                    Current = _source[--_currentIndex];
                     return true;
                 }
             }
@@ -39,7 +39,7 @@ namespace OmegaCore.Iterators
             {
                 if (_currentIndex < _count)
                 {
-                    Current = _source![_currentIndex++];
+                    Current = _source[_currentIndex++];
                     return true;
                 }
             }
@@ -56,7 +56,7 @@ namespace OmegaCore.Iterators
         public override void Dispose()
         {
             Current = default!;
-            _source = null;
+            _source = null!;
         }
     }
 }

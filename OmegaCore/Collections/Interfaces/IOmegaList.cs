@@ -1,4 +1,4 @@
-﻿namespace OmegaCore.Interfaces
+﻿namespace OmegaCore.Collections.Interfaces
 {
     public interface IOmegaList<T> : IOmegaCollection<T>
     {

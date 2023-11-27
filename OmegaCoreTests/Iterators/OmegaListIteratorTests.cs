@@ -1,9 +1,9 @@
-﻿using OmegaCore.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OmegaCoreTests.Shared;
 using OmegaCore.Abstracts;
 using OmegaCore.Iterators;
 using OmegaCore.Collections;
+using OmegaCore.Collections.Interfaces;
 
 namespace OmegaCoreTests.Iterators
 {

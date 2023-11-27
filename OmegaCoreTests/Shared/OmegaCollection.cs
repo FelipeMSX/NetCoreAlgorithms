@@ -1,4 +1,5 @@
-﻿using OmegaCore.Interfaces;
+﻿using OmegaCore.Collections.Interfaces;
+using OmegaCore.Interfaces;
 using OmegaCore.Iterators;
 
 namespace OmegaCoreTests.Shared

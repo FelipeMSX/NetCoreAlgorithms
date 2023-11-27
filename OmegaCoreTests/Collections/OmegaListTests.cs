@@ -11,6 +11,7 @@ using OmegaCore.Extensions;
 using NSubstitute.ClearExtensions;
 using Algorithms.Exceptions;
 using NSubstitute.Extensions;
+using OmegaCore.Collections.Interfaces;
 
 namespace OmegaCoreTests.Collections
 {
@@ -20,7 +21,7 @@ namespace OmegaCoreTests.Collections
 
         private IOmegaList<SampleObject> _list;
         private IOmegaIteratorBase<SampleObject> _iterator;
-        private IArrayExtensions _defaultInstance;
+        private IArrayUtil _defaultInstance;
 
         public OmegaListTests()
         {
@@ -208,7 +209,7 @@ namespace OmegaCoreTests.Collections
             //Arrange
             _list = CreateSimpleList();
 
-            var _arrayExtensions = Substitute.For<IArrayExtensions>();
+            var _arrayExtensions = Substitute.For<IArrayUtil>();
             _arrayExtensions.When(x => x.Clear(Arg.Any<SampleObject[]>(), Arg.Any<int>())).Do(x =>
             {
                 SampleObject[] source = x.ArgAt<SampleObject[]>(0);
@@ -233,7 +234,7 @@ namespace OmegaCoreTests.Collections
             //Arrange
             _list = CreateSimpleList();
 
-            var _arrayExtensions = Substitute.For<IArrayExtensions>();
+            var _arrayExtensions = Substitute.For<IArrayUtil>();
             _arrayExtensions.When(x => x.Clear(Arg.Any<SampleObject[]>(), Arg.Any<int>())).Do(x =>
             {
                 SampleObject[] source = x.ArgAt<SampleObject[]>(0);
@@ -317,7 +318,7 @@ namespace OmegaCoreTests.Collections
             IOmegaList<string> listOfStrings = new OmegaList<string>(new string[] { "a", "b", "c" });
             string[] copied = new string[3];
 
-            var _arrayExtensions = Substitute.For<IArrayExtensions>();
+            var _arrayExtensions = Substitute.For<IArrayUtil>();
             _arrayExtensions.When(x => x.OmegaCopy(Arg.Any<string[]>(), Arg.Any<string[]>(), Arg.Any<int>(), Arg.Any<int>())).Do(x =>
             {
                 string[] source = x.ArgAt<string[]>(0);
@@ -340,7 +341,7 @@ namespace OmegaCoreTests.Collections
         public void Dispose_UsingStatement_Disposed()
         {
             //Arrange
-            var _arrayExtensions = Substitute.For<IArrayExtensions>();
+            var _arrayExtensions = Substitute.For<IArrayUtil>();
 
             _arrayExtensions.When(x => x.Clear(Arg.Any<string[]>(), Arg.Any<int>())).Do(x =>
             {
@@ -361,9 +362,9 @@ namespace OmegaCoreTests.Collections
             Assert.IsTrue(true);
         }
 
-        private static IArrayExtensions CreateMockForRemoveMethod()
+        private static IArrayUtil CreateMockForRemoveMethod()
         {
-            var _arrayExtensions = Substitute.For<IArrayExtensions>();
+            var _arrayExtensions = Substitute.For<IArrayUtil>();
             _arrayExtensions.IndexOf(Arg.Any<SampleObject[]>(), Arg.Any<SampleObject>()).Returns(1);
             _arrayExtensions.When(x => x.Shift(Arg.Any<SampleObject[]>(), Arg.Any<int>(), Arg.Any<int>())).Do(x =>
             {

@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using NSubstitute.ClearExtensions;
 using OmegaCore.Collections;
+using OmegaCore.Collections.Interfaces;
 using OmegaCore.Exceptions;
 using OmegaCore.Extensions;
 using OmegaCore.Interfaces;
@@ -16,7 +17,7 @@ namespace OmegaCoreTests.Collections
     {
 
         private IOmegaStack<SampleObject> _stack;
-        private IArrayExtensions _defaultInstance;
+        private IArrayUtil _defaultInstance;
 
         public OmegaStackTests()
         {
@@ -83,7 +84,7 @@ namespace OmegaCoreTests.Collections
         {
             //Arrange
             _stack = new OmegaStack<SampleObject>(1, true);
-            var arrayExtensions = Substitute.For<IArrayExtensions>();
+            var arrayExtensions = Substitute.For<IArrayUtil>();
             arrayExtensions.IncreaseCapacity(Arg.Any<SampleObject[]>(), 2).Returns(new SampleObject[2] { new SampleObject("a"), null! });
             ArrayExtensions.Instance = arrayExtensions;
 
@@ -101,7 +102,7 @@ namespace OmegaCoreTests.Collections
         {
             //Arrange
             _stack = new OmegaStack<SampleObject>(1, true);
-            var arrayExtensions = Substitute.For<IArrayExtensions>();
+            var arrayExtensions = Substitute.For<IArrayUtil>();
             arrayExtensions.IncreaseCapacity(Arg.Any<SampleObject[]>(), 2).Returns(new SampleObject[2] { new SampleObject("a"), null! });
             ArrayExtensions.Instance = arrayExtensions;
 
@@ -119,7 +120,7 @@ namespace OmegaCoreTests.Collections
         {
             //Arrange
             _stack = new OmegaStack<SampleObject>(1, true);
-            var arrayExtensions = Substitute.For<IArrayExtensions>();
+            var arrayExtensions = Substitute.For<IArrayUtil>();
             arrayExtensions.IncreaseCapacity(Arg.Any<SampleObject[]>(), 2).Returns(new SampleObject[2] { new SampleObject("a"), null! });
             ArrayExtensions.Instance = arrayExtensions;
 
@@ -213,7 +214,7 @@ namespace OmegaCoreTests.Collections
             _stack.Push(new SampleObject("a"));
             _stack.Push(new SampleObject("b"));
 
-            var arrayExtensions = Substitute.For<IArrayExtensions>();
+            var arrayExtensions = Substitute.For<IArrayUtil>();
             arrayExtensions.When(x => x.OmegaCopy(Arg.Any<SampleObject[]>(), Arg.Any<SampleObject[]>(), 0, 1)).Do(x =>
             {
                 SampleObject[] destination = x.ArgAt<SampleObject[]>(1);
@@ -239,7 +240,7 @@ namespace OmegaCoreTests.Collections
         public void OmegaStack_PassingCollection_ArrayCopied()
         {
             //Arrange
-            var arrayExtensions = Substitute.For<IArrayExtensions>();
+            var arrayExtensions = Substitute.For<IArrayUtil>();
             arrayExtensions.When(x => x.OmegaCopy(Arg.Any<SampleObject[]>(), Arg.Any<SampleObject[]>(), 0, 1)).Do(x =>
             {
                 SampleObject[] destination = x.ArgAt<SampleObject[]>(1);
@@ -261,7 +262,7 @@ namespace OmegaCoreTests.Collections
         public void OmegaStack_PassingCollection_CountIsTwo()
         {
             //Arrange
-            var arrayExtensions = Substitute.For<IArrayExtensions>();
+            var arrayExtensions = Substitute.For<IArrayUtil>();
             arrayExtensions.When(x => x.OmegaCopy(Arg.Any<SampleObject[]>(), Arg.Any<SampleObject[]>(), 0, 1)).Do(x =>
             {
                 SampleObject[] destination = x.ArgAt<SampleObject[]>(1);
@@ -283,7 +284,7 @@ namespace OmegaCoreTests.Collections
         public void OmegaStack_PassingArray_ArrayCopied()
         {
             //Arrange
-            var arrayExtensions = Substitute.For<IArrayExtensions>();
+            var arrayExtensions = Substitute.For<IArrayUtil>();
             arrayExtensions.When(x => x.OmegaCopy(Arg.Any<SampleObject[]>(), Arg.Any<SampleObject[]>(), 0, 1)).Do(x =>
             {
                 SampleObject[] destination = x.ArgAt<SampleObject[]>(1);
@@ -304,7 +305,7 @@ namespace OmegaCoreTests.Collections
         public void OmegaStack_PassingArray_CountIsTwo()
         {
             //Arrange
-            var arrayExtensions = Substitute.For<IArrayExtensions>();
+            var arrayExtensions = Substitute.For<IArrayUtil>();
             arrayExtensions.When(x => x.OmegaCopy(Arg.Any<SampleObject[]>(), Arg.Any<SampleObject[]>(), 0, 1)).Do(x =>
             {
                 SampleObject[] destination = x.ArgAt<SampleObject[]>(1);
@@ -347,7 +348,7 @@ namespace OmegaCoreTests.Collections
         public void Dispose_UsingStatement_Disposed()
         {
             //Arrange
-            var arrayExtensions = Substitute.For<IArrayExtensions>();
+            var arrayExtensions = Substitute.For<IArrayUtil>();
 
             arrayExtensions.When(x => x.Clear(Arg.Any<string[]>(), Arg.Any<int>())).Do(x =>
             {

@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OmegaCore.Collections;
+using OmegaCore.Collections.Interfaces;
 using OmegaCore.Exceptions;
 using OmegaCore.Interfaces;
 using OmegaCore.OmegaLINQ;

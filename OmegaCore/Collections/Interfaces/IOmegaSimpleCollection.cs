@@ -1,5 +1,6 @@
-﻿
-namespace OmegaCore.Interfaces
+﻿using OmegaCore.Interfaces;
+
+namespace OmegaCore.Collections.Interfaces
 {
     public interface IOmegaSimpleCollection<T> : IOmegaEnumerable<T>, IOmegaDisposable
     {

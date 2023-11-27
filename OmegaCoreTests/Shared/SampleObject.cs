@@ -1,5 +1,5 @@
 ﻿using OmegaCore.Collections;
-using OmegaCore.Interfaces;
+using OmegaCore.Collections.Interfaces;
 using System;
 
 namespace OmegaCoreTests.Shared
