@@ -29,7 +29,7 @@ namespace AlgorithmsTests.search
         /// <summary>
         /// Técnica: Caminho de Decisão.
         /// </summary>
-        [TestMethod, TestCategory("Search"), ExpectedException(typeof(ComparerNotSetException)), Timeout(3000)]
+        [TestMethod, TestCategory("Search"), ExpectedException(typeof(ComparatorNotSetException)), Timeout(3000)]
         public void BinarySearch_ComparerIsNull_Exception()
         {
             //Arrange

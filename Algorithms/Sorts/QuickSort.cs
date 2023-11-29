@@ -30,13 +30,13 @@ namespace Algorithms.Sorts
         /// <para>Aceita valores iguais e ordem crescente.</para>
         /// </summary>
         /// <param name="list">Lista de elementos para ordenação.</param>
-        /// <exception cref="ComparerNotSetException"/>
+        /// <exception cref="ComparatorNotSetException"/>
         /// <exception cref="NullObjectException"/>
         public void Sort(IList<T> list)
 		{
             //validações
             if (Comparator == null)
-                throw new ComparerNotSetException();
+                throw new ComparatorNotSetException();
             if (list == null)
                 throw new NullObjectException();
 

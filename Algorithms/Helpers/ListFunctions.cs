@@ -10,13 +10,13 @@ namespace Algorithms.Helpers
         /// </summary>
         /// <typeparam name="E"> Tipo do objeto do vetor.</typeparam>
         /// <param name="list">Vetor de entrada.</param>
-        /// <param name="x">Posição onde irá ser feita a troca.</param>
-        /// <param name="y">Posição onde irá ser feita a troca.</param>
-        public static void Swap<T>(IList<T> list, int x, int y)
+        /// <param name="source">Posição onde irá ser feita a troca.</param>
+        /// <param name="destination">Posição onde irá ser feita a troca.</param>
+        public static void Swap<T>(IList<T> list, int source, int destination)
         {
-            T temp = list[x];
-            list[x] = list[y];
-            list[y] = temp;
+            T temp = list[source];
+            list[source] = list[destination];
+            list[destination] = temp;
         }
     }
 }

@@ -14,7 +14,7 @@ namespace Algorithms.Helpers
         public EnumerableHelper(IEnumerable<T> collection, Comparison<T> comparator)
         {
             _collection = collection ?? throw new ArgumentNullException("The array cannot be null.");
-            _comparator = comparator ?? throw new ComparerNotSetException("The comparator must be declared."); 
+            _comparator = comparator ?? throw new ComparatorNotSetException("The comparator must be declared."); 
         }
 
         /// <summary>

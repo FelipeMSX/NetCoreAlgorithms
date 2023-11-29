@@ -325,7 +325,7 @@ namespace Algorithms_Test.Abstracts
         /// <summary>
         /// Técnica: Laço. Executar o laço N-Vezes.
         /// </summary>
-        [TestMethod, TestCategory("ArrayBase"),ExpectedException(typeof(ComparerNotSetException)), Timeout(3000)]
+        [TestMethod, TestCategory("ArrayBase"),ExpectedException(typeof(ComparatorNotSetException)), Timeout(3000)]
         public void ArrayBaseConstructor_PassNullComparator_Exception()
         {
             //Arrange

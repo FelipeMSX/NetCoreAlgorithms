@@ -52,7 +52,7 @@ namespace AlgorithmsTests.Sorts
             Assert.Inconclusive();
         }
 
-        [TestMethod, TestCategory("MergeSort"), ExpectedException(typeof(ComparerNotSetException)), Timeout(3000)]
+        [TestMethod, TestCategory("MergeSort"), ExpectedException(typeof(ComparatorNotSetException)), Timeout(3000)]
         public void Sort_EmptyComparator_Exception()
         {
             //Arrange

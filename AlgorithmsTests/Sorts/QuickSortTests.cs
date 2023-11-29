@@ -49,7 +49,7 @@ namespace AlgorithmsTests.Sorts
             Assert.Inconclusive();
         }
 
-        [TestMethod, TestCategory("QuickSort"), ExpectedException(typeof(ComparerNotSetException)), Timeout(3000)]
+        [TestMethod, TestCategory("QuickSort"), ExpectedException(typeof(ComparatorNotSetException)), Timeout(3000)]
         public void Sort_EmptyComparator_Exception()
         {
             //Arrange

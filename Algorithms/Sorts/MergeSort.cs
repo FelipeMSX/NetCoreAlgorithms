@@ -33,13 +33,13 @@ namespace Algorithms.Sorts
         /// Ordena o vetor utilizando o algoritmo do mergesort.
         /// </summary>
         /// <param name="list">Vetor com os objetos genéricos.</param>
-        /// <exception cref="ComparerNotSetException"/>
+        /// <exception cref="ComparatorNotSetException"/>
         /// <exception cref="NullObjectException"/>
         public void Sort(IList<T> list)
 		{
             //validações
             if (Comparator == null)
-                throw new ComparerNotSetException();
+                throw new ComparatorNotSetException();
             if (list == null)
                 throw new NullObjectException();
 

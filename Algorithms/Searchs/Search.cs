@@ -30,7 +30,7 @@ namespace Algorithms.Searchs
         /// <para> Complexidade de Tempo: Melhor -  Médio - Pior -</para>
         /// </summary>
         /// <exception cref="NullObjectException">Objeto de entrada não pode ser nulo.</exception>
-        /// <exception cref="ComparerNotSetException">Comparator não deve ser nulo.</exception>
+        /// <exception cref="ComparatorNotSetException">Comparator não deve ser nulo.</exception>
         /// <param name="orderedArray">Array com itens ordenados.</param>
         /// <param name="item">Objeto almejado.</param>
         /// <returns>Retorna o objeto caso exista, caso contrário, valor padrão do objeto.</returns>
@@ -40,7 +40,7 @@ namespace Algorithms.Searchs
             //5 + (7c)N/2   
             //Validações
             if (Comparator == null)
-                throw new ComparerNotSetException();
+                throw new ComparatorNotSetException();
             else if (item == null || orderedArray == null)
                 throw new NullObjectException();
 
