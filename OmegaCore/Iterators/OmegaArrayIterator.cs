@@ -1,6 +1,4 @@
-﻿using OmegaCore.Abstracts;
-
-namespace OmegaCore.Iterators
+﻿namespace OmegaCore.Iterators
 {
     /// <summary>
     /// Creates a iterator to interact with each item in the array. 
@@ -8,7 +6,7 @@ namespace OmegaCore.Iterators
     /// <para>the array can be iterated in the normal or reverse order</para>
     /// <author>Felipe Morais: felipeprodev@gmail.com</author>
     /// </summary>
-    public class OmegaArrayIterator<T> : IOmegaIteratorBase<T>
+    public class OmegaArrayIterator<T> : OmegaIteratorBase<T>
     {
         private T[] _source;
         private int _currentIndex = 0;

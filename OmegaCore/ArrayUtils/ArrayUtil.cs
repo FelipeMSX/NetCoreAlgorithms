@@ -1,5 +1,4 @@
-﻿
-namespace OmegaCore.Extensions
+﻿namespace OmegaCore.ArrayUtils
 {
     /// <summary>
     /// <author>Felipe Morais: felipeprodev@gmail.com</author>
@@ -18,9 +17,9 @@ namespace OmegaCore.Extensions
         public void OmegaCopy<T>(T[] source, T[] destination, int startIndex, int endIndex)
         {
             int count = endIndex - startIndex;
-            if (destination.Length < count || source.Length < count)
-                throw new ArgumentException("The destination array should has a size greater or equals than source");
 
+            Exceptions.ArgumentCheckerException.CheckSourceLessThanOther(destination.Length, count, nameof(destination.Length));
+            Exceptions.ArgumentCheckerException.CheckSourceLessThanOther(source.Length, count, nameof(source.Length));
 
             for (int i = startIndex; i <= endIndex; i++)
                 destination[i] = source[i];
@@ -28,11 +27,9 @@ namespace OmegaCore.Extensions
 
         public void Shift<T>(T[] source, int initIndex, int endIndex)
         {
-            if (initIndex > endIndex)
-                throw new ArgumentException("Init should be greater than End");
-            if (source.Length < initIndex || source.Length < endIndex)
-                throw new ArgumentException("Init or End is out of range in the source collection");
-
+            Exceptions.ArgumentCheckerException.CheckSourceGreaterThanOther(initIndex, endIndex, nameof(initIndex));
+            Exceptions.ArgumentCheckerException.CheckSourceLessThanOther(source.Length, initIndex, nameof(source.Length));
+            Exceptions.ArgumentCheckerException.CheckSourceLessThanOther(source.Length, endIndex, nameof(source.Length));
 
             for (int i = initIndex; i < endIndex; i++)
                 source[i] = source[i + 1];
@@ -50,14 +47,13 @@ namespace OmegaCore.Extensions
 
         public int IndexOf<T>(T[] source, T item)
         {
-            if (item == null)
-                throw new ArgumentNullException(nameof(item));
+             Exceptions.ArgumentNullException.CheckAgainstNull(item,nameof(item));
 
             int index = 0;
 
             while (index < source.Length)
             {
-                if (item.Equals(source[index]))
+                if (item!.Equals(source[index]))
                     return index;
 
                 index++;

@@ -1,5 +1,4 @@
-﻿using OmegaCore.Abstracts;
-using OmegaCore.Interfaces;
+﻿using OmegaCore.Interfaces;
 
 namespace OmegaCore.Iterators
 {
@@ -9,7 +8,7 @@ namespace OmegaCore.Iterators
     /// <para>the array can be iterated in the normal or reverse order</para>
     /// <author>Felipe Morais: felipeprodev@gmail.com</author>
     /// </summary>
-    public class OmegaPredicateIterator<T> : IOmegaIteratorBase<T>
+    public class OmegaPredicateIterator<T> : OmegaIteratorBase<T>
     {
         private IOmegaEnumerator<T> _sourceEnumerator;
 

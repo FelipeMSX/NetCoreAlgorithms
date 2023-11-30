@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OmegaCoreTests.Shared;
-using OmegaCore.Abstracts;
 using OmegaCore.Iterators;
 using OmegaCore.Collections;
 using OmegaCore.Collections.Interfaces;
@@ -13,7 +12,7 @@ namespace OmegaCoreTests.Iterators
     {
 
         private IOmegaList<SampleObject> _list;
-        private IOmegaIteratorBase<SampleObject> _iterator;
+        private OmegaIteratorBase<SampleObject> _iterator;
 
         [TestInitialize]
         public void TearUp()
@@ -92,7 +91,7 @@ namespace OmegaCoreTests.Iterators
             Assert.IsTrue(_iterator.Current == null);
         }
 
-        private static bool CheckListOrder<T>(IOmegaList<T> list, IOmegaIteratorBase<T> iterator, int expectedCount)
+        private static bool CheckListOrder<T>(IOmegaList<T> list, OmegaIteratorBase<T> iterator, int expectedCount)
         {
             bool isInOrder = true;
             int index = 0;

@@ -10,7 +10,8 @@ namespace Algorithms.Sorts
     /// <author>Felipe Morais</author>
     /// <email>felipemsx18@gmail.com</email>
     /// <typeparam name="E"></typeparam>
-    public class MergeSort<T> : IDefaultComparator<T>
+	///// : IDefaultComparator<T>
+    public class MergeSort<T> 
     {
 		/// <summary>
 		/// Compara dois objetos e retorna um inteiro indicando o grau de comparação entre eles.

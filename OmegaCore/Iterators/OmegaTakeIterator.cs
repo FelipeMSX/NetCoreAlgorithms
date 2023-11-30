@@ -1,5 +1,4 @@
-﻿using OmegaCore.Abstracts;
-using OmegaCore.Interfaces;
+﻿using OmegaCore.Interfaces;
 
 namespace OmegaCore.Iterators
 {
@@ -8,7 +7,7 @@ namespace OmegaCore.Iterators
     /// <para>When the internal count reaches the MaxCount the iterator will be stopped</para>
     /// <author>Felipe Morais: felipeprodev@gmail.com</author>
     /// </summary>
-    public class OmegaTakeIterator<T> : IOmegaIteratorBase<T>
+    public class OmegaTakeIterator<T> : OmegaIteratorBase<T>
     {
         public int MaxCount { get; }
 

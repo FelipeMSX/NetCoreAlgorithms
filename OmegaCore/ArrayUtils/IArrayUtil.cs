@@ -1,5 +1,4 @@
-﻿
-namespace OmegaCore.Extensions
+﻿namespace OmegaCore.ArrayUtils
 {
     /// <summary>
     /// <author>Felipe Morais: felipeprodev@gmail.com</author>
@@ -14,6 +13,7 @@ namespace OmegaCore.Extensions
         /// <summary>
         /// Copies the elements of the source array to the destination array.
         /// </summary>
+        /// <exception cref="Exceptions.ArgumentCheckerException"/>
         void OmegaCopy<T>(T[] source, T[] destination, int startIndex, int endIndex);
 
         /// <summary>
@@ -26,11 +26,13 @@ namespace OmegaCore.Extensions
         /// results in an array {2, 3 , 4, 5, 0}.
         /// </example>
         /// </summary>
+        /// <exception cref="Exceptions.ArgumentCheckerException"/>
         void Shift<T>(T[] source, int initIndex, int endIndex);
 
         /// <summary>
         /// Retrieves the position of the item inside of the array.
         /// </summary>
+        /// <exception cref="Exceptions.ArgumentCheckerException"/>
         int IndexOf<T>(T[] source, T item);
 
         /// <summary>

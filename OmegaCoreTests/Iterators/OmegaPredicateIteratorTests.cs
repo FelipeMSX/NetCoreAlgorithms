@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OmegaCoreTests.Shared;
-using OmegaCore.Abstracts;
 using OmegaCore.Iterators;
 using OmegaCore.Collections;
 using OmegaCore.Collections.Interfaces;
@@ -13,7 +12,7 @@ namespace OmegaCoreTests.Iterators
     {
 
         private IOmegaList<SampleObject> _list;
-        private IOmegaIteratorBase<SampleObject> _iterator;
+        private OmegaIteratorBase<SampleObject> _iterator;
 
         private readonly Func<SampleObject, bool> _predicate = (sampleObject) => int.TryParse(sampleObject.Name, out int numericValue);
 
@@ -85,7 +84,7 @@ namespace OmegaCoreTests.Iterators
             Assert.IsTrue(_iterator.Current == null);
         }
 
-        private bool CheckNumbers<T>(IOmegaIteratorBase<T> iterator) where T : SampleObject
+        private bool CheckNumbers<T>(OmegaIteratorBase<T> iterator) where T : SampleObject
         {
             bool success = true;
 

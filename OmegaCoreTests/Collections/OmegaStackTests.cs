@@ -1,14 +1,12 @@
-﻿using Algorithms.Exceptions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NSubstitute;
-using NSubstitute.ClearExtensions;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OmegaCore.Collections;
 using OmegaCore.Collections.Interfaces;
 using OmegaCore.Exceptions;
-using OmegaCore.Extensions;
+using OmegaCore.ArrayUtils;
 using OmegaCore.Interfaces;
+using OmegaCore.OmegaLINQ;
 using OmegaCoreTests.Shared;
-
+using System.Linq;
 
 namespace OmegaCoreTests.Collections
 {
@@ -17,12 +15,6 @@ namespace OmegaCoreTests.Collections
     {
 
         private IOmegaStack<SampleObject> _stack;
-        private IArrayUtil _defaultInstance;
-
-        public OmegaStackTests()
-        {
-            _defaultInstance = ArrayExtensions.Instance;
-        }
 
         [TestInitialize]
         public void TearUp()
@@ -34,7 +26,6 @@ namespace OmegaCoreTests.Collections
         public void TearDown()
         {
             _stack.Dispose();
-            ArrayExtensions.Instance = _defaultInstance;
         }
 
         #region Push
@@ -60,7 +51,7 @@ namespace OmegaCoreTests.Collections
             Assert.IsTrue(_stack[0].Equals(new SampleObject("a")));
         }
 
-        [TestMethod, ExpectedException(typeof(NullParameterException))]
+        [TestMethod, ExpectedException(typeof(OmegaCore.Exceptions.ArgumentNullException))]
         public void Push_AddingNullElement_Exception()
         {
             //Arrange
@@ -69,7 +60,7 @@ namespace OmegaCoreTests.Collections
             _stack.Push(null!);
         }
 
-        [TestMethod, ExpectedException(typeof(FullCollectionException))]
+        [TestMethod, ExpectedException(typeof(OmegaCore.Exceptions.FullCollectionException))]
         public void Push_AddingElementToFullCollectionNotResizable_Exception()
         {
             //Arrange
@@ -84,14 +75,10 @@ namespace OmegaCoreTests.Collections
         {
             //Arrange
             _stack = new OmegaStack<SampleObject>(1, true);
-            var arrayExtensions = Substitute.For<IArrayUtil>();
-            arrayExtensions.IncreaseCapacity(Arg.Any<SampleObject[]>(), 2).Returns(new SampleObject[2] { new SampleObject("a"), null! });
-            ArrayExtensions.Instance = arrayExtensions;
 
             //Act
             _stack.Push(new SampleObject("a"));
             _stack.Push(new SampleObject("b"));
-            arrayExtensions.ClearSubstitute();
 
             //Assert
             Assert.IsTrue(_stack[0].Equals(new SampleObject("a")) && _stack[1].Equals(new SampleObject("b")));
@@ -102,14 +89,10 @@ namespace OmegaCoreTests.Collections
         {
             //Arrange
             _stack = new OmegaStack<SampleObject>(1, true);
-            var arrayExtensions = Substitute.For<IArrayUtil>();
-            arrayExtensions.IncreaseCapacity(Arg.Any<SampleObject[]>(), 2).Returns(new SampleObject[2] { new SampleObject("a"), null! });
-            ArrayExtensions.Instance = arrayExtensions;
 
             //Act
             _stack.Push(new SampleObject("a"));
             _stack.Push(new SampleObject("b"));
-            arrayExtensions.ClearSubstitute();
 
             //Assert
             Assert.IsTrue(_stack.Count == 2);
@@ -120,14 +103,9 @@ namespace OmegaCoreTests.Collections
         {
             //Arrange
             _stack = new OmegaStack<SampleObject>(1, true);
-            var arrayExtensions = Substitute.For<IArrayUtil>();
-            arrayExtensions.IncreaseCapacity(Arg.Any<SampleObject[]>(), 2).Returns(new SampleObject[2] { new SampleObject("a"), null! });
-            ArrayExtensions.Instance = arrayExtensions;
-
             //Act
             _stack.Push(new SampleObject("a"));
             _stack.Push(new SampleObject("b"));
-            arrayExtensions.ClearSubstitute();
 
             //Assert
             Assert.IsTrue(_stack.MaxCapacity == 2);
@@ -172,7 +150,7 @@ namespace OmegaCoreTests.Collections
             Assert.IsTrue(value.Equals(new SampleObject("b")));
         }
 
-        [TestMethod, ExpectedException(typeof(EmptyCollectionException))]
+        [TestMethod, ExpectedException(typeof(OmegaCore.Exceptions.EmptyCollectionException))]
         public void Pop_EmptyColllection_Exception()
         {
             //Arrange
@@ -193,7 +171,7 @@ namespace OmegaCoreTests.Collections
             Assert.IsTrue(value.Equals(new SampleObject("a")));
         }
 
-        [TestMethod, ExpectedException(typeof(EmptyCollectionException))]
+        [TestMethod, ExpectedException(typeof(OmegaCore.Exceptions.EmptyCollectionException))]
         public void Peek_EmptyColllection_Exception()
         {
             //Arrange
@@ -213,25 +191,14 @@ namespace OmegaCoreTests.Collections
             _stack = new OmegaStack<SampleObject>();
             _stack.Push(new SampleObject("a"));
             _stack.Push(new SampleObject("b"));
-
-            var arrayExtensions = Substitute.For<IArrayUtil>();
-            arrayExtensions.When(x => x.OmegaCopy(Arg.Any<SampleObject[]>(), Arg.Any<SampleObject[]>(), 0, 1)).Do(x =>
-            {
-                SampleObject[] destination = x.ArgAt<SampleObject[]>(1);
-                destination[0] = new SampleObject("a");
-                destination[1] = new SampleObject("b");
-            });
-  
-            ArrayExtensions.Instance = arrayExtensions;
-
             SampleObject[] newArray = new SampleObject[2];
+
+            SampleObject[] expectedOrder = new SampleObject[2] { new SampleObject("b") , new SampleObject("a") };
+
             //Act
             _stack.CopyTo(newArray, 0);
-
-            arrayExtensions.Received(1).OmegaCopy(Arg.Any<SampleObject[]>(), Arg.Any<SampleObject[]>(), 0, 1);
-            arrayExtensions.ClearSubstitute();
             //Assert
-            Assert.IsTrue(true);
+            CollectionAssert.AreEqual(newArray, expectedOrder);
         }
         #endregion
 
@@ -239,43 +206,27 @@ namespace OmegaCoreTests.Collections
         [TestMethod]
         public void OmegaStack_PassingCollection_ArrayCopied()
         {
-            //Arrange
-            var arrayExtensions = Substitute.For<IArrayUtil>();
-            arrayExtensions.When(x => x.OmegaCopy(Arg.Any<SampleObject[]>(), Arg.Any<SampleObject[]>(), 0, 1)).Do(x =>
-            {
-                SampleObject[] destination = x.ArgAt<SampleObject[]>(1);
-                destination[0] = new SampleObject("a");
-                destination[1] = new SampleObject("b");
-            });
+            var arrayOfSamples = new SampleObject[] { new SampleObject("a"), new SampleObject("b") };
+            var expectedOrder = new SampleObject[2] { new SampleObject("b"), new SampleObject("a") };
 
-            ArrayExtensions.Instance = arrayExtensions;
-            IOmegaCollection<SampleObject> collection = new OmegaList<SampleObject>(new SampleObject[] { new SampleObject("a"), new SampleObject("b") });
+            //Arrange
+            IOmegaCollection<SampleObject> collection = new OmegaList<SampleObject>(
+                arrayOfSamples);
             //Act
             _stack = new OmegaStack<SampleObject>(collection);
-            arrayExtensions.ClearSubstitute();
-
             //Assert
-            Assert.IsTrue(_stack[0].Equals(new SampleObject("a")) && _stack[1].Equals(new SampleObject("b")));
+            CollectionAssert.AreEqual(_stack.ToArray(), expectedOrder);
         }
 
         [TestMethod]
         public void OmegaStack_PassingCollection_CountIsTwo()
         {
             //Arrange
-            var arrayExtensions = Substitute.For<IArrayUtil>();
-            arrayExtensions.When(x => x.OmegaCopy(Arg.Any<SampleObject[]>(), Arg.Any<SampleObject[]>(), 0, 1)).Do(x =>
-            {
-                SampleObject[] destination = x.ArgAt<SampleObject[]>(1);
-                destination[0] = new SampleObject("a");
-                destination[1] = new SampleObject("b");
-            });
+            var arrayOfSamples = new SampleObject[] { new SampleObject("a"), new SampleObject("b") };
 
-            ArrayExtensions.Instance = arrayExtensions;
-            IOmegaCollection<SampleObject> collection = new OmegaList<SampleObject>(new SampleObject[] { new SampleObject("a"), new SampleObject("b") });
+            IOmegaCollection<SampleObject> collection = new OmegaList<SampleObject>(arrayOfSamples);
             //Act
             _stack = new OmegaStack<SampleObject>(collection);
-            arrayExtensions.ClearSubstitute();
-
             //Assert
             Assert.IsTrue(_stack.Count == 2);
         }
@@ -284,40 +235,20 @@ namespace OmegaCoreTests.Collections
         public void OmegaStack_PassingArray_ArrayCopied()
         {
             //Arrange
-            var arrayExtensions = Substitute.For<IArrayUtil>();
-            arrayExtensions.When(x => x.OmegaCopy(Arg.Any<SampleObject[]>(), Arg.Any<SampleObject[]>(), 0, 1)).Do(x =>
-            {
-                SampleObject[] destination = x.ArgAt<SampleObject[]>(1);
-                destination[0] = new SampleObject("a");
-                destination[1] = new SampleObject("b");
-            });
-
-            ArrayExtensions.Instance = arrayExtensions;
+            var arrayOfSamples = new SampleObject[] { new SampleObject("a"), new SampleObject("b") };
+            var expectedOrder = new SampleObject[2] { new SampleObject("b"), new SampleObject("a") };
             //Act
-            _stack = new OmegaStack<SampleObject>(new SampleObject[] { new SampleObject("a"), new SampleObject("b") });
-            arrayExtensions.ClearSubstitute();
-
+            _stack = new OmegaStack<SampleObject>(arrayOfSamples);
             //Assert
-            Assert.IsTrue(_stack[0].Equals(new SampleObject("a")) && _stack[1].Equals(new SampleObject("b")));
+            CollectionAssert.AreEqual(_stack.ToArray(), expectedOrder);
         }
 
         [TestMethod]
         public void OmegaStack_PassingArray_CountIsTwo()
         {
             //Arrange
-            var arrayExtensions = Substitute.For<IArrayUtil>();
-            arrayExtensions.When(x => x.OmegaCopy(Arg.Any<SampleObject[]>(), Arg.Any<SampleObject[]>(), 0, 1)).Do(x =>
-            {
-                SampleObject[] destination = x.ArgAt<SampleObject[]>(1);
-                destination[0] = new SampleObject("a");
-                destination[1] = new SampleObject("b");
-            });
-
-            ArrayExtensions.Instance = arrayExtensions;
             //Act
             _stack = new OmegaStack<SampleObject>(new SampleObject[] { new SampleObject("a"), new SampleObject("b") });
-            arrayExtensions.ClearSubstitute();
-
             //Assert
             Assert.IsTrue(_stack.Count == 2);
         }
@@ -327,8 +258,8 @@ namespace OmegaCoreTests.Collections
         public void GetEnumerator_UsingCovariance_ElementsInOrderCBA()
         {
             //Arrange
-            IOmegaStack<string> listOfStrings = new OmegaStack<string>(new string[] { "a", "b", "c" });
-            IOmegaEnumerable listOfObjects = listOfStrings;
+            IOmegaStack<string> stackOfStrings = new OmegaStack<string>(new string[] { "a", "b", "c" });
+            IOmegaEnumerable listOfObjects = stackOfStrings;
 
             //Act
             int count = 0;
@@ -337,37 +268,22 @@ namespace OmegaCoreTests.Collections
             {
                 arrayToCompare[count++] = item;
             }
-
-            bool elementsInOrder = arrayToCompare[0].Equals("c") && arrayToCompare[1].Equals("b") 
-                && arrayToCompare[2].Equals("a");
             //Assert
-            Assert.IsTrue(elementsInOrder);
+
+            var revertedArray = stackOfStrings.ToArray<object>();
+            CollectionAssert.AreEqual(arrayToCompare, revertedArray);
         }
 
         [TestMethod]
         public void Dispose_UsingStatement_Disposed()
         {
             //Arrange
-            var arrayExtensions = Substitute.For<IArrayUtil>();
-
-            arrayExtensions.When(x => x.Clear(Arg.Any<string[]>(), Arg.Any<int>())).Do(x =>
-            {
-                string[] source = x.ArgAt<string[]>(0);
-                source[0] = default!;
-                source[1] = default!;
-
-            });
-            ArrayExtensions.Instance = arrayExtensions;
-
             ////Act
             using (OmegaStack<string> stackOfStrings = new())
             {
                 stackOfStrings.Push("a");
                 stackOfStrings.Push("b");
             }
-
-            arrayExtensions.Received(1).Clear(Arg.Any<string[]>(), Arg.Any<int>());
-            arrayExtensions.ClearSubstitute();
             ////Assert
             Assert.IsTrue(true);
         }

@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OmegaCore.Abstracts;
 using OmegaCore.Iterators;
 using OmegaCoreTests.Shared;
 
@@ -10,7 +9,7 @@ namespace OmegaCoreTests.Iterators
     {
 
         private int[] _collection;
-        private IOmegaIteratorBase<int> _iterator;
+        private OmegaIteratorBase<int> _iterator;
 
 
         [TestInitialize]

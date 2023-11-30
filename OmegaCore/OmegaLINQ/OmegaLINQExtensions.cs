@@ -36,7 +36,6 @@ namespace OmegaCore.OmegaLINQ
         /// </summary>
         public static bool Some<TSource>(this IOmegaEnumerable<TSource> collection, Func<TSource, bool> predicate) => _instance.Some(collection, predicate);
 
-
         /// <summary>
         /// <inheritdoc cref="IOmegaLINQ.ForEach"/>
         /// </summary>

@@ -11,6 +11,7 @@ namespace OmegaCore.OmegaLINQ
         /// Iterates over the collection using the predicate function until find the first item that matches the predicate.
         /// <para>Throws exception if no item is found.</para>
         /// </summary>
+        /// <exception cref="Exceptions.ElementNotFoundException"></exception>
         TSource First<TSource>(IOmegaEnumerable<TSource> collection, Func<TSource, bool> predicate);
 
         /// <summary>

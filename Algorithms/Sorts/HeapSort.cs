@@ -204,7 +204,7 @@ namespace Algorithms.Sorts
         }
     }
 
-    public class HeapSortBuildMaxStrategy<T> : IHeapSortBuildStrategy<T>
+    public class HeapSortBuildMaxStrategy<T> 
     {
         public Build Build { get; }
 

@@ -11,6 +11,10 @@ namespace Algorithms.Collections
 
         public int Count => throw new System.NotImplementedException();
 
+        public int MaxCapacity => throw new System.NotImplementedException();
+
+        public bool Resizable => throw new System.NotImplementedException();
+
         public void Add(T item)
         {
             throw new System.NotImplementedException();
@@ -64,6 +68,11 @@ namespace Algorithms.Collections
         }
 
         public void CopyTo(T[] array, int startIndex)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public bool IsFull()
         {
             throw new System.NotImplementedException();
         }

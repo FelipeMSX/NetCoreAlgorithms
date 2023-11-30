@@ -7,8 +7,8 @@ using Algorithms.Helpers;
 
 namespace Algorithms.Abstracts
 {
-
-    public abstract class LinkedListBase<TValue, ENode> : IDefaultComparator<TValue>, IInteracbleCollection<TValue>
+    //IDefaultComparator<TValue>
+    public abstract class LinkedListBase<TValue, ENode> : IInteracbleCollection<TValue>
         where ENode : NodeBase<TValue>, new()
     {
 

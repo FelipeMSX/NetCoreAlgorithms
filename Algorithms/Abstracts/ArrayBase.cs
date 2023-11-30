@@ -147,13 +147,13 @@ namespace Algorithms.Abstracts
         /// <summary>
         /// Verifies if there is an specific item in the collection.
         /// </summary>
-        /// <exception cref="ArgumentNullException"/>
+        /// <exception cref="System.ArgumentNullException"/>
         public bool Contains(T item)  => _collectionHelper.Contains(item);
 
         /// <summary>
         /// Creates a copy of the collection to an array.
         /// </summary>
-        /// <exception cref="ArgumentNullException"/>
+        /// <exception cref="System.ArgumentNullException"/>
         public void CopyTo(T[] array, int arrayIndex) => _collectionHelper.CopyTo(array, arrayIndex);
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();

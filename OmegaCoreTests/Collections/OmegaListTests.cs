@@ -1,38 +1,26 @@
-﻿using System;
-using OmegaCore.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OmegaCoreTests.Shared;
-using OmegaCore.Abstracts;
-using OmegaCore.Iterators;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OmegaCore.Collections;
-using OmegaCore.Exceptions;
-using NSubstitute;
-using OmegaCore.Extensions;
-using NSubstitute.ClearExtensions;
-using Algorithms.Exceptions;
-using NSubstitute.Extensions;
 using OmegaCore.Collections.Interfaces;
+using OmegaCore.Exceptions;
+using OmegaCore.Interfaces;
+using OmegaCore.Iterators;
+using OmegaCore.OmegaLINQ;
+using OmegaCoreTests.Shared;
 
 namespace OmegaCoreTests.Collections
 {
     [TestClass]
     public class OmegaListTests
     {
-
         private IOmegaList<SampleObject> _list;
-        private IOmegaIteratorBase<SampleObject> _iterator;
-        private IArrayUtil _defaultInstance;
+        private OmegaIteratorBase<SampleObject> _iterator;
 
-        public OmegaListTests()
-        {
-            _defaultInstance = ArrayExtensions.Instance;
-        }
 
         [TestInitialize]
         public void TearUp()
         {
             _list = SampleObject.CreateRandomSampleList();
-            _iterator = new OmegaListIterator<SampleObject>(_list);
+            _iterator = new OmegaArrayIterator<SampleObject>(_list.ToArray(), _list.Count);
         }
 
         [TestCleanup]
@@ -40,7 +28,6 @@ namespace OmegaCoreTests.Collections
         {
             _iterator.Dispose();
             _list.Clear();
-            ArrayExtensions.Instance = _defaultInstance;
         }
 
         #region Add
@@ -68,7 +55,7 @@ namespace OmegaCoreTests.Collections
         }
 
 
-        [TestMethod, ExpectedException(typeof(NullParameterException))]
+        [TestMethod, ExpectedException(typeof(OmegaCore.Exceptions.ArgumentNullException))]
         public void Add_AddingNullElement_Exception()
         {
             //Arrange
@@ -90,7 +77,7 @@ namespace OmegaCoreTests.Collections
             Assert.AreEqual(firstElement, new SampleObject("a"));
         }
 
-        [TestMethod, ExpectedException(typeof(EmptyCollectionException))]
+        [TestMethod, ExpectedException(typeof(OmegaCore.Exceptions.EmptyCollectionException))]
         public void First_EmptyList_Exception()
         {
             //Arrange
@@ -112,7 +99,7 @@ namespace OmegaCoreTests.Collections
             Assert.AreEqual(lastElement, new SampleObject("c"));
         }
 
-        [TestMethod, ExpectedException(typeof(EmptyCollectionException))]
+        [TestMethod, ExpectedException(typeof(OmegaCore.Exceptions.EmptyCollectionException))]
         public void Last_EmptyList_Exception()
         {
             //Arrange
@@ -129,10 +116,8 @@ namespace OmegaCoreTests.Collections
         {
             //Arrange
             _list = CreateSimpleList();
-            var _arrayExtensions = CreateMockForRemoveMethod();
             //Act
             bool success = _list.Remove(new SampleObject("b"));
-            _arrayExtensions.ClearSubstitute();
             //Assert
             Assert.IsTrue(success);
         }
@@ -142,11 +127,9 @@ namespace OmegaCoreTests.Collections
         {
             //Arrange
             _list = CreateSimpleList();
-            var _arrayExtensions = CreateMockForRemoveMethod();
 
             //Act
             _list.Remove(new SampleObject("b"));
-            _arrayExtensions.ClearSubstitute();
 
             //Assert
             bool elementFound = false;
@@ -163,10 +146,8 @@ namespace OmegaCoreTests.Collections
         {
             //Arrange
             _list = CreateSimpleList();
-            var _arrayExtensions = CreateMockForRemoveMethod();
             //Act
             _list.Remove(new SampleObject("b"));
-            _arrayExtensions.ClearSubstitute();
             //Assert
             Assert.IsTrue(_list.Count == 2);
         }
@@ -182,7 +163,7 @@ namespace OmegaCoreTests.Collections
             Assert.IsFalse(itemRemoved);
         }
 
-        [TestMethod, ExpectedException(typeof(NullParameterException))]
+        [TestMethod, ExpectedException(typeof(OmegaCore.Exceptions.ArgumentNullException))]
         public void Remove_NullElement_Exception()
         {
             //Act
@@ -208,21 +189,8 @@ namespace OmegaCoreTests.Collections
         {
             //Arrange
             _list = CreateSimpleList();
-
-            var _arrayExtensions = Substitute.For<IArrayUtil>();
-            _arrayExtensions.When(x => x.Clear(Arg.Any<SampleObject[]>(), Arg.Any<int>())).Do(x =>
-            {
-                SampleObject[] source = x.ArgAt<SampleObject[]>(0);
-                source[0] = default!;
-                source[1] = default!;
-                source[2] = default!;
-            });
-
-            ArrayExtensions.Instance = _arrayExtensions;
-
             //Act
             _list.Clear();
-            _arrayExtensions.ClearSubstitute();
             //Assert
             Assert.IsTrue(_list[0] == default && _list[1] == default && _list[2] == default);
         }
@@ -233,21 +201,8 @@ namespace OmegaCoreTests.Collections
         {
             //Arrange
             _list = CreateSimpleList();
-
-            var _arrayExtensions = Substitute.For<IArrayUtil>();
-            _arrayExtensions.When(x => x.Clear(Arg.Any<SampleObject[]>(), Arg.Any<int>())).Do(x =>
-            {
-                SampleObject[] source = x.ArgAt<SampleObject[]>(0);
-                source[0] = default!;
-                source[1] = default!;
-                source[2] = default!;
-            });
-
-            ArrayExtensions.Instance = _arrayExtensions;
-
             //Act
             _list.Clear();
-            _arrayExtensions.ClearSubstitute();
             //Assert
             Assert.IsTrue(_list.Count == 0);
         }
@@ -283,15 +238,7 @@ namespace OmegaCoreTests.Collections
             //Act
             _list = new OmegaList<SampleObject>(_listToBePassed);
             //Assert
-            bool hasItems = true;
-
-            foreach (var item in _list)
-            {
-                if (!item.Equals(new SampleObject("a")) && !item.Equals(new SampleObject("b")) && !item.Equals(new SampleObject("c")))
-                    hasItems = false;
-            }
-
-            Assert.IsTrue(hasItems);
+            CollectionAssert.AreEqual(_list.ToArray(), _listToBePassed.ToArray());
         }
 
         [TestMethod]
@@ -317,22 +264,9 @@ namespace OmegaCoreTests.Collections
             //Arrange
             IOmegaList<string> listOfStrings = new OmegaList<string>(new string[] { "a", "b", "c" });
             string[] copied = new string[3];
-
-            var _arrayExtensions = Substitute.For<IArrayUtil>();
-            _arrayExtensions.When(x => x.OmegaCopy(Arg.Any<string[]>(), Arg.Any<string[]>(), Arg.Any<int>(), Arg.Any<int>())).Do(x =>
-            {
-                string[] source = x.ArgAt<string[]>(0);
-                string[] destination = x.ArgAt<string[]>(1);
-                destination[0] = source[0];
-                destination[1] = source[1];
-                destination[2] = source[2];
-            });
-            ArrayExtensions.Instance = _arrayExtensions;
-
             //Act
             listOfStrings.CopyTo(copied, 0);
-            _arrayExtensions.Received(1).OmegaCopy(Arg.Any<string[]>(), Arg.Any<string[]>(), Arg.Any<int>(), Arg.Any<int>());
-            _arrayExtensions.ClearSubstitute();
+
             //Assert
             Assert.IsTrue(true);
         }
@@ -341,42 +275,12 @@ namespace OmegaCoreTests.Collections
         public void Dispose_UsingStatement_Disposed()
         {
             //Arrange
-            var _arrayExtensions = Substitute.For<IArrayUtil>();
-
-            _arrayExtensions.When(x => x.Clear(Arg.Any<string[]>(), Arg.Any<int>())).Do(x =>
-            {
-                string[] source = x.ArgAt<string[]>(0);
-                source[0] = default!;
-                source[1] = default!;
-                source[2] = default!;
-
-            });
-            ArrayExtensions.Instance = _arrayExtensions;
-
-            ////Act
+            //Act
             using (OmegaList<string> listOfStrings = new(new string[] { "a", "b", "c" })) { }
-
-            _arrayExtensions.Received(1).Clear(Arg.Any<string[]>(), Arg.Any<int>());
-            _arrayExtensions.ClearSubstitute();
             ////Assert
             Assert.IsTrue(true);
         }
 
-        private static IArrayUtil CreateMockForRemoveMethod()
-        {
-            var _arrayExtensions = Substitute.For<IArrayUtil>();
-            _arrayExtensions.IndexOf(Arg.Any<SampleObject[]>(), Arg.Any<SampleObject>()).Returns(1);
-            _arrayExtensions.When(x => x.Shift(Arg.Any<SampleObject[]>(), Arg.Any<int>(), Arg.Any<int>())).Do(x =>
-            {
-                SampleObject[] source = x.Arg<SampleObject[]>();
-                source[1] = source[2];
-                source[2] = default!;
-            });
-
-            ArrayExtensions.Instance = _arrayExtensions;
-
-            return _arrayExtensions;
-        }
 
         private static IOmegaList<SampleObject> CreateSimpleList()
         {

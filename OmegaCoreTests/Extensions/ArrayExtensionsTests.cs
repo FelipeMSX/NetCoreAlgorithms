@@ -1,6 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OmegaCore.Abstracts;
-using OmegaCore.Extensions;
+using OmegaCore.ArrayUtils;
 using OmegaCore.Iterators;
 using OmegaCoreTests.Shared;
 using System;
@@ -12,7 +11,7 @@ namespace OmegaCoreTests.Extensions
     {
 
         private int[] _collection;
-        private IOmegaIteratorBase<int> _iterator;
+        private OmegaIteratorBase<int> _iterator;
 
 
         [TestInitialize]
@@ -64,32 +63,12 @@ namespace OmegaCoreTests.Extensions
         [TestMethod]
         public void OmegaCopy_CopyCollection_AllElementsCopied()
         {
-            //Act
-            int[] newCollection = new int[_collection.Length];
-            _collection.OmegaCopy(newCollection, 0, _collection.Length - 1);
-
-            bool allElementsFound = true;
-            int count = 0;
-            while (allElementsFound && count < _collection.Length)
-            {
-                if (!newCollection[count].Equals(_collection[count]))
-                    allElementsFound = false;
-
-                count++;
-            }
-            //Assert
-            Assert.IsTrue(allElementsFound, "All elements should be in the new collection, but for some reason it wasn't");
-        }
-
-        [TestMethod]
-        public void OmegaCopy_CopyTheLastItem_TwoElementsCopied()
-        {
             //Arrange
             int[] newCollection = new int[_collection.Length];
             //Act
             _collection.OmegaCopy(newCollection, 0, _collection.Length - 1);
             //Assert
-            Assert.IsTrue((newCollection[_collection.Length - 1] == 5), "The element should be 5");
+            CollectionAssert.AreEqual(newCollection, _collection);
         }
 
         [TestMethod]
@@ -103,7 +82,7 @@ namespace OmegaCoreTests.Extensions
             Assert.IsTrue((newCollection[0] == default), "The element should be default");
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        [TestMethod, ExpectedException(typeof(OmegaCore.Exceptions.ArgumentCheckerException))]
         public void OmegaCopy_DestinationLengthLesserTheSource_Exception()
         {
             //Arrange
@@ -117,10 +96,12 @@ namespace OmegaCoreTests.Extensions
         [TestMethod]
         public void Shift_ShiftingUntilTheEnd_AllElementsShifted()
         {
+            //Arrange 
+            int[] expectedOrder = new[] { 2,3,4,5,0};
             //Act
             _collection.Shift(0);
             //Assert
-            Assert.IsTrue(_collection[0] == 2 && _collection[1] == 3 && _collection[2] == 4 && _collection[3] == 5);
+            CollectionAssert.AreEqual(_collection, expectedOrder);
         }
 
         [TestMethod]
@@ -141,14 +122,14 @@ namespace OmegaCoreTests.Extensions
             newCollection.Shift(0, 0);
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        [TestMethod, ExpectedException(typeof(OmegaCore.Exceptions.ArgumentCheckerException))]
         public void Shift_CollectionSizeIsLesserThanInitIntervals_Exception()
         {
             //Act
             _collection.Shift(6, 8);
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        [TestMethod, ExpectedException(typeof(OmegaCore.Exceptions.ArgumentCheckerException))]
         public void Shift_CollectionSizeIsLesserThanEndIntervals_Exception()
         {
             //Act
@@ -236,7 +217,7 @@ namespace OmegaCoreTests.Extensions
             Assert.IsTrue(indexOfItem == -1);
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        [TestMethod, ExpectedException(typeof(OmegaCore.Exceptions.ArgumentNullException))]
         public void IndexOf_NullValue_Exception()
         {
             string[] stringCollection = new string[4] { "a", "b", "c", "d" };
@@ -265,7 +246,7 @@ namespace OmegaCoreTests.Extensions
             //Act
             _collection.Reverse();
             //Assert
-            Assert.IsTrue(HelpersTests.CheckArrayOverArray(expectedOrder, _collection));
+            CollectionAssert.AreEqual(expectedOrder, _collection);
         }
 
         [TestMethod]
@@ -277,7 +258,7 @@ namespace OmegaCoreTests.Extensions
             //Act
             _collection.Reverse();
             //Assert
-            Assert.IsTrue(HelpersTests.CheckArrayOverArray(expectedOrder, _collection));
+            CollectionAssert.AreEqual(expectedOrder, _collection);
         }
 
         [TestMethod]
@@ -288,7 +269,7 @@ namespace OmegaCoreTests.Extensions
             //Act
             _collection.Reverse(3);
             //Assert
-            Assert.IsTrue(HelpersTests.CheckArrayOverArray(expectedOrder, _collection));
+            CollectionAssert.AreEqual(expectedOrder, _collection);
         }
         #endregion
     }

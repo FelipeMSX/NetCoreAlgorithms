@@ -9,7 +9,8 @@ using Algorithms.Nodes;
 
 namespace Algorithms.Abstracts
 {
-	public abstract class SearchTreeBase<TValue, TNode> : IEnumerable<TValue>, IDefaultComparator<TValue>
+	//, IDefaultComparator<TValue>
+    public abstract class SearchTreeBase<TValue, TNode> : IEnumerable<TValue>
 		where TNode : TreeSearchNode<TValue>, new()
     {
 

@@ -16,7 +16,8 @@ namespace Algorithms.Sorts
 
     /// <author>Felipe Morais</author>
     /// <email>felipemsx18@gmail.com</email>
-    public class QuickSort<T> : IDefaultComparator<T>
+    /// IDefaultComparator<T>
+    public class QuickSort<T>
     {
 		public Comparison<T> Comparator { get; set; }
 		
