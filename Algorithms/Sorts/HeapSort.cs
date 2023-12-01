@@ -1,19 +1,12 @@
-﻿using Algorithms.Interfaces;
-using Algorithms.Exceptions;
-using Algorithms.Helpers;
-using System.Collections.Generic;
+﻿using Algorithms.Exceptions;
+using Algorithms.Interfaces;
 using OmegaCore.Collections.Interfaces;
-using OmegaCore.OmegaLINQ;
-using OmegaCore.Exceptions;
-using System;
 
 namespace Algorithms.Sorts
 {
     /// <summary>
-    /// 
+    /// <author>Felipe Morais: felipeprodev@gmail.com</author>
     /// </summary>
-    /// <author>Felipe Morais</author>
-    /// <email>felipeprodev@gmail.com</email>
     public class HeapSort<T> : IOmegaComparator<T>, ISortable<T>
     {
         public OmegaComparison<T> Comparator { get; set; }
@@ -23,6 +16,8 @@ namespace Algorithms.Sorts
         /// </summary>
         public Build Operation { get; }
 
+        private IOmegaList<T> _internalList;
+
         /// <param name="comparator">Defines a simple way to compare two objects</param>
         /// <param name="build">The heap can be building using MIN or MAX strategy</param>
         public HeapSort(OmegaComparison<T> comparator, Build build = Build.Max)
@@ -30,7 +25,6 @@ namespace Algorithms.Sorts
             Comparator = comparator;
             Operation = build;
         }
-
 
         /// <summary>
         /// Orders the collection using the heapsort algorithm.
@@ -48,17 +42,18 @@ namespace Algorithms.Sorts
             if (Comparator == null)
                 throw new ComparatorNotSetException();
 
-            Heapsort(list);
+            _internalList = list;
+            Heapsort();
         }
 
-        private void Heapsort(IOmegaList<T> list)
+        private void Heapsort()
         {
-            BuildHeap(list, list.Count);
-            for (int i = list.Count - 1; i > 0; i--)
+            BuildHeap(_internalList.Count);
+
+            for (int i = _internalList.Count - 1; i > 0; i--)
             {
-                //Change this for the ArrayExtensions.
-                //ListFunctions.Swap(list, 0, i);
-                Heapify(list, 0, i);
+                _internalList.Swap(0, i);
+                Heapify(0, i);
             }
         }
 
@@ -66,65 +61,66 @@ namespace Algorithms.Sorts
         /// Sub-rotina utilizada para construiro heapMin. Vefirificando se o nó pai possui filhos maiores que ele.
         /// Caso o pai tenha filho com nó maior é necessário efetuar a troca.
         /// </summary>
-        /// <param name="list">Lista de objetos para ordenação.</param>
-        /// <param name="currentPosition">Posição do item a ser analisado.</param>
-        /// <param name="listLength">Tamanho da lista Ou o limite superior.</param>
-        private void Heapify(IOmegaList<T> list, int currentPosition, int listLength)
+        /// <param name="currentPosition">The current position in index.</param>
+        /// <param name="listLength">It can be the list size or the upper limit.</param>
+        private void Heapify(int currentPosition, int listLength)
         {
             int leftPosition = Left(currentPosition);
             int rightPosition = Right(currentPosition);
 
             // leftPosition < position. Verifica se não extrapola os limites do vetor.
             // Se o filho esquerdo for maior que o pai é necessário trocar.
-            if (leftPosition < listLength && CheckCompareResult(Comparator(list[leftPosition], list[currentPosition])))
-                Realocate(list, currentPosition, leftPosition, listLength);
+            if (leftPosition < listLength && CheckCompareResult(Comparator(_internalList[leftPosition], _internalList[currentPosition])))
+                Realocate(currentPosition, leftPosition, listLength);
 
             // rightPosition < position. Verifica se não extrapola os limites do vetor.
             // Se o filho direito for maior que o pai é necessário trocar.
-            if (rightPosition < listLength && CheckCompareResult(Comparator(list[leftPosition], list[currentPosition])))
-                Realocate(list, currentPosition, rightPosition, listLength);
+            if (rightPosition < listLength && CheckCompareResult(Comparator(_internalList[rightPosition], _internalList[currentPosition])))
+                Realocate(currentPosition, rightPosition, listLength);
 
         }
+
         private bool CheckCompareResult(int compareResult)
         {
             return Operation == Build.Min ? compareResult <= 0 : compareResult >= 0;
         }
 
         /// <summary>
-        /// Faz a troca de dois elementos da lista e chama o processo de Heapify novamente para o objeto trocado.
+        /// Changes two elements in the list and call Heapify again to continue the process.
         /// </summary>
-        private void Realocate(IOmegaList<T> list, int currentPosition, int swapPosition, int listLength)
+        private void Realocate(int currentPosition, int swapPosition, int listLength)
         {
-            ///*ListFunctions*/.Swap(list, currentPosition, swapPosition);
-            Heapify(list, swapPosition, listLength);
+            _internalList.Swap(currentPosition, swapPosition);
+            Heapify(swapPosition, listLength);
         }
 
         /// <summary>
-        /// Constrói o heap a partir da lista.
+        /// Only called in the beginning  to start all the sort process.
         /// </summary>
-		private void BuildHeap(IOmegaList<T> list, int listLength)
+		private void BuildHeap(int listLength)
         {
             for (int i = (listLength / 2) - 1; i >= 0; i--)
-                Heapify(list, i, listLength);
+                Heapify(i, listLength);
         }
 
         /// <summary>
-        /// Based on the position calculates his left son.
+        /// Based on the <paramref name="position"/> calculates its left son.
         /// </summary>
         /// <returns>Returns the position of the left son in the array</returns>
-        private static int Left(int i)
+        private static int Left(int position)
         {
-            return 2 * i + 1;
+            return 2 * position + 1;
         }
 
         /// <summary>
-        /// Based on the position calculates his right son.
+        /// Based on the <paramref name="position"/> calculates its right son.
         /// </summary>
         /// <returns>Returns the position of the right son in the array</returns>
         private static int Right(int position)
         {
             return 2 * position + 2;
         }
+
     }
 
     /// <summary>

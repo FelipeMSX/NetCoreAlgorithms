@@ -6,6 +6,9 @@ using OmegaCore.Iterators;
 
 namespace OmegaCore.Collections
 {
+    /// <summary>
+    /// <author>Felipe Morais: felipeprodev@gmail.com</author>
+    /// </summary>
     public class OmegaList<T> : IOmegaList<T>
     {
         private const int INITIAL_CAPACITY = 100;
@@ -131,9 +134,13 @@ namespace OmegaCore.Collections
 
         public IOmegaEnumerator<T> GetEnumerator() => new OmegaArrayIterator<T>(_internalArray, Count);
 
+        public void Swap(int source, int destination)
+        {
+            _internalArray.Swap(source, destination);
+        }
+
         IOmegaEnumerator IOmegaEnumerable.GetEnumerator() => GetEnumerator();
 
         private static int CalculateInitialCapacity(bool preserveCollectionCount, int count) => preserveCollectionCount ? count : count * GROWING_FACTOR;
-
     }
 }

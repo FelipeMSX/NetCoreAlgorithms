@@ -1,35 +1,36 @@
 ﻿using Algorithms.Exceptions;
 using Algorithms.Sorts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
+using OmegaCore.Collections;
+using OmegaCore.Collections.Interfaces;
 
 namespace AlgorithmsTests.Sorts
 {
     [TestClass]
     public class HeapSortTests
     {
-        private int[] vector;
+        private IOmegaList<int> list;
 
         [TestInitialize]
         public void Initialize()
         {
-            vector = new int[] { 100, 40, 20, 30, 4, -500, 0, 20, -25, 25 };
+            list = new OmegaList<int>(new int[] { 100, 40, 20, 30, 4, -500, 0, 20, -25, 25 });
         } 
 
         [TestMethod, TestCategory("Heapsort"), Timeout(3000)]
         public void Sort_VectorNumbers_CrescentOrderedList()
         {
             //Arrange
-            HeapSort<int> heapsort = new HeapSort<int>((x, y) => x.CompareTo(y),HeapSort<int>.Build.Max);
+            HeapSort<int> heapsort = new((x, y) => x.CompareTo(y),Build.Max);
 
             //Act
-            heapsort.Sort(vector);
+            heapsort.Sort(list);
 
             //Assert
             bool isOrdered = true;
-            for (int i = 0; i < vector.Length -1; i++)
+            for (int i = 0; i < list.Count -1; i++)
             {
-                isOrdered = vector[i] <= vector[i + 1];
+                isOrdered = list[i] <= list[i + 1];
                 if (!isOrdered)
                     break;
             }
@@ -42,8 +43,8 @@ namespace AlgorithmsTests.Sorts
         public void Sort_ListNumbers_CrescentOrderedList()
         {
             //Arrange
-            HeapSort<int> heapsort  = new HeapSort<int>((x, y) => x.CompareTo(y), HeapSort<int>.Build.Max);
-            List<int> listNumbers   = new List<int> { 100, 40, 20, 30, 4, -500, 0, 20, -25, 25 };
+            HeapSort<int> heapsort  = new((x, y) => x.CompareTo(y), Build.Max);
+            OmegaList<int> listNumbers = new(new int[]{ 100, 40, 20, 30, 4, -500, 0, 20, -25, 25 });
 
             //Act
             heapsort.Sort(listNumbers);
@@ -65,17 +66,17 @@ namespace AlgorithmsTests.Sorts
         public void Sort_VectorNumbers_DecrescentOrderedList()
         {
             //Arrange
-            HeapSort<int> heapsort = new HeapSort<int>((x, y) => x.CompareTo(y), HeapSort<int>.Build.Min);
+            HeapSort<int> heapsort = new((x, y) => x.CompareTo(y),Build.Min);
 
             //Act
-            heapsort.Sort(vector);
+            heapsort.Sort(list);
 
             //Assert
             bool isOrdered = true;
 
-            for (int i = 0; i < vector.Length - 1; i++)
+            for (int i = 0; i < list.Count - 1; i++)
             {
-                isOrdered = vector[i] >= vector[i + 1];
+                isOrdered = list[i] >= list[i + 1];
                 if (!isOrdered)
                     break;
             }
@@ -83,11 +84,11 @@ namespace AlgorithmsTests.Sorts
         }
 
 
-        [TestMethod, TestCategory("Heapsort"), ExpectedException(typeof(NullObjectException)), Timeout(3000)]
+        [TestMethod, TestCategory("Heapsort"), ExpectedException(typeof(OmegaCore.Exceptions.ArgumentNullException)), Timeout(3000)]
         public void Sort_NullValue_Exception()
         {
             //Arrange
-            HeapSort<int> heapsort = new HeapSort<int>((x, y) => x.CompareTo(y), HeapSort<int>.Build.Min);
+            HeapSort<int> heapsort = new((x, y) => x.CompareTo(y), Build.Min);
 
             //Act
             heapsort.Sort(null);
@@ -100,10 +101,10 @@ namespace AlgorithmsTests.Sorts
         public void Sort_EmptyComparator_Exception()
         {
             //Arrange
-            HeapSort<int> heapsort = new HeapSort<int>(null);
+            HeapSort<int> heapsort = new(null);
 
             //Act
-            heapsort.Sort(vector);
+            heapsort.Sort(list);
 
             //Assert
             Assert.Inconclusive();

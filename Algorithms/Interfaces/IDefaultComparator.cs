@@ -4,7 +4,7 @@ namespace Algorithms.Interfaces
     public interface IOmegaComparator<T>
     {
         /// <summary>
-        /// <inheritdoc cref="OmegaComparison{T}"></inheritdoc>/>
+        /// <inheritdoc cref="OmegaComparison{T}"></inheritdoc>
         /// </summary>
         OmegaComparison<T> Comparator { get; }
     }

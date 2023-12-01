@@ -76,5 +76,10 @@ namespace Algorithms.Collections
         {
             throw new System.NotImplementedException();
         }
+
+        public void Swap(int source, int destination)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

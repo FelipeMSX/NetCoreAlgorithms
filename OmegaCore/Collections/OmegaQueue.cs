@@ -5,6 +5,9 @@ using OmegaCore.Iterators;
 
 namespace OmegaCore.Collections
 {
+    /// <summary>
+    /// <author>Felipe Morais: felipeprodev@gmail.com</author>
+    /// </summary>
     public class OmegaQueue<T> : IOmegaQueue<T>
     {
         private const int INITIAL_CAPACITY = 100;
