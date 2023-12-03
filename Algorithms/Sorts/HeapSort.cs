@@ -28,7 +28,7 @@ namespace Algorithms.Sorts
 
         /// <summary>
         /// Orders the collection using the heapsort algorithm.
-        /// <para>Time: <b>O(n log n)</b></para>
+        /// <para>Time: <b>O(N log N)</b></para>
         /// <para>Memory: <b>O(1)</b></para>
         /// </summary>
         /// <param name="list">Lista de elementos.</param>
@@ -50,39 +50,50 @@ namespace Algorithms.Sorts
         {
             BuildHeap(_internalList.Count);
 
-            for (int i = _internalList.Count - 1; i > 0; i--)
+            for (int index = _internalList.Count - 1; index > 0; index--)
             {
-                _internalList.Swap(0, i);
-                Heapify(0, i);
+                _internalList.Swap(0, index);
+                Heapify(0, index);
             }
         }
 
         /// <summary>
-        /// Sub-rotina utilizada para construiro heapMin. Vefirificando se o nó pai possui filhos maiores que ele.
-        /// Caso o pai tenha filho com nó maior é necessário efetuar a troca.
+        /// Subroutine used to build the heap. It checks whether parent value is less than its left or right son.
+        /// <para>When the son's value is bigger than its parent value they must swap their position</para>
         /// </summary>
         /// <param name="currentPosition">The current position in index.</param>
-        /// <param name="listLength">It can be the list size or the upper limit.</param>
-        private void Heapify(int currentPosition, int listLength)
+        /// <param name="indexBoundary">It can be the list size or the upper limit.</param>
+        private void Heapify(int currentPosition, int indexBoundary)
         {
-            int leftPosition = Left(currentPosition);
-            int rightPosition = Right(currentPosition);
-
-            // leftPosition < position. Verifica se não extrapola os limites do vetor.
-            // Se o filho esquerdo for maior que o pai é necessário trocar.
-            if (leftPosition < listLength && CheckCompareResult(Comparator(_internalList[leftPosition], _internalList[currentPosition])))
-                Realocate(currentPosition, leftPosition, listLength);
-
-            // rightPosition < position. Verifica se não extrapola os limites do vetor.
-            // Se o filho direito for maior que o pai é necessário trocar.
-            if (rightPosition < listLength && CheckCompareResult(Comparator(_internalList[rightPosition], _internalList[currentPosition])))
-                Realocate(currentPosition, rightPosition, listLength);
-
+            CheckPosition(currentPosition, Left(currentPosition), indexBoundary);
+            CheckPosition(currentPosition, Right(currentPosition), indexBoundary);
         }
 
-        private bool CheckCompareResult(int compareResult)
+        private void CheckPosition(int currentPosition, int sonPosition, int indexBoundary)
         {
-            return Operation == Build.Min ? compareResult <= 0 : compareResult >= 0;
+            if (sonPosition < indexBoundary && CheckCompareResult(Comparator(_internalList[sonPosition], _internalList[currentPosition])))
+            {
+                Realocate(currentPosition, sonPosition, indexBoundary);
+            }
+        }
+
+
+        /// <summary>
+        ///  Returns <see langword="true"/> when it should change their position.
+        /// </summary>
+        /// <param name="x"> The first object to compare.</param>
+        /// <param name="y"> The second object to compare.</param>
+        /// <returns>
+        ///  <para>
+        ///  <b>Build Max:</b> A <paramref name="value"/> less than 0 means it should change".
+        ///  </para>
+        ///  <para>
+        ///  <b>Build Min:</b> A <paramref name="value"/> bigger than 0 means it should change".
+        ///  </para>
+        /// </returns>
+        private bool CheckCompareResult(int value)
+        {
+            return Operation == Build.Min ? value > 0 : value < 0;
         }
 
         /// <summary>
@@ -125,6 +136,8 @@ namespace Algorithms.Sorts
 
     /// <summary>
     /// Indicates whether the heap will be build using the MIN or MAX strategy.
+    /// <para> <b>Max:</b> the biggest value it will be in the first position of the array. Decrescent Order</para>
+    /// <para> <b>Min:</b> the smallest value it will be in the first position of the array. Crescent Order</para>
     /// </summary>
     public enum Build { Max, Min };
 }

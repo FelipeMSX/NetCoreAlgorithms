@@ -3,6 +3,8 @@ using Algorithms.Sorts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OmegaCore.Collections;
 using OmegaCore.Collections.Interfaces;
+using OmegaCore.Iterators;
+using OmegaCore.OmegaLINQ;
 
 namespace AlgorithmsTests.Sorts
 {
@@ -11,76 +13,46 @@ namespace AlgorithmsTests.Sorts
     {
         private IOmegaList<int> list;
 
+        private IOmegaList<int> expectedCrescentOrder = new OmegaList<int>(new int[] { -500, -25, 0, 4, 20, 20, 25, 30, 40, 100 }, true);
+        private IOmegaList<int> expectedDecrescentOrder = new OmegaList<int>(new int[] { 100, 40, 30, 25, 20, 20, 4, 0, -25, -500 }, true);
+
+
         [TestInitialize]
-        public void Initialize()
+        public void TearUp()
         {
-            list = new OmegaList<int>(new int[] { 100, 40, 20, 30, 4, -500, 0, 20, -25, 25 });
-        } 
+            list = new OmegaList<int>(new int[] { 100, 40, 20, 30, 4, -500, 0, 20, -25, 25 }, true);
+        }
+
+        [TestCleanup]
+        public void TearDown()
+        {
+            list.Clear();
+        }
 
         [TestMethod, TestCategory("Heapsort"), Timeout(3000)]
         public void Sort_VectorNumbers_CrescentOrderedList()
         {
             //Arrange
-            HeapSort<int> heapsort = new((x, y) => x.CompareTo(y),Build.Max);
+            HeapSort<int> heapsort = new((x, y) => x.CompareTo(y), Build.Min);
 
             //Act
             heapsort.Sort(list);
 
             //Assert
-            bool isOrdered = true;
-            for (int i = 0; i < list.Count -1; i++)
-            {
-                isOrdered = list[i] <= list[i + 1];
-                if (!isOrdered)
-                    break;
-            }
-   
-
-            Assert.IsTrue(isOrdered, "A ordem do vetor deveria estar crescente!");
+            CollectionAssert.AreEqual(expectedCrescentOrder.ToArray(), list.ToArray());
         }
 
         [TestMethod, TestCategory("Heapsort"), Timeout(3000)]
         public void Sort_ListNumbers_CrescentOrderedList()
         {
             //Arrange
-            HeapSort<int> heapsort  = new((x, y) => x.CompareTo(y), Build.Max);
-            OmegaList<int> listNumbers = new(new int[]{ 100, 40, 20, 30, 4, -500, 0, 20, -25, 25 });
-
-            //Act
-            heapsort.Sort(listNumbers);
-
-            //Assert
-            bool isOrdered = true;
-            
-            for (int i = 0; i < listNumbers.Count - 1; i++)
-            {
-                isOrdered = listNumbers[i] <= listNumbers[i + 1];
-                if (!isOrdered)
-                    break;
-            }
-
-            Assert.IsTrue(isOrdered, "A ordem da lista deveria estar crescente!");
-        }
-
-        [TestMethod, TestCategory("Heapsort"), Timeout(3000)]
-        public void Sort_VectorNumbers_DecrescentOrderedList()
-        {
-            //Arrange
-            HeapSort<int> heapsort = new((x, y) => x.CompareTo(y),Build.Min);
+            HeapSort<int> heapsort = new((x, y) => x.CompareTo(y));
 
             //Act
             heapsort.Sort(list);
 
             //Assert
-            bool isOrdered = true;
-
-            for (int i = 0; i < list.Count - 1; i++)
-            {
-                isOrdered = list[i] >= list[i + 1];
-                if (!isOrdered)
-                    break;
-            }
-            Assert.IsTrue(isOrdered, "A ordem da lista deveria estar decrescente!");
+            CollectionAssert.AreEqual(expectedDecrescentOrder.ToArray(), list.ToArray());
         }
 
 

@@ -13,9 +13,9 @@ namespace Algorithms.Sorts
         - O pivô é o elemento do meio.
         - Ordem Crescente.
 	*/
-
-    /// <author>Felipe Morais</author>
-    /// <email>felipemsx18@gmail.com</email>
+    /// <summary>
+    /// <author>Felipe Morais: felipeprodev@gmail.com</author>
+    /// </summary>
     /// IDefaultComparator<T>
     public class QuickSort<T>
     {
