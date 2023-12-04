@@ -14,13 +14,11 @@ namespace Algorithms.DesignPatterns.CreationalPatterns.Factory
     /// </summary>
     public abstract class AssemblyCachedFactoryBase<T> where T : class
     {
-        public const string EMPTY_COLLECTION = "There isn't any type in the collection";
-
         public bool IsInitialized => _cachedTypes != null;
 
         public int Count => IsInitialized ? _cachedTypes.Count : 0;
 
-        private Dictionary<string, T> _cachedTypes;
+        private static Dictionary<string, Type> _cachedTypes;
 
         protected AssemblyCachedFactoryBase()
         {
@@ -35,23 +33,35 @@ namespace Algorithms.DesignPatterns.CreationalPatterns.Factory
             Type typeOfT = typeof(T);
             var abilitiesTypes = Assembly.GetAssembly(typeOfT).GetTypes().Where(t => CheckInstanceType(typeOfT,t));
 
-            _cachedTypes = new Dictionary<string, T>();
+            _cachedTypes = new Dictionary<string, Type>();
 
             foreach (Type type in abilitiesTypes)
             {
-                _cachedTypes.Add(type.Name, CreateType(type));
+                _cachedTypes.Add(type.Name, type);
             }
         }
 
-        public T GetFactory<E>() where E : T, new()
+        public T CreateInstance<E>() where E : T, new()
         {
             if (_cachedTypes.Count == 0)
-                throw new EmptyCollectionException(EMPTY_COLLECTION);
+                throw new EmptyCollectionException();
 
             string className = typeof(E).Name;
 
            return _cachedTypes[className];
         }
+
+        public T CreateInstance<E>(params object[] arg) where E : T, new()
+        {
+            if (_cachedTypes.Count == 0)
+                throw new EmptyCollectionException();
+
+            string className = typeof(E).Name;
+
+            return _cachedTypes[className];
+        }
+
+
 
         private static bool CheckInstanceType(Type typeOfT, Type type)
         {
@@ -60,9 +70,14 @@ namespace Algorithms.DesignPatterns.CreationalPatterns.Factory
             return isDerived;
         }
 
-        private static T CreateType(Type type)
+        private static T CreateInstanceInternal(Type type)
         {
             return (T)Activator.CreateInstance(type);
+        }
+
+        private static T CreateInstanceInternal<E>(params object[] args) where E : T
+        {
+            return (T)Activator.CreateInstance(typeof(E), args);
         }
     }
 }

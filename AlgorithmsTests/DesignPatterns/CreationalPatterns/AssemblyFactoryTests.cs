@@ -39,7 +39,7 @@ namespace AlgorithmsTests.DesignPatterns.CreationalPatterns.Factory
         {
             //Arrange
             //Act
-            AbilityAbstract ability = _abilityFactory.GetFactory<FireAbility>();
+            AbilityAbstract ability = _abilityFactory.CreateInstance<FireAbility>();
             //Assert
             Assert.IsTrue(ability.Name == "Fire", $"The fire instance was expected, " +
                 $"but I got something different - {ability.GetType()}.");
@@ -52,7 +52,7 @@ namespace AlgorithmsTests.DesignPatterns.CreationalPatterns.Factory
         {
             //Arrange
             //Act
-            AbilityAbstract ability = _abilityFactory.GetFactory<PoisonAbility>();
+            AbilityAbstract ability = _abilityFactory.CreateInstance<PoisonAbility>();
             //Assert
             Assert.IsTrue(ability.Name == "Poison", "An exception was expected!");
         }
@@ -64,7 +64,7 @@ namespace AlgorithmsTests.DesignPatterns.CreationalPatterns.Factory
         {
             //Arrange
             //Act
-            AbilityAbstract ability = _abilityFactory.GetFactory<NullableAbility>();
+            AbilityAbstract ability = _abilityFactory.CreateInstance<NullableAbility>();
             //Assert
             Assert.IsTrue(ability.Name == "Nullable", $"The fire instance was expected, " +
                 $"but I got something different - {ability.GetType()}.");

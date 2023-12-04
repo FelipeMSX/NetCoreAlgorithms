@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OmegaCoreTests", "..\OmegaC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OmegaCoreBenchmarks", "..\OmegaCoreBenchmarks\OmegaCoreBenchmarks.csproj", "{DE447BBB-57D7-4F7D-B3D7-30642C626056}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OmegaIOC", "..\OmegaIOC\OmegaIOC.csproj", "{4EBA220A-7DDE-42A5-B922-4C16F5163FF6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OmegaIOC", "..\OmegaIOC\OmegaIOC.csproj", "{4EBA220A-7DDE-42A5-B922-4C16F5163FF6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssemblyFactoryMethod", "..\AssemblyFactoryMethod\AssemblyFactoryMethod.csproj", "{7EC91BFC-08FA-425F-AB8F-DED99FAC6F7E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{4EBA220A-7DDE-42A5-B922-4C16F5163FF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4EBA220A-7DDE-42A5-B922-4C16F5163FF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4EBA220A-7DDE-42A5-B922-4C16F5163FF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EC91BFC-08FA-425F-AB8F-DED99FAC6F7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EC91BFC-08FA-425F-AB8F-DED99FAC6F7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EC91BFC-08FA-425F-AB8F-DED99FAC6F7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EC91BFC-08FA-425F-AB8F-DED99FAC6F7E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
