@@ -48,7 +48,7 @@ namespace Algorithms.DesignPatterns.CreationalPatterns.Factory
 
             string className = typeof(E).Name;
 
-           return _cachedTypes[className];
+           return _cachedTypes[className] as  T;
         }
 
         public T CreateInstance<E>(params object[] arg) where E : T, new()
@@ -58,7 +58,7 @@ namespace Algorithms.DesignPatterns.CreationalPatterns.Factory
 
             string className = typeof(E).Name;
 
-            return _cachedTypes[className];
+            return _cachedTypes[className] as T;
         }
 
 
