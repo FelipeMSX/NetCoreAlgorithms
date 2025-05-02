@@ -2,18 +2,24 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Algorithms.Sorts;
 using Algorithms.Exceptions;
+using OmegaCore.Collections.Interfaces;
+using OmegaCore.Collections;
+using OmegaCore.OmegaLINQ;
+
 
 namespace AlgorithmsTests.Sorts
 {
 	[TestClass]
 	public class MergeSortTests
 	{
-		private int[] vectorInteger;
+        private IOmegaList<int> _listOfNumbers;
 
-		[TestInitialize]
+        private IOmegaList<int> _expectedCrescentOrder = new OmegaList<int>([-500, -25, 0, 4, 20, 20, 25, 30, 40, 100], true);
+
+        [TestInitialize]
 		public void Initialize()
 		{
-			vectorInteger = new int[] { 100,40,20,30,4,500,20,25,25 };
+            _listOfNumbers = new OmegaList<int>([100, 40, 20, 30, 4, -500, 0, 20, -25, 25], true);
 		}
 
 		[TestMethod]
@@ -24,22 +30,13 @@ namespace AlgorithmsTests.Sorts
 			MergeSort<int> merge = new MergeSort<int>((x,y) => x.CompareTo(y));
 
             //Act
-            //merge.Sort(vectorInteger);
-
+            merge.Sort(_listOfNumbers);
             //Assert
-            bool isOrdered = true;
-            for (int i = 0; i < vectorInteger.Length - 1; i++)
-            {
-                isOrdered = vectorInteger[i].CompareTo(vectorInteger[i + 1]) <= 0;
-                if (!isOrdered)
-                    break;
-            }
-
-            Assert.IsTrue(isOrdered, "A ordem da lista deveria estar crescente!");
+            CollectionAssert.AreEqual(_expectedCrescentOrder.ToArray(), _listOfNumbers.ToArray());
         }
 
 
-        [TestMethod, TestCategory("MergeSort"), ExpectedException(typeof(NullObjectException)), Timeout(3000)]
+        [TestMethod, TestCategory("MergeSort"), ExpectedException(typeof(OmegaCore.Exceptions.ArgumentNullException)), Timeout(3000)]
         public void Sort_NullValue_Exception()
         {
             //Arrange
@@ -59,7 +56,7 @@ namespace AlgorithmsTests.Sorts
             MergeSort<int> merge = new MergeSort<int>(null);
 
             //Act
-            //merge.Sort(vectorInteger);
+            merge.Sort(_listOfNumbers);
 
             //Assert
             Assert.Inconclusive();

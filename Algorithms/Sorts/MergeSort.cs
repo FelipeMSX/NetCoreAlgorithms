@@ -34,15 +34,10 @@ namespace Algorithms.Sorts
             if (Comparator == null)
                 throw new ComparatorNotSetException();
 
-            _internalList = list;
+			_resultlist = list;
+            _internalList = new OmegaList<T>(list, true);
 
-            Mergesort(list.Count);
-		}
-
-		private void Mergesort(int length)
-		{
-			_internalList = new OmegaList<T>(length);
-			Merge(0, length - 1);
+            Merge(0, list.Count -1);
 		}
 
 		/// <summary>
@@ -69,23 +64,23 @@ namespace Algorithms.Sorts
 			int j = middle + 1;
 			int k = init; // controlador do vetor output, a cada adição no vetor, é incrementado
 
-			//while (i <= middle || j <= end)
-			//{
-			//	// Se já passou do fim, significa que não possui mais elementos do meio pro fim para inserir no vetor
-			//	if (j > end)
-			//		_resultlist[k++] = list[i++];
-			//	// Se i > meio, significa que não existe mais elementos do inicio ao fim para comparar, agora é só adicionar do meio +1 ao fim.
-			//	else if (i > middle)
-   //                 _resultlist[k++] = list[j++];
-			//	else if (Comparator(list[i], list[j]) <= 0)
-   //                 _resultlist[k++] = list[i++];
-			//	else
-   //                 _resultlist[k++] = list[j++];
-			//}
+			while (i <= middle || j <= end)
+			{
+				// Se já passou do fim, significa que não possui mais elementos do meio pro fim para inserir no vetor
+				if (j > end)
+					_resultlist[k++] = _internalList[i++];
+				// Se i > meio, significa que não existe mais elementos do inicio ao fim para comparar, agora é só adicionar do meio +1 ao fim.
+				else if (i > middle)
+					_resultlist[k++] = _internalList[j++];
+				else if (Comparator(_internalList[i], _internalList[j]) <= 0)
+					_resultlist[k++] = _internalList[i++];
+				else
+					_resultlist[k++] = _internalList[j++];
+			}
 
-			////Copiar os elementos para o vetor entrada
-			//for (int w = init; w <= end; w++)
-			//	_internalList[w] = _resultlist[w];
+			//Copiar os elementos para o vetor entrada
+			for (int w = init; w <= end; w++)
+				_internalList[w] = _resultlist[w];
 		}
 
     }

@@ -5,7 +5,7 @@
         /// <summary>
         /// Quick access to the list.
         /// </summary>
-        T this[int index] { get; }
+        T this[int index] { get; set; }
 
         /// <summary>
         /// Changes the position between two items. 

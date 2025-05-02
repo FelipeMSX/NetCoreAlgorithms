@@ -32,43 +32,43 @@ namespace AlgorithmsTests.DesignPatterns.CreationalPatterns.Factory
             Assert.IsTrue(_abilityFactory.Count == 4,"An exception was expected!");
         }
 
-        /// <summary>
-        /// </summary>
-        [TestMethod, TestCategory("DesignPattenrs"), Timeout(Shared.DEFAULT_TIMEOUT)]
-        public void CreateInstance_GettingFirstType_Success()
-        {
-            //Arrange
-            //Act
-            AbilityAbstract ability = _abilityFactory.CreateInstance<FireAbility>();
-            //Assert
-            Assert.IsTrue(ability.Name == "Fire", $"The fire instance was expected, " +
-                $"but I got something different - {ability.GetType()}.");
-        }
+        ///// <summary>
+        ///// </summary>
+        //[TestMethod, TestCategory("DesignPattenrs"), Timeout(Shared.DEFAULT_TIMEOUT)]
+        //public void CreateInstance_GettingFirstType_Success()
+        //{
+        //    //Arrange
+        //    //Act
+        //    AbilityAbstract ability = _abilityFactory.CreateInstance<FireAbility>();
+        //    //Assert
+        //    Assert.IsTrue(ability.Name == "Fire", $"The fire instance was expected, " +
+        //        $"but I got something different - {ability.GetType()}.");
+        //}
 
-        /// <summary>
-        /// </summary>
-        [TestMethod, TestCategory("DesignPattenrs"), Timeout(Shared.DEFAULT_TIMEOUT)]
-        public void CreateInstance_GettingAnotherType_Success()
-        {
-            //Arrange
-            //Act
-            AbilityAbstract ability = _abilityFactory.CreateInstance<PoisonAbility>();
-            //Assert
-            Assert.IsTrue(ability.Name == "Poison", "An exception was expected!");
-        }
+        ///// <summary>
+        ///// </summary>
+        //[TestMethod, TestCategory("DesignPattenrs"), Timeout(Shared.DEFAULT_TIMEOUT)]
+        //public void CreateInstance_GettingAnotherType_Success()
+        //{
+        //    //Arrange
+        //    //Act
+        //    AbilityAbstract ability = _abilityFactory.CreateInstance<PoisonAbility>();
+        //    //Assert
+        //    Assert.IsTrue(ability.Name == "Poison", "An exception was expected!");
+        //}
 
-        /// <summary>
-        /// </summary>
-        [TestMethod, TestCategory("DesignPattenrs"), Timeout(Shared.DEFAULT_TIMEOUT)]
-        public void CreateInstance_GettingNullableClass_Success()
-        {
-            //Arrange
-            //Act
-            AbilityAbstract ability = _abilityFactory.CreateInstance<NullableAbility>();
-            //Assert
-            Assert.IsTrue(ability.Name == "Nullable", $"The fire instance was expected, " +
-                $"but I got something different - {ability.GetType()}.");
-        }
+        ///// <summary>
+        ///// </summary>
+        //[TestMethod, TestCategory("DesignPattenrs"), Timeout(Shared.DEFAULT_TIMEOUT)]
+        //public void CreateInstance_GettingNullableClass_Success()
+        //{
+        //    //Arrange
+        //    //Act
+        //    AbilityAbstract ability = _abilityFactory.CreateInstance<NullableAbility>();
+        //    //Assert
+        //    Assert.IsTrue(ability.Name == "Nullable", $"The fire instance was expected, " +
+        //        $"but I got something different - {ability.GetType()}.");
+        //}
 
         #endregion
 

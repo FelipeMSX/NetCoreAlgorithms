@@ -18,7 +18,15 @@ namespace OmegaCore.Collections
         public int Count { get; private set; }
         public bool Resizable { get; private set; } = true;
         public int MaxCapacity { get => _internalArray.Length; }
-        public T this[int index] { get => _internalArray[index]; }
+        public T this[int index] 
+        { 
+            get => _internalArray[index]; 
+            
+            set
+            {
+                _internalArray[index] = value;
+            }
+        }
 
         #region Constructors
         /// <summary>
