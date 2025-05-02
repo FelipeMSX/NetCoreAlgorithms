@@ -13,11 +13,9 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 9.0.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build solution
-      run: dotnet build --configuration 'Release'
-    - name: Run Tests (Algorithms)
-      run: dotnet test AlgorithmsTests/AlgorithmsTests.csproj --configuration 'Release'
-    - name: Run Tests (OmegaCore)
-      run: dotnet test OmegaCoreTests/OmegaCoreTests.csproj --configuration 'Release'
+    - name: Restore Dependencies
+      run: dotnet restore Algorithms/Algorithms.sln
+    - name: Build Solution
+      run: dotnet build Algorithms/Algorithms.sln --configuration 'Release'
+    - name: Run Tests
+      run: dotnet test Algorithms/Algorithms.sln --configuration 'Release'
