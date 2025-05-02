@@ -14,8 +14,8 @@ jobs:
       with:
         dotnet-version: 9.0.x
     - name: Restore Dependencies
-      run: dotnet restore Algorithms/Algorithms.sln
+      run: dotnet restore NetCoreAlgorithms.sln
     - name: Build Solution
-      run: dotnet build Algorithms/Algorithms.sln --configuration 'Release'
+      run: dotnet build NetCoreAlgorithms.sln --configuration 'Release'
     - name: Run Tests
-      run: dotnet test Algorithms/Algorithms.sln --configuration 'Release'
+      run: dotnet test NetCoreAlgorithms.sln --configuration 'Release'

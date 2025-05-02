@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32328.378
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Algorithms", "Algorithms\Algorithms.csproj", "{9323CED6-05B4-44C8-1B90-9C70EB2E2A1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlgorithmsTests", "AlgorithmsTests\AlgorithmsTests.csproj", "{A7A1286E-DFE1-9265-F30E-E2986A0C15E0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssemblyFactoryMethod", "AssemblyFactoryMethod\AssemblyFactoryMethod.csproj", "{01753D2A-D6FA-8EDC-0F0F-D4A83C69A020}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OmegaCore", "OmegaCore\OmegaCore.csproj", "{8DFCAC46-230C-8253-C8F2-BC959FB08BFC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OmegaCoreBenchmarks", "OmegaCoreBenchmarks\OmegaCoreBenchmarks.csproj", "{5691E8F7-C008-DA9D-54E6-B2CCE640C8A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OmegaIOC", "OmegaIOC\OmegaIOC.csproj", "{A8BE8194-FA96-4F20-3B65-15390511E789}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OmegaCoreTests", "OmegaCoreTests\OmegaCoreTests.csproj", "{01BB7D16-C4EC-0917-EAC0-BE96D6CE5F25}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9323CED6-05B4-44C8-1B90-9C70EB2E2A1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9323CED6-05B4-44C8-1B90-9C70EB2E2A1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9323CED6-05B4-44C8-1B90-9C70EB2E2A1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9323CED6-05B4-44C8-1B90-9C70EB2E2A1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7A1286E-DFE1-9265-F30E-E2986A0C15E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7A1286E-DFE1-9265-F30E-E2986A0C15E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7A1286E-DFE1-9265-F30E-E2986A0C15E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7A1286E-DFE1-9265-F30E-E2986A0C15E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01753D2A-D6FA-8EDC-0F0F-D4A83C69A020}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01753D2A-D6FA-8EDC-0F0F-D4A83C69A020}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01753D2A-D6FA-8EDC-0F0F-D4A83C69A020}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01753D2A-D6FA-8EDC-0F0F-D4A83C69A020}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DFCAC46-230C-8253-C8F2-BC959FB08BFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DFCAC46-230C-8253-C8F2-BC959FB08BFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DFCAC46-230C-8253-C8F2-BC959FB08BFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DFCAC46-230C-8253-C8F2-BC959FB08BFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5691E8F7-C008-DA9D-54E6-B2CCE640C8A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5691E8F7-C008-DA9D-54E6-B2CCE640C8A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5691E8F7-C008-DA9D-54E6-B2CCE640C8A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5691E8F7-C008-DA9D-54E6-B2CCE640C8A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8BE8194-FA96-4F20-3B65-15390511E789}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8BE8194-FA96-4F20-3B65-15390511E789}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8BE8194-FA96-4F20-3B65-15390511E789}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8BE8194-FA96-4F20-3B65-15390511E789}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01BB7D16-C4EC-0917-EAC0-BE96D6CE5F25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01BB7D16-C4EC-0917-EAC0-BE96D6CE5F25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01BB7D16-C4EC-0917-EAC0-BE96D6CE5F25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01BB7D16-C4EC-0917-EAC0-BE96D6CE5F25}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {23CA2B28-0A0B-4827-AE6E-537072F907BF}
+	EndGlobalSection
+EndGlobal
