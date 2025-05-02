@@ -1,6 +1,6 @@
 name: .NET Core
 
-on: [push,pull_request]
+on: [push, pull_request]
 
 jobs:
   build:
@@ -8,16 +8,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v3
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 7.0.x
-    - name: Build with dotnet
-      run: dotnet build Algorithms/Algorithms.csproj --configuration 'Release'
-    - name: Tests
+        dotnet-version: 9.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build solution
+      run: dotnet build --configuration 'Release'
+    - name: Run Tests (Algorithms)
       run: dotnet test AlgorithmsTests/AlgorithmsTests.csproj --configuration 'Release'
-    - name: Build with dotnet
-      run: dotnet build OmegaCore/OmegaCore.csproj --configuration 'Release'
-    - name: Tests
+    - name: Run Tests (OmegaCore)
       run: dotnet test OmegaCoreTests/OmegaCoreTests.csproj --configuration 'Release'
